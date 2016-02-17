@@ -8,9 +8,13 @@ public class PlayerController : MonoBehaviour {
 	private bool isJumping = false;
 	public string horiz = "Horizontal_P1";
 	public string jumpButton = "Jump_P1";
+	public string gravButton = "Grav_P1";
+	public int team = 1;
+
+	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
-	
+		rb = GetComponent<Rigidbody2D>();
 	}
 	
 
@@ -24,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 		//GetComponent<Rigidbody2D>().AddTorque(moveHorizontal * -8f);
 
 		if (isJumping) {
-			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * -150f);
+			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * -150f * rb.gravityScale);
 		}
 		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
 		v3.x = moveHorizontal * speed;
@@ -43,15 +47,25 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown (jumpButton)) {
 			//Debug.Log ("Jump hit");
 			if (isJumping == false){
-				Vector3 jumpForce = new Vector3(0f,jumpPower,0f);
-				GetComponent<Rigidbody2D>().AddForce(jumpForce);
+				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
+				rb.AddForce(jumpForce);
 				isJumping = true;
 			}
 		}
 
+		if (Input.GetButtonDown (gravButton)) {
+			rb.gravityScale *= -1f;
+
+		}
+
 		var pos = transform.position;
-		pos.x =  Mathf.Clamp(transform.position.x, -200.0f, -1.0f);
-		transform.position = pos;
+		if (team == 1) {
+			pos.x = Mathf.Clamp (transform.position.x, -200.0f, -1.0f);
+			transform.position = pos;
+		} else if (team == 2) {
+			pos.x = Mathf.Clamp (transform.position.x, 1f, 200f);
+			transform.position = pos;
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
