@@ -48,17 +48,21 @@ public class PlayerController : MonoBehaviour {
 				isJumping = true;
 			}
 		}
+
+		var pos = transform.position;
+		pos.x =  Mathf.Clamp(transform.position.x, -200.0f, -1.0f);
+		transform.position = pos;
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "ground") {
+		if (coll.gameObject.tag == "ScoringBoundary") {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){
-		if (coll.gameObject.tag == "ground") {
+		if (coll.gameObject.tag == "ScoringBoundary") {
 			Debug.Log ("a collision ended!");
 			if (!isJumping) {
 					isJumping = true;   

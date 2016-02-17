@@ -231,9 +231,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
-      propertyPath: speed
-      value: 15
+    - target: {fileID: 103506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -323,6 +323,14 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 42.66
       objectReference: {fileID: 0}
+    - target: {fileID: 174454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 174454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
+      propertyPath: m_TagString
+      value: ScoringBoundary
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
   m_IsPrefabParent: 0
@@ -368,10 +376,6 @@ Prefab:
     - target: {fileID: 174454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
       propertyPath: m_Name
       value: Horitontal Playfield Segment (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 474454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 42.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
@@ -504,3 +508,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1001 &1884995574
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+  m_IsPrefabParent: 0
