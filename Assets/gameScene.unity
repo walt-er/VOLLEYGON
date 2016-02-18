@@ -85,6 +85,28 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &244599192 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 103506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+  m_PrefabInternal: {fileID: 1275501156}
+--- !u!60 &244599200
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244599192}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 0.2902825, y: 0.82933235}
+      - {x: 0.9441869, y: -0.5235951}
+      - {x: -0.8818078, y: -0.5235951}
+      - {x: -0.29028225, y: 0.8425642}
 --- !u!1 &326475668
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +370,7 @@ Prefab:
       objectReference: {fileID: 6200000, guid: ffdc2e4047c6d4b89b794a666d731944, type: 2}
     - target: {fileID: 5883576, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
