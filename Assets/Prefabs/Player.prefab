@@ -14,9 +14,10 @@ GameObject:
   - 61: {fileID: 6120302}
   - 114: {fileID: 11415504}
   - 58: {fileID: 5883576}
+  - 60: {fileID: 6025396}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,12 +92,30 @@ CircleCollider2D:
   m_GameObject: {fileID: 103506}
   m_Enabled: 0
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ffdc2e4047c6d4b89b794a666d731944, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!60 &6025396
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103506}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 0.2902825, y: 0.82933235}
+      - {x: 0.9441869, y: -0.5235951}
+      - {x: -0.8818078, y: -0.5235951}
+      - {x: -0.29028225, y: 0.8425642}
 --- !u!61 &6120302
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -126,6 +145,8 @@ MonoBehaviour:
   jumpPower: 2000
   horiz: Horizontal_P1
   jumpButton: Jump_P1
+  gravButton: Grav_P1
+  team: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

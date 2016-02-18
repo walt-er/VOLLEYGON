@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour {
 	public string jumpButton = "Jump_P1";
 	public string gravButton = "Grav_P1";
 	public int team = 1;
+	public float startingGrav = 1;
 
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		rb.gravityScale = startingGrav;
 	}
 	
 
@@ -69,14 +71,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "ScoringBoundary") {
+		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){
-		if (coll.gameObject.tag == "ScoringBoundary") {
+		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			Debug.Log ("a collision ended!");
 			if (!isJumping) {
 					isJumping = true;   
