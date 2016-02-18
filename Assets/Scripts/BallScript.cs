@@ -7,10 +7,12 @@ public class BallScript : MonoBehaviour {
 	float timer;
 	private bool isTimerRunning;
 	public float gravScale = 0.8f;
+	private float originalGrav;
 	private int bounces = 0;
 	private float lastXPos;
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
+	public Sprite changingSprite;
 	private Sprite theSprite;
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,7 @@ public class BallScript : MonoBehaviour {
 		Invoke("LaunchBall", 3f);
 		timer = 3 + Random.value * 10 ; 
 		rb.gravityScale = gravScale;
+		originalGrav = gravScale;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +32,15 @@ public class BallScript : MonoBehaviour {
 			Debug.Log (timer);
 		}
 
+		if (timer <= 3) {
+			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
+				Debug.Log ("a buhhh");
+				GetComponent<SpriteRenderer>().sprite = originalSprite;
+			} else {
+				Debug.Log ("a buhhh 2!");
+				GetComponent<SpriteRenderer> ().sprite = reverseGravSprite;
+			};
+		}
 		if (timer <= 0){
 			GravChange ();
 			ResetTimer ();
@@ -66,6 +78,14 @@ public class BallScript : MonoBehaviour {
 		bounces = 0;
 		Invoke ("LaunchBall", 3f);
 		isTimerRunning = false;
+
+		rb.gravityScale = originalGrav;
+		if (Mathf.Sign (rb.gravityScale) < 0) {
+			Debug.Log ("changing sprite?");
+			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+		} else {
+			GetComponent<SpriteRenderer>().sprite = originalSprite;
+		}
 	}
 
 	void GravChange(){
