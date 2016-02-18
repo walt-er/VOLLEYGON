@@ -14,6 +14,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		launchTimer ();
+
 	}
 
 	void launchTimer(){
