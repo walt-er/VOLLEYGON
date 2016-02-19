@@ -202,6 +202,10 @@ Prefab:
       propertyPath: startingGrav
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f65ab50acea8041e4914fc6544806f75, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -392,6 +396,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 677445054}
+  - {fileID: 1147925456}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_AnchorMin: {x: 0, y: 0}
@@ -503,6 +508,9 @@ MonoBehaviour:
   gameTimer: 0
   teamOneScore: 0
   teamTwoScore: 0
+  winText: {fileID: 1147925457}
+  isGameOver: 0
+  scorePlayedTo: 11
 --- !u!4 &685068964
 Transform:
   m_ObjectHideFlags: 0
@@ -578,6 +586,22 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 5883576, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f65ab50acea8041e4914fc6544806f75, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -624,6 +648,10 @@ Prefab:
       propertyPath: m_Name
       value: Vertical Playfield Segment (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2344386, guid: c8ce86503719c4a79b9355c6ee90589a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11c57daf067014c3689f81e13877bc8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8ce86503719c4a79b9355c6ee90589a, type: 2}
   m_IsPrefabParent: 0
@@ -649,6 +677,79 @@ PolygonCollider2D:
       - {x: 0.9441869, y: -0.5235951}
       - {x: -0.8818078, y: -0.5235951}
       - {x: -0.29028225, y: 0.8425642}
+--- !u!1 &1147925455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1147925456}
+  - 222: {fileID: 1147925458}
+  - 114: {fileID: 1147925457}
+  m_Layer: 5
+  m_Name: WinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1147925456
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147925455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 666405468}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1037, y: 526}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1147925457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147925455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.609}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8dbb9815bc1324265814b2080643c528, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Team 1 Wins!
+--- !u!222 &1147925458
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147925455}
 --- !u!1001 &1275501156
 Prefab:
   m_ObjectHideFlags: 0
@@ -770,11 +871,11 @@ Prefab:
       objectReference: {fileID: 6200000, guid: ffdc2e4047c6d4b89b794a666d731944, type: 2}
     - target: {fileID: 5883576, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: horiz
@@ -796,6 +897,10 @@ Prefab:
       propertyPath: startingGrav
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -838,6 +943,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2344386, guid: c8ce86503719c4a79b9355c6ee90589a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11c57daf067014c3689f81e13877bc8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8ce86503719c4a79b9355c6ee90589a, type: 2}
   m_IsPrefabParent: 0
@@ -892,6 +1001,10 @@ Prefab:
       propertyPath: m_TagString
       value: ScoringBoundary
       objectReference: {fileID: 0}
+    - target: {fileID: 2374454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11c57daf067014c3689f81e13877bc8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
   m_IsPrefabParent: 0
@@ -938,6 +1051,10 @@ Prefab:
       propertyPath: m_Name
       value: Horitontal Playfield Segment (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2374454, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11c57daf067014c3689f81e13877bc8b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
   m_IsPrefabParent: 0

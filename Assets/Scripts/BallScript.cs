@@ -96,8 +96,8 @@ public class BallScript : MonoBehaviour {
 		Invoke ("LaunchBall", 3f);
 		Invoke ("FadeOutScore", 2f);
 		isTimerRunning = false;
-
-		rb.gravityScale = originalGrav;
+		int signValue = Random.Range (0, 2) * 2 - 1;
+		rb.gravityScale = originalGrav * signValue;
 		if (Mathf.Sign (rb.gravityScale) < 0) {
 			Debug.Log ("changing sprite?");
 			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
@@ -116,7 +116,9 @@ public class BallScript : MonoBehaviour {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
 		}
 	}
-
+	void GameOver(){
+		//Application.LoadLevel ("titleScene");
+	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			Debug.Log ("a collision!");
@@ -131,10 +133,14 @@ public class BallScript : MonoBehaviour {
 				} else {
 					GameManagerScript.Instance.teamOneScore += 1; 
 				}
-				scoreText.CrossFadeAlpha(0.6f,.25f,false);
-				scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
-
-				ResetBall ();
+				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
+					scoreText.CrossFadeAlpha (0.6f, .25f, false);
+					scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+					ResetBall ();
+				} else {
+					transform.position = new Vector3 (-20f, -20f, 0f);
+					//Invoke ("GameOver", 5f);
+				}
 			}
 
 		}
