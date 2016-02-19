@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BallScript : MonoBehaviour {
+
+	public Text scoreText;
 
 	Rigidbody2D rb;
 	float timer;
@@ -9,20 +12,26 @@ public class BallScript : MonoBehaviour {
 	public float gravScale = 0.8f;
 	private float originalGrav;
 	private int bounces = 0;
+	public float baseTimeBetweenGravChanges = 10f;
 	private float lastXPos;
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
 	public Sprite changingSprite;
 	private Sprite theSprite;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		scoreText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
 		Invoke("LaunchBall", 3f);
-		timer = 3 + Random.value * 10 ; 
+		timer = baseTimeBetweenGravChanges + Random.value * 10 ; 
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
+
+		scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
 	}
 	
 	// Update is called once per frame
@@ -52,12 +61,13 @@ public class BallScript : MonoBehaviour {
 	}
 
 	void ResetTimer(){
-		timer = 3 + Random.value * 10;
+		timer = baseTimeBetweenGravChanges + Random.value * 10;
 		isTimerRunning = true;
 	}
 	void LaunchBall(){
 		rb.isKinematic = false;
 		//Send the ball in a random direction 
+
 		ResetTimer();
 		//In the future, factor in the gravity factor;
 		rb.velocity = new Vector2 (Random.Range(-10.0F, 0.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
@@ -68,15 +78,23 @@ public class BallScript : MonoBehaviour {
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos)) {
 			bounces = 0;
 			Debug.Log ("Bounces reset!");
+			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
 		}
 		
+	}
+
+	void FadeOutScore(){
+		scoreText.CrossFadeAlpha(0f,.25f,false);
 	}
 	void ResetBall(){
 		rb.isKinematic = true;
 		gameObject.transform.position = new Vector3 (0, 0, 0);
 		rb.velocity = new Vector2 (0, 0);
 		bounces = 0;
+		timer = 10; // arbitrary high number
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f) ;
 		Invoke ("LaunchBall", 3f);
+		Invoke ("FadeOutScore", 2f);
 		isTimerRunning = false;
 
 		rb.gravityScale = originalGrav;
@@ -103,7 +121,19 @@ public class BallScript : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			Debug.Log ("a collision!");
 			bounces += 1;
+			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2){
+
+				// Award a score.
+
+				if (Mathf.Sign (transform.position.x) < 0) {
+					GameManagerScript.Instance.teamTwoScore += 1; 
+				} else {
+					GameManagerScript.Instance.teamOneScore += 1; 
+				}
+				scoreText.CrossFadeAlpha(0.6f,.25f,false);
+				scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+
 				ResetBall ();
 			}
 
