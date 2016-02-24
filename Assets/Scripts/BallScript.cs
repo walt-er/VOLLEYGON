@@ -70,7 +70,7 @@ public class BallScript : MonoBehaviour {
 
 		ResetTimer();
 		//In the future, factor in the gravity factor;
-		rb.velocity = new Vector2 (Random.Range(-10.0F, 0.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
+		rb.velocity = new Vector2 (Random.Range(-10.0F, 10.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
 
 	}
 
