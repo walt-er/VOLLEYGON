@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 5f;
 	public float jumpPower = 750f;
-	private bool isJumping = false;
+	public bool isJumping = false;
 	public string horiz = "Horizontal_P1";
 	public string jumpButton = "Jump_P1";
 	public string gravButton = "Grav_P1";
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			Debug.Log ("a collision ended!");
 			if (!isJumping) {
-					isJumping = true;   
+					//isJumping = true;   
 			}
 			Debug.Log (isJumping);
 		}
