@@ -13,6 +13,12 @@ public class GameManagerScript : MonoBehaviour {
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
 
+	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
+	public GameObject Player1;
+	public GameObject Player2;
+	public GameObject Player3;
+	public GameObject Player4;
+
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
 
@@ -21,6 +27,8 @@ public class GameManagerScript : MonoBehaviour {
 	void Start () {
 		launchTimer ();
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+
+		Player1.SetActive (false);
 
 	}
 	void Awake()
