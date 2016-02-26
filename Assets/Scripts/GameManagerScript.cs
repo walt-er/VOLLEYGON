@@ -28,7 +28,11 @@ public class GameManagerScript : MonoBehaviour {
 		launchTimer ();
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 
+		// Set up players and their rigidbodies based on character selection choice
 		Player1.SetActive (false);
+	
+		// Set up arena based on options
+
 
 	}
 	void Awake()
@@ -49,6 +53,7 @@ public class GameManagerScript : MonoBehaviour {
 		winText.text = "Team " + whichTeam.ToString () + " Wins!";
 		winText.CrossFadeAlpha(1f,.25f,false);
 		isGameOver = true;
+		//DataManagerScript.dataManager.teamOneWins += 1;
 		Invoke ("LaunchTitleScreen", 5f);
 	}
 	// Update is called once per frame

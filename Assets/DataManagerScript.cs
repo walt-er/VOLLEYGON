@@ -5,6 +5,9 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
+	public int teamOneWins;
+	public int teamTwoWins;
+
 	void Awake(){
 		if (dataManager == null) {
 			DontDestroyOnLoad (gameObject);
