@@ -29,7 +29,7 @@ public class GameManagerScript : MonoBehaviour {
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 
 		// Set up players and their rigidbodies based on character selection choice
-		Player1.SetActive (false);
+	//	Player1.SetActive (false);
 	
 		// Set up arena based on options
 

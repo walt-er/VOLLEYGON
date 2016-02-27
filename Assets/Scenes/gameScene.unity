@@ -205,7 +205,7 @@ Prefab:
     - target: {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f65ab50acea8041e4914fc6544806f75, type: 2}
+      objectReference: {fileID: 2100000, guid: d1dea258f714a40c8b9660735dd7fec2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
   teamTwoScore: 0
   winText: {fileID: 1147925457}
   isGameOver: 0
-  scorePlayedTo: 11
+  scorePlayedTo: 5
   Player1: {fileID: 976226754}
   Player2: {fileID: 1468053636}
   Player3: {fileID: 410775727}
@@ -643,14 +643,14 @@ Prefab:
     - target: {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 5883576, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -1010,11 +1010,11 @@ Prefab:
       objectReference: {fileID: 6200000, guid: ffdc2e4047c6d4b89b794a666d731944, type: 2}
     - target: {fileID: 5883576, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: horiz
@@ -1039,7 +1039,11 @@ Prefab:
     - target: {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e474fd60f3369407a82b4a13bcd874bd, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -1441,6 +1445,10 @@ Prefab:
     - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
       propertyPath: m_Name
       value: Top Net
+      objectReference: {fileID: 0}
+    - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
