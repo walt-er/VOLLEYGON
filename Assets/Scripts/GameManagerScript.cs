@@ -30,7 +30,8 @@ public class GameManagerScript : MonoBehaviour {
 
 		// Set up players and their rigidbodies based on character selection choice
 	//	Player1.SetActive (false);
-	
+
+
 		// Set up arena based on options
 
 
@@ -39,6 +40,11 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		// Save a reference to the AudioHandler component as our singleton instance
 		Instance = this;
+
+		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
+		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
+		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;
+		Player4.GetComponent<PlayerController>().playerType = DataManagerScript.playerFourType;
 	}
 	void launchTimer(){
 		timerRunning = true;

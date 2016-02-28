@@ -7,6 +7,11 @@ public class DataManagerScript : MonoBehaviour {
 
 	public int teamOneWins;
 	public int teamTwoWins;
+	public static int playerOneType;
+	public static int playerTwoType;
+	public static int playerThreeType;
+	public static int playerFourType;
+
 
 	void Awake(){
 		if (dataManager == null) {

@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour {
 	public string gravButton = "Grav_P1";
 	public int team = 1;
 	public float startingGrav = 1;
+	public Mesh meshTypeOne;
+	public Mesh meshTypeTwo;
+	public int playerType = 0;
 
 	Rigidbody2D rb;
 	// Use this for initialization
@@ -18,6 +21,15 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = startingGrav;
 
+		if (playerType == 0) {
+			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
+		}
+
+		if (playerType == 1) {
+			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
+			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+		}
 	}
 	
 
