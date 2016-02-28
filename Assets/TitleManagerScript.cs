@@ -21,28 +21,28 @@ public class TitleManagerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown (jumpButton1)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (gravButton1)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (jumpButton2)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (gravButton2)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (jumpButton3)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (gravButton3)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (jumpButton4)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (gravButton4)) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("choosePlayerScene");
 		}
 	}
 }
