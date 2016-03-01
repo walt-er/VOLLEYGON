@@ -13,11 +13,11 @@ public class middleNetScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (rb.position.y >= 6.5) {
+		if (transform.localPosition.y >= 6.5) {
 			rb.velocity = new Vector2 (0, speed * -1);
 		}
 
-		if (rb.position.y <= -6.5) {
+		if (transform.localPosition.y <= -6.5) {
 			rb.velocity = new Vector2 (0, speed * 1);
 		}
 	}
