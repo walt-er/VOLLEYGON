@@ -11,6 +11,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static int playerTwoType;
 	public static int playerThreeType;
 	public static int playerFourType;
+	public static int arenaType;
 
 
 	void Awake(){

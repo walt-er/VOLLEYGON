@@ -130,7 +130,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	void Update () {
 
 		if (player1Ready && player2Ready && player3Ready && player4Ready) {
-			Application.LoadLevel("gameScene");
+			Application.LoadLevel("chooseArenaScene");
 		}
 		if (Input.GetAxisRaw (horizAxis1) == 1) {
 			
