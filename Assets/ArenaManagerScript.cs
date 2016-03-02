@@ -50,12 +50,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton1)) {
 			// log which arena
-			DataManagerScript.playerOneType = markerPos;
+			DataManagerScript.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 		if (Input.GetButtonDown (gravButton1)) {
 			// log which arena
-			DataManagerScript.playerOneType = markerPos;
+			DataManagerScript.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 	}

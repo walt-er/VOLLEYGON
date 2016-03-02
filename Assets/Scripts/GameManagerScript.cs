@@ -12,12 +12,20 @@ public class GameManagerScript : MonoBehaviour {
 	public Text winText;
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
+	public int arenaType;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
 	public GameObject Player2;
 	public GameObject Player3;
 	public GameObject Player4;
+
+	// Hold references to each of the arenas
+	public GameObject Arena1;
+	public GameObject Arena2;
+	public GameObject Arena3;
+	public GameObject Arena4;
+
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -33,7 +41,31 @@ public class GameManagerScript : MonoBehaviour {
 
 
 		// Set up arena based on options
+		arenaType = DataManagerScript.arenaType;
 
+		switch (arenaType) {
+
+		case 0:
+			Arena1.SetActive (true);
+			break;
+
+		case 1:
+			Arena2.SetActive (true);
+			break;
+
+		case 2:
+			Arena3.SetActive (true);
+			break;
+
+		case 3:
+			Arena4.SetActive (true);
+			break;
+
+		default:
+			Arena1.SetActive (true);
+			break;
+
+		}
 
 	}
 	void Awake()

@@ -992,10 +992,15 @@ MonoBehaviour:
   winText: {fileID: 1147925457}
   isGameOver: 0
   scorePlayedTo: 5
+  arenaType: 0
   Player1: {fileID: 976226754}
   Player2: {fileID: 1468053636}
   Player3: {fileID: 410775727}
   Player4: {fileID: 1094186011}
+  Arena1: {fileID: 835292215}
+  Arena2: {fileID: 951625225}
+  Arena3: {fileID: 564574188}
+  Arena4: {fileID: 1716086910}
 --- !u!4 &685068964
 Transform:
   m_ObjectHideFlags: 0
@@ -1719,6 +1724,10 @@ Prefab:
       propertyPath: meshTypeTwo
       value: 
       objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -2012,6 +2021,10 @@ Prefab:
       propertyPath: meshTypeTwo
       value: 
       objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
   m_IsPrefabParent: 0
@@ -2275,7 +2288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1716086911
 Transform:
   m_ObjectHideFlags: 0
