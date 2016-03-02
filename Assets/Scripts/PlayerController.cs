@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed = 5f;
+	private float startSpeed;
 	public float jumpPower = 750f;
 	public bool isJumping = false;
 	public string horiz = "Horizontal_P1";
@@ -15,11 +16,17 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
 
+	private float speedPowerupTimer;
+	private bool speedPowerupActive = false; 
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = startingGrav;
+
+
+		startSpeed = speed; 
 
 		if (playerType == 0) {
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
@@ -81,6 +88,8 @@ public class PlayerController : MonoBehaviour {
 			pos.x = Mathf.Clamp (transform.position.x, 1f, 200f);
 			transform.position = pos;
 		}
+
+		ManagePowerups ();
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
@@ -88,6 +97,12 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
+		}
+
+		if (coll.gameObject.tag == "Powerup") {
+			int whichPowerup = coll.gameObject.GetComponent<powerupScript> ().powerupType;
+			Destroy (coll.gameObject);
+			ApplyPowerup (whichPowerup);
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){
@@ -98,5 +113,34 @@ public class PlayerController : MonoBehaviour {
 			}
 			Debug.Log (isJumping);
 		}
+	}
+
+	void ManagePowerups(){
+		if (speedPowerupActive) {
+			speedPowerupTimer -= Time.deltaTime;
+
+			if (speedPowerupTimer <= 0){
+				speedPowerupActive = false;
+				speed = startSpeed;
+			}
+		}
+	}
+
+	void ApplyPowerup(int whichPowerup){
+	
+		switch (whichPowerup) {
+
+		case 1:
+			speedPowerupActive = true;
+			speed = 25f;
+			speedPowerupTimer = 10f; 
+
+			break;
+
+		default:
+
+			break;
+		}
+	
 	}
 }

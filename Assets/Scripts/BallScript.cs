@@ -38,7 +38,7 @@ public class BallScript : MonoBehaviour {
 	void Update () {
 		if (isTimerRunning) {
 			timer -= Time.deltaTime;
-			Debug.Log (timer);
+			//Debug.Log (timer);
 		}
 
 		if (timer <= 3) {
