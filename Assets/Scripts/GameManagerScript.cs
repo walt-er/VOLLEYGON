@@ -13,6 +13,9 @@ public class GameManagerScript : MonoBehaviour {
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
 	public int arenaType;
+	private float timeSinceLastPowerup;
+	private float powerupAppearTime; 
+	public GameObject powerupPrefab;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
@@ -34,6 +37,8 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		launchTimer ();
+		timeSinceLastPowerup = 0f;
+		powerupAppearTime = 10f;
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 
 		// Set up players and their rigidbodies based on character selection choice
@@ -96,6 +101,9 @@ public class GameManagerScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+
+		timeSinceLastPowerup += Time.deltaTime;
+
 		if (timerRunning) {
 			gameTimer -= Time.deltaTime;
 		}	
@@ -106,6 +114,20 @@ public class GameManagerScript : MonoBehaviour {
 		} else if (teamTwoScore >= scorePlayedTo){
 			Debug.Log ("Run team two wins routine here");
 			teamWins (2);
+		}
+
+		if (!isGameOver) {
+			ConsiderAPowerup ();
+		}
+	}
+
+	void ConsiderAPowerup(){
+		if (timeSinceLastPowerup >= powerupAppearTime) {
+
+			// spawn a powerup
+			Instantiate(powerupPrefab, new Vector3(Random.Range(-17f, 17f), Random.Range(-5f,5f), 0), Quaternion.identity);
+			timeSinceLastPowerup = 0f;
+			powerupAppearTime = 10f + Random.value * 20f;
 		}
 	}
 }

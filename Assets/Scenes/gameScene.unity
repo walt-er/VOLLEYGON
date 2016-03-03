@@ -993,6 +993,7 @@ MonoBehaviour:
   isGameOver: 0
   scorePlayedTo: 5
   arenaType: 0
+  powerupPrefab: {fileID: 120066, guid: 33034700fd4e34c24952d967daa5d8d4, type: 2}
   Player1: {fileID: 976226754}
   Player2: {fileID: 1468053636}
   Player3: {fileID: 410775727}
@@ -1382,12 +1383,8 @@ Prefab:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 120066, guid: 33034700fd4e34c24952d967daa5d8d4, type: 2}
-      propertyPath: m_TagString
-      value: Powerup
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435754, guid: 33034700fd4e34c24952d967daa5d8d4, type: 2}
-      propertyPath: powerupType
-      value: 1
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33034700fd4e34c24952d967daa5d8d4, type: 2}

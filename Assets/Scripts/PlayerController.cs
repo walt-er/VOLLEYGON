@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed = 5f;
 	private float startSpeed;
+	private float startMass;
+	private float startJumpPower;
 	public float jumpPower = 750f;
 	public bool isJumping = false;
 	public string horiz = "Horizontal_P1";
@@ -19,13 +21,16 @@ public class PlayerController : MonoBehaviour {
 	private float speedPowerupTimer;
 	private bool speedPowerupActive = false; 
 
+	private float sizePowerupTimer;
+	private bool sizePowerupActive = false; 
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = startingGrav;
-
-
+		startMass = rb.mass;
+		startJumpPower = jumpPower;
 		startSpeed = speed; 
 
 		if (playerType == 0) {
@@ -99,6 +104,9 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log (isJumping);
 		}
 
+	}
+
+	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Powerup") {
 			int whichPowerup = coll.gameObject.GetComponent<powerupScript> ().powerupType;
 			Destroy (coll.gameObject);
@@ -124,10 +132,23 @@ public class PlayerController : MonoBehaviour {
 				speed = startSpeed;
 			}
 		}
+
+		if (sizePowerupActive) {
+			sizePowerupTimer -= Time.deltaTime;
+
+			if (sizePowerupTimer <= 0){
+				sizePowerupActive = false;
+				// Restore scale to starting size
+				gameObject.transform.localScale -= new Vector3 (2f, 2f, 1f);
+				rb.mass = startMass;
+				jumpPower = startJumpPower;
+
+			}
+		}
 	}
 
 	void ApplyPowerup(int whichPowerup){
-	
+		
 		switch (whichPowerup) {
 
 		case 1:
@@ -137,6 +158,13 @@ public class PlayerController : MonoBehaviour {
 
 			break;
 
+		case 2:
+			sizePowerupActive = true;
+			gameObject.transform.localScale += new Vector3 (2f, 2f, 1f);
+			rb.mass = startMass * 2f;
+			jumpPower = startJumpPower * 1.75f;
+
+			break;
 		default:
 
 			break;
