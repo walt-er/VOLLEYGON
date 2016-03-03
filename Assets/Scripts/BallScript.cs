@@ -77,7 +77,7 @@ public class BallScript : MonoBehaviour {
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos)) {
 			bounces = 0;
-			Debug.Log ("Bounces reset!");
+			//Debug.Log ("Bounces reset!");
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
 		}
 		
@@ -121,7 +121,7 @@ public class BallScript : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary") {
-			Debug.Log ("a collision!");
+			//Debug.Log ("a collision!");
 			bounces += 1;
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2){

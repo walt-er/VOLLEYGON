@@ -109,10 +109,10 @@ public class GameManagerScript : MonoBehaviour {
 		}	
 
 		if (teamOneScore >= scorePlayedTo) {
-			Debug.Log ("Run team one wins routine here");
+			//Debug.Log ("Run team one wins routine here");
 			teamWins (1);
 		} else if (teamTwoScore >= scorePlayedTo){
-			Debug.Log ("Run team two wins routine here");
+		//	Debug.Log ("Run team two wins routine here");
 			teamWins (2);
 		}
 

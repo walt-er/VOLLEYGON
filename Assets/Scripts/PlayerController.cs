@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	void OnCollisionExit2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
-			Debug.Log ("a collision ended!");
+			//Debug.Log ("a collision ended!");
 			if (!isJumping) {
 					//isJumping = true;   
 			}
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void ApplyPowerup(int whichPowerup){
-		
+		Debug.Log (whichPowerup);
 		switch (whichPowerup) {
 
 		case 1:
@@ -159,10 +159,12 @@ public class PlayerController : MonoBehaviour {
 			break;
 
 		case 2:
+			
 			sizePowerupActive = true;
 			gameObject.transform.localScale += new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
 			jumpPower = startJumpPower * 1.75f;
+			sizePowerupTimer = 10f;
 
 			break;
 		default:
