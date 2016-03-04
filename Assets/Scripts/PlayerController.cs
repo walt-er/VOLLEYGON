@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 			if (sizePowerupTimer <= 0){
 				sizePowerupActive = false;
 				// Restore scale to starting size
-				gameObject.transform.localScale -= new Vector3 (2f, 2f, 1f);
+				gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 				rb.mass = startMass;
 				jumpPower = startJumpPower;
 
@@ -154,17 +154,17 @@ public class PlayerController : MonoBehaviour {
 		case 1:
 			speedPowerupActive = true;
 			speed = 25f;
-			speedPowerupTimer = 10f; 
+			speedPowerupTimer = 20f; 
 
 			break;
 
 		case 2:
 			
 			sizePowerupActive = true;
-			gameObject.transform.localScale += new Vector3 (2f, 2f, 1f);
+			gameObject.transform.localScale = new Vector3 (4f, 4f, 1f);
 			rb.mass = startMass * 2f;
 			jumpPower = startJumpPower * 1.75f;
-			sizePowerupTimer = 10f;
+			sizePowerupTimer = 20f;
 
 			break;
 		default:

@@ -127,7 +127,7 @@ public class GameManagerScript : MonoBehaviour {
 			// spawn a powerup
 			Instantiate(powerupPrefab, new Vector3(Random.Range(-17f, 17f), Random.Range(-5f,5f), 0), Quaternion.identity);
 			timeSinceLastPowerup = 0f;
-			powerupAppearTime = 10f + Random.value * 20f;
+			powerupAppearTime = 20f + Random.value * 20f;
 		}
 	}
 }
