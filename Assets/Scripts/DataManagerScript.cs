@@ -5,6 +5,7 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
+	public static string version; 
 	public int teamOneWins;
 	public int teamTwoWins;
 	public static int playerOneType;
@@ -24,6 +25,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		version = "V0.1";
 	
 	}
 	

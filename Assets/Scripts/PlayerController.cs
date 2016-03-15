@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
+	public PolygonCollider2D trianglePC, trapezoidPC;
 
 	private float speedPowerupTimer;
 	private bool speedPowerupActive = false; 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
 		startJumpPower = jumpPower;
@@ -42,8 +44,32 @@ public class PlayerController : MonoBehaviour {
 			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
 			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
 		}
+
+		if (playerType == 2) {
+			trianglePC.enabled = true;
+			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+		}
+
+		if (playerType == 3) {
+			trapezoidPC.enabled = true;
+			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+		}
+
+		//polygon collider
+
+		//Vector2[] thePoints = pg.points;
+		// do stuff with myPoints array
+//		Vector2[] thePoints = new Vector2[] {
+//			new Vector2 (0f, -1f),
+//			new Vector2 (1f, -1f),
+//			new Vector2 (-1f, -1f)
+//
+//		};
+//		pg.pathCount = 3;
+//		pg.points = thePoints;
+
 	}
-	
+
 
 
 	void FixedUpdate () {
@@ -139,7 +165,7 @@ public class PlayerController : MonoBehaviour {
 			if (sizePowerupTimer <= 0){
 				sizePowerupActive = false;
 				// Restore scale to starting size
-				gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
+				gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
 				rb.mass = startMass;
 				jumpPower = startJumpPower;
 
@@ -161,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 		case 2:
 			
 			sizePowerupActive = true;
-			gameObject.transform.localScale = new Vector3 (4f, 4f, 1f);
+			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
 			jumpPower = startJumpPower * 1.75f;
 			sizePowerupTimer = 20f;

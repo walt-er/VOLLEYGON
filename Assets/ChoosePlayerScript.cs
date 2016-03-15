@@ -17,8 +17,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public Mesh meshType1;
 	public Mesh meshType2;
 
-
-	private int numberOfPlayerTypes = 2;
+	private int numberOfPlayerTypes = 4;
 
 	private string jumpButton1 = "Jump_P1";
 	private string gravButton1 = "Grav_P1";
@@ -46,7 +45,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	private GameObject[] fakePlayers;
 	void UpdatePlayerType(int whichPlayer, int whichType){
-		if (whichPlayer == 1) {
+		if (whichPlayer == 1 && !player1Ready) {
 			DataManagerScript.playerOneType = whichType;
 			if (whichType == 0) {
 				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
@@ -54,7 +53,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType2;
 			}
 		}
-		if (whichPlayer == 2) {
+		if (whichPlayer == 2 && !player2Ready) {
 			DataManagerScript.playerTwoType = whichType;
 			if (whichType == 0) {
 				fakePlayer2.GetComponent<MeshFilter> ().mesh = meshType1;
@@ -62,7 +61,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				fakePlayer2.GetComponent<MeshFilter> ().mesh = meshType2;
 			}
 		}
-		if (whichPlayer == 3) {
+		if (whichPlayer == 3 && !player3Ready) {
 			DataManagerScript.playerThreeType = whichType;
 			if (whichType == 0) {
 				fakePlayer3.GetComponent<MeshFilter> ().mesh = meshType1;
@@ -70,7 +69,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				fakePlayer3.GetComponent<MeshFilter> ().mesh = meshType2;
 			}
 		}
-		if (whichPlayer == 4) {
+		if (whichPlayer == 4 && !player4Ready) {
 			DataManagerScript.playerFourType = whichType;
 			if (whichType == 0) {
 				fakePlayer4.GetComponent<MeshFilter> ().mesh = meshType1;
@@ -139,12 +138,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis1InUse = true;
 
+				if (!player1Ready) {
+					DataManagerScript.playerOneType += 1; 
+					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+					Debug.Log (DataManagerScript.playerOneType);
 
-				DataManagerScript.playerOneType += 1; 
-				DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-				Debug.Log (DataManagerScript.playerOneType);
-
-				UpdatePlayerType (1, DataManagerScript.playerOneType);
+					UpdatePlayerType (1, DataManagerScript.playerOneType);
+				}
 			}
 		}
 
@@ -155,13 +155,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis1InUse = true;
 
-				DataManagerScript.playerOneType -= 1; 
-				if (DataManagerScript.playerOneType < 0) {
-					DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+				if (!player1Ready) {
+					DataManagerScript.playerOneType -= 1; 
+					if (DataManagerScript.playerOneType < 0) {
+						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+					}
+					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+					Debug.Log ("YES!" + DataManagerScript.playerOneType);
+					UpdatePlayerType (1, DataManagerScript.playerOneType);
 				}
-				DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-				Debug.Log ("YES!" + DataManagerScript.playerOneType);
-				UpdatePlayerType (1, DataManagerScript.playerOneType);
 			}
 		}
 
@@ -178,12 +180,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis2InUse = true;
 
+				if (!player2Ready) {
+					DataManagerScript.playerTwoType += 1; 
+					DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
+					Debug.Log (DataManagerScript.playerTwoType);
 
-				DataManagerScript.playerTwoType += 1; 
-				DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
-				Debug.Log (DataManagerScript.playerTwoType);
-
-				UpdatePlayerType (2, DataManagerScript.playerTwoType);
+					UpdatePlayerType (2, DataManagerScript.playerTwoType);
+				}
 			}
 		}
 
@@ -194,13 +197,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis2InUse = true;
 
-				DataManagerScript.playerTwoType -= 1; 
-				if (DataManagerScript.playerTwoType < 0) {
-					DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
+				if (!player2Ready) {
+					DataManagerScript.playerTwoType -= 1; 
+					if (DataManagerScript.playerTwoType < 0) {
+						DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
+					}
+					DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
+					Debug.Log ("YES!" + DataManagerScript.playerTwoType);
+					UpdatePlayerType (2, DataManagerScript.playerTwoType);
 				}
-				DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
-				Debug.Log ("YES!" + DataManagerScript.playerTwoType);
-				UpdatePlayerType (2, DataManagerScript.playerTwoType);
 			}
 		}
 
@@ -217,12 +222,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis3InUse = true;
 
+				if (!player3Ready) {
+					DataManagerScript.playerThreeType += 1; 
+					DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
+					Debug.Log (DataManagerScript.playerThreeType);
 
-				DataManagerScript.playerThreeType += 1; 
-				DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
-				Debug.Log (DataManagerScript.playerThreeType);
-
-				UpdatePlayerType (3, DataManagerScript.playerThreeType);
+					UpdatePlayerType (3, DataManagerScript.playerThreeType);
+				}
 			}
 		}
 
@@ -233,13 +239,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis3InUse = true;
 
-				DataManagerScript.playerThreeType -= 1; 
-				if (DataManagerScript.playerThreeType < 0) {
-					DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
+				if (!player3Ready) {
+					DataManagerScript.playerThreeType -= 1; 
+					if (DataManagerScript.playerThreeType < 0) {
+						DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
+					}
+					DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
+					Debug.Log ("YES!" + DataManagerScript.playerThreeType);
+					UpdatePlayerType (3, DataManagerScript.playerThreeType);
 				}
-				DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
-				Debug.Log ("YES!" + DataManagerScript.playerThreeType);
-				UpdatePlayerType (3, DataManagerScript.playerThreeType);
 			}
 		}
 
@@ -256,12 +264,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axis4InUse = true;
 
+				if (!player4Ready) {
+					DataManagerScript.playerFourType += 1; 
+					DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
+					Debug.Log (DataManagerScript.playerFourType);
 
-				DataManagerScript.playerFourType += 1; 
-				DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
-				Debug.Log (DataManagerScript.playerFourType);
-
-				UpdatePlayerType (4, DataManagerScript.playerFourType);
+					UpdatePlayerType (4, DataManagerScript.playerFourType);
+				}
 			}
 		}
 
@@ -271,14 +280,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 			if (axis4InUse == false) {
 				// Call your event function here.
 				axis4InUse = true;
-
-				DataManagerScript.playerFourType -= 1; 
-				if (DataManagerScript.playerFourType < 0) {
-					DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
+				if (!player4Ready) {
+					DataManagerScript.playerFourType -= 1; 
+					if (DataManagerScript.playerFourType < 0) {
+						DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
+					}
+					DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
+					Debug.Log ("YES!" + DataManagerScript.playerFourType);
+					UpdatePlayerType (4, DataManagerScript.playerFourType);
 				}
-				DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
-				Debug.Log ("YES!" + DataManagerScript.playerFourType);
-				UpdatePlayerType (4, DataManagerScript.playerFourType);
 			}
 		}
 
