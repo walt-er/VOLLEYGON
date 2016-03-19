@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour {
 	public int playerType = 0;
 	public PolygonCollider2D trianglePC, trapezoidPC;
 
+	public Sprite squareSprite;
+	public Sprite circleSprite;
+	public Sprite triangleSprite;
+	public Sprite trapezoidSprite;
+
 	private float speedPowerupTimer;
 	private bool speedPowerupActive = false; 
 
@@ -37,22 +42,27 @@ public class PlayerController : MonoBehaviour {
 
 		if (playerType == 0) {
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
+			//gameObject.GetComponent<CircleCollider2D> ().enabled = true;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = squareSprite;
 		}
 
 		if (playerType == 1) {
 			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+		//	gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
 		}
 
 		if (playerType == 2) {
 			trianglePC.enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = triangleSprite;
 		}
 
 		if (playerType == 3) {
 			trapezoidPC.enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
 		}
 
 		//polygon collider
