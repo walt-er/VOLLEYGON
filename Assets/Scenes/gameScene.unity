@@ -637,9 +637,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: 1, y: -1}
-      - {x: -1, y: -1}
+    - - {x: 0, y: 1.6}
+      - {x: 1.5, y: -1}
+      - {x: -1.5, y: -1}
 --- !u!212 &410775730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1821,9 +1821,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: 1, y: -1}
-      - {x: -1, y: -1}
+    - - {x: 0, y: 1.6}
+      - {x: 1.5, y: -1}
+      - {x: -1.5, y: -1}
 --- !u!212 &1094186014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2116,11 +2116,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 1
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
@@ -2128,7 +2128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -1
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
@@ -2350,9 +2350,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: 1, y: -1}
-      - {x: -1, y: -1}
+    - - {x: 0, y: 1.6}
+      - {x: 1.5, y: -1}
+      - {x: -1.5, y: -1}
 --- !u!212 &1468053639
 SpriteRenderer:
   m_ObjectHideFlags: 0
