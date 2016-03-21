@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BallScript : MonoBehaviour {
 
 	public Text scoreText;
+	public Text winByTwoText;
 
 	Rigidbody2D rb;
 	float timer;
@@ -23,6 +24,7 @@ public class BallScript : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		scoreText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		winByTwoText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
@@ -85,6 +87,7 @@ public class BallScript : MonoBehaviour {
 
 	void FadeOutScore(){
 		scoreText.CrossFadeAlpha(0f,.25f,false);
+		winByTwoText.CrossFadeAlpha (0f, .25f, false);
 	}
 	void ResetBall(){
 		rb.isKinematic = true;
@@ -133,12 +136,17 @@ public class BallScript : MonoBehaviour {
 				} else {
 					GameManagerScript.Instance.teamOneScore += 1; 
 				}
-				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
+				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo || Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2 ) {
 					scoreText.CrossFadeAlpha (0.6f, .25f, false);
 					scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+
+					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+						winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+					}
 					ResetBall ();
 				} else {
 					transform.position = new Vector3 (-20f, -20f, 0f);
+					gameObject.SetActive (false);
 					//Invoke ("GameOver", 5f);
 				}
 			}

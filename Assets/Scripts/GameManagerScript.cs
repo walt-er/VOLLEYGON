@@ -108,10 +108,10 @@ public class GameManagerScript : MonoBehaviour {
 			gameTimer -= Time.deltaTime;
 		}	
 
-		if (teamOneScore >= scorePlayedTo) {
+		if (teamOneScore >= scorePlayedTo && teamOneScore > teamTwoScore + 1) {
 			//Debug.Log ("Run team one wins routine here");
 			teamWins (1);
-		} else if (teamTwoScore >= scorePlayedTo){
+		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore > teamOneScore + 1){
 		//	Debug.Log ("Run team two wins routine here");
 			teamWins (2);
 		}
