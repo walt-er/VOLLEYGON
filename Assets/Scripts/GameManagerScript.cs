@@ -71,6 +71,20 @@ public class GameManagerScript : MonoBehaviour {
 			break;
 
 		}
+			
+		if (DataManagerScript.playerOnePlaying == false) {
+			Player1.SetActive (false);
+		}
+		if (DataManagerScript.playerTwoPlaying == false) {
+			Player2.SetActive (false);
+		}
+		if (DataManagerScript.playerThreePlaying == false) {
+			Player3.SetActive (false);
+		}
+		if (DataManagerScript.playerFourPlaying == false) {
+			Player4.SetActive (false);
+		}
+			
 
 	}
 	void Awake()

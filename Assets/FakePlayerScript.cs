@@ -15,12 +15,14 @@ public class FakePlayerScript : MonoBehaviour {
 	public string cancelKey;
 	public int playerIdentifier; 
 	public Text readyText;
+	public Text toJoinText;
 
 	private bool axisInUse = false;
 	public bool readyToPlay;
 	public bool taggedIn = false;
 
 	private int numberOfPlayerTypes = 4;
+
 
 	SpriteRenderer sr;
 
@@ -69,7 +71,23 @@ public class FakePlayerScript : MonoBehaviour {
 			}
 		} else {
 			taggedIn = true;
+			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			sr.enabled = true;
+			switch(playerIdentifier){
+
+			case 1:
+				DataManagerScript.playerOnePlaying = true;
+				break;
+			case 2:
+				DataManagerScript.playerTwoPlaying = true;
+				break;
+			case 3:
+				DataManagerScript.playerThreePlaying = true;
+				break;
+			case 4:
+				DataManagerScript.playerFourPlaying = true;
+				break;
+			}
 		}
 	}
 
@@ -79,7 +97,23 @@ public class FakePlayerScript : MonoBehaviour {
 			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		} else if (taggedIn) {
 			taggedIn = false;
+			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			sr.enabled = false;
+			switch(playerIdentifier){
+
+			case 1:
+				DataManagerScript.playerOnePlaying = false;
+				break;
+			case 2:
+				DataManagerScript.playerTwoPlaying = false;
+				break;
+			case 3:
+				DataManagerScript.playerThreePlaying = false;
+				break;
+			case 4:
+				DataManagerScript.playerFourPlaying = false;
+				break;
+			}
 		}
 	}
 
@@ -90,13 +124,17 @@ public class FakePlayerScript : MonoBehaviour {
 		sr.sprite = squareSprite;
 
 		sr.enabled = false;
+
+	
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-	
+
 		if (Input.GetAxisRaw (chooseAxis) == 1) {
+
 
 
 			if (axisInUse == false) {

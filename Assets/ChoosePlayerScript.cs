@@ -9,6 +9,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
 
+	public Text oneOnOneMessage;
+	public Text twoOnOneMessage;
+
+		private string start1 = "Start_P1";
+		private string start2 = "Start_P2";
+		private string start3 = "Start_P3";
+		private string start4 = "Start_P4";
+
+	private bool gameIsStartable = false;
 //	public Text player1ReadyText;
 //	public Text player2ReadyText;
 //	public Text player3ReadyText;
@@ -43,16 +52,78 @@ public class ChoosePlayerScript : MonoBehaviour {
 	private bool player3Ready = false;
 	private bool player4Ready = false;
 
+	private int playersOnLeft = 0;
+	private int playersOnRight = 0;
+
 	private GameObject[] fakePlayers;
 
 	// Use this for initialization
 
 
+	void Start(){
+		oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+		twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 
+		DataManagerScript.playerOnePlaying = false;
+		DataManagerScript.playerTwoPlaying = false;
+		DataManagerScript.playerThreePlaying = false;
+		DataManagerScript.playerFourPlaying = false; 
+
+	}
+	bool noUnreadyPlayers(){
+		if (fakePlayer2.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
+			return false;
+		} else if (fakePlayer2.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer2.GetComponent<FakePlayerScript> ().readyToPlay) {
+			return false;
+		} else if (fakePlayer3.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer3.GetComponent<FakePlayerScript> ().readyToPlay) {
+			return false;
+		} else if (fakePlayer4.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer4.GetComponent<FakePlayerScript> ().readyToPlay) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
+		playersOnLeft = 0;
+		playersOnRight = 0;
+		if (fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
+			playersOnLeft++;
+		}
+		if (fakePlayer2.GetComponent<FakePlayerScript> ().readyToPlay) {
+			playersOnLeft++;
+		}
+			
+		if (fakePlayer3.GetComponent<FakePlayerScript> ().readyToPlay) {
+			playersOnRight++;
+		}
+		if (fakePlayer4.GetComponent<FakePlayerScript> ().readyToPlay) {
+			playersOnRight++;
+		}
+		Debug.Log (playersOnLeft);
+		if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
+			gameIsStartable = true;
+			if (playersOnLeft == 2 && playersOnRight == 1 || playersOnLeft == 1 && playersOnRight == 2) {
+				// display 2v1 message
+				twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
+				oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+			} else {
+				//display press start to begin 1v 1 message
+				oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
+				twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+			}
+		} else {
+			twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+			oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+			gameIsStartable = false;
+		}
 
-		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
+		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4)) {
+			if (gameIsStartable){
+				Application.LoadLevel ("chooseArenaScene");
+			}
+		}
+			if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
 			Application.LoadLevel ("chooseArenaScene");
 		}
 	}

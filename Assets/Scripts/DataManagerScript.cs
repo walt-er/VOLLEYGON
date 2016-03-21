@@ -8,6 +8,12 @@ public class DataManagerScript : MonoBehaviour {
 	public static string version; 
 	public int teamOneWins;
 	public int teamTwoWins;
+	public static bool playerOnePlaying = false;
+	public static bool playerTwoPlaying = false;
+	public static bool playerThreePlaying = false;
+	public static bool playerFourPlaying = false;
+
+
 	public static int playerOneType;
 	public static int playerTwoType;
 	public static int playerThreeType;
