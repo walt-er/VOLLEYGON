@@ -18,6 +18,7 @@ public class FakePlayerScript : MonoBehaviour {
 
 	private bool axisInUse = false;
 	public bool readyToPlay;
+	public bool taggedIn = false;
 
 	private int numberOfPlayerTypes = 4;
 
@@ -58,20 +59,37 @@ public class FakePlayerScript : MonoBehaviour {
 	}
 
 
-	void toggleReadyState(){
-		readyToPlay = !readyToPlay;
+	void activateReadyState(){
+		if (taggedIn) {
+			readyToPlay = true;
 			if (readyToPlay) {
-				readyText.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
+				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			} else {
-				readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			}
+		} else {
+			taggedIn = true;
+			sr.enabled = true;
 		}
+	}
+
+	void cancelReadyState(){
+		if (readyToPlay) {
+			readyToPlay = false;
+			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+		} else if (taggedIn) {
+			taggedIn = false;
+			sr.enabled = false;
+		}
+	}
 
 
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		sr.sprite = squareSprite;
+
+		sr.enabled = false;
 	}
 
 	// Update is called once per frame
@@ -85,7 +103,7 @@ public class FakePlayerScript : MonoBehaviour {
 				// Call your event function here.
 				axisInUse = true;
 
-				if (!readyToPlay) {
+				if (!readyToPlay && taggedIn) {
 					if (playerIdentifier == 1) {
 						DataManagerScript.playerOneType += 1; 
 						DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
@@ -147,10 +165,10 @@ public class FakePlayerScript : MonoBehaviour {
 
 
 		if (Input.GetButtonDown (confirmKey)) {
-			toggleReadyState ();
+			activateReadyState ();
 		}
 		if (Input.GetButtonDown (cancelKey)) {
-			toggleReadyState ();
+			cancelReadyState ();
 		}
 	}
 }
