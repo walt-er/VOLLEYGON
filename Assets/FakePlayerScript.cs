@@ -89,6 +89,8 @@ public class FakePlayerScript : MonoBehaviour {
 				break;
 			}
 		}
+		ChoosePlayerScript.Instance.CheckStartable ();
+
 	}
 
 	void cancelReadyState(){
@@ -115,6 +117,7 @@ public class FakePlayerScript : MonoBehaviour {
 				break;
 			}
 		}
+		ChoosePlayerScript.Instance.CheckStartable ();
 	}
 
 

@@ -56,13 +56,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 	private int playersOnRight = 0;
 
 	private GameObject[] fakePlayers;
-
+	public static ChoosePlayerScript Instance { get; private set; }
 	// Use this for initialization
 
-
+	void Awake(){
+		Instance = this;
+	}
 	void Start(){
-		oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
-		twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+		oneOnOneMessage.enabled = false;
+		twoOnOneMessage.enabled = false;
 
 		DataManagerScript.playerOnePlaying = false;
 		DataManagerScript.playerTwoPlaying = false;
@@ -71,7 +73,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	}
 	bool noUnreadyPlayers(){
-		if (fakePlayer2.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
+		if (fakePlayer1.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
 			return false;
 		} else if (fakePlayer2.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer2.GetComponent<FakePlayerScript> ().readyToPlay) {
 			return false;
@@ -82,9 +84,10 @@ public class ChoosePlayerScript : MonoBehaviour {
 		} else {
 			return true;
 		}
+
 	}
-	// Update is called once per frame
-	void Update () {
+
+	public void CheckStartable(){
 		playersOnLeft = 0;
 		playersOnRight = 0;
 		if (fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
@@ -93,7 +96,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		if (fakePlayer2.GetComponent<FakePlayerScript> ().readyToPlay) {
 			playersOnLeft++;
 		}
-			
+
 		if (fakePlayer3.GetComponent<FakePlayerScript> ().readyToPlay) {
 			playersOnRight++;
 		}
@@ -101,23 +104,32 @@ public class ChoosePlayerScript : MonoBehaviour {
 			playersOnRight++;
 		}
 		Debug.Log (playersOnLeft);
+		Debug.Log (playersOnRight);
 		if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
+			Debug.Log ("Game is now startable");
 			gameIsStartable = true;
 			if (playersOnLeft == 2 && playersOnRight == 1 || playersOnLeft == 1 && playersOnRight == 2) {
 				// display 2v1 message
-				twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
-				oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+				twoOnOneMessage.enabled = true;
+				Debug.Log ("Showing 2v1 message");
+				oneOnOneMessage.enabled = false;
 			} else {
 				//display press start to begin 1v 1 message
-				oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
-				twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+				oneOnOneMessage.enabled = true;
+				twoOnOneMessage.enabled = false;
+				Debug.Log ("showing one on one message");
 			}
 		} else {
-			twoOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
-			oneOnOneMessage.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+			twoOnOneMessage.enabled = false;
+			oneOnOneMessage.enabled = false;
+			Debug.Log ("No longer startable. Hiding messages");
 			gameIsStartable = false;
 		}
 
+	}
+	// Update is called once per frame
+	void Update () {
+		
 		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4)) {
 			if (gameIsStartable){
 				Application.LoadLevel ("chooseArenaScene");

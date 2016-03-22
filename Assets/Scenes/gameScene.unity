@@ -315,22 +315,22 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: squareSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25600b585566340b38151446d6657998,
+      objectReference: {fileID: 21300000, guid: 8eb79f22bf2f24f0bb4b64533f73c178,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: circleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a2414d2bb29f64b1fb1c2bc3d47889f4,
+      objectReference: {fileID: 21300000, guid: 1ab3c63c2c1c0408a9750609f36b98b8,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: triangleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: edfb077522a394df69323921ac32fae4,
+      objectReference: {fileID: 21300000, guid: 3ae6aca68e46141bc883f632a7bf002e,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: trapezoidSprite
       value: 
-      objectReference: {fileID: 21300000, guid: da12c88467d3c4a2bb973e037549982a,
+      objectReference: {fileID: 21300000, guid: 9e3fbb222950549879004c48b34d67ee,
         type: 3}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Size.x
@@ -637,9 +637,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.6}
-      - {x: 1.5, y: -1}
-      - {x: -1.5, y: -1}
+    - - {x: 0, y: 1.3}
+      - {x: 1.5, y: -1.3}
+      - {x: -1.5, y: -1.3}
 --- !u!212 &410775730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da12c88467d3c4a2bb973e037549982a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1241,22 +1241,22 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: circleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a2414d2bb29f64b1fb1c2bc3d47889f4,
+      objectReference: {fileID: 21300000, guid: 3001a84d13adc4e17a99c6c69d7d5f40,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: triangleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: edfb077522a394df69323921ac32fae4,
+      objectReference: {fileID: 21300000, guid: 901c365e9be9f4c0e8168162dda5c858,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: trapezoidSprite
       value: 
-      objectReference: {fileID: 21300000, guid: da12c88467d3c4a2bb973e037549982a,
+      objectReference: {fileID: 21300000, guid: 2e2a0e80bc11243e78ab354153654b71,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: squareSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25600b585566340b38151446d6657998,
+      objectReference: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b,
         type: 3}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Size.x
@@ -1618,7 +1618,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b3706acde4314eb195437acff97c8ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d04a045bf7b4c47e7bca1e0eeacc8f9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1822,9 +1822,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.6}
-      - {x: 1.5, y: -1}
-      - {x: -1.5, y: -1}
+    - - {x: 0, y: 1.3}
+      - {x: 1.5, y: -1.3}
+      - {x: -1.5, y: -1.3}
 --- !u!212 &1094186014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1851,7 +1851,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7926c3e34eef4c8fa4c8a42355e99cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8eb79f22bf2f24f0bb4b64533f73c178, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2117,7 +2117,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 1.6
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
@@ -2125,7 +2125,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: -1
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
@@ -2133,7 +2133,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: -1
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Material
@@ -2182,23 +2182,31 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: squareSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25600b585566340b38151446d6657998,
+      objectReference: {fileID: 21300000, guid: d04a045bf7b4c47e7bca1e0eeacc8f9a,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: circleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 580323eddc5f145fa910184bd78bb7c5,
+      objectReference: {fileID: 21300000, guid: 71e30a3415da0459f9959b090de8ec5a,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: triangleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: edfb077522a394df69323921ac32fae4,
+      objectReference: {fileID: 21300000, guid: 68cd3c0c0a5cd4369b2608a8e8081f1f,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: trapezoidSprite
       value: 
-      objectReference: {fileID: 21300000, guid: da12c88467d3c4a2bb973e037549982a,
+      objectReference: {fileID: 21300000, guid: c60c3668b0a104c92a1b9d840f873de7,
         type: 3}
+    - target: {fileID: 103506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -2351,9 +2359,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.6}
-      - {x: 1.5, y: -1}
-      - {x: -1.5, y: -1}
+    - - {x: 0, y: 1.3}
+      - {x: 1.5, y: -1.3}
+      - {x: -1.5, y: -1.3}
 --- !u!212 &1468053639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2380,7 +2388,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 580323eddc5f145fa910184bd78bb7c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bba8a631f27f4cb9b09bfbf76d3f8ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2592,22 +2600,22 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: squareSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25600b585566340b38151446d6657998,
+      objectReference: {fileID: 21300000, guid: 9fe4c7a13a6d1409cb1eae5332af2cac,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: circleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2189c7ee09d04491ca9c07c1d6d7f217,
+      objectReference: {fileID: 21300000, guid: 5c6568b2e89ab4b6494e77e8b4598440,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: triangleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: edfb077522a394df69323921ac32fae4,
+      objectReference: {fileID: 21300000, guid: 2bba8a631f27f4cb9b09bfbf76d3f8ca,
         type: 3}
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: trapezoidSprite
       value: 
-      objectReference: {fileID: 21300000, guid: da12c88467d3c4a2bb973e037549982a,
+      objectReference: {fileID: 21300000, guid: bc556868bc2004f7dbf1cc5ac2e41da0,
         type: 3}
     - target: {fileID: 6120302, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Size.x
