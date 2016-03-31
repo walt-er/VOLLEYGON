@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public string gravButton = "Grav_P1";
 	public int team = 1;
 	public float startingGrav = 1;
+	public int playerID;
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
@@ -175,6 +176,13 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
+		}
+
+		if (coll.gameObject.tag == "Ball") {
+			// update the ball's touch information
+			BallScript ball = coll.gameObject.GetComponent<BallScript>();
+			ball.secondToLastTouch = ball.lastTouch;
+			ball.lastTouch = playerID;
 		}
 
 	}
