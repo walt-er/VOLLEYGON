@@ -16,6 +16,7 @@ TagManager:
   - Playfield
   - ScoringBoundary
   - Powerup
+  - Ball
   layers:
   - Default
   - TransparentFX

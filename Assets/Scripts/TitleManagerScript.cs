@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TitleManagerScript : MonoBehaviour {
 
@@ -11,11 +12,13 @@ public class TitleManagerScript : MonoBehaviour {
 	public string gravButton3 = "Grav_P3";
 	public string jumpButton4 = "Jump_P4";
 	public string gravButton4 = "Grav_P4";
-
+	public Text versionText;
 
 	// Use this for initialization
 	void Start () {
-	
+		versionText.text = DataManagerScript.version;
+		//Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame

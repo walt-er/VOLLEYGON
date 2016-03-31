@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BallScript : MonoBehaviour {
 
 	public Text scoreText;
+	public Text winByTwoText;
 
 	Rigidbody2D rb;
 	float timer;
@@ -19,10 +20,18 @@ public class BallScript : MonoBehaviour {
 	public Sprite changingSprite;
 	private Sprite theSprite;
 
+	public int lastTouch;
+	public int secondToLastTouch;
+
 	// Use this for initialization
 	void Start () {
+
+		lastTouch = 0;
+		secondToLastTouch = 0;
+
 		rb = GetComponent<Rigidbody2D>();
 		scoreText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		winByTwoText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
@@ -85,6 +94,7 @@ public class BallScript : MonoBehaviour {
 
 	void FadeOutScore(){
 		scoreText.CrossFadeAlpha(0f,.25f,false);
+		winByTwoText.CrossFadeAlpha (0f, .25f, false);
 	}
 	void ResetBall(){
 		rb.isKinematic = true;
@@ -92,6 +102,11 @@ public class BallScript : MonoBehaviour {
 		rb.velocity = new Vector2 (0, 0);
 		bounces = 0;
 		timer = 10; // arbitrary high number
+
+		// Reset last touch information
+		lastTouch = 0;
+		secondToLastTouch = 0;
+
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f) ;
 		Invoke ("LaunchBall", 3f);
 		Invoke ("FadeOutScore", 2f);
@@ -119,6 +134,86 @@ public class BallScript : MonoBehaviour {
 	void GameOver(){
 		//Application.LoadLevel ("titleScene");
 	}
+	void ComputeStat(int whichTeamScored){
+		if (whichTeamScored == 1) {
+			if (lastTouch == 1) {
+				DataManagerScript.playerOneAces += 1;
+				DataManagerScript.playerOneScores += 1;
+			}
+			if (lastTouch == 2) {
+				DataManagerScript.playerTwoAces += 1;
+				DataManagerScript.playerTwoScores += 1;
+			}
+
+			if (lastTouch == 3) {
+				if (secondToLastTouch == 1) {
+					DataManagerScript.playerOneScores += 1;
+				}
+				if (secondToLastTouch == 2) {
+					DataManagerScript.playerTwoScores += 1;
+				}
+				if (secondToLastTouch == 3) {
+					DataManagerScript.playerThreeBumbles += 1;
+				}
+				if (secondToLastTouch == 4) {
+					DataManagerScript.playerThreeBumbles += 1;
+				}
+			}
+			if (lastTouch == 4) {
+				if (secondToLastTouch == 1) {
+					DataManagerScript.playerOneScores += 1;
+				}
+				if (secondToLastTouch == 2) {
+					DataManagerScript.playerTwoScores += 1;
+				}
+				if (secondToLastTouch == 3) {
+					DataManagerScript.playerFourBumbles += 1;
+				}
+				if (secondToLastTouch == 4) {
+					DataManagerScript.playerFourBumbles += 1;
+				}
+			}
+		}
+		if (whichTeamScored == 2) {
+			if (lastTouch == 3) {
+				DataManagerScript.playerThreeAces += 1;
+				DataManagerScript.playerThreeScores += 1;
+			}
+			if (lastTouch == 4) {
+				DataManagerScript.playerFourAces += 1;
+				DataManagerScript.playerFourScores += 1;
+			}
+
+			if (lastTouch == 1) {
+				if (secondToLastTouch == 1) {
+					DataManagerScript.playerOneBumbles += 1;
+				}
+				if (secondToLastTouch == 2) {
+					DataManagerScript.playerOneBumbles += 1;
+				}
+				if (secondToLastTouch == 3) {
+					DataManagerScript.playerThreeScores += 1;
+				}
+				if (secondToLastTouch == 4) {
+					DataManagerScript.playerFourScores += 1;
+				}
+			}
+			if (lastTouch == 2) {
+				if (secondToLastTouch == 1) {
+					DataManagerScript.playerTwoBumbles += 1;
+				}
+				if (secondToLastTouch == 2) {
+					DataManagerScript.playerTwoBumbles += 1;
+				}
+				if (secondToLastTouch == 3) {
+					DataManagerScript.playerThreeScores += 1;
+				}
+				if (secondToLastTouch == 4) {
+					DataManagerScript.playerFourScores += 1;
+				}
+			}
+		}
+	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
@@ -130,15 +225,22 @@ public class BallScript : MonoBehaviour {
 
 				if (Mathf.Sign (transform.position.x) < 0) {
 					GameManagerScript.Instance.teamTwoScore += 1; 
+					ComputeStat (2); 
 				} else {
-					GameManagerScript.Instance.teamOneScore += 1; 
+					GameManagerScript.Instance.teamOneScore += 1;
+					ComputeStat (1);
 				}
-				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
+				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo || Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2 ) {
 					scoreText.CrossFadeAlpha (0.6f, .25f, false);
 					scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+
+					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+						winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+					}
 					ResetBall ();
 				} else {
 					transform.position = new Vector3 (-20f, -20f, 0f);
+					gameObject.SetActive (false);
 					//Invoke ("GameOver", 5f);
 				}
 			}

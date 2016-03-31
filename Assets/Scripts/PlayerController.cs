@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed = 5f;
+	public float spinPower = -150f;
 	private float startSpeed;
 	private float startMass;
 	private float startJumpPower;
@@ -14,9 +15,16 @@ public class PlayerController : MonoBehaviour {
 	public string gravButton = "Grav_P1";
 	public int team = 1;
 	public float startingGrav = 1;
+	public int playerID;
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
+	public PolygonCollider2D trianglePC, trapezoidPC;
+
+	public Sprite squareSprite;
+	public Sprite circleSprite;
+	public Sprite triangleSprite;
+	public Sprite trapezoidSprite;
 
 	private float speedPowerupTimer;
 	private bool speedPowerupActive = false; 
@@ -24,26 +32,92 @@ public class PlayerController : MonoBehaviour {
 	private float sizePowerupTimer;
 	private bool sizePowerupActive = false; 
 
+	// Different base stats for each playerType
+
+	private float squareJumpPower = 2000f;
+	private float squareSpeed = 15f;
+	private float squareSpinRate = -150f;
+
+	private float circleJumpPower = 2200f;
+	private float circleSpeed = 18f;
+	private float circleSpinRate = -100f;
+
+	private float triangleJumpPower = 2000f;
+	private float triangleSpeed = 18f;
+	private float triangleSpinRate = -200f;
+
+	private float trapezoidJumpPower = 1800f;
+	private float trapezoidSpeed = 12f;
+	private float trapezoidSpinRate = -150f;
+
+
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
-		startJumpPower = jumpPower;
-		startSpeed = speed; 
+
+
+
 
 		if (playerType == 0) {
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
+			//gameObject.GetComponent<CircleCollider2D> ().enabled = true;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = squareSprite;
+
+			jumpPower = squareJumpPower;
+			speed = squareSpeed;
+			spinPower = squareSpinRate;
 		}
 
 		if (playerType == 1) {
 			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-			gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+		//	gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
+			jumpPower = circleJumpPower;
+			speed = circleSpeed;
+			spinPower = circleSpinRate;
 		}
+
+		if (playerType == 2) {
+			trianglePC.enabled = true;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = triangleSprite;
+			jumpPower = triangleJumpPower;
+			speed = triangleSpeed;
+			spinPower = triangleSpinRate;
+		}
+
+		if (playerType == 3) {
+			trapezoidPC.enabled = true;
+			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
+			jumpPower = trapezoidJumpPower;
+			speed = trapezoidSpeed;
+			spinPower = trapezoidSpinRate;
+		}
+
+		startJumpPower = jumpPower;
+		startSpeed = speed; 
+
+		//polygon collider
+
+		//Vector2[] thePoints = pg.points;
+		// do stuff with myPoints array
+//		Vector2[] thePoints = new Vector2[] {
+//			new Vector2 (0f, -1f),
+//			new Vector2 (1f, -1f),
+//			new Vector2 (-1f, -1f)
+//
+//		};
+//		pg.pathCount = 3;
+//		pg.points = thePoints;
+
 	}
-	
+
 
 
 	void FixedUpdate () {
@@ -55,7 +129,7 @@ public class PlayerController : MonoBehaviour {
 		//GetComponent<Rigidbody2D>().AddTorque(moveHorizontal * -8f);
 
 		if (isJumping) {
-			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * -150f * rb.gravityScale);
+			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
 		}
 		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
 		v3.x = moveHorizontal * speed;
@@ -104,6 +178,13 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log (isJumping);
 		}
 
+		if (coll.gameObject.tag == "Ball") {
+			// update the ball's touch information
+			BallScript ball = coll.gameObject.GetComponent<BallScript>();
+			ball.secondToLastTouch = ball.lastTouch;
+			ball.lastTouch = playerID;
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
@@ -139,7 +220,7 @@ public class PlayerController : MonoBehaviour {
 			if (sizePowerupTimer <= 0){
 				sizePowerupActive = false;
 				// Restore scale to starting size
-				gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
+				gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
 				rb.mass = startMass;
 				jumpPower = startJumpPower;
 
@@ -161,7 +242,7 @@ public class PlayerController : MonoBehaviour {
 		case 2:
 			
 			sizePowerupActive = true;
-			gameObject.transform.localScale = new Vector3 (4f, 4f, 1f);
+			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
 			jumpPower = startJumpPower * 1.75f;
 			sizePowerupTimer = 20f;
