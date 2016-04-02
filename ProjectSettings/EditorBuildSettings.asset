@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/choosePlayerScene.unity
   - enabled: 1
     path: Assets/Scenes/chooseArenaScene.unity
+  - enabled: 1
+    path: Assets/Scenes/statsScene.unity

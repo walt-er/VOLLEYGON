@@ -54,7 +54,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V0.2";
+		version = "V0.3";
 	
 	}
 	
@@ -63,7 +63,7 @@ public class DataManagerScript : MonoBehaviour {
 	
 	}
 
-	void ResetStats(){
+	public static void ResetStats(){
 		playerOneAces = 0;
 		playerOneReturns = 0;
 		 playerOneBumbles = 0;

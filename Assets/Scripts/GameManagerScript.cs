@@ -105,13 +105,17 @@ public class GameManagerScript : MonoBehaviour {
 	void LaunchTitleScreen(){
 		Application.LoadLevel ("titleScene");
 	}
+	void LaunchStatsScreen(){
+		Application.LoadLevel ("statsScene");
+	}
 	void teamWins(int whichTeam){
 
 		winText.text = "Team " + whichTeam.ToString () + " Wins!";
 		winText.CrossFadeAlpha(1f,.25f,false);
 		isGameOver = true;
 		//DataManagerScript.dataManager.teamOneWins += 1;
-		Invoke ("LaunchTitleScreen", 5f);
+		//Invoke ("LaunchTitleScreen", 5f);
+		Invoke ("LaunchStatsScreen", 5f);
 	}
 	// Update is called once per frame
 	void Update () {
