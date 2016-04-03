@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour {
 
 		case 1:
 			speedPowerupActive = true;
-			speed = 25f;
+			speed = 22f;
 			speedPowerupTimer = 20f; 
 
 			break;

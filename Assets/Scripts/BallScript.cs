@@ -87,6 +87,22 @@ public class BallScript : MonoBehaviour {
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos)) {
 			bounces = 0;
 			//Debug.Log ("Bounces reset!");
+			// Credit a return to the last touch player
+			switch (lastTouch) {
+			case 1:
+				DataManagerScript.playerOneReturns += 1;
+				break;
+			case 2:
+				DataManagerScript.playerTwoReturns += 1;
+				break;
+			case 3:
+				DataManagerScript.playerThreeReturns += 1;
+				break;
+			case 4:
+				DataManagerScript.playerFourReturns += 1;
+				break;
+				
+			}
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
 		}
 		
