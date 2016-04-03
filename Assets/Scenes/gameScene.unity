@@ -721,6 +721,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.ColorOverLife.key0.rgba
+      value: 1735553758
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
   m_IsPrefabParent: 0
@@ -1410,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &835292216
 Transform:
   m_ObjectHideFlags: 0
@@ -3253,6 +3257,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.ColorOverLife.key0.rgba
+      value: 1731211482
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
   m_IsPrefabParent: 0
@@ -3894,6 +3902,10 @@ Prefab:
     - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.ColorOverLife.key0.rgba
+      value: 1742910067
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
