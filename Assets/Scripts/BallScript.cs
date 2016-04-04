@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using PigeonCoopToolkit.Effects.Trails;
 
 public class BallScript : MonoBehaviour {
 
@@ -19,7 +20,8 @@ public class BallScript : MonoBehaviour {
 	public Sprite reverseGravSprite;
 	public Sprite changingSprite;
 	private Sprite theSprite;
-
+	public GameObject prefab;
+	public GameObject trail;
 	public int lastTouch;
 	public int secondToLastTouch;
 
@@ -75,6 +77,7 @@ public class BallScript : MonoBehaviour {
 	}
 	void LaunchBall(){
 		rb.isKinematic = false;
+		trail.SetActive (true);
 		//Send the ball in a random direction 
 
 		ResetTimer();
@@ -113,6 +116,8 @@ public class BallScript : MonoBehaviour {
 		winByTwoText.CrossFadeAlpha (0f, .25f, false);
 	}
 	void ResetBall(){
+		trail.GetComponent<Trail>().ClearSystem (true);
+		trail.SetActive (false);
 		rb.isKinematic = true;
 		gameObject.transform.position = new Vector3 (0, 0, 0);
 		rb.velocity = new Vector2 (0, 0);
@@ -135,6 +140,8 @@ public class BallScript : MonoBehaviour {
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
 		}
+
+
 	}
 
 	void GravChange(){
@@ -254,6 +261,8 @@ public class BallScript : MonoBehaviour {
 						winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
 					}
 					ResetBall ();
+					//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
+					//Destroy (gameObject);
 				} else {
 					transform.position = new Vector3 (-20f, -20f, 0f);
 					gameObject.SetActive (false);
