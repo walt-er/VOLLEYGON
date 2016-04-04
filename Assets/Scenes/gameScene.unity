@@ -177,6 +177,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!4 &91320683 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 444604, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+  m_PrefabInternal: {fileID: 1756382738}
 --- !u!1 &110786352 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
@@ -1018,6 +1022,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &667809925
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 91320683}
+    m_Modifications:
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 479362, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &677044210
 Prefab:
   m_ObjectHideFlags: 0
