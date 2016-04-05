@@ -7,11 +7,12 @@ public class powerupScript : MonoBehaviour {
 	public float timer; 
 	public Sprite sizeUpSprite;
 	public Sprite speedUpSprite;
+	public Sprite pandemoniumSprite;
 	// Use this for initialization
 
 
 	void Start () {
-		powerupType = (int)Mathf.Floor (Random.value * 2) + 1;
+		powerupType = (int)Mathf.Floor (Random.value * 3) + 1;
 		timer = 5f + (Random.value * 5f);
 
 		switch (powerupType) {
@@ -21,6 +22,9 @@ public class powerupScript : MonoBehaviour {
 			break;
 		case 2:
 			GetComponent<SpriteRenderer>().sprite = sizeUpSprite;
+			break;
+		case 3:
+			GetComponent<SpriteRenderer> ().sprite = pandemoniumSprite;
 			break;
 		default:
 			break;
