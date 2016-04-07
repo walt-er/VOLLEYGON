@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public int playerType = 0;
 	public PolygonCollider2D trianglePC, trapezoidPC;
 
+	public TextMesh pandemoniumCounter;
 	public Sprite squareSprite;
 	public Sprite circleSprite;
 	public Sprite triangleSprite;
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour {
 
 	private float sizePowerupTimer;
 	private bool sizePowerupActive = false; 
+
+	private float pandemoniumTimer;
+	private bool pandemoniumPowerupActive = false;
 
 	// Different base stats for each playerType
 
@@ -59,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
 
-
+		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 
 
 		if (playerType == 0) {
@@ -159,14 +163,8 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		var pos = transform.position;
-		if (team == 1) {
-			pos.x = Mathf.Clamp (transform.position.x, -200.0f, -1.0f);
-			transform.position = pos;
-		} else if (team == 2) {
-			pos.x = Mathf.Clamp (transform.position.x, 1f, 200f);
-			transform.position = pos;
-		}
+		ClampPosition ();
+
 
 		ManagePowerups ();
 	}
@@ -204,6 +202,20 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void ClampPosition(){
+
+		// Only clamp position if pandemonium is not active;
+		if (!pandemoniumPowerupActive){
+			var pos = transform.position;
+			if (team == 1) {
+				pos.x = Mathf.Clamp (transform.position.x, -200.0f, -1.0f);
+				transform.position = pos;
+			} else if (team == 2) {
+				pos.x = Mathf.Clamp (transform.position.x, 1f, 200f);
+				transform.position = pos;
+			}
+		}
+	}
 	void ManagePowerups(){
 		if (speedPowerupActive) {
 			speedPowerupTimer -= Time.deltaTime;
@@ -226,7 +238,19 @@ public class PlayerController : MonoBehaviour {
 
 			}
 		}
+
+		if (pandemoniumPowerupActive){
+			pandemoniumTimer -= Time.deltaTime;
+			pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(1f, 1f, 1f, .25f);
+			pandemoniumCounter.GetComponent<TextMesh> ().text = Mathf.Floor(pandemoniumTimer).ToString();
+			if (pandemoniumTimer <= 0) {
+			    pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
+				pandemoniumPowerupActive = false;
+				// run 'punishment' check if player is offsides.
+			}
+		}
 	}
+
 
 	void ApplyPowerup(int whichPowerup){
 		Debug.Log (whichPowerup);
@@ -248,7 +272,13 @@ public class PlayerController : MonoBehaviour {
 			sizePowerupTimer = 20f;
 
 			break;
+		
+		case 3:
+			pandemoniumPowerupActive = true;
+			pandemoniumTimer = 20f;
+			break;
 		default:
+			
 
 			break;
 		}
