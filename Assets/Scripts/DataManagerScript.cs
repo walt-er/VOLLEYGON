@@ -54,7 +54,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V0.5";
+		version = "V0.6";
 	
 	}
 	
