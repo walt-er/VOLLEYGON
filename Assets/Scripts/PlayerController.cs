@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 	public Sprite triangleSprite;
 	public Sprite trapezoidSprite;
 
-	private float penaltyTimer;
+	public float penaltyTimer;
 	private bool penaltyTimerActive = false;
 
 	private float speedPowerupTimer;
@@ -308,13 +308,15 @@ public class PlayerController : MonoBehaviour {
 			transform.position = new Vector3 (6f, 0f, -0.5f);
 
 			break;
+		}
 			rb.velocity = Vector3.zero;
+			rb.gravityScale = startingGrav;
 			gameObject.GetComponent<SpriteRenderer> ().enabled = true;
 		
 			trail.SetActive (true);
 			trail.GetComponent<Trail>().ClearSystem (true);
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
-		}
+
 	}
 
 	void ApplyPowerup(int whichPowerup){
