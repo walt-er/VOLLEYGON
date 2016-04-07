@@ -13,12 +13,14 @@ public class TitleManagerScript : MonoBehaviour {
 	public string jumpButton4 = "Jump_P4";
 	public string gravButton4 = "Grav_P4";
 	public Text versionText;
+	public GameObject marker;
+
 
 	// Use this for initialization
 	void Start () {
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
-
+		DataManagerScript.ResetPlayerTypes ();
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
 	}

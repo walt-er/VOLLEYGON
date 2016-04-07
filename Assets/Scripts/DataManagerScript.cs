@@ -42,6 +42,10 @@ public class DataManagerScript : MonoBehaviour {
 	public static int playerFourBumbles;
 	public static int playerFourScores;
 
+	// Tournament mode variables
+	public bool tournamentMode;
+	public static int TM_TeamOneWins;
+	public static int TM_TeamTwoWins;
 
 
 	void Awake(){
@@ -63,9 +67,16 @@ public class DataManagerScript : MonoBehaviour {
 	
 	}
 
+	public static void ResetPlayerTypes(){
+		playerOneType = 0;
+		playerTwoType = 0;
+		playerThreeType = 0;
+		playerFourType = 0;
+
+	}
 	public static void ResetStats(){
-		playerOneAces = 0;
-		playerOneReturns = 0;
+		 playerOneAces = 0;
+		 playerOneReturns = 0;
 		 playerOneBumbles = 0;
 		 playerOneScores = 0;
 
@@ -84,4 +95,5 @@ public class DataManagerScript : MonoBehaviour {
 		 playerFourBumbles = 0;
 		 playerFourScores = 0;
 	}
+		
 }
