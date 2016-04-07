@@ -447,6 +447,10 @@ MonoBehaviour:
   Player3MVP: {fileID: 190555989}
   Player4MVP: {fileID: 1484036692}
   aces: 
+  player1: {fileID: 1370663620}
+  player2: {fileID: 579324261}
+  player3: {fileID: 1040935891}
+  player4: {fileID: 736303006}
 --- !u!1 &286507647
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,15 +46,30 @@ public class StatManagerScript : MonoBehaviour {
 	private int[] returns;
 	private int[] bumbles;
 
+	public int playersPlaying = 0;
+	public int playersReady = 0;
+
 	private float scoreWeight = 1f;
 	private float aceWeight = 1f;
 	private float returnWeight = .25f;
 	private float bumbleWeight = .5f;
 
+	public GameObject player1;
+	public GameObject player2;
+	public GameObject player3;
+	public GameObject player4;
+
+
 //	nums.Max(); // Will result in 7
 //	nums.Min(); // Will result in 1
 
+	public static StatManagerScript Instance { get; private set; }
 	// Use this for initialization
+
+	void Awake(){
+		Instance = this;
+	}
+
 	void Start () {
 
 		Player1MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
@@ -63,12 +78,46 @@ public class StatManagerScript : MonoBehaviour {
 		Player4MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 
 		PopulateStats ();
+
+		// Determine how many players are playing.
+		if (DataManagerScript.playerOnePlaying) {
+			playersPlaying++; 
+		}
+		if (DataManagerScript.playerTwoPlaying) {
+			playersPlaying++; 
+		}
+		if (DataManagerScript.playerThreePlaying) {
+			playersPlaying++; 
+		}
+		if (DataManagerScript.playerFourPlaying) {
+			playersPlaying++; 
+		}
+
+		Invoke ("BackToTitle", 30f);
+
 	}
 	
 	// Update is called once per frame
+
 	void Update () {
-	
+		if (playersReady == playersPlaying) {
+			BackToTitle ();
+		}
 	}
+
+	public void CheckStartable(){
+		
+	}
+
+	public void increasePlayerReady(){
+		playersReady++;
+
+	}
+
+	public void decreasePlayerReady(){
+		playersReady--;
+	}
+
 	void DetermineMVP(){
 		float p1Score = DataManagerScript.playerOneAces * aceWeight + DataManagerScript.playerOneScores * scoreWeight + DataManagerScript.playerOneReturns * returnWeight - DataManagerScript.playerOneBumbles * bumbleWeight; 
 		float p2Score = DataManagerScript.playerTwoAces * aceWeight + DataManagerScript.playerTwoScores * scoreWeight + DataManagerScript.playerTwoReturns * returnWeight - DataManagerScript.playerTwoBumbles * bumbleWeight; 
@@ -110,6 +159,10 @@ public class StatManagerScript : MonoBehaviour {
 			break;
 
 		}
+	}
+
+	void BackToTitle(){
+		Application.LoadLevel ("titleScene");
 	}
 
 	void PopulateStats(){

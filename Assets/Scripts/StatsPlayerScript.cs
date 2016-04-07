@@ -32,59 +32,21 @@ public class StatsPlayerScript : MonoBehaviour {
 	void activateReadyState(){
 		if (taggedIn) {
 			readyToPlay = true;
-			if (readyToPlay) {
+
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
-			} else {
-				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
-			}
-		} else {
-			taggedIn = true;
-			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
-			sr.enabled = true;
-			switch (playerIdentifier) {
-
-
-			}
 		
 
-		}
+			StatManagerScript.Instance.increasePlayerReady ();
+		} 
 	}
 
 	void cancelReadyState(){
 		if (readyToPlay) {
 			readyToPlay = false;
 			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
-		} else if (taggedIn) {
-			taggedIn = false;
-			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
-			sr.enabled = false;
-			switch(playerIdentifier){
+			StatManagerScript.Instance.decreasePlayerReady ();
+		} 
 
-			case 1:
-				if (DataManagerScript.playerOnePlaying) {
-					sr.enabled = true;
-
-
-				}
-				break;
-			case 2:
-				if (DataManagerScript.playerTwoPlaying) {
-					sr.enabled = true;
-				}
-				break;
-			case 3:
-				if (DataManagerScript.playerThreePlaying) {
-					sr.enabled = true;
-				}
-				break;
-			case 4:
-				if (DataManagerScript.playerFourPlaying) {
-					sr.enabled = true;
-				}
-				break;
-			}
-		}
-		ChoosePlayerScript.Instance.CheckStartable ();
 	}
 
 
@@ -117,21 +79,25 @@ public class StatsPlayerScript : MonoBehaviour {
 		case 1:
 			if (DataManagerScript.playerOnePlaying) {
 				sr.enabled = true;
+				taggedIn = true;
 			}
 			break;
 		case 2:
 			if (DataManagerScript.playerTwoPlaying) {
 				sr.enabled = true;
+				taggedIn = true;
 			}
 			break;
 		case 3:
 			if (DataManagerScript.playerThreePlaying) {
 				sr.enabled = true;
+				taggedIn = true;
 			}
 			break;
 		case 4:
 			if (DataManagerScript.playerFourPlaying) {
 				sr.enabled = true;
+				taggedIn = true;
 			}
 			break;
 
@@ -154,7 +120,7 @@ public class StatsPlayerScript : MonoBehaviour {
 							}
 		}
 
-		Invoke ("BackToTitle", 8f);
+	//	Invoke ("BackToTitle", 8f);
 
 	}
 
