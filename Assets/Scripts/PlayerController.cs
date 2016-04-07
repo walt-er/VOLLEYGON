@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using PigeonCoopToolkit.Effects.Trails;
 
 public class PlayerController : MonoBehaviour {
 
@@ -22,10 +23,16 @@ public class PlayerController : MonoBehaviour {
 	public PolygonCollider2D trianglePC, trapezoidPC;
 
 	public TextMesh pandemoniumCounter;
+
+	public GameObject trail;
+
 	public Sprite squareSprite;
 	public Sprite circleSprite;
 	public Sprite triangleSprite;
 	public Sprite trapezoidSprite;
+
+	private float penaltyTimer;
+	private bool penaltyTimerActive = false;
 
 	private float speedPowerupTimer;
 	private bool speedPowerupActive = false; 
@@ -169,6 +176,34 @@ public class PlayerController : MonoBehaviour {
 		ManagePowerups ();
 	}
 
+	void checkPenalty(){
+		switch (team) {
+		case 1:
+			if (transform.position.x > -1.0f){
+				penaltyTimerActive = true;
+				penaltyTimer = 10f;
+				gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+				trail.GetComponent<Trail>().ClearSystem (true);
+				trail.SetActive (false);
+				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+
+
+			}
+			break;
+
+		case 2:
+			if (transform.position.x < 1.0f){
+				penaltyTimerActive = true;
+				penaltyTimer = 10f;
+				gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+				trail.GetComponent<Trail>().ClearSystem (true);
+				trail.SetActive (false);
+				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+			}
+
+			break;
+		}
+	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			Debug.Log ("a collision!");
@@ -247,10 +282,40 @@ public class PlayerController : MonoBehaviour {
 			    pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 				pandemoniumPowerupActive = false;
 				// run 'punishment' check if player is offsides.
+				checkPenalty();
+			}
+		}
+
+		if (penaltyTimerActive) {
+			penaltyTimer -= Time.deltaTime;
+
+			if (penaltyTimer <= 0) {
+				penaltyTimerActive = false;
+				ReturnFromPenalty ();
 			}
 		}
 	}
 
+	void ReturnFromPenalty(){
+		switch (team) {
+		case 1:
+			transform.position = new Vector3 (-6f, 0f, -0.5f);
+
+
+			break;
+
+		case 2:
+			transform.position = new Vector3 (6f, 0f, -0.5f);
+
+			break;
+			rb.velocity = Vector3.zero;
+			gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+		
+			trail.SetActive (true);
+			trail.GetComponent<Trail>().ClearSystem (true);
+			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+		}
+	}
 
 	void ApplyPowerup(int whichPowerup){
 		Debug.Log (whichPowerup);
