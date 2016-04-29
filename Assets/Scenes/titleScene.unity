@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &238452005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1193867837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1711501990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -825,8 +825,8 @@ MonoBehaviour:
   gravButton3: Grav_P3
   jumpButton4: Jump_P4
   gravButton4: Grav_P4
-  versionText: {fileID: 2085557476}
   marker: {fileID: 0}
+  versionText: {fileID: 2085557476}
 --- !u!4 &2126456561
 Transform:
   m_ObjectHideFlags: 0

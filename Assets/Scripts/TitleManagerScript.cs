@@ -12,8 +12,21 @@ public class TitleManagerScript : MonoBehaviour {
 	public string gravButton3 = "Grav_P3";
 	public string jumpButton4 = "Jump_P4";
 	public string gravButton4 = "Grav_P4";
-	public Text versionText;
+	private int markerPos = 0;
+	private float[] markerPositions  = {-15f, -5f, 5f, 15f};
+
+	private string horizAxis1 = "Horizontal_P1";
+	private string horizAxis2 = "Horizontal_P2";
+	private string horizAxis3 = "Horizontal_P3";
+	private string horizAxis4 = "Horizontal_P4";
 	public GameObject marker;
+	private bool axis1InUse = false;
+	private bool axis2InUse = false;
+	private bool axis3InUse = false;
+	private bool axis4InUse = false;
+
+	public Text versionText;
+
 
 
 	// Use this for initialization
