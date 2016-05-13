@@ -32,7 +32,7 @@ TagManager:
   - Pickups
   - Ground
   - ScoringBoundary
-  - 
+  - BG
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BehindEverything
+    uniqueID: 2273557343
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
