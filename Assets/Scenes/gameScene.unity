@@ -916,6 +916,10 @@ Prefab:
       propertyPath: TrailData.ColorOverLife.key0.rgba
       value: 1735553758
       objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.Lifetime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
   m_IsPrefabParent: 0
@@ -2596,7 +2600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 103506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: m_Name
@@ -3730,6 +3734,10 @@ Prefab:
       propertyPath: TrailData.ColorOverLife.key0.rgba
       value: 1731211482
       objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.Lifetime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
   m_IsPrefabParent: 0
@@ -4093,6 +4101,10 @@ Prefab:
     - target: {fileID: 187034, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
       propertyPath: m_Name
       value: Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.Lifetime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
@@ -4479,6 +4491,10 @@ Prefab:
     - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
       propertyPath: TrailData.ColorOverLife.key0.rgba
       value: 1742910067
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479924, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
+      propertyPath: TrailData.Lifetime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45420e6e2adee4484972cafbeb136c60, type: 2}
