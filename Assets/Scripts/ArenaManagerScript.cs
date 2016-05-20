@@ -31,7 +31,7 @@ public class ArenaManagerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetAxisRaw (horizAxis1) == 1) {
+		if (Input.GetAxisRaw (horizAxis1) == -1) {
 
 
 			if (axis1InUse == false) {
@@ -43,7 +43,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (horizAxis1) == -1) {
+		if (Input.GetAxisRaw (horizAxis1) == 1) {
 
 
 			if (axis1InUse == false) {
@@ -71,7 +71,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			Application.LoadLevel ("gameScene");
 		}
 
-		if (Input.GetAxisRaw (horizAxis2) == 1) {
+		if (Input.GetAxisRaw (horizAxis2) == -1) {
 
 
 			if (axis2InUse == false) {
@@ -83,7 +83,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (horizAxis2) == -1) {
+		if (Input.GetAxisRaw (horizAxis2) == 1) {
 
 
 			if (axis2InUse == false) {
@@ -112,7 +112,7 @@ public class ArenaManagerScript : MonoBehaviour {
 		}
 
 
-		if (Input.GetAxisRaw (horizAxis3) == 1) {
+		if (Input.GetAxisRaw (horizAxis3) == -1) {
 
 
 			if (axis3InUse == false) {
@@ -124,7 +124,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (horizAxis3) == -1) {
+		if (Input.GetAxisRaw (horizAxis3) == 1) {
 
 
 			if (axis3InUse == false) {
@@ -153,7 +153,7 @@ public class ArenaManagerScript : MonoBehaviour {
 		}
 
 
-		if (Input.GetAxisRaw (horizAxis4) == 1) {
+		if (Input.GetAxisRaw (horizAxis4) == -1) {
 
 
 			if (axis4InUse == false) {
@@ -165,7 +165,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (horizAxis4) == -1) {
+		if (Input.GetAxisRaw (horizAxis4) == 1) {
 
 
 			if (axis4InUse == false) {
