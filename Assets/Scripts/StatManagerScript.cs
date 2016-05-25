@@ -198,7 +198,7 @@ public class StatManagerScript : MonoBehaviour {
 
 		// if player active...
 		if (DataManagerScript.playerOnePlaying) {
-			player1Aces.text = DataManagerScript.playerOneAces.ToString (); 
+			player1Aces.text = "HI\n" + DataManagerScript.playerOneAces.ToString (); 
 			player1Scores.text = DataManagerScript.playerOneScores.ToString ();
 			player1Returns.text = DataManagerScript.playerOneReturns.ToString ();
 			player1Bumbles.text = DataManagerScript.playerOneBumbles.ToString ();
