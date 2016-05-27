@@ -220,8 +220,17 @@ public class StatManagerScript : MonoBehaviour {
 			}
 
 		} else {
-			player1Title.enabled = false; 
-			player1Labels.enabled = false;
+			player1Aces.text = "ACES: " + DataManagerScript.playerFourAces.ToString (); 
+			player1Scores.text = "SCORES: " + DataManagerScript.playerFourScores.ToString ();
+			player1Returns.text = "RETURNS: " + DataManagerScript.playerFourReturns.ToString ();
+			player1Bumbles.text = "BUMBLES: " + DataManagerScript.playerFourBumbles.ToString ();
+			player1Aces.color = HexToColor ("000000");
+			player1Scores.color = HexToColor ("000000");
+			player1Returns.color = HexToColor ("000000");
+			player1Bumbles.color = HexToColor ("000000");
+			player1Title.color = HexToColor ("000000");
+//			player1Title.enabled = false; 
+//			player1Labels.enabled = false;
 		}
 
 		if (DataManagerScript.playerTwoPlaying) {
@@ -247,8 +256,17 @@ public class StatManagerScript : MonoBehaviour {
 			}
 
 		} else {
-			player2Title.enabled = false; 
-			player2Labels.enabled = false;
+			player2Aces.text = "ACES: " + DataManagerScript.playerFourAces.ToString (); 
+			player2Scores.text = "SCORES: " + DataManagerScript.playerFourScores.ToString ();
+			player2Returns.text = "RETURNS: " + DataManagerScript.playerFourReturns.ToString ();
+			player2Bumbles.text = "BUMBLES: " + DataManagerScript.playerFourBumbles.ToString ();
+			player2Aces.color = HexToColor ("000000");
+			player2Scores.color = HexToColor ("000000");
+			player2Returns.color = HexToColor ("000000");
+			player2Bumbles.color = HexToColor ("000000");
+			player2Title.color = HexToColor ("000000");
+			//player2Title.enabled = false; 
+			//player2Labels.enabled = false;
 		}
 
 		if (DataManagerScript.playerThreePlaying) {
@@ -274,8 +292,18 @@ public class StatManagerScript : MonoBehaviour {
 			}
 
 		} else {
-			player3Title.enabled = false; 
-			player3Labels.enabled = false;
+//			player3Title.enabled = false; 
+//			player3Labels.enabled = false;
+			player3Aces.text = "ACES: " + DataManagerScript.playerFourAces.ToString (); 
+			player3Scores.text = "SCORES: " + DataManagerScript.playerFourScores.ToString ();
+			player3Returns.text = "RETURNS: " + DataManagerScript.playerFourReturns.ToString ();
+			player3Bumbles.text = "BUMBLES: " + DataManagerScript.playerFourBumbles.ToString ();
+			player3Aces.color = HexToColor ("000000");
+			player3Scores.color = HexToColor ("000000");
+			player3Returns.color = HexToColor ("000000");
+			player3Bumbles.color = HexToColor ("000000");
+			player3Title.color = HexToColor ("000000");
+
 		}
 
 		if (DataManagerScript.playerFourPlaying) {
@@ -302,8 +330,17 @@ public class StatManagerScript : MonoBehaviour {
 			}
 
 		} else {
-			player4Title.enabled = false; 
-			player4Labels.enabled = false;
+			//player4Title.enabled = false; 
+			//player4Labels.enabled = false;
+			player4Aces.text = "ACES: " + DataManagerScript.playerFourAces.ToString (); 
+			player4Scores.text = "SCORES: " + DataManagerScript.playerFourScores.ToString ();
+			player4Returns.text = "RETURNS: " + DataManagerScript.playerFourReturns.ToString ();
+			player4Bumbles.text = "BUMBLES: " + DataManagerScript.playerFourBumbles.ToString ();
+			player4Aces.color = HexToColor ("000000");
+			player4Scores.color = HexToColor ("000000");
+			player4Returns.color = HexToColor ("000000");
+			player4Bumbles.color = HexToColor ("000000");
+			player4Title.color = HexToColor ("000000");
 		}
 
 		DetermineMVP ();
