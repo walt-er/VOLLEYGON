@@ -198,25 +198,25 @@ public class StatManagerScript : MonoBehaviour {
 
 		// if player active...
 		if (DataManagerScript.playerOnePlaying) {
-			player1Aces.text = "HI\n" + DataManagerScript.playerOneAces.ToString (); 
-			player1Scores.text = DataManagerScript.playerOneScores.ToString ();
-			player1Returns.text = DataManagerScript.playerOneReturns.ToString ();
-			player1Bumbles.text = DataManagerScript.playerOneBumbles.ToString ();
+			player1Aces.text = "ACES: " + DataManagerScript.playerOneAces.ToString (); 
+			player1Scores.text = "SCORES: " + DataManagerScript.playerOneScores.ToString ();
+			player1Returns.text = "RETURNS: " + DataManagerScript.playerOneReturns.ToString ();
+			player1Bumbles.text = "BUMBLES: " + DataManagerScript.playerOneBumbles.ToString ();
 
 			if (DataManagerScript.playerOneAces == aces.Max()){
-				player1Aces.color = new Color (0f, 1f, 0f, 1f);
+				player1Aces.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerOneReturns == returns.Max()){
-				player1Returns.color = new Color (0f, 1f, 0f, 1f);
+				player1Returns.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerOneScores == scores.Max()){
-				player1Scores.color = new Color (0f, 1f, 0f, 1f);
+				player1Scores.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerOneBumbles == bumbles.Max()){
-				player1Bumbles.color = new Color (1f, 0f, 0f, 1f);
+				player1Bumbles.color = HexToColor("d82039");
 			}
 
 		} else {
@@ -225,25 +225,25 @@ public class StatManagerScript : MonoBehaviour {
 		}
 
 		if (DataManagerScript.playerTwoPlaying) {
-			player2Aces.text = DataManagerScript.playerTwoAces.ToString (); 
-			player2Scores.text = DataManagerScript.playerTwoScores.ToString ();
-			player2Returns.text = DataManagerScript.playerTwoReturns.ToString ();
-			player2Bumbles.text = DataManagerScript.playerTwoBumbles.ToString ();
+			player2Aces.text = "ACES: " + DataManagerScript.playerTwoAces.ToString (); 
+			player2Scores.text = "SCORES: " + DataManagerScript.playerTwoScores.ToString ();
+			player2Returns.text = "RETURNS: " + DataManagerScript.playerTwoReturns.ToString ();
+			player2Bumbles.text = "BUMBLES: " + DataManagerScript.playerTwoBumbles.ToString ();
 
 			if (DataManagerScript.playerTwoAces == aces.Max()){
-				player2Aces.color = new Color (0f, 1f, 0f, 1f);
+				player2Aces.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerTwoReturns == returns.Max()){
-				player2Returns.color = new Color (0f, 1f, 0f, 1f);
+				player2Returns.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerTwoScores == scores.Max()){
-				player2Scores.color = new Color (0f, 1f, 0f, 1f);
+				player2Scores.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerTwoBumbles == bumbles.Max()){
-				player2Bumbles.color = new Color (1f, 0f, 0f, 1f);
+				player2Bumbles.color = HexToColor("d82039");
 			}
 
 		} else {
@@ -252,25 +252,25 @@ public class StatManagerScript : MonoBehaviour {
 		}
 
 		if (DataManagerScript.playerThreePlaying) {
-			player3Aces.text = DataManagerScript.playerThreeAces.ToString (); 
-			player3Scores.text = DataManagerScript.playerThreeScores.ToString ();
-			player3Returns.text = DataManagerScript.playerThreeReturns.ToString ();
-			player3Bumbles.text = DataManagerScript.playerThreeBumbles.ToString ();
+			player3Aces.text = "ACES: " + DataManagerScript.playerThreeAces.ToString (); 
+			player3Scores.text = "SCORES: " + DataManagerScript.playerThreeScores.ToString ();
+			player3Returns.text = "RETURNS: " + DataManagerScript.playerThreeReturns.ToString ();
+			player3Bumbles.text = "BUMBLES: " + DataManagerScript.playerThreeBumbles.ToString ();
 
 			if (DataManagerScript.playerThreeAces == aces.Max()){
-				player3Aces.color = new Color (0f, 1f, 0f, 1f);
+				player3Aces.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerThreeReturns == returns.Max()){
-				player3Returns.color = new Color (0f, 1f, 0f, 1f);
+				player3Returns.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerThreeScores == scores.Max()){
-				player3Scores.color = new Color (0f, 1f, 0f, 1f);
+				player3Scores.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerThreeBumbles == bumbles.Max()){
-				player3Bumbles.color = new Color (1f, 0f, 0f, 1f);
+				player3Bumbles.color = HexToColor("d82039");
 			}
 
 		} else {
@@ -279,25 +279,26 @@ public class StatManagerScript : MonoBehaviour {
 		}
 
 		if (DataManagerScript.playerFourPlaying) {
-			player4Aces.text = DataManagerScript.playerFourAces.ToString (); 
-			player4Scores.text = DataManagerScript.playerFourScores.ToString ();
-			player4Returns.text = DataManagerScript.playerFourReturns.ToString ();
-			player4Bumbles.text = DataManagerScript.playerFourBumbles.ToString ();
+			player4Aces.text = "ACES: " + DataManagerScript.playerFourAces.ToString (); 
+			player4Scores.text = "SCORES: " + DataManagerScript.playerFourScores.ToString ();
+			player4Returns.text = "RETURNS: " + DataManagerScript.playerFourReturns.ToString ();
+			player4Bumbles.text = "BUMBLES: " + DataManagerScript.playerFourBumbles.ToString ();
 
 			if (DataManagerScript.playerFourAces == aces.Max()){
-				player4Aces.color = new Color (0f, 1f, 0f, 1f);
+				player4Aces.color = HexToColor ("ffb752");
+
 			}
 
 			if (DataManagerScript.playerFourReturns == returns.Max()){
-				player4Returns.color = new Color (0f, 1f, 0f, 1f);
+				player4Returns.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerFourScores == scores.Max()){
-				player4Scores.color = new Color (0f, 1f, 0f, 1f);
+				player4Scores.color = HexToColor ("ffb752");
 			}
 
 			if (DataManagerScript.playerFourBumbles == bumbles.Max()){
-				player4Bumbles.color = new Color (1f, 0f, 0f, 1f);
+				player4Bumbles.color = HexToColor("d82039");
 			}
 
 		} else {
@@ -306,5 +307,13 @@ public class StatManagerScript : MonoBehaviour {
 		}
 
 		DetermineMVP ();
+	}
+
+	Color HexToColor(string hex)
+	{
+		byte r = byte.Parse(hex.Substring(0,2), System.Globalization.NumberStyles.HexNumber);
+		byte g = byte.Parse(hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
+		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+		return new Color32(r,g,b, 255);
 	}
 }
