@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
 	public PolygonCollider2D trianglePC, trapezoidPC;
+	private bool canMove;
 
 	public TextMesh pandemoniumCounter;
 
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
-
+		canMove = true;
 		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 
 
@@ -144,18 +145,32 @@ public class PlayerController : MonoBehaviour {
 		}
 		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
 		v3.x = moveHorizontal * speed;
-//		v3.z = 0.0;
-		GetComponent<Rigidbody2D>().velocity = v3;
-//		rigidbody.position = new Vector3
+//		
+
+		//v3.z = 0.0f;
+		if (canMove) {
+		//	GetComponent<Rigidbody2D> ().velocity = v3;
+		}
+		Vector2 v2 = new Vector2(moveHorizontal*speed*100f,0f);
+		GetComponent<Rigidbody2D> ().AddForce (v2);
+
+		float f = Mathf.Clamp(GetComponent<Rigidbody2D> ().velocity.x, -speed, speed);
+//		Debug.Log (GetComponent<Rigidbody2D> ().velocity.x);
+		//		rigidbody.position = new Vector3
 //			(
 //				Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax),
 //				0.5f,
 //				Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 //				);
+		Vector3 v4 = GetComponent<Rigidbody2D>().velocity;
+		v4.x = f;
+
+		GetComponent<Rigidbody2D>().velocity = v4;
+
 	}
 
 	void Update(){
-		
+		Debug.Log (canMove);
 		if (Input.GetButtonDown (jumpButton)) {
 			//Debug.Log ("Jump hit");
 			if (isJumping == false){
@@ -204,11 +219,25 @@ public class PlayerController : MonoBehaviour {
 			break;
 		}
 	}
+
+	void OnCollisionStay2D(Collision2D collisionInfo) {
+
+		if (collisionInfo.gameObject.tag == "Playfield") {
+		//	Debug.Log ("stay with playfield");
+		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			canMove = false;
+		}
+	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
+		}
+
+		if (coll.gameObject.tag == "Playfield") {
+		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			canMove = false;
 		}
 
 		if (coll.gameObject.tag == "Ball") {
@@ -234,6 +263,10 @@ public class PlayerController : MonoBehaviour {
 					//isJumping = true;   
 			}
 			Debug.Log (isJumping);
+		}
+
+		if (coll.gameObject.tag == "Playfield") {
+		//	canMove = true;
 		}
 	}
 

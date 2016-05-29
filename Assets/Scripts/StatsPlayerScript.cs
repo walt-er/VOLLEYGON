@@ -16,6 +16,7 @@ public class StatsPlayerScript : MonoBehaviour {
 	public int playerIdentifier; 
 	public Text readyText;
 	public Text toJoinText;
+	public Image readyBG;
 
 	private bool axisInUse = false;
 	public bool readyToPlay;
@@ -33,8 +34,8 @@ public class StatsPlayerScript : MonoBehaviour {
 		if (taggedIn) {
 			readyToPlay = true;
 
-				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
-		
+			readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
+			readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 
 			StatManagerScript.Instance.increasePlayerReady ();
 		} 
@@ -44,6 +45,7 @@ public class StatsPlayerScript : MonoBehaviour {
 		if (readyToPlay) {
 			readyToPlay = false;
 			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+			readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			StatManagerScript.Instance.decreasePlayerReady ();
 		} 
 
@@ -53,6 +55,7 @@ public class StatsPlayerScript : MonoBehaviour {
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		sr.sprite = squareSprite;
 
 		sr.enabled = false;
