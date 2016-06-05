@@ -148,11 +148,11 @@ public class PlayerController : MonoBehaviour {
 //		
 
 		//v3.z = 0.0f;
-		if (canMove) {
-		//	GetComponent<Rigidbody2D> ().velocity = v3;
-		}
-		Vector2 v2 = new Vector2(moveHorizontal*speed*100f,0f);
-		GetComponent<Rigidbody2D> ().AddForce (v2);
+		//if (canMove) {
+			GetComponent<Rigidbody2D> ().velocity = v3;
+		//}
+//		Vector2 v2 = new Vector2(moveHorizontal*speed*100f,0f);
+//		GetComponent<Rigidbody2D> ().AddForce (v2);
 
 		float f = Mathf.Clamp(GetComponent<Rigidbody2D> ().velocity.x, -speed, speed);
 //		Debug.Log (GetComponent<Rigidbody2D> ().velocity.x);
@@ -162,10 +162,10 @@ public class PlayerController : MonoBehaviour {
 //				0.5f,
 //				Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
 //				);
-		Vector3 v4 = GetComponent<Rigidbody2D>().velocity;
-		v4.x = f;
-
-		GetComponent<Rigidbody2D>().velocity = v4;
+//		Vector3 v4 = GetComponent<Rigidbody2D>().velocity;
+//		v4.x = f;
+//
+//		GetComponent<Rigidbody2D>().velocity = v4;
 
 	}
 
@@ -276,10 +276,11 @@ public class PlayerController : MonoBehaviour {
 		if (!pandemoniumPowerupActive){
 			var pos = transform.position;
 			if (team == 1) {
-				pos.x = Mathf.Clamp (transform.position.x, -200.0f, -1.0f);
+				// TODO: Make this dynamic based on raycasting
+				pos.x = Mathf.Clamp (transform.position.x, -17.2f, -1.0f);
 				transform.position = pos;
 			} else if (team == 2) {
-				pos.x = Mathf.Clamp (transform.position.x, 1f, 200f);
+				pos.x = Mathf.Clamp (transform.position.x, 1f, 17.2f);
 				transform.position = pos;
 			}
 		}
