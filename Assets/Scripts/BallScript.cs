@@ -23,6 +23,7 @@ public class BallScript : MonoBehaviour {
 	public GameObject prefab;
 	public GameObject trail;
 	public GameObject bounceImpact;
+	public GameObject explosionPrefab;
 	public int lastTouch;
 	public int secondToLastTouch;
 
@@ -283,6 +284,10 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2){
+
+				// Fire an explosion
+				Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+				Instantiate(explosionPrefab, newPos, Quaternion.identity);
 
 				// Award a score.
 
