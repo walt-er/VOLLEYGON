@@ -254,10 +254,12 @@ public class BallScript : MonoBehaviour {
 		//childObject.transform.TransformPoint(newPos); 
 		 Vector3 newPos = mask.InverseTransformPoint(impactPos);
 		newPos.z = -1f;
+		var size = coll.gameObject.GetComponent<BoxCollider2D>().size.y;
 		if (gameObject.transform.position.y < 0) {
-			newPos.y = 1f;
+			
+			newPos.y = size/2;
 		} else {
-			newPos.y = -1f;
+			newPos.y = -1f * size/2;
 		}
 		childObject.transform.localPosition = newPos;
 		coll.gameObject.transform.Find("Mask").GetComponent <SpriteMask> ().updateSprites (); 
