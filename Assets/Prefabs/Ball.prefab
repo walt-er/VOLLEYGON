@@ -158,6 +158,8 @@ MonoBehaviour:
   reverseGravSprite: {fileID: 21300000, guid: 78481ef8a0b7143e6b08e9abdf2e6cff, type: 3}
   changingSprite: {fileID: 0}
   prefab: {fileID: 160232}
+  trail: {fileID: 133330}
+  bounceImpact: {fileID: 182656, guid: 086663bda24f8400bbd544793bf00514, type: 2}
   lastTouch: 0
   secondToLastTouch: 0
 --- !u!114 &11488512
@@ -180,8 +182,8 @@ MonoBehaviour:
     SizeOverLife:
       serializedVersion: 2
       m_Curve:
-      - time: 0
-        value: 1
+      - time: -0.029166667
+        value: 0.52500004
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -192,14 +194,14 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
     UsingSimpleColor: 0
     SimpleColorOverLifeStart: {r: 1, g: 1, b: 1, a: 1}
     SimpleColorOverLifeEnd: {r: 1, g: 1, b: 1, a: 0}
     ColorOverLife:
       key0:
         serializedVersion: 2
-        rgba: 1739285769
+        rgba: 1744830463
       key1:
         serializedVersion: 2
         rgba: 16777215

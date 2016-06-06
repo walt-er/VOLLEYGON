@@ -22,6 +22,7 @@ public class BallScript : MonoBehaviour {
 	private Sprite theSprite;
 	public GameObject prefab;
 	public GameObject trail;
+	public GameObject bounceImpact;
 	public int lastTouch;
 	public int secondToLastTouch;
 
@@ -237,10 +238,49 @@ public class BallScript : MonoBehaviour {
 			}
 		}
 	}
+
+	void CreateBounceImpact (Collision2D coll, int whichType){
+		//Instantiate(bounceImpact, new Vector3(0f, 0, 0), Quaternion.identity);
+		GameObject childObject = Instantiate(bounceImpact) as GameObject;
+		Transform mask = coll.gameObject.transform.Find("Mask").transform;
+		childObject.transform.parent = mask;
+		// create a new position based on the y and x of the collision
+		Vector3 impactPos = gameObject.transform.position;
+		impactPos.z = -1;
+		//TODO: this has to be a switch
+		//impactPos.y = 0.5f;
+	//Vector3 newPos = new Vector3(0f, 0.5f, -1f);
+		//childObject.transform.TransformPoint(newPos); 
+		 Vector3 newPos = mask.InverseTransformPoint(impactPos);
+		newPos.z = -1f;
+		if (gameObject.transform.position.y < 0) {
+			newPos.y = 1f;
+		} else {
+			newPos.y = -1f;
+		}
+		childObject.transform.localPosition = newPos;
+		coll.gameObject.transform.Find("Mask").GetComponent <SpriteMask> ().updateSprites (); 
+		// control the color programatically
+
+		childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(214, 214, 214, 100));
+		childObject.SendMessage("Config", whichType);
+	}
+
+	Color HexToColor(string hex)
+	{
+		byte r = byte.Parse(hex.Substring(0,2), System.Globalization.NumberStyles.HexNumber);
+		byte g = byte.Parse(hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
+		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+		return new Color32(r,g,b, 255);
+	}
+
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			bounces += 1;
+			CreateBounceImpact (coll, 1);
+			CreateBounceImpact (coll, 2);
+			CreateBounceImpact (coll, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2){
 
