@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34404cb99b59bb543805a55e3c469d61, type: 3}
+  m_Name: idles
+  m_EditorClassIdentifier: 
+  editorConfirmations: 1
+  animations:
+  - speedRatio: 0.5
+    loop: 2
+    frameToLoop: 1
+    frameDatas:
+    - sprite: {fileID: 21300000, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.6
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300002, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300004, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300006, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300008, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300010, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300012, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    name: 77616c6b
+    selectedIndex: 1
+    newFramesTime: 0.2
+  - speedRatio: 1
+    loop: 0
+    frameToLoop: 0
+    frameDatas:
+    - sprite: {fileID: 21300014, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300016, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300018, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    name: 69646c65546f43726f756368
+    selectedIndex: 0
+    newFramesTime: 0.1
+  - speedRatio: 0.5
+    loop: 0
+    frameToLoop: 0
+    frameDatas:
+    - sprite: {fileID: 21300020, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300022, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300024, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300026, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300028, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.3
+      eventEnabled: 0
+      eventName: 
+    name: 67657474696e674869745374616e64696e67
+    selectedIndex: 4
+    newFramesTime: 0.1
+  - speedRatio: 0.5
+    loop: 0
+    frameToLoop: 0
+    frameDatas:
+    - sprite: {fileID: 21300030, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300032, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.4
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300030, guid: a17f7337ccdad554c9df278db139b73c, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    name: 67657474696e6748697463
+    selectedIndex: 2
+    newFramesTime: 0.1
