@@ -9,7 +9,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34404cb99b59bb543805a55e3c469d61, type: 3}
-  m_Name: SpriteAnimationAsset
+  m_Name: testSpriteAnimationAsset
   m_EditorClassIdentifier: 
   editorConfirmations: 1
-  animations: []
+  animations:
+  - speedRatio: 1
+    loop: 1
+    frameToLoop: 0
+    frameDatas:
+    - sprite: {fileID: 21300002, guid: 67043dc8c6bdd4f08ac1b7d11759d707, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300002, guid: 67043dc8c6bdd4f08ac1b7d11759d707, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300000, guid: 67043dc8c6bdd4f08ac1b7d11759d707, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300002, guid: 67043dc8c6bdd4f08ac1b7d11759d707, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    - sprite: {fileID: 21300002, guid: 67043dc8c6bdd4f08ac1b7d11759d707, type: 3}
+      time: 0.1
+      eventEnabled: 0
+      eventName: 
+    name: soarinnn
+    selectedIndex: 1
+    newFramesTime: 0.1
