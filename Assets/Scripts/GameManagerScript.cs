@@ -14,7 +14,8 @@ public class GameManagerScript : MonoBehaviour {
 	public int scorePlayedTo = 5;
 	public int arenaType;
 	private float timeSinceLastPowerup;
-	private float powerupAppearTime; 
+	private float powerupAppearTime;
+	public GameObject speedPowerupPrefab;
 	public GameObject powerupPrefab;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
@@ -143,7 +144,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (timeSinceLastPowerup >= powerupAppearTime) {
 
 			// spawn a powerup
-			Instantiate(powerupPrefab, new Vector3(Random.Range(-17f, 17f), Random.Range(-5f,5f), 0), Quaternion.identity);
+			Instantiate(speedPowerupPrefab, new Vector3(Random.Range(-17f, 17f), Random.Range(-5f,5f), 0), Quaternion.identity);
 			timeSinceLastPowerup = 0f;
 			powerupAppearTime = 20f + Random.value * 20f;
 		}
