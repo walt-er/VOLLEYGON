@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 413744}
   - 95: {fileID: 9591922}
+  - 114: {fileID: 11499000}
   m_Layer: 0
   m_Name: SpeedPowerUp
   m_TagString: Untagged
@@ -39,9 +40,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158322}
-  m_LocalRotation: {x: -0.055476855, y: -0.920497, z: -0.14192474, w: 0.35981238}
+  m_LocalRotation: {x: -0.0638928, y: -0.8972484, z: -0.13833998, w: 0.41439724}
   m_LocalPosition: {x: -8.926398, y: -6.961997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 464382}
   m_Father: {fileID: 0}
@@ -109,6 +110,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11499000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fc6203e88954faba39d36c485c09d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

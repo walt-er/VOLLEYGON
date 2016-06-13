@@ -160,6 +160,7 @@ MonoBehaviour:
   prefab: {fileID: 160232}
   trail: {fileID: 133330}
   bounceImpact: {fileID: 182656, guid: 086663bda24f8400bbd544793bf00514, type: 2}
+  explosionPrefab: {fileID: 169520, guid: ee03bcaeeb8104afa890557cabebbea1, type: 2}
   lastTouch: 0
   secondToLastTouch: 0
 --- !u!114 &11488512
@@ -286,7 +287,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 169520, guid: ee03bcaeeb8104afa890557cabebbea1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 160232}

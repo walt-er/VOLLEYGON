@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19928396}
   - 114: {fileID: 11414402}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Small Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.66, y: -7.32, z: 0}
+  m_LocalPosition: {x: -10.016707, y: 1.53319, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,7 +95,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 2
+      scalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -256,7 +256,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4283142911
+        rgba: 4294931968
       minMaxState: 2
     startSize:
       scalar: 1
@@ -427,7 +427,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 130
+      scalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
