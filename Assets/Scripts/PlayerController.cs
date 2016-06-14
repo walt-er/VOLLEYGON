@@ -251,7 +251,8 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Powerup") {
-			int whichPowerup = coll.gameObject.GetComponent<powerupScript> ().powerupType;
+			Debug.Log ("Happening");
+			int whichPowerup = coll.gameObject.GetComponent<SpeedPowerUpScript> ().powerupType;
 			Destroy (coll.gameObject);
 			ApplyPowerup (whichPowerup);
 		}
