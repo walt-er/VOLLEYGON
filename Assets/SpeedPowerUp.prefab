@@ -139,6 +139,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupType: 1
   timer: 0
+  isAvailable: 0
+  fadeSpeed: 10
+  isFading: 0
+  pyramid: {fileID: 150596}
 --- !u!114 &11499000
 MonoBehaviour:
   m_ObjectHideFlags: 1

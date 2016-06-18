@@ -253,8 +253,12 @@ public class PlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "Powerup") {
 			Debug.Log ("Happening");
 			int whichPowerup = coll.gameObject.GetComponent<SpeedPowerUpScript> ().powerupType;
-			Destroy (coll.gameObject);
-			ApplyPowerup (whichPowerup);
+			if (coll.gameObject.GetComponent<SpeedPowerUpScript> ().isAvailable) {
+				coll.gameObject.GetComponent<SpeedPowerUpScript> ().FadeOut ();
+				ApplyPowerup (whichPowerup);
+			}
+			//Destroy (coll.gameObject);
+		
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){

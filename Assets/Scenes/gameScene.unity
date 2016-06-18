@@ -4920,9 +4920,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 6127892, guid: 2da9bdec1cf964e78aea491151751577, type: 2}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 11476998, guid: 2da9bdec1cf964e78aea491151751577, type: 2}
+      propertyPath: fadeSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326438, guid: 2da9bdec1cf964e78aea491151751577, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2da9bdec1cf964e78aea491151751577, type: 2}
