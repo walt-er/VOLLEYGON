@@ -252,9 +252,10 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Powerup") {
 			Debug.Log ("Happening");
-			int whichPowerup = coll.gameObject.GetComponent<SpeedPowerUpScript> ().powerupType;
-			if (coll.gameObject.GetComponent<SpeedPowerUpScript> ().isAvailable) {
-				coll.gameObject.GetComponent<SpeedPowerUpScript> ().FadeOut ();
+			//Script other = coll.gameObject.GetComponent<NewPowerUpScript> ();
+			int whichPowerup = coll.gameObject.GetComponent<NewPowerUpScript> ().powerupType;
+			if (coll.gameObject.GetComponent<NewPowerUpScript> ().isAvailable) {
+				coll.gameObject.GetComponent<NewPowerUpScript> ().FadeOut ();
 				ApplyPowerup (whichPowerup);
 			}
 			//Destroy (coll.gameObject);

@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpeedPowerUpScript : MonoBehaviour {
+public class NewPowerUpScript : MonoBehaviour {
 
 	public int powerupType;
 	public float timer; 
 	public bool isAvailable;
-	public int fadeSpeed = 3;
 	private bool isDone = false;
 	public bool isFading = false;
-	private Color matCol;
-	private Color newColor;
-	private float alfa = 0;
 	public GameObject speedPyramid;
 	public GameObject sizePyramid;
 	public GameObject pandemoniumPyramid;
+	public GameObject explosionPrefab;
 
 
 	// Use this for initialization
@@ -23,6 +20,18 @@ public class SpeedPowerUpScript : MonoBehaviour {
 	void Start () {
 		timer = 5f + (Random.value * 5f);
 		isAvailable = true;
+		powerupType = Random.Range (1, 3);
+		switch (powerupType){
+		case 1:
+			speedPyramid.SetActive (true);
+			break;
+		case 2:
+			sizePyramid.SetActive (true);
+			break;
+		case 3:
+			pandemoniumPyramid.SetActive (true);
+			break;
+		}
 
 	}
 
@@ -47,6 +56,7 @@ public class SpeedPowerUpScript : MonoBehaviour {
 
 	public void FadeOut(){
 		if (!isFading) {
+			Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
 			isFading = true;
 			//iTween.MoveTo(gameObject,iTween.Hash("x",3,"time",4,"delay",1,"onupdate","myUpdateFunction","looptype",iTween.LoopType.pingPong));			
 			iTween.FadeTo (gameObject, iTween.Hash("alpha",0,"time",0.5, "onComplete","Disappear"));
