@@ -9,6 +9,7 @@ public class FakePlayerScript : MonoBehaviour {
 	public Sprite triangleSprite;
 	public Sprite trapezoidSprite;
 
+	public Image readyBG;
 	public string chooseAxis;
 
 	public string confirmKey;
@@ -66,8 +67,10 @@ public class FakePlayerScript : MonoBehaviour {
 			readyToPlay = true;
 			if (readyToPlay) {
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
+				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			} else {
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			}
 		} else {
 			taggedIn = true;
@@ -97,6 +100,7 @@ public class FakePlayerScript : MonoBehaviour {
 		if (readyToPlay) {
 			readyToPlay = false;
 			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+			readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		} else if (taggedIn) {
 			taggedIn = false;
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
@@ -125,7 +129,7 @@ public class FakePlayerScript : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		sr.sprite = squareSprite;
-
+		readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		sr.enabled = false;
 
 	
