@@ -8,6 +8,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject fakePlayer2;
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
+	public Image msgBG;
 
 	public Text oneOnOneMessage;
 	public Text twoOnOneMessage;
@@ -65,6 +66,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	void Start(){
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
+		msgBG.enabled = false;
 
 		DataManagerScript.playerOnePlaying = false;
 		DataManagerScript.playerTwoPlaying = false;
@@ -111,17 +113,20 @@ public class ChoosePlayerScript : MonoBehaviour {
 			if (playersOnLeft == 2 && playersOnRight == 1 || playersOnLeft == 1 && playersOnRight == 2) {
 				// display 2v1 message
 				twoOnOneMessage.enabled = true;
+				msgBG.enabled = true;
 				Debug.Log ("Showing 2v1 message");
 				oneOnOneMessage.enabled = false;
 			} else {
 				//display press start to begin 1v 1 message
 				oneOnOneMessage.enabled = true;
 				twoOnOneMessage.enabled = false;
+				msgBG.enabled = true;
 				Debug.Log ("showing one on one message");
 			}
 		} else {
 			twoOnOneMessage.enabled = false;
 			oneOnOneMessage.enabled = false;
+			msgBG.enabled = false;
 			Debug.Log ("No longer startable. Hiding messages");
 			gameIsStartable = false;
 		}
