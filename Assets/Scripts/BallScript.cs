@@ -26,6 +26,7 @@ public class BallScript : MonoBehaviour {
 	public GameObject explosionPrefab;
 	public int lastTouch;
 	public int secondToLastTouch;
+	public GameObject gravityIndicator;
 
 	// Use this for initialization
 	void Start () {
@@ -136,10 +137,13 @@ public class BallScript : MonoBehaviour {
 		isTimerRunning = false;
 		int signValue = Random.Range (0, 2) * 2 - 1;
 		rb.gravityScale = originalGrav * signValue;
+
 		if (Mathf.Sign (rb.gravityScale) < 0) {
 			Debug.Log ("changing sprite?");
+			//gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
 		} else {
+		//	gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
 		}
 
@@ -148,13 +152,17 @@ public class BallScript : MonoBehaviour {
 
 	void GravChange(){
 		rb.gravityScale *= -1;
+
 		Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
 			Debug.Log ("changing sprite?");
 			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+			gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
+			gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
 		}
+		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 	}
 	void GameOver(){
 		//Application.LoadLevel ("titleScene");

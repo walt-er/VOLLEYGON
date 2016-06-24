@@ -17,7 +17,7 @@ public class GameManagerScript : MonoBehaviour {
 	private float powerupAppearTime;
 	public GameObject speedPowerupPrefab;
 	public GameObject powerupPrefab;
-
+	public GameObject gravityIndicator;
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
 	public GameObject Player2;
