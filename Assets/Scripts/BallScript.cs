@@ -10,6 +10,8 @@ public class BallScript : MonoBehaviour {
 
 	Rigidbody2D rb;
 	float timer;
+	float timeSinceLastFlash;
+	float flashTime;
 	private bool isTimerRunning;
 	public float gravScale = 0.8f;
 	private float originalGrav;
@@ -29,13 +31,15 @@ public class BallScript : MonoBehaviour {
 	public GameObject gravityIndicator;
 	public GameObject redball;
 	public GameObject blueball;
+	public GameObject circleTrail;
 
 	// Use this for initialization
 	void Start () {
 
 		lastTouch = 0;
+		flashTime = 0f;
 		secondToLastTouch = 0;
-
+		timeSinceLastFlash = 0f;
 		rb = GetComponent<Rigidbody2D>();
 		scoreText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		winByTwoText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
@@ -56,8 +60,8 @@ public class BallScript : MonoBehaviour {
 			timer -= Time.deltaTime;
 			//Debug.Log (timer);
 		}
-
-		if (timer <= 3) {
+		timeSinceLastFlash = Time.time - flashTime;
+		if (timer <= 3 && timeSinceLastFlash >=.25f) {
 
 			if (redball.activeSelf) {
 				redball.SetActive (false);
@@ -66,6 +70,11 @@ public class BallScript : MonoBehaviour {
 				redball.SetActive (true);
 				blueball.SetActive (false);
 			}
+			flashTime = Time.time;
+			GameObject cTrail = Instantiate(circleTrail) as GameObject;
+			cTrail.transform.position = gameObject.transform.position;
+			cTrail.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 100));
+			cTrail.SendMessage("Config", 2);
 //			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
 //				GetComponent<SpriteRenderer>().sprite = originalSprite;
 //			} else {

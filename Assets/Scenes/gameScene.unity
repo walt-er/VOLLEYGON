@@ -4625,6 +4625,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: circleTrail
+      value: 
+      objectReference: {fileID: 182656, guid: d7dd9d0e3a6f1419f9babacf8c72843c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
   m_IsPrefabParent: 0
