@@ -27,6 +27,8 @@ public class BallScript : MonoBehaviour {
 	public int lastTouch;
 	public int secondToLastTouch;
 	public GameObject gravityIndicator;
+	public GameObject redball;
+	public GameObject blueball;
 
 	// Use this for initialization
 	void Start () {
@@ -56,13 +58,19 @@ public class BallScript : MonoBehaviour {
 		}
 
 		if (timer <= 3) {
-			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
-				Debug.Log ("a buhhh");
-				GetComponent<SpriteRenderer>().sprite = originalSprite;
+
+			if (redball.activeSelf) {
+				redball.SetActive (false);
+				blueball.SetActive (true);
 			} else {
-				Debug.Log ("a buhhh 2!");
-				GetComponent<SpriteRenderer> ().sprite = reverseGravSprite;
-			};
+				redball.SetActive (true);
+				blueball.SetActive (false);
+			}
+//			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
+//				GetComponent<SpriteRenderer>().sprite = originalSprite;
+//			} else {
+//				GetComponent<SpriteRenderer> ().sprite = reverseGravSprite;
+//			};
 		}
 		if (timer <= 0){
 			GravChange ();
@@ -142,9 +150,13 @@ public class BallScript : MonoBehaviour {
 			Debug.Log ("changing sprite?");
 			//gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+			redball.SetActive (true);
+			blueball.SetActive (false);
 		} else {
 		//	gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
+			blueball.SetActive (true);
+			redball.SetActive (false);
 		}
 
 
@@ -156,10 +168,14 @@ public class BallScript : MonoBehaviour {
 		Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
 			Debug.Log ("changing sprite?");
-			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+			//GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+			redball.SetActive(true);
+			blueball.SetActive(false);
 			gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
+			redball.SetActive(false);
+			blueball.SetActive (true);
 			gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
 		}
 		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
@@ -248,7 +264,7 @@ public class BallScript : MonoBehaviour {
 		}
 	}
 
-	void CreateBounceImpact (Collision2D coll, int whichType){
+	void CreateBounceImpact (Collision2D coll, int whichType, int whichNum){
 		//Instantiate(bounceImpact, new Vector3(0f, 0, 0), Quaternion.identity);
 		GameObject childObject = Instantiate(bounceImpact) as GameObject;
 		Transform mask = coll.gameObject.transform.Find("Mask").transform;
@@ -272,8 +288,20 @@ public class BallScript : MonoBehaviour {
 		childObject.transform.localPosition = newPos;
 		coll.gameObject.transform.Find("Mask").GetComponent <SpriteMask> ().updateSprites (); 
 		// control the color programatically
+		switch (whichNum) {
+		case 1:
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(210, 210, 210, 255));
+			break;
 
-		childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(214, 214, 214, 100));
+		case 2:
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(233, 233, 233, 255));
+			break;
+
+		case 3:
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 255));
+			break;
+		}
+		//childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(214, 214, 214, 100));
 		childObject.SendMessage("Config", whichType);
 	}
 
@@ -289,9 +317,9 @@ public class BallScript : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			bounces += 1;
-			CreateBounceImpact (coll, 1);
-			CreateBounceImpact (coll, 2);
-			CreateBounceImpact (coll, 3);
+			CreateBounceImpact (coll, 1, 1);
+			CreateBounceImpact (coll, 2, 2);
+			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2){
 
