@@ -4649,6 +4649,10 @@ Prefab:
       propertyPath: circleTrail
       value: 
       objectReference: {fileID: 182656, guid: d7dd9d0e3a6f1419f9babacf8c72843c, type: 2}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: bounceImpact
+      value: 
+      objectReference: {fileID: 182656, guid: d7dd9d0e3a6f1419f9babacf8c72843c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
   m_IsPrefabParent: 0
@@ -4964,6 +4968,7 @@ GameObject:
   - 81: {fileID: 1865589691}
   - 114: {fileID: 1865589696}
   - 114: {fileID: 1865589697}
+  - 114: {fileID: 1865589698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5084,6 +5089,19 @@ MonoBehaviour:
   Distortion: 0.1
   CubicDistortion: 0.1
   Scale: 0.9
+--- !u!114 &1865589698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1865589690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae91288d7710641479b32b3b80f65c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampTime: 0.15
+  target: {fileID: 919396127}
 --- !u!1001 &1884995574
 Prefab:
   m_ObjectHideFlags: 0
