@@ -73,6 +73,7 @@ public class BallScript : MonoBehaviour {
 			flashTime = Time.time;
 			GameObject cTrail = Instantiate(circleTrail) as GameObject;
 			cTrail.transform.position = gameObject.transform.position;
+			cTrail.transform.parent = transform;
 			cTrail.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 100));
 			cTrail.SendMessage("Config", 2);
 //			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
