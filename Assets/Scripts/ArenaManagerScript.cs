@@ -62,12 +62,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton1)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 		if (Input.GetButtonDown (gravButton1)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 
@@ -102,12 +102,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton2)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 		if (Input.GetButtonDown (gravButton2)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 
@@ -143,12 +143,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton3)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 		if (Input.GetButtonDown (gravButton3)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 
@@ -184,12 +184,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton4)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 		if (Input.GetButtonDown (gravButton4)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			DataManagerScript.Instance.arenaType = markerPos;
 			Application.LoadLevel ("gameScene");
 		}
 	}

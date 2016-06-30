@@ -12,7 +12,7 @@ public class GameManagerScript : MonoBehaviour {
 	public Text winText;
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
-	public int arenaType;
+	public static int arenaType;
 	private float timeSinceLastPowerup;
 	private float powerupAppearTime;
 	public GameObject speedPowerupPrefab;
@@ -47,7 +47,7 @@ public class GameManagerScript : MonoBehaviour {
 
 
 		// Set up arena based on options
-		arenaType = DataManagerScript.arenaType;
+		arenaType = DataManagerScript.Instance.arenaType;
 
 		switch (arenaType) {
 
@@ -92,11 +92,11 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		// Save a reference to the AudioHandler component as our singleton instance
 		Instance = this;
-
-		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
-		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
-		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;
-		Player4.GetComponent<PlayerController>().playerType = DataManagerScript.playerFourType;
+		Debug.Log ("Player one type is " + DataManagerScript.Instance.playerOneType);
+		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.Instance.playerOneType;
+		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.Instance.playerTwoType;
+		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.Instance.playerThreeType;
+		Player4.GetComponent<PlayerController>().playerType = DataManagerScript.Instance.playerFourType;
 	}
 	void launchTimer(){
 		timerRunning = true;

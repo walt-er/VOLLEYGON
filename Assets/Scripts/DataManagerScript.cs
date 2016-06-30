@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DataManagerScript : MonoBehaviour {
 
-	public static DataManagerScript dataManager;
+	public static DataManagerScript Instance { get; private set; }
 
 	public static string version; 
 	public int teamOneWins;
@@ -14,11 +14,11 @@ public class DataManagerScript : MonoBehaviour {
 	public static bool playerFourPlaying = true;
 
 
-	public static int playerOneType;
-	public static int playerTwoType;
-	public static int playerThreeType;
-	public static int playerFourType;
-	public static int arenaType;
+	public int playerOneType;
+	public int playerTwoType;
+	public int playerThreeType;
+	public int playerFourType;
+	public int arenaType;
 
 	// Player stats
 
@@ -49,16 +49,23 @@ public class DataManagerScript : MonoBehaviour {
 
 
 	void Awake(){
-		if (dataManager == null) {
-			DontDestroyOnLoad (gameObject);
-			dataManager = this;
-		} else if (dataManager != this){
-			Destroy (gameObject);
+		// First we check if there are any other instances conflicting
+		if(Instance != null && Instance != this)
+		{
+			// If that is the case, we destroy other instances
+			Destroy(gameObject);
 		}
+
+		// Here we save our singleton instance
+		Instance = this;
+
+		// Furthermore we make sure that we don't destroy between scenes (this is optional)
+		DontDestroyOnLoad(gameObject);
+	
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V0.6";
+		version = "V0.7";
 	
 	}
 	
@@ -67,14 +74,14 @@ public class DataManagerScript : MonoBehaviour {
 	
 	}
 
-	public static void ResetPlayerTypes(){
+	public void ResetPlayerTypes(){
 		playerOneType = 0;
 		playerTwoType = 0;
 		playerThreeType = 0;
 		playerFourType = 0;
 
 	}
-	public static void ResetStats(){
+	public void ResetStats(){
 		 playerOneAces = 0;
 		 playerOneReturns = 0;
 		 playerOneBumbles = 0;

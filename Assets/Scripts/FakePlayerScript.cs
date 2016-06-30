@@ -32,16 +32,16 @@ public class FakePlayerScript : MonoBehaviour {
 			switch(playerIdentifier){
 
 			case 1:
-				DataManagerScript.playerOneType = whichType;
+				DataManagerScript.Instance.playerOneType = whichType;
 				break;
 			case 2:
-				DataManagerScript.playerTwoType = whichType;
+				DataManagerScript.Instance.playerTwoType = whichType;
 				break;
 			case 3:
-				DataManagerScript.playerThreeType = whichType;
+				DataManagerScript.Instance.playerThreeType = whichType;
 				break;
 			case 4:
-				DataManagerScript.playerFourType = whichType;
+				DataManagerScript.Instance.playerFourType = whichType;
 				break;
 			}
 			if (whichType == 0) {
@@ -150,31 +150,31 @@ public class FakePlayerScript : MonoBehaviour {
 
 				if (!readyToPlay && taggedIn) {
 					if (playerIdentifier == 1) {
-						DataManagerScript.playerOneType += 1; 
-						DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-						Debug.Log (DataManagerScript.playerOneType);
+						DataManagerScript.Instance.playerOneType += 1; 
+						DataManagerScript.Instance.playerOneType = DataManagerScript.Instance.playerOneType % numberOfPlayerTypes;
+						Debug.Log (DataManagerScript.Instance.playerOneType);
 
-						UpdatePlayerType (DataManagerScript.playerOneType);
+						UpdatePlayerType (DataManagerScript.Instance.playerOneType);
 					} else if (playerIdentifier == 2) {
-						DataManagerScript.playerTwoType += 1; 
-						DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
-						Debug.Log (DataManagerScript.playerTwoType);
+						DataManagerScript.Instance.playerTwoType += 1; 
+						DataManagerScript.Instance.playerTwoType = DataManagerScript.Instance.playerTwoType % numberOfPlayerTypes;
+						Debug.Log (DataManagerScript.Instance.playerTwoType);
 
-						UpdatePlayerType (DataManagerScript.playerTwoType);
+						UpdatePlayerType (DataManagerScript.Instance.playerTwoType);
 
 					} else if (playerIdentifier == 3) {
-						DataManagerScript.playerThreeType += 1; 
-						DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
-						Debug.Log (DataManagerScript.playerThreeType);
+						DataManagerScript.Instance.playerThreeType += 1; 
+						DataManagerScript.Instance.playerThreeType = DataManagerScript.Instance.playerThreeType % numberOfPlayerTypes;
+						Debug.Log (DataManagerScript.Instance.playerThreeType);
 
-						UpdatePlayerType (DataManagerScript.playerThreeType);
+						UpdatePlayerType (DataManagerScript.Instance.playerThreeType);
 
 					} else if (playerIdentifier == 4) {
-						DataManagerScript.playerFourType += 1; 
-						DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
-						Debug.Log (DataManagerScript.playerFourType);
+						DataManagerScript.Instance.playerFourType += 1; 
+						DataManagerScript.Instance.playerFourType = DataManagerScript.Instance.playerFourType % numberOfPlayerTypes;
+						Debug.Log (DataManagerScript.Instance.playerFourType);
 
-						UpdatePlayerType (DataManagerScript.playerFourType);
+						UpdatePlayerType (DataManagerScript.Instance.playerFourType);
 					}
 				}
 			}
@@ -188,13 +188,13 @@ public class FakePlayerScript : MonoBehaviour {
 				axisInUse = true;
 
 				if (!readyToPlay) {
-					DataManagerScript.playerOneType -= 1; 
-					if (DataManagerScript.playerOneType < 0) {
-						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+					DataManagerScript.Instance.playerOneType -= 1; 
+					if (DataManagerScript.Instance.playerOneType < 0) {
+						DataManagerScript.Instance.playerOneType = numberOfPlayerTypes - 1;
 					}
-					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-					Debug.Log ("YES!" + DataManagerScript.playerOneType);
-					UpdatePlayerType (DataManagerScript.playerOneType);
+					DataManagerScript.Instance.playerOneType = DataManagerScript.Instance.playerOneType % numberOfPlayerTypes;
+					Debug.Log ("YES!" + DataManagerScript.Instance.playerOneType);
+					UpdatePlayerType (DataManagerScript.Instance.playerOneType);
 				}
 			}
 		}

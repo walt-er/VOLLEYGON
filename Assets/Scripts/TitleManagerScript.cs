@@ -32,8 +32,8 @@ public class TitleManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		versionText.text = DataManagerScript.version;
-		DataManagerScript.ResetStats ();
-		DataManagerScript.ResetPlayerTypes ();
+		DataManagerScript.Instance.ResetStats ();
+		DataManagerScript.Instance.ResetPlayerTypes ();
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
 	}

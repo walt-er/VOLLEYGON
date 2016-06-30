@@ -63,16 +63,16 @@ public class StatsPlayerScript : MonoBehaviour {
 		switch(playerIdentifier){
 		
 		case 1:
-			whichType = DataManagerScript.playerOneType;
+			whichType = DataManagerScript.Instance.playerOneType;
 						break;
 		case 2:
-			whichType = DataManagerScript.playerTwoType;
+			whichType = DataManagerScript.Instance.playerTwoType;
 						break;
 		case 3:
-			whichType = DataManagerScript.playerThreeType;
+			whichType = DataManagerScript.Instance.playerThreeType;
 						break;
 		case 4:
-			whichType = DataManagerScript.playerFourType;
+			whichType = DataManagerScript.Instance.playerFourType;
 						break;
 					}
 
