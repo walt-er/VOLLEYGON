@@ -73,6 +73,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 		DataManagerScript.playerThreePlaying = false;
 		DataManagerScript.playerFourPlaying = false; 
 
+		DataManagerScript.playerOneType = 0;
+		DataManagerScript.playerTwoType = 0;
+		DataManagerScript.playerThreeType = 0;
+		DataManagerScript.playerFourType = 0;
+
+
 	}
 	bool noUnreadyPlayers(){
 		if (fakePlayer1.GetComponent<FakePlayerScript> ().taggedIn && !fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
