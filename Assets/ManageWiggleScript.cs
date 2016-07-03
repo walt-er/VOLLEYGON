@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Colorful;
 public class ManageWiggleScript : MonoBehaviour {
 
+	public bool wiggleOn;
 	// Use this for initialization
 	void Start () {
-		
+		wiggleOn = false;
 	}
 	
 	// Update is called once per frame
@@ -14,10 +15,13 @@ public class ManageWiggleScript : MonoBehaviour {
 	}
 
 	public void ActivateWiggle(){
-		//gameObject.GetComponent<Wiggle>();
+		gameObject.GetComponent<Wiggle> ().enabled = true;
+		wiggleOn = true;
+		Invoke("DeactivateWiggle", 15f);
 	}
 
-	public void StopWiggle(){
-
+	public void DeactivateWiggle(){
+		gameObject.GetComponent<Wiggle> ().enabled = false;
 	}
+		
 }

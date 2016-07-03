@@ -384,6 +384,10 @@ public class PlayerController : MonoBehaviour {
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
 			break;
+
+		case 4:
+			Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
+			break;
 		default:
 			
 

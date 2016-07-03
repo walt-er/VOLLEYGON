@@ -11,6 +11,7 @@ public class NewPowerUpScript : MonoBehaviour {
 	public GameObject speedPyramid;
 	public GameObject sizePyramid;
 	public GameObject pandemoniumPyramid;
+	public GameObject randomPyramid;
 	public GameObject explosionPrefab;
 
 
@@ -20,7 +21,7 @@ public class NewPowerUpScript : MonoBehaviour {
 	void Start () {
 		timer = 5f + (Random.value * 5f);
 		isAvailable = true;
-		powerupType = Random.Range (1, 3);
+		powerupType = Random.Range (1, 5);
 		switch (powerupType){
 		case 1:
 			speedPyramid.SetActive (true);
@@ -30,6 +31,9 @@ public class NewPowerUpScript : MonoBehaviour {
 			break;
 		case 3:
 			pandemoniumPyramid.SetActive (true);
+			break;
+		case 4:
+			randomPyramid.SetActive (true);
 			break;
 		}
 
