@@ -7,7 +7,7 @@ public class BallScript : MonoBehaviour {
 
 	public Text scoreText;
 	public Text winByTwoText;
-
+	public GameObject scoreboard;
 	Rigidbody2D rb;
 	float timer;
 	float timeSinceLastFlash;
@@ -151,7 +151,7 @@ public class BallScript : MonoBehaviour {
 
 		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f) ;
 		Invoke ("LaunchBall", 3f);
-		Invoke ("FadeOutScore", 2f);
+		//Invoke ("FadeOutScore", 2f);
 		isTimerRunning = false;
 		int signValue = Random.Range (0, 2) * 2 - 1;
 		rb.gravityScale = originalGrav * signValue;
@@ -347,8 +347,12 @@ public class BallScript : MonoBehaviour {
 					ComputeStat (1);
 				}
 				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo || Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2 ) {
-					scoreText.CrossFadeAlpha (0.6f, .25f, false);
-					scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+					//scoreText.CrossFadeAlpha (0.6f, .25f, false);
+					//scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+
+					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore);
+
+					//scoreboard.GetComponent<ScoreboardManagerScript> ().enableDash ();
 
 					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
 						winByTwoText.CrossFadeAlpha (0.6f, .25f, false);

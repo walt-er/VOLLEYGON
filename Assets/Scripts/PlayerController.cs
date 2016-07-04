@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log (canMove);
+		//Debug.Log (canMove);
 		if (Input.GetButtonDown (jumpButton)) {
 			//Debug.Log ("Jump hit");
 			if (isJumping == false){
@@ -283,10 +283,10 @@ public class PlayerController : MonoBehaviour {
 			var pos = transform.position;
 			if (team == 1) {
 				// TODO: Make this dynamic based on raycasting
-				pos.x = Mathf.Clamp (transform.position.x, -17.2f, -1.0f);
+				pos.x = Mathf.Clamp (transform.position.x, -27.2f, -1.0f);
 				transform.position = pos;
 			} else if (team == 2) {
-				pos.x = Mathf.Clamp (transform.position.x, 1f, 17.2f);
+				pos.x = Mathf.Clamp (transform.position.x, 1f, 27.2f);
 				transform.position = pos;
 			}
 		}

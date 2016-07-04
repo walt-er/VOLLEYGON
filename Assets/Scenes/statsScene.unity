@@ -957,6 +957,7 @@ MonoBehaviour:
   circleSprite: {fileID: 21300000, guid: 5c6568b2e89ab4b6494e77e8b4598440, type: 3}
   triangleSprite: {fileID: 21300000, guid: 2bba8a631f27f4cb9b09bfbf76d3f8ca, type: 3}
   trapezoidSprite: {fileID: 21300000, guid: bc556868bc2004f7dbf1cc5ac2e41da0, type: 3}
+  readyBG: {fileID: 0}
   chooseAxis: Horizontal_P2
   confirmKey: Jump_P2
   cancelKey: Grav_P2
@@ -1507,6 +1508,7 @@ MonoBehaviour:
   circleSprite: {fileID: 21300000, guid: 1ab3c63c2c1c0408a9750609f36b98b8, type: 3}
   triangleSprite: {fileID: 21300000, guid: 3ae6aca68e46141bc883f632a7bf002e, type: 3}
   trapezoidSprite: {fileID: 21300000, guid: 9e3fbb222950549879004c48b34d67ee, type: 3}
+  readyBG: {fileID: 0}
   chooseAxis: Horizontal_P4
   confirmKey: Jump_P4
   cancelKey: Grav_P4
@@ -2398,6 +2400,7 @@ MonoBehaviour:
   circleSprite: {fileID: 21300000, guid: 3001a84d13adc4e17a99c6c69d7d5f40, type: 3}
   triangleSprite: {fileID: 21300000, guid: 901c365e9be9f4c0e8168162dda5c858, type: 3}
   trapezoidSprite: {fileID: 21300000, guid: 2e2a0e80bc11243e78ab354153654b71, type: 3}
+  readyBG: {fileID: 0}
   chooseAxis: Horizontal_P3
   confirmKey: Jump_P3
   cancelKey: Grav_P3
@@ -3288,6 +3291,7 @@ MonoBehaviour:
   circleSprite: {fileID: 21300000, guid: 71e30a3415da0459f9959b090de8ec5a, type: 3}
   triangleSprite: {fileID: 21300000, guid: 68cd3c0c0a5cd4369b2608a8e8081f1f, type: 3}
   trapezoidSprite: {fileID: 21300000, guid: c60c3668b0a104c92a1b9d840f873de7, type: 3}
+  readyBG: {fileID: 0}
   chooseAxis: Horizontal_P1
   confirmKey: Jump_P1
   cancelKey: Grav_P1

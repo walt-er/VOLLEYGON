@@ -186,16 +186,52 @@ public class FakePlayerScript : MonoBehaviour {
 			if (axisInUse == false) {
 				// Call your event function here.
 				axisInUse = true;
+				if (!readyToPlay && taggedIn) {
+					if (playerIdentifier == 1) {
+						DataManagerScript.playerOneType -= 1; 
+						if (DataManagerScript.playerOneType < 0) {
+							DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+						}
+						Debug.Log (DataManagerScript.playerOneType);
 
-				if (!readyToPlay) {
-					DataManagerScript.playerOneType -= 1; 
-					if (DataManagerScript.playerOneType < 0) {
-						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+						UpdatePlayerType (DataManagerScript.playerOneType);
+					} else if (playerIdentifier == 2) {
+						DataManagerScript.playerTwoType -= 1; 
+						if (DataManagerScript.playerTwoType < 0) {
+							DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
+						}
+						Debug.Log (DataManagerScript.playerTwoType);
+
+						UpdatePlayerType (DataManagerScript.playerTwoType);
+
+					} else if (playerIdentifier == 3) {
+						DataManagerScript.playerThreeType -= 1; 
+						if (DataManagerScript.playerThreeType < 0) {
+							DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
+						}
+						Debug.Log (DataManagerScript.playerThreeType);
+
+						UpdatePlayerType (DataManagerScript.playerThreeType);
+
+					} else if (playerIdentifier == 4) {
+						DataManagerScript.playerFourType -= 1; 
+						if (DataManagerScript.playerFourType < 0) {
+							DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
+						}
+						Debug.Log (DataManagerScript.playerFourType);
+
+						UpdatePlayerType (DataManagerScript.playerFourType);
 					}
-					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-					Debug.Log ("YES!" + DataManagerScript.playerOneType);
-					UpdatePlayerType (DataManagerScript.playerOneType);
 				}
+//				if (!readyToPlay && taggedIn) {
+//					DataManagerScript.playerOneType -= 1; 
+//					if (DataManagerScript.playerOneType < 0) {
+//						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+//					}
+//					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+//					Debug.Log ("YES!" + DataManagerScript.playerOneType);
+//					UpdatePlayerType (DataManagerScript.playerOneType);
+//				}
 			}
 		}
 
