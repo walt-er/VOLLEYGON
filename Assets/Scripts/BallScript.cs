@@ -361,7 +361,7 @@ public class BallScript : MonoBehaviour {
 					//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
 					//Destroy (gameObject);
 				} else {
-					transform.position = new Vector3 (-20f, -20f, 0f);
+					transform.position = new Vector3 (0f, 0f, 0f);
 					gameObject.SetActive (false);
 					//Invoke ("GameOver", 5f);
 				}
