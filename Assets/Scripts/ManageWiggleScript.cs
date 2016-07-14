@@ -27,10 +27,10 @@ public class ManageWiggleScript : MonoBehaviour {
 		theWiggle.enabled = true;
 		int whichMode = Random.Range (0, 1);
 		switch (whichMode) {
-		case 1:
+		case 0:
 			theWiggle.Mode = Wiggle.Algorithm.Simple;
 			break;
-		case 2: 
+		case 1: 
 			theWiggle.Mode = Wiggle.Algorithm.Complex;
 			break;
 		}
