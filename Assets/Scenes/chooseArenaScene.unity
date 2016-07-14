@@ -1410,6 +1410,19 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 169708, guid: fc4d5e0d6ee5f4db5b93d9d979cd1a0c, type: 2}
   m_PrefabInternal: {fileID: 947684194}
+--- !u!114 &1332135173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332135172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465a65d035f0e44a0a20245f0f30288f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetScale: {x: 3.2, y: 3.2, z: 1}
+  originalScale: {x: 3, y: 3, z: 1}
 --- !u!1001 &1361231323
 Prefab:
   m_ObjectHideFlags: 0

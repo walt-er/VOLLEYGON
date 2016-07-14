@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour {
 
+	public GameObject scoreboard;
+	public GameObject background;
 	public float gravTimer;
 	public float gameTimer;
 	private bool timerRunning = false;
@@ -111,8 +113,23 @@ public class GameManagerScript : MonoBehaviour {
 	}
 	void teamWins(int whichTeam){
 
-		winText.text = "Team " + whichTeam.ToString () + " Wins!";
-		winText.CrossFadeAlpha(1f,.25f,false);
+//		winText.text = "Team " + whichTeam.ToString () + " Wins!";
+//		winText.CrossFadeAlpha(1f,.25f,false);
+		switch (whichTeam) {
+		case 1:
+			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamOneWin ();
+			background.GetComponent<BackgroundColorScript> ().whoWon = 1;
+			background.GetComponent<BackgroundColorScript> ().matchOver = true;
+			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+
+			break;
+		case 2: 
+			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamTwoWin ();
+			background.GetComponent<BackgroundColorScript> ().whoWon = 2;
+			background.GetComponent<BackgroundColorScript> ().matchOver = true;
+			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+			break;
+		}
 		isGameOver = true;
 		//DataManagerScript.dataManager.teamOneWins += 1;
 		//Invoke ("LaunchTitleScreen", 5f);
@@ -126,7 +143,11 @@ public class GameManagerScript : MonoBehaviour {
 		if (timerRunning) {
 			gameTimer -= Time.deltaTime;
 		}	
-
+		if (teamOneScore >= scorePlayedTo && teamOneScore == teamTwoScore + 1) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
+		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore == teamOneScore + 1) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
+		}
 		if (teamOneScore >= scorePlayedTo && teamOneScore > teamTwoScore + 1) {
 			//Debug.Log ("Run team one wins routine here");
 			teamWins (1);

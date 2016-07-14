@@ -8,6 +8,7 @@ public class BallScript : MonoBehaviour {
 	public Text scoreText;
 	public Text winByTwoText;
 	public GameObject scoreboard;
+	public GameObject background;
 	Rigidbody2D rb;
 	float timer;
 	float timeSinceLastFlash;
@@ -347,11 +348,21 @@ public class BallScript : MonoBehaviour {
 					ComputeStat (1);
 				}
 				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo || Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2 ) {
-					//scoreText.CrossFadeAlpha (0.6f, .25f, false);
-					//scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+
 
 					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore);
 
+					// check for match point
+					if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.teamOneScore) {
+						background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+					}
+					else if (GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo ) {
+						background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
+					} else if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo){
+						background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
+
+					} 
+						
 					//scoreboard.GetComponent<ScoreboardManagerScript> ().enableDash ();
 
 					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {

@@ -149,26 +149,26 @@ public class StatManagerScript : MonoBehaviour {
 		switch (whichPlayer) {
 		case 1:
 			//MVPBackground.transform.position = new Vector3 (-13.32f, -0.07f, 100f);
-			Instantiate(MVPBackground, new Vector3 (-13.32f, -0.07f, 95f), Quaternion.identity);
+			Instantiate(MVPBackground, new Vector3 (-14.5f, -0.0f, 95f), Quaternion.identity);
 			Instantiate(MVPWreath, new Vector3 (-14.5f, 0.41f, -5f), Quaternion.identity);
 			//Player1MVP.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			break;
 		case 2:
 			//MVPBackground.transform.position = new Vector3 (-3.32f, -0.07f, 100f);
-			Instantiate(MVPBackground, new Vector3 (-3.32f, -0.07f, 95f), Quaternion.identity);
+			Instantiate(MVPBackground, new Vector3 (-4.75f, -0.00f, 95f), Quaternion.identity);
 			Instantiate(MVPWreath, new Vector3 (-4.83f, 0.41f, -5f), Quaternion.identity);
 			//Player2MVP.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 
 			break;
 		case 3:
 			//MVPBackground.transform.position = new Vector3 (6.32f, -0.07f, 100f);
-			Instantiate(MVPBackground, new Vector3 (6.32f, -0.07f, 95f), Quaternion.identity);
+			Instantiate(MVPBackground, new Vector3 (4.75f, -0.00f, 95f), Quaternion.identity);
 			Instantiate(MVPWreath, new Vector3 (4.83f, 0.41f, -5f), Quaternion.identity);
 			//Player3MVP.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			break;
 		case 4:
 			//MVPBackground.transform.position = new Vector3 (16.32f, -0.07f, 100f);
-			Instantiate(MVPBackground, new Vector3 (16.32f, -0.07f, 95f), Quaternion.identity);
+			Instantiate(MVPBackground, new Vector3 (14.5f, -0.0f, 95f), Quaternion.identity);
 			Instantiate(MVPWreath, new Vector3 (14.5f, 0.41f, -5f), Quaternion.identity);
 			//Player4MVP.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			break;

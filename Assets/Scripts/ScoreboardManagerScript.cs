@@ -5,6 +5,9 @@ public class ScoreboardManagerScript : MonoBehaviour {
 
 	public GameObject Team1Scores;
 	public GameObject Team2Scores;
+	public GameObject Team1Wins;
+	public GameObject Team2Wins;
+
 	public GameObject dash;
 	public bool scoreBoardShowing; 
 	// Use this for initialization
@@ -39,6 +42,17 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	public void moveIntoPlace(){
 		gameObject.transform.position = new Vector3 (0f, 0f, 0f);
 	}
+
+	public void TeamOneWin(){
+		Team1Wins.gameObject.SetActive (true);
+		scoreBoardShowing = true;
+	}
+
+	public void TeamTwoWin(){
+		Team2Wins.gameObject.SetActive (true);
+		scoreBoardShowing = true;
+	}
+
 	public void enableNumbers (int team1Score, int team2Score){
 
 			
