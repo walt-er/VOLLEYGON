@@ -22,8 +22,8 @@ public class SoundManagerScript : MonoBehaviour {
 	}
 
 	public void PlaySingle (AudioClip clip){
-		sfxSource.clip = clip;
-		sfxSource.Play ();
+		//sfxSource.clip = clip;
+		sfxSource.PlayOneShot (clip);
 	}
 
 	public void RandomizeSfx(params AudioClip[] clips){
@@ -31,7 +31,8 @@ public class SoundManagerScript : MonoBehaviour {
 		float randomPitch = Random.Range (lowPitchRange, highPitchRange);
 
 		sfxSource.pitch = randomPitch;
-		sfxSource.clip = clips [randomIndex];
-		sfxSource.Play ();
+		//sfxSource.clip = clips [randomIndex];
+		//sfxSource.Play ();
+		sfxSource.PlayOneShot (clips [randomIndex]);
 	}
 }
