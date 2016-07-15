@@ -6545,6 +6545,10 @@ Prefab:
       propertyPath: bounceOffWallSound
       value: 
       objectReference: {fileID: 8300000, guid: 36c3511a82b98482b8278fdf169e384f, type: 3}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: pointScoredSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
   m_IsPrefabParent: 0
@@ -6969,7 +6973,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.739131
+  orthographic size: 12.73913
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7024,7 +7028,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865589690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
   m_Name: 

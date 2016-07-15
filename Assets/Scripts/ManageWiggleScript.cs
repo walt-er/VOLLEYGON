@@ -25,7 +25,7 @@ public class ManageWiggleScript : MonoBehaviour {
 
 	public void ActivateWiggle(){
 		theWiggle.enabled = true;
-		int whichMode = Random.Range (0, 1);
+		int whichMode = Random.Range (0, 2);
 		switch (whichMode) {
 		case 0:
 			theWiggle.Mode = Wiggle.Algorithm.Simple;
