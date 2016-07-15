@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour {
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
 
+	public AudioClip jumpSound1;
+	public AudioClip jumpSound2;
+
 	public TextMesh pandemoniumCounter;
 
 	public GameObject trail;
@@ -176,6 +179,7 @@ public class PlayerController : MonoBehaviour {
 			if (isJumping == false){
 				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
 				rb.AddForce(jumpForce);
+				SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
 				isJumping = true;
 			}
 		}

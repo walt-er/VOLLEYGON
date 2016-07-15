@@ -34,9 +34,18 @@ public class BallScript : MonoBehaviour {
 	public GameObject blueball;
 	public GameObject circleTrail;
 
+	public AudioClip ballServedSound;
+	public AudioClip pointScoredSound;
+	public AudioClip gravityChangeSound;
+	public AudioClip gravityIsAboutToChangeSound;
+	public AudioClip bounceOffPlayerSound1;
+	public AudioClip bounceOffPlayerSound2;
+	public AudioClip bounceOffWallSound;
+
+	public bool didSirenPlayAlready;
 	// Use this for initialization
 	void Start () {
-
+		didSirenPlayAlready = false;
 		lastTouch = 0;
 		flashTime = 0f;
 		secondToLastTouch = 0;
@@ -62,8 +71,13 @@ public class BallScript : MonoBehaviour {
 			//Debug.Log (timer);
 		}
 		timeSinceLastFlash = Time.time - flashTime;
+
 		if (timer <= 3 && timeSinceLastFlash >=.25f) {
 
+			if (!didSirenPlayAlready) {
+				SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
+				didSirenPlayAlready = true;
+			}
 			if (redball.activeSelf) {
 				redball.SetActive (false);
 				blueball.SetActive (true);
@@ -86,6 +100,7 @@ public class BallScript : MonoBehaviour {
 		if (timer <= 0){
 			GravChange ();
 			ResetTimer ();
+
 			//Debug.Log (timer);
 		}
 
@@ -96,6 +111,7 @@ public class BallScript : MonoBehaviour {
 	void ResetTimer(){
 		timer = baseTimeBetweenGravChanges + Random.value * 10;
 		isTimerRunning = true;
+		didSirenPlayAlready = false;
 	}
 	void LaunchBall(){
 		rb.isKinematic = false;
@@ -105,6 +121,7 @@ public class BallScript : MonoBehaviour {
 		ResetTimer();
 		//In the future, factor in the gravity factor;
 		rb.velocity = new Vector2 (Random.Range(-10.0F, 10.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
+		SoundManagerScript.instance.PlaySingle (ballServedSound);
 
 	}
 
@@ -175,7 +192,7 @@ public class BallScript : MonoBehaviour {
 
 	void GravChange(){
 		rb.gravityScale *= -1;
-
+		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
 		Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
 			Debug.Log ("changing sprite?");
@@ -327,6 +344,7 @@ public class BallScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
+			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
 			bounces += 1;
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
@@ -337,7 +355,7 @@ public class BallScript : MonoBehaviour {
 				// Fire an explosion
 				Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 				Instantiate(explosionPrefab, newPos, Quaternion.identity);
-
+				SoundManagerScript.instance.PlaySingle (pointScoredSound);
 				// Award a score.
 
 				if (Mathf.Sign (transform.position.x) < 0) {
@@ -377,6 +395,11 @@ public class BallScript : MonoBehaviour {
 					//Invoke ("GameOver", 5f);
 				}
 			}
+
+		} else if (coll.gameObject.tag == "Player"){
+			SoundManagerScript.instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
+		} else if (coll.gameObject.tag == "Playfield"){
+			SoundManagerScript.instance.PlaySingle (bounceOffWallSound);
 
 		}
 	}
