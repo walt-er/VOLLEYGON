@@ -955,13 +955,13 @@ MonoBehaviour:
   Phase: 0.5
   ConvertToGrayscale: 0
   NoiseIntensity: 0.5
-  ScanlinesIntensity: 0
+  ScanlinesIntensity: 0.9
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 2
-  CubicDistortion: 1.03
-  Scale: 1.107
+  Distortion: 0.1
+  CubicDistortion: 0.1
+  Scale: 0.9
 --- !u!1 &2085557474
 GameObject:
   m_ObjectHideFlags: 0

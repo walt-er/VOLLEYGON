@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
+	public AudioClip landSound;
 
 	public TextMesh pandemoniumCounter;
 
@@ -237,11 +238,13 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("a collision!");
 			isJumping = false;
 			Debug.Log (isJumping);
+			SoundManagerScript.instance.PlaySingle (landSound);
 		}
-
+			
 		if (coll.gameObject.tag == "Playfield") {
 		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
+			//SoundManagerScript.instance.PlaySingle (landSound);
 		}
 
 		if (coll.gameObject.tag == "Ball") {

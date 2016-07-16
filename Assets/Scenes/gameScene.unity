@@ -532,6 +532,10 @@ Prefab:
       propertyPath: jumpSound2
       value: 
       objectReference: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: landSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -2663,6 +2667,10 @@ Prefab:
       propertyPath: jumpSound2
       value: 
       objectReference: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: landSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -2864,6 +2872,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 264707efb86b3441bb8e77276264a276, type: 2}
+    - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0
@@ -4794,6 +4806,10 @@ Prefab:
       propertyPath: jumpSound2
       value: 
       objectReference: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: landSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
     m_RemovedComponents:
     - {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -5606,6 +5622,10 @@ Prefab:
       propertyPath: jumpSound2
       value: 
       objectReference: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: landSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -6090,6 +6110,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 264707efb86b3441bb8e77276264a276, type: 2}
+    - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0
@@ -7190,6 +7214,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 264707efb86b3441bb8e77276264a276, type: 2}
+    - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0
@@ -7302,6 +7330,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 264707efb86b3441bb8e77276264a276, type: 2}
+    - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0

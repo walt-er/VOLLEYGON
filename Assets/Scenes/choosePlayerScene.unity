@@ -1216,14 +1216,14 @@ Canvas:
   m_GameObject: {fileID: 666405464}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1865589694}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 149272721
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &666405468
@@ -3014,6 +3014,7 @@ GameObject:
   - 92: {fileID: 1865589693}
   - 124: {fileID: 1865589692}
   - 81: {fileID: 1865589691}
+  - 114: {fileID: 1865589696}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3088,6 +3089,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1865589696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1865589690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
+  AutomaticPhase: 1
+  Phase: 0.5
+  ConvertToGrayscale: 0
+  NoiseIntensity: 0.5
+  ScanlinesIntensity: 0.9
+  ScanlinesCount: 768
+  ScanlinesOffset: 0
+  VerticalScanlines: 0
+  Distortion: 0.1
+  CubicDistortion: 0.1
+  Scale: 0.9
 --- !u!1 &1899593082
 GameObject:
   m_ObjectHideFlags: 0

@@ -342,6 +342,11 @@ public class BallScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
+
+		if (coll.gameObject.tag == "Wall") {
+			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
+		}
+
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
