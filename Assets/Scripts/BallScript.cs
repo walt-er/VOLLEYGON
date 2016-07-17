@@ -87,8 +87,8 @@ public class BallScript : MonoBehaviour {
 			}
 			flashTime = Time.time;
 			GameObject cTrail = Instantiate(circleTrail) as GameObject;
-			cTrail.transform.position = gameObject.transform.position;
-			cTrail.transform.parent = transform;
+			cTrail.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 1f);
+			cTrail.transform.parent = transform.Find("CircleTrails");
 			cTrail.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 100));
 			cTrail.SendMessage("Config", 2);
 //			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
@@ -117,7 +117,8 @@ public class BallScript : MonoBehaviour {
 		rb.isKinematic = false;
 		trail.SetActive (true);
 		//Send the ball in a random direction 
-
+		Transform child = gameObject.transform.Find("CircleTrails");
+		child.gameObject.SetActive (true); 
 		ResetTimer();
 		//In the future, factor in the gravity factor;
 		rb.velocity = new Vector2 (Random.Range(-10.0F, 10.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
@@ -162,7 +163,8 @@ public class BallScript : MonoBehaviour {
 		rb.velocity = new Vector2 (0, 0);
 		bounces = 0;
 		timer = 10; // arbitrary high number
-
+		Transform child = gameObject.transform.Find("CircleTrails");
+		child.gameObject.SetActive (false); 
 		// Reset last touch information
 		lastTouch = 0;
 		secondToLastTouch = 0;
