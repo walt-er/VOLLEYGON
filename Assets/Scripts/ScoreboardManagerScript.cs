@@ -8,6 +8,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	public GameObject Team1Wins;
 	public GameObject Team2Wins;
 
+	public GameObject deuce;
 	public GameObject dash;
 	public bool scoreBoardShowing; 
 	// Use this for initialization
@@ -53,18 +54,43 @@ public class ScoreboardManagerScript : MonoBehaviour {
 		scoreBoardShowing = true;
 	}
 
-	public void enableNumbers (int team1Score, int team2Score){
-
-			
-			Transform theNumOne = Team1Scores.transform.Find (team1Score.ToString());
+	public void enableNumbers (int team1Score, int team2Score, bool overtime){
+	
+		if (!overtime) {
+			Transform theNumOne = Team1Scores.transform.Find (team1Score.ToString ());
 			theNumOne.gameObject.SetActive (true);
-		iTween.FadeTo (theNumOne.gameObject, 0.8f, .25f);
-			Transform theNumTwo = Team2Scores.transform.Find (team2Score.ToString());
+			iTween.FadeTo (theNumOne.gameObject, 0.8f, .25f);
+
+			Transform theNumTwo = Team2Scores.transform.Find (team2Score.ToString ());
 			theNumTwo.gameObject.SetActive (true);
-		iTween.FadeTo (theNumTwo.gameObject, 0.8f, .25f);
-			
+			iTween.FadeTo (theNumTwo.gameObject, 0.8f, .25f);
+		} else {
+			if (team1Score > team2Score) {
+				Transform theNumOne = Team1Scores.transform.Find ("A");
+				theNumOne.gameObject.SetActive (true);
+				iTween.FadeTo (theNumOne.gameObject, 0.8f, .25f);
+
+				Transform theNumTwo = Team2Scores.transform.Find ("D");
+				theNumTwo.gameObject.SetActive (true);
+				iTween.FadeTo (theNumTwo.gameObject, 0.8f, .25f);
+			} else if (team1Score < team2Score) {
+				Transform theNumOne = Team1Scores.transform.Find ("D");
+				theNumOne.gameObject.SetActive (true);
+				iTween.FadeTo (theNumOne.gameObject, 0.8f, .25f);
+
+				Transform theNumTwo = Team2Scores.transform.Find ("A");
+				theNumTwo.gameObject.SetActive (true);
+				iTween.FadeTo (theNumTwo.gameObject, 0.8f, .25f);
+			} else if (team1Score == team2Score) {
+				
+				deuce.SetActive (true);
+				iTween.FadeTo (deuce, 0.8f, .25f);
+			}
+		}		
+
 		enableDash ();
 		scoreBoardShowing = true;
+	
 
 		Invoke ("FadeOutScore", 2f);
 	}
@@ -96,7 +122,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	}
 	public void disableEverything(){
 		iTween.FadeTo (dash, 0f, .25f);
-
+		iTween.FadeTo (deuce, 0f, .25f);
 		for (int i = 0; i < Team1Scores.transform.GetChildCount (); i++) {
 			Transform child = Team1Scores.transform.GetChild (i);
 			//if (child.gameObject.activeSelf) {
@@ -105,7 +131,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 			//child.gameObject.SetActive (false);
 		}
 		for (int j = 0; j < Team2Scores.transform.GetChildCount (); j++) {
-			Debug.Log ("trying to hide");
+		//	Debug.Log ("trying to hide");
 			Transform childTwo = Team2Scores.transform.GetChild (j);
 
 				iTween.FadeTo (childTwo.gameObject, 0f, .25f);

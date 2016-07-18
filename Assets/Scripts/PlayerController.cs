@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
+	public AudioClip collideWithBallSound1;
+	public AudioClip collideWithBallSound2;
+	public AudioClip collideWithBallSoundBig;
 
 	public TextMesh pandemoniumCounter;
 
@@ -235,9 +238,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
-			Debug.Log ("a collision!");
+			//Debug.Log ("a collision!");
 			isJumping = false;
-			Debug.Log (isJumping);
+		//	Debug.Log (isJumping);
 			SoundManagerScript.instance.PlaySingle (landSound);
 		}
 			
@@ -252,6 +255,14 @@ public class PlayerController : MonoBehaviour {
 			BallScript ball = coll.gameObject.GetComponent<BallScript>();
 			ball.secondToLastTouch = ball.lastTouch;
 			ball.lastTouch = playerID;
+
+			// check relative velocity of collision
+//			Debug.Log(coll.relativeVelocity.magnitude);
+//			if (coll.relativeVelocity.magnitude > 40) {
+//				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
+//			} else {
+//				SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
+//			}
 		}
 
 	}
@@ -275,11 +286,21 @@ public class PlayerController : MonoBehaviour {
 			if (!isJumping) {
 					//isJumping = true;   
 			}
-			Debug.Log (isJumping);
+			//Debug.Log (isJumping);
 		}
 
 		if (coll.gameObject.tag == "Playfield") {
 		//	canMove = true;
+		}
+
+		if (coll.gameObject.tag == "Ball") {
+			Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
+			var mag = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
+			if (mag > 30) {
+				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
+			} else {
+				SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
+			}
 		}
 	}
 

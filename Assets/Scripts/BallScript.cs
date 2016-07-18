@@ -188,8 +188,6 @@ public class BallScript : MonoBehaviour {
 			blueball.SetActive (true);
 			redball.SetActive (false);
 		}
-
-
 	}
 
 	void GravChange(){
@@ -197,7 +195,7 @@ public class BallScript : MonoBehaviour {
 		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
 		Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
-			Debug.Log ("changing sprite?");
+			//Debug.Log ("changing sprite?");
 			//GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
 			redball.SetActive(true);
 			blueball.SetActive(false);
@@ -342,7 +340,17 @@ public class BallScript : MonoBehaviour {
 		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
 		return new Color32(r,g,b, 255);
 	}
+	void CheckForMatchPoint(){
+		// check for match point
+		if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.teamOneScore) {
+			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+		} else if (GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
+		} else if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
 
+		} 
+	}
 	void OnCollisionEnter2D(Collision2D coll){
 
 		if (coll.gameObject.tag == "Wall") {
@@ -372,31 +380,32 @@ public class BallScript : MonoBehaviour {
 					GameManagerScript.Instance.teamOneScore += 1;
 					ComputeStat (1);
 				}
-				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo || Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2 ) {
+				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
+
+					//Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2
+					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
 
 
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore);
-
-					// check for match point
-					if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.teamOneScore) {
-						background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
-					}
-					else if (GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo ) {
-						background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-					} else if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo){
-						background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-
-					} 
-						
+					CheckForMatchPoint ();
 					//scoreboard.GetComponent<ScoreboardManagerScript> ().enableDash ();
-
-					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
-						winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-					}
+//
+//					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+//						//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+//						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+//					}
 					ResetBall ();
 					//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
 					//Destroy (gameObject);
+				} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
+					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+						//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+						CheckForMatchPoint();
+						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+					}
+					ResetBall ();
+
 				} else {
+					// GAME IS OVER
 					transform.position = new Vector3 (0f, 0f, 0f);
 					gameObject.SetActive (false);
 					//Invoke ("GameOver", 5f);
@@ -404,7 +413,7 @@ public class BallScript : MonoBehaviour {
 			}
 
 		} else if (coll.gameObject.tag == "Player"){
-			SoundManagerScript.instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
+			//SoundManagerScript.instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
 		} else if (coll.gameObject.tag == "Playfield"){
 			SoundManagerScript.instance.PlaySingle (bounceOffWallSound);
 
