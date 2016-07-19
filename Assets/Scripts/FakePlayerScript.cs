@@ -17,6 +17,8 @@ public class FakePlayerScript : MonoBehaviour {
 	public int playerIdentifier; 
 	public Text readyText;
 	public Text toJoinText;
+	public Text playerDescription;
+	public Text playerDifficulty;
 
 	private bool axisInUse = false;
 	public bool readyToPlay;
@@ -48,14 +50,22 @@ public class FakePlayerScript : MonoBehaviour {
 //				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
 				//change sprite here
 				sr.sprite = squareSprite;
+				playerDescription.text = "CLASSIC\nDEFENSIVE";
+				playerDifficulty.text = "EASY";
 			} else if (whichType == 1) {
 				sr.sprite = circleSprite;
+				playerDescription.text = "ALL-AROUND\nVERSATILE";
+				playerDifficulty.text = "MEDIUM";
 				//change sprite here
 			} else if (whichType == 2){
 				sr.sprite = triangleSprite;
+				playerDescription.text = "AIRBORNE\nAGGRESSIVE";
+				playerDifficulty.text = "HARD";
 				//change sprite here
 			} else if (whichType == 3){
 				sr.sprite = trapezoidSprite;
+				playerDescription.text = "CRAZY!\nWEIRD!";
+				playerDifficulty.text = "EXPERTS ONLY";
 				//change sprite here
 			}
 		}
@@ -65,6 +75,8 @@ public class FakePlayerScript : MonoBehaviour {
 	void activateReadyState(){
 		if (taggedIn) {
 			readyToPlay = true;
+			playerDescription.enabled = false;
+			playerDifficulty.enabled = false;
 			if (readyToPlay) {
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
@@ -75,6 +87,8 @@ public class FakePlayerScript : MonoBehaviour {
 		} else {
 			taggedIn = true;
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+			playerDescription.enabled = true;
+			playerDifficulty.enabled = true;
 			sr.enabled = true;
 			switch(playerIdentifier){
 
@@ -101,10 +115,14 @@ public class FakePlayerScript : MonoBehaviour {
 			readyToPlay = false;
 			readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
+			playerDescription.enabled = true;
+			playerDifficulty.enabled = true;
 		} else if (taggedIn) {
 			taggedIn = false;
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			sr.enabled = false;
+			playerDescription.enabled = false;
+			playerDifficulty.enabled = false;
 			switch(playerIdentifier){
 
 			case 1:
@@ -131,6 +149,8 @@ public class FakePlayerScript : MonoBehaviour {
 		sr.sprite = squareSprite;
 		readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		sr.enabled = false;
+		playerDescription.enabled = false;
+		playerDifficulty.enabled = false;
 
 	
 
