@@ -12,7 +12,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static bool playerTwoPlaying = true;
 	public static bool playerThreePlaying = true;
 	public static bool playerFourPlaying = true;
-
+	public static bool CRTMode = true;
 
 	public static int playerOneType;
 	public static int playerTwoType;

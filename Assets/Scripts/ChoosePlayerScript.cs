@@ -122,7 +122,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				msgBG.enabled = true;
 				Debug.Log ("Showing 2v1 message");
 				oneOnOneMessage.enabled = false;
-			} else {
+			} else if (playersOnLeft == 1 && playersOnRight == 1){
 				//display press start to begin 1v 1 message
 				oneOnOneMessage.enabled = true;
 				twoOnOneMessage.enabled = false;

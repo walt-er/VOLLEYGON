@@ -3015,6 +3015,7 @@ GameObject:
   - 124: {fileID: 1865589692}
   - 81: {fileID: 1865589691}
   - 114: {fileID: 1865589696}
+  - 114: {fileID: 1865589697}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3104,14 +3105,25 @@ MonoBehaviour:
   AutomaticPhase: 1
   Phase: 0.5
   ConvertToGrayscale: 0
-  NoiseIntensity: 0.5
-  ScanlinesIntensity: 0.9
+  NoiseIntensity: 0.4
+  ScanlinesIntensity: 0.5
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 0.1
-  CubicDistortion: 0.1
-  Scale: 0.9
+  Distortion: 0.05
+  CubicDistortion: 0.05
+  Scale: 1
+--- !u!114 &1865589697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1865589690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd17f8dd41224b7c898c909a7af6854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899593082
 GameObject:
   m_ObjectHideFlags: 0
