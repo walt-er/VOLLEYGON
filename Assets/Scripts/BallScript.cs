@@ -34,6 +34,8 @@ public class BallScript : MonoBehaviour {
 	public GameObject blueball;
 	public GameObject circleTrail;
 
+	public AudioSource sfxSource;
+
 	public AudioClip ballServedSound;
 	public AudioClip pointScoredSound;
 	public AudioClip gravityChangeSound;
@@ -41,10 +43,12 @@ public class BallScript : MonoBehaviour {
 	public AudioClip bounceOffPlayerSound1;
 	public AudioClip bounceOffPlayerSound2;
 	public AudioClip bounceOffWallSound;
-
+	private AudioSource audio;
 	public bool didSirenPlayAlready;
 	// Use this for initialization
 	void Start () {
+		audio = GetComponent<AudioSource> ();
+
 		didSirenPlayAlready = false;
 		lastTouch = 0;
 		flashTime = 0f;
@@ -75,7 +79,8 @@ public class BallScript : MonoBehaviour {
 		if (timer <= 3 && timeSinceLastFlash >=.25f) {
 
 			if (!didSirenPlayAlready) {
-				SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
+				//SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
+				audio.Play();
 				didSirenPlayAlready = true;
 			}
 			if (redball.activeSelf) {
@@ -368,8 +373,14 @@ public class BallScript : MonoBehaviour {
 			if (bounces >= 2){
 
 				// Fire an explosion
+				audio.Stop();
 				Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 				Instantiate(explosionPrefab, newPos, Quaternion.identity);
+				if (newPos.y > 0) {
+					Instantiate(explosionPrefab, newPos, Quaternion.Euler(0,0,-180));
+				} else {
+					Instantiate(explosionPrefab, newPos,  Quaternion.Euler(0,0,0));
+				}
 				SoundManagerScript.instance.PlaySingle (pointScoredSound);
 				// Award a score.
 

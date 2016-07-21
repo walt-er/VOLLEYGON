@@ -2,7 +2,7 @@
 using System.Collections;
 using PigeonCoopToolkit.Effects.Trails;
 
-public class PlayerController : MonoBehaviour {
+public class AIControllerScript : MonoBehaviour {
 
 	public float speed = 5f;
 	public float spinPower = -150f;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	public int team = 1;
 	public float startingGrav = 1;
 	public int playerID;
+	public float moveHorizontal;
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	public TextMesh pandemoniumCounter;
 
 	public GameObject trail;
+	public GameObject ball;
 
 	public Sprite squareSprite;
 	public Sprite circleSprite;
@@ -73,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
+
+		moveHorizontal = 0f;
 		rb = GetComponent<Rigidbody2D>();
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
@@ -94,7 +98,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (playerType == 1) {
 			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-		//	gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
+			//	gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
 			gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
 			jumpPower = circleJumpPower;
 			speed = circleSpeed;
@@ -126,78 +130,70 @@ public class PlayerController : MonoBehaviour {
 
 		//Vector2[] thePoints = pg.points;
 		// do stuff with myPoints array
-//		Vector2[] thePoints = new Vector2[] {
-//			new Vector2 (0f, -1f),
-//			new Vector2 (1f, -1f),
-//			new Vector2 (-1f, -1f)
-//
-//		};
-//		pg.pathCount = 3;
-//		pg.points = thePoints;
+		//		Vector2[] thePoints = new Vector2[] {
+		//			new Vector2 (0f, -1f),
+		//			new Vector2 (1f, -1f),
+		//			new Vector2 (-1f, -1f)
+		//
+		//		};
+		//		pg.pathCount = 3;
+		//		pg.points = thePoints;
 
 	}
 
 
 
 	void FixedUpdate () {
-		
-		float moveHorizontal = Input.GetAxis (horiz);
-		Debug.Log (moveHorizontal);
-//		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
-//		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
-//		rigidbody.velocity.x = moveHorizontal * speed;
-		//GetComponent<Rigidbody2D>().AddTorque(moveHorizontal * -8f);
+
+	
+	
+	}
+
+	void Update(){
+
+		CheckForMove ();
+		CheckForJump ();
+		ClampPosition ();
+
+
+		ManagePowerups ();
+	}
+
+	void CheckForMove(){
+
+		// only move if the ball is close, but not too close
+		// roll a 'responsiveness' value
+		float chanceToRespond = Random.Range(0f, 100.0f);
+
+		if (Mathf.Abs (ball.transform.position.x - transform.position.x) <= 5f && Mathf.Abs (ball.transform.position.x - transform.position.x) >= 1f && chanceToRespond >= 20f) {
+			if (ball.transform.position.x < transform.position.x) {
+				moveHorizontal = -1f;
+			} else if (ball.transform.position.x > transform.position.x) {
+				moveHorizontal = 1f;
+			} 
+		} else {
+			moveHorizontal = 0;
+		}
 
 		if (isJumping) {
 			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
 		}
 		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
 		v3.x = moveHorizontal * speed;
-//		
 
-		//v3.z = 0.0f;
-		//if (canMove) {
-			GetComponent<Rigidbody2D> ().velocity = v3;
-		//}
-//		Vector2 v2 = new Vector2(moveHorizontal*speed*100f,0f);
-//		GetComponent<Rigidbody2D> ().AddForce (v2);
+		GetComponent<Rigidbody2D> ().velocity = v3;
 
 		float f = Mathf.Clamp(GetComponent<Rigidbody2D> ().velocity.x, -speed, speed);
-//		Debug.Log (GetComponent<Rigidbody2D> ().velocity.x);
-		//		rigidbody.position = new Vector3
-//			(
-//				Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax),
-//				0.5f,
-//				Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax)
-//				);
-//		Vector3 v4 = GetComponent<Rigidbody2D>().velocity;
-//		v4.x = f;
-//
-//		GetComponent<Rigidbody2D>().velocity = v4;
-
 	}
 
-	void Update(){
-		//Debug.Log (canMove);
-		if (Input.GetButtonDown (jumpButton)) {
-			//Debug.Log ("Jump hit");
-			if (isJumping == false){
-				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
-				rb.AddForce(jumpForce);
-				SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-				isJumping = true;
-			}
+	void CheckForJump(){
+		
+		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f){
+			Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
+			rb.AddForce(jumpForce);
+			SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
+			isJumping = true;
 		}
-
-		if (Input.GetButtonDown (gravButton)) {
-			rb.gravityScale *= -1f;
-
-		}
-
-		ClampPosition ();
-
-
-		ManagePowerups ();
 	}
 
 	void checkPenalty(){
@@ -232,8 +228,8 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionStay2D(Collision2D collisionInfo) {
 
 		if (collisionInfo.gameObject.tag == "Playfield") {
-		//	Debug.Log ("stay with playfield");
-		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			//	Debug.Log ("stay with playfield");
+			//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
 		}
 	}
@@ -241,12 +237,12 @@ public class PlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			//Debug.Log ("a collision!");
 			isJumping = false;
-		//	Debug.Log (isJumping);
+			//	Debug.Log (isJumping);
 			SoundManagerScript.instance.PlaySingle (landSound);
 		}
-			
+
 		if (coll.gameObject.tag == "Playfield") {
-		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
 			//SoundManagerScript.instance.PlaySingle (landSound);
 		}
@@ -258,12 +254,12 @@ public class PlayerController : MonoBehaviour {
 			ball.lastTouch = playerID;
 
 			// check relative velocity of collision
-//			Debug.Log(coll.relativeVelocity.magnitude);
-//			if (coll.relativeVelocity.magnitude > 40) {
-//				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
-//			} else {
-//				SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
-//			}
+			//			Debug.Log(coll.relativeVelocity.magnitude);
+			//			if (coll.relativeVelocity.magnitude > 40) {
+			//				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
+			//			} else {
+			//				SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
+			//			}
 		}
 
 	}
@@ -278,24 +274,24 @@ public class PlayerController : MonoBehaviour {
 				ApplyPowerup (whichPowerup);
 			}
 			//Destroy (coll.gameObject);
-		
+
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			//Debug.Log ("a collision ended!");
 			if (!isJumping) {
-					//isJumping = true;   
+				//isJumping = true;   
 			}
 			//Debug.Log (isJumping);
 		}
 
 		if (coll.gameObject.tag == "Playfield") {
-		//	canMove = true;
+			//	canMove = true;
 		}
 
 		if (coll.gameObject.tag == "Ball") {
-			Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
+		//	Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
 			var mag = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
 			if (mag > 30) {
 				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
@@ -348,7 +344,7 @@ public class PlayerController : MonoBehaviour {
 			pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(1f, 1f, 1f, .25f);
 			pandemoniumCounter.GetComponent<TextMesh> ().text = Mathf.Floor(pandemoniumTimer).ToString();
 			if (pandemoniumTimer <= 0) {
-			    pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
+				pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 				pandemoniumPowerupActive = false;
 				// run 'punishment' check if player is offsides.
 				checkPenalty();
@@ -378,13 +374,13 @@ public class PlayerController : MonoBehaviour {
 
 			break;
 		}
-			rb.velocity = Vector3.zero;
-			rb.gravityScale = startingGrav;
-			gameObject.GetComponent<SpriteRenderer> ().enabled = true;
-		
-			trail.SetActive (true);
-			trail.GetComponent<Trail>().ClearSystem (true);
-			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+		rb.velocity = Vector3.zero;
+		rb.gravityScale = startingGrav;
+		gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+
+		trail.SetActive (true);
+		trail.GetComponent<Trail>().ClearSystem (true);
+		gameObject.GetComponent<BoxCollider2D> ().enabled = true;
 
 	}
 
@@ -400,7 +396,7 @@ public class PlayerController : MonoBehaviour {
 			break;
 
 		case 2:
-			
+
 			sizePowerupActive = true;
 			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
@@ -408,31 +404,20 @@ public class PlayerController : MonoBehaviour {
 			sizePowerupTimer = 20f;
 
 			break;
-		
+
 		case 3:
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
 			break;
 
 		case 4:
-			int randomNum = Random.Range (1, 4);
-			switch (randomNum) {
-			case 1:
-				ApplyPowerup (1);
-				break;
-			case 2: 
-				ApplyPowerup (2);
-				break;
-			case 3: 
-				ApplyPowerup (3);
-				break;
-			case 4: 
-				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
-				break;
-			}
+			Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
 			break;
-		
+		default:
+
+
+			break;
 		}
-	
+
 	}
 }
