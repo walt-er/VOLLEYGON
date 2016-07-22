@@ -23,9 +23,15 @@ public class ArenaManagerScript : MonoBehaviour {
 	private bool axis2InUse = false;
 	private bool axis3InUse = false;
 	private bool axis4InUse = false;
+
+	public AudioClip tickUp;
+	public AudioClip tickDown;
+
+	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
-		
+		audio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +45,7 @@ public class ArenaManagerScript : MonoBehaviour {
 				axis1InUse = true;
 				markerPos++;
 				updateMarkerPos ();
-
+				audio.PlayOneShot (tickUp);
 			}
 		}
 
@@ -50,6 +56,7 @@ public class ArenaManagerScript : MonoBehaviour {
 				// Call your event function here.
 				axis1InUse = true;
 				markerPos--;
+				audio.PlayOneShot (tickDown);
 				updateMarkerPos ();
 			}
 		}

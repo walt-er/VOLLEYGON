@@ -632,7 +632,19 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: collideWithBallSoundBig
       value: 
-      objectReference: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5, type: 3}
+      objectReference: {fileID: 8300000, guid: 71270657a05044c37bbe9568bbf90e69, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 784f5ffcdcec34cbcad2159344e72fd0, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -2800,7 +2812,19 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: collideWithBallSoundBig
       value: 
-      objectReference: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5, type: 3}
+      objectReference: {fileID: 8300000, guid: 71270657a05044c37bbe9568bbf90e69, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 784f5ffcdcec34cbcad2159344e72fd0, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -4166,6 +4190,8 @@ MonoBehaviour:
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
+  changeGravSound1: {fileID: 0}
+  changeGravSound2: {fileID: 0}
   collideWithBallSound1: {fileID: 8300000, guid: cd92c38fca8eb43a58cd8b1a159aa2bc,
     type: 3}
   collideWithBallSound2: {fileID: 8300000, guid: 718dd9a4f3a6949a0b31036503fb522e,
@@ -5434,7 +5460,19 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: collideWithBallSoundBig
       value: 
-      objectReference: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5, type: 3}
+      objectReference: {fileID: 8300000, guid: 71270657a05044c37bbe9568bbf90e69, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 784f5ffcdcec34cbcad2159344e72fd0, type: 3}
     m_RemovedComponents:
     - {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -6264,7 +6302,19 @@ Prefab:
     - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
       propertyPath: collideWithBallSoundBig
       value: 
-      objectReference: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5, type: 3}
+      objectReference: {fileID: 8300000, guid: 71270657a05044c37bbe9568bbf90e69, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: ec79c064186f04ea9971ac1b5c579b25, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: changeGravSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 784f5ffcdcec34cbcad2159344e72fd0, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -7232,6 +7282,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: bounceOffScoringBoundarySound
+      value: 
+      objectReference: {fileID: 8300000, guid: 06badb9b1b5064366a4a2cdd7e400735, type: 3}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: pointScoredSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ebf4954dde1a4fdda9175653e6a5fe3, type: 3}
+    - target: {fileID: 11443840, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
+      propertyPath: pointScoredSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 47fb636703751485abad687312652bac, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e022230f4722a468e9d91c154ee51a8d, type: 2}
   m_IsPrefabParent: 0

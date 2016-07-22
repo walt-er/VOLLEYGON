@@ -23,6 +23,11 @@ public class FakePlayerScript : MonoBehaviour {
 	private bool axisInUse = false;
 	public bool readyToPlay;
 	public bool taggedIn = false;
+	private AudioSource audio;
+	public AudioClip tickUp;
+	public AudioClip tickDown;
+	public AudioClip tagInSound;
+	public AudioClip readySound;
 
 	private int numberOfPlayerTypes = 4;
 
@@ -74,18 +79,25 @@ public class FakePlayerScript : MonoBehaviour {
 
 	void activateReadyState(){
 		if (taggedIn) {
+			if (!readyToPlay) {
+				audio.PlayOneShot (readySound);
+			}
 			readyToPlay = true;
 			playerDescription.enabled = false;
 			playerDifficulty.enabled = false;
+
+	
 			if (readyToPlay) {
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			} else {
+				
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			}
 		} else {
 			taggedIn = true;
+			audio.PlayOneShot (tagInSound);
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			playerDescription.enabled = true;
 			playerDifficulty.enabled = true;
@@ -152,7 +164,7 @@ public class FakePlayerScript : MonoBehaviour {
 		playerDescription.enabled = false;
 		playerDifficulty.enabled = false;
 
-	
+		audio = GetComponent<AudioSource> ();
 
 	}
 
@@ -173,27 +185,27 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerOneType += 1; 
 						DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
 						Debug.Log (DataManagerScript.playerOneType);
-
+						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerOneType);
 					} else if (playerIdentifier == 2) {
 						DataManagerScript.playerTwoType += 1; 
 						DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
 						Debug.Log (DataManagerScript.playerTwoType);
-
+						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerTwoType);
 
 					} else if (playerIdentifier == 3) {
 						DataManagerScript.playerThreeType += 1; 
 						DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
 						Debug.Log (DataManagerScript.playerThreeType);
-
+						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerThreeType);
 
 					} else if (playerIdentifier == 4) {
 						DataManagerScript.playerFourType += 1; 
 						DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
 						Debug.Log (DataManagerScript.playerFourType);
-
+						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerFourType);
 					}
 				}
@@ -211,35 +223,39 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerOneType -= 1; 
 						if (DataManagerScript.playerOneType < 0) {
 							DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+
 						}
 						Debug.Log (DataManagerScript.playerOneType);
-
+						audio.PlayOneShot (tickDown);
 						UpdatePlayerType (DataManagerScript.playerOneType);
 					} else if (playerIdentifier == 2) {
 						DataManagerScript.playerTwoType -= 1; 
 						if (DataManagerScript.playerTwoType < 0) {
 							DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
+						
 						}
 						Debug.Log (DataManagerScript.playerTwoType);
-
+						audio.PlayOneShot (tickDown);
 						UpdatePlayerType (DataManagerScript.playerTwoType);
 
 					} else if (playerIdentifier == 3) {
 						DataManagerScript.playerThreeType -= 1; 
 						if (DataManagerScript.playerThreeType < 0) {
 							DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
+
 						}
 						Debug.Log (DataManagerScript.playerThreeType);
-
+						audio.PlayOneShot (tickDown);
 						UpdatePlayerType (DataManagerScript.playerThreeType);
 
 					} else if (playerIdentifier == 4) {
 						DataManagerScript.playerFourType -= 1; 
 						if (DataManagerScript.playerFourType < 0) {
 							DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
+
 						}
 						Debug.Log (DataManagerScript.playerFourType);
-
+						audio.PlayOneShot (tickDown);
 						UpdatePlayerType (DataManagerScript.playerFourType);
 					}
 				}

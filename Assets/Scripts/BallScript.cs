@@ -37,12 +37,16 @@ public class BallScript : MonoBehaviour {
 	public AudioSource sfxSource;
 
 	public AudioClip ballServedSound;
-	public AudioClip pointScoredSound;
+	public AudioClip pointScoredSound1;
+	public AudioClip pointScoredSound2;
 	public AudioClip gravityChangeSound;
 	public AudioClip gravityIsAboutToChangeSound;
 	public AudioClip bounceOffPlayerSound1;
 	public AudioClip bounceOffPlayerSound2;
 	public AudioClip bounceOffWallSound;
+	public AudioClip bounceOffScoringBoundarySound; 
+	public AudioClip largeHitSound;
+
 	private AudioSource audio;
 	public bool didSirenPlayAlready;
 	// Use this for initialization
@@ -364,7 +368,7 @@ public class BallScript : MonoBehaviour {
 
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
-			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
+			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
 			bounces += 1;
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
@@ -381,7 +385,7 @@ public class BallScript : MonoBehaviour {
 				} else {
 					Instantiate(explosionPrefab, newPos,  Quaternion.Euler(0,0,0));
 				}
-				SoundManagerScript.instance.PlaySingle (pointScoredSound);
+				SoundManagerScript.instance.RandomizeSfx (pointScoredSound1, pointScoredSound2);
 				// Award a score.
 
 				if (Mathf.Sign (transform.position.x) < 0) {

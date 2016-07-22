@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
+	public AudioClip changeGravSound1;
+	public AudioClip changeGravSound2;
 	public AudioClip collideWithBallSound1;
 	public AudioClip collideWithBallSound2;
 	public AudioClip collideWithBallSoundBig;
@@ -191,6 +193,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetButtonDown (gravButton)) {
 			rb.gravityScale *= -1f;
+			SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
 
 		}
 
@@ -415,7 +418,7 @@ public class PlayerController : MonoBehaviour {
 			break;
 
 		case 4:
-			int randomNum = Random.Range (1, 4);
+			int randomNum = Random.Range (1, 5);
 			switch (randomNum) {
 			case 1:
 				ApplyPowerup (1);
