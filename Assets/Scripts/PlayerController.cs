@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
+		
+
 		rb = GetComponent<Rigidbody2D>();
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
@@ -138,7 +140,13 @@ public class PlayerController : MonoBehaviour {
 //		pg.points = thePoints;
 
 	}
-
+	IEnumerator Flash() {
+		for (float f = .8f; f >= 0; f -= 0.04f) {
+			GetComponent<SpriteRenderer>().material.SetFloat ("_FlashAmount", f);
+			yield return null;
+		}
+		yield break; //Is this even needed?
+	}
 
 
 	void FixedUpdate () {
@@ -194,6 +202,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown (gravButton)) {
 			rb.gravityScale *= -1f;
 			SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
+			StartCoroutine ("Flash");
 
 		}
 

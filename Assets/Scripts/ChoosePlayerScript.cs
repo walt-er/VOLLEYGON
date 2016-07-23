@@ -13,6 +13,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public Text oneOnOneMessage;
 	public Text twoOnOneMessage;
 
+	public bool locked;
+
 		private string start1 = "Start_P1";
 		private string start2 = "Start_P2";
 		private string start3 = "Start_P3";
@@ -67,6 +69,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
 		msgBG.enabled = false;
+		locked = false;
 
 		DataManagerScript.playerOnePlaying = false;
 		DataManagerScript.playerTwoPlaying = false;
@@ -138,16 +141,22 @@ public class ChoosePlayerScript : MonoBehaviour {
 		}
 
 	}
+
+	void StartGame(){
+		Application.LoadLevel ("chooseArenaScene");
+	}
 	// Update is called once per frame
 	void Update () {
 		
 		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4)) {
-			if (gameIsStartable){
+			if (gameIsStartable) {	
 				Application.LoadLevel ("chooseArenaScene");
 			}
 		}
-			if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
-			Application.LoadLevel ("chooseArenaScene");
+		
+		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
+			locked = true; 	
+			Invoke ("StartGame", .5f);
 		}
 	}
 }
