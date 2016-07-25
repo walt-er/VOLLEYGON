@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
 	public int playerType = 0;
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
+	private string playerColor;
+
+	public GameObject penaltyExplosion; 
 
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
@@ -75,7 +78,8 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
-		
+
+
 
 		rb = GetComponent<Rigidbody2D>();
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
@@ -84,6 +88,21 @@ public class PlayerController : MonoBehaviour {
 		canMove = true;
 		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 
+		// assign player color
+		switch (playerID) {
+		case 1:
+			playerColor = "1069A8";
+			break;
+		case 2:
+			playerColor = "7CBEE8";
+			break;
+		case 3:
+			playerColor = "D63236";
+			break;
+		case 4:
+			playerColor = "D97A7B";
+			break;
+		}
 
 		if (playerType == 0) {
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
@@ -152,7 +171,7 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		
 		float moveHorizontal = Input.GetAxis (horiz);
-		Debug.Log (moveHorizontal);
+		//Debug.Log (moveHorizontal);
 //		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
 //		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
 //		rigidbody.velocity.x = moveHorizontal * speed;
@@ -239,6 +258,11 @@ public class PlayerController : MonoBehaviour {
 
 			break;
 		}
+
+		// fire 'penalty' explosion
+			Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+			GameObject pe = (GameObject)Instantiate(penaltyExplosion, newPos, Quaternion.identity);
+		    pe.SendMessage ("Config", playerColor);
 	}
 
 	void OnCollisionStay2D(Collision2D collisionInfo) {

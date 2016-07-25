@@ -172,7 +172,7 @@ public class FakePlayerScript : MonoBehaviour {
 	void Update () {
 
 		// only allow input if game isn't already starting
-		Debug.Log(ChoosePlayerScript.Instance.locked);
+		//Debug.Log(ChoosePlayerScript.Instance.locked);
 		if (!ChoosePlayerScript.Instance.locked) {
 			if (Input.GetAxisRaw (chooseAxis) == 1) {
 

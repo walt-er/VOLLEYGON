@@ -99,6 +99,7 @@ public class BallScript : MonoBehaviour {
 			cTrail.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 1f);
 			cTrail.transform.parent = transform.Find("CircleTrails");
 			cTrail.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 100));
+			// for yellow, use new Color32(255, 248, 15, 100));
 			cTrail.SendMessage("Config", 2);
 //			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
 //				GetComponent<SpriteRenderer>().sprite = originalSprite;

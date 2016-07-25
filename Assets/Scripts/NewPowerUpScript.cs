@@ -15,6 +15,7 @@ public class NewPowerUpScript : MonoBehaviour {
 	public GameObject explosionPrefab;
 
 
+
 	// Use this for initialization
 
 
@@ -60,7 +61,23 @@ public class NewPowerUpScript : MonoBehaviour {
 
 	public void FadeOut(){
 		if (!isFading) {
-			Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+			GameObject explosion = (GameObject)Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+			switch (powerupType) {
+			case 1:
+				explosion.SendMessage("Config", "FDC54D");
+				break;
+			case 2:
+				explosion.SendMessage("Config", "1069A8");
+				break;
+			case 3:
+				explosion.SendMessage("Config", "363682");
+				break;
+			case 4:
+				explosion.SendMessage("Config", "01884D");
+				break;
+			}
+
+
 			isFading = true;
 			//iTween.MoveTo(gameObject,iTween.Hash("x",3,"time",4,"delay",1,"onupdate","myUpdateFunction","looptype",iTween.LoopType.pingPong));			
 			iTween.FadeTo (gameObject, iTween.Hash("alpha",0,"time",0.5, "onComplete","Disappear"));
