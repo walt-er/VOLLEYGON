@@ -153,7 +153,9 @@ public class AIControllerScript : MonoBehaviour {
 
 		CheckForMove ();
 		CheckForJump ();
+		CheckForGravChange ();
 		ClampPosition ();
+
 
 
 		ManagePowerups ();
@@ -188,11 +190,20 @@ public class AIControllerScript : MonoBehaviour {
 
 	void CheckForJump(){
 		
-		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f){
+		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs (ball.transform.position.y - transform.position.y) <= 4f){
 			Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
 			rb.AddForce(jumpForce);
 			SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
 			isJumping = true;
+		}
+	}
+
+	void CheckForGravChange(){
+		Debug.Log (ball.GetComponent<Rigidbody2D> ().gravityScale);
+		if (ball.GetComponent<Rigidbody2D> ().gravityScale > 0) {
+			rb.gravityScale = 1;
+		} else {
+			rb.gravityScale = -1;
 		}
 	}
 

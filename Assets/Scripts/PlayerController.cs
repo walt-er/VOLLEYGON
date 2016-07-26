@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip collideWithBallSound1;
 	public AudioClip collideWithBallSound2;
 	public AudioClip collideWithBallSoundBig;
+	public AudioClip playerExplode;
 
 	public TextMesh pandemoniumCounter;
 
@@ -262,7 +263,8 @@ public class PlayerController : MonoBehaviour {
 		// fire 'penalty' explosion
 			Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 			GameObject pe = (GameObject)Instantiate(penaltyExplosion, newPos, Quaternion.identity);
-		    pe.SendMessage ("Config", playerColor);
+		SoundManagerScript.instance.PlaySingle (playerExplode);
+			pe.SendMessage ("Config", playerColor);
 	}
 
 	void OnCollisionStay2D(Collision2D collisionInfo) {
