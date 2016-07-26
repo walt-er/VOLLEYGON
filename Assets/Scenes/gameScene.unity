@@ -297,6 +297,9 @@ MonoBehaviour:
   collideWithBallSoundBig: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5,
     type: 3}
   pandemoniumCounter: {fileID: 535072815}
+  distanceMaxThreshold: 8
+  distanceMinThreshold: 1
+  responsivenessRate: 20
   trail: {fileID: 1755531475}
   ball: {fileID: 755355448}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -2852,6 +2855,9 @@ MonoBehaviour:
   collideWithBallSoundBig: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5,
     type: 3}
   pandemoniumCounter: {fileID: 1754763959}
+  distanceMaxThreshold: 8
+  distanceMinThreshold: 1
+  responsivenessRate: 20
   trail: {fileID: 1461331819}
   ball: {fileID: 755355448}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -4938,6 +4944,9 @@ MonoBehaviour:
   collideWithBallSoundBig: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5,
     type: 3}
   pandemoniumCounter: {fileID: 1937652866}
+  distanceMaxThreshold: 8
+  distanceMinThreshold: 1
+  responsivenessRate: 20
   trail: {fileID: 1568223550}
   ball: {fileID: 755355448}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -9377,6 +9386,9 @@ MonoBehaviour:
   collideWithBallSoundBig: {fileID: 8300000, guid: 1de33482881c24a64926962683aec9d5,
     type: 3}
   pandemoniumCounter: {fileID: 983609930}
+  distanceMaxThreshold: 8
+  distanceMinThreshold: 1
+  responsivenessRate: 20
   trail: {fileID: 25047247}
   ball: {fileID: 755355448}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}

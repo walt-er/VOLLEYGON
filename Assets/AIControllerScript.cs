@@ -33,6 +33,11 @@ public class AIControllerScript : MonoBehaviour {
 
 	public TextMesh pandemoniumCounter;
 
+
+	public float distanceMaxThreshold;
+	public float distanceMinThreshold;
+	public float responsivenessRate;
+
 	public GameObject trail;
 	public GameObject ball;
 
@@ -167,7 +172,7 @@ public class AIControllerScript : MonoBehaviour {
 		// roll a 'responsiveness' value
 		float chanceToRespond = Random.Range(0f, 100.0f);
 
-		if (Mathf.Abs (ball.transform.position.x - transform.position.x) <= 5f && Mathf.Abs (ball.transform.position.x - transform.position.x) >= 1f && chanceToRespond >= 20f) {
+		if (Mathf.Abs (ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs (ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate) {
 			if (ball.transform.position.x < transform.position.x) {
 				moveHorizontal = -1f;
 			} else if (ball.transform.position.x > transform.position.x) {
@@ -201,9 +206,17 @@ public class AIControllerScript : MonoBehaviour {
 	void CheckForGravChange(){
 		Debug.Log (ball.GetComponent<Rigidbody2D> ().gravityScale);
 		if (ball.GetComponent<Rigidbody2D> ().gravityScale > 0) {
-			rb.gravityScale = 1;
+			if (playerID % 2 == 1) {
+				rb.gravityScale = 1;
+			} else if (playerID % 2 == 0) {
+				rb.gravityScale = -1;
+			}
 		} else {
-			rb.gravityScale = -1;
+			if (playerID % 2 == 1) {
+				rb.gravityScale = -1;
+			} else if (playerID % 2 == 0) {
+				rb.gravityScale = 1;
+			}
 		}
 	}
 
