@@ -70,12 +70,12 @@ public class ArenaManagerScript : MonoBehaviour {
 		if (Input.GetButtonDown (jumpButton1)) {
 			// log which arena
 			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			Application.LoadLevel ("proTipScene");
 		}
 		if (Input.GetButtonDown (gravButton1)) {
 			// log which arena
 			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			Application.LoadLevel ("proTipScene");
 		}
 
 		if (Input.GetAxisRaw (horizAxis2) == -1) {

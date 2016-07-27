@@ -2,7 +2,7 @@
 using System.Collections;
 using PigeonCoopToolkit.Effects.Trails;
 
-public class PlayerController : MonoBehaviour {
+public class DemoPlayerController : MonoBehaviour {
 
 	public float speed = 5f;
 	public float spinPower = -150f;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
 	private string playerColor;
-
+	private float repeatFreq;
 	public GameObject penaltyExplosion; 
 
 	public AudioClip jumpSound1;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 	public TextMesh pandemoniumCounter;
 
 	public GameObject trail;
-
+	public int DemoType;
 	public Sprite squareSprite;
 	public Sprite circleSprite;
 	public Sprite triangleSprite;
@@ -145,20 +145,24 @@ public class PlayerController : MonoBehaviour {
 
 		startJumpPower = jumpPower;
 		startSpeed = speed; 
+		switch (DemoType) {
+		case 1:
+			
+			JumpAndChangeGrav ();
+			break;
 
-		//polygon collider
+		case 2:
+			repeatFreq = 2f;
+			RepeatedlyChangeGrav ();
+			break;
 
-		//Vector2[] thePoints = pg.points;
-		// do stuff with myPoints array
-//		Vector2[] thePoints = new Vector2[] {
-//			new Vector2 (0f, -1f),
-//			new Vector2 (1f, -1f),
-//			new Vector2 (-1f, -1f)
-//
-//		};
-//		pg.pathCount = 3;
-//		pg.points = thePoints;
+		case 3:
+			repeatFreq = .3f;
+			RepeatedlyChangeGrav ();
+			break;
+		}
 
+	
 	}
 	IEnumerator Flash() {
 		Debug.Log ("flash firing");
@@ -169,31 +173,52 @@ public class PlayerController : MonoBehaviour {
 		yield break; //Is this even needed?
 	}
 
+	void ChangeGrav(){
+		rb.gravityScale *= -1f;
+		//SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
+		StartCoroutine ("Flash");
+	}
 
+	void Jump(){
+		Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
+		rb.AddForce(jumpForce);
+	}
+
+	void JumpAndChangeGrav(){
+
+		Jump ();
+		Invoke ("ChangeGrav", .25f);
+		Invoke ("JumpAndChangeGrav", 2f);
+	}
+
+	void RepeatedlyChangeGrav(){
+		ChangeGrav ();
+		Invoke ("RepeatedlyChangeGrav", repeatFreq);
+	}
 	void FixedUpdate () {
 		
-		float moveHorizontal = Input.GetAxis (horiz);
+	//	float moveHorizontal = Input.GetAxis (horiz);
 		//Debug.Log (moveHorizontal);
 //		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
 //		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
 //		rigidbody.velocity.x = moveHorizontal * speed;
 		//GetComponent<Rigidbody2D>().AddTorque(moveHorizontal * -8f);
 
-		if (isJumping) {
-			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
-		}
-		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-		v3.x = moveHorizontal * speed;
-//		
+//		if (isJumping) {
+//			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
+//		}
+//		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
+//		v3.x = moveHorizontal * speed;
+////		
 
 		//v3.z = 0.0f;
 		//if (canMove) {
-			GetComponent<Rigidbody2D> ().velocity = v3;
+	//		GetComponent<Rigidbody2D> ().velocity = v3;
 		//}
 //		Vector2 v2 = new Vector2(moveHorizontal*speed*100f,0f);
 //		GetComponent<Rigidbody2D> ().AddForce (v2);
 
-		float f = Mathf.Clamp(GetComponent<Rigidbody2D> ().velocity.x, -speed, speed);
+	//	float f = Mathf.Clamp(GetComponent<Rigidbody2D> ().velocity.x, -speed, speed);
 //		Debug.Log (GetComponent<Rigidbody2D> ().velocity.x);
 		//		rigidbody.position = new Vector3
 //			(
@@ -210,22 +235,22 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		//Debug.Log (canMove);
-		if (Input.GetButtonDown (jumpButton)) {
-			//Debug.Log ("Jump hit");
-			if (isJumping == false){
-				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
-				rb.AddForce(jumpForce);
-				SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-				isJumping = true;
-			}
-		}
-
-		if (Input.GetButtonDown (gravButton)) {
-			rb.gravityScale *= -1f;
-			SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
-			StartCoroutine ("Flash");
-
-		}
+//		if (Input.GetButtonDown (jumpButton)) {
+//			//Debug.Log ("Jump hit");
+//			if (isJumping == false){
+//				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
+//				rb.AddForce(jumpForce);
+//			//	SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
+//				isJumping = true;
+//			}
+//		}
+//
+//		if (Input.GetButtonDown (gravButton)) {
+//			rb.gravityScale *= -1f;
+//			//SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
+//			StartCoroutine ("Flash");
+//
+//		}
 
 		ClampPosition ();
 
@@ -264,7 +289,7 @@ public class PlayerController : MonoBehaviour {
 		// fire 'penalty' explosion
 			Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 			GameObject pe = (GameObject)Instantiate(penaltyExplosion, newPos, Quaternion.identity);
-		SoundManagerScript.instance.PlaySingle (playerExplode);
+		//SoundManagerScript.instance.PlaySingle (playerExplode);
 			pe.SendMessage ("Config", playerColor);
 	}
 
@@ -281,7 +306,7 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log ("a collision!");
 			isJumping = false;
 		//	Debug.Log (isJumping);
-			SoundManagerScript.instance.PlaySingle (landSound);
+			//SoundManagerScript.instance.PlaySingle (landSound);
 		}
 			
 		if (coll.gameObject.tag == "Playfield") {
@@ -337,9 +362,9 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
 			var mag = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
 			if (mag > 30) {
-				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
+				//SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
 			} else {
-				SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
+				//SoundManagerScript.instance.RandomizeSfx (collideWithBallSound1, collideWithBallSound2);
 			}
 		}
 	}

@@ -25,3 +25,5 @@ EditorBuildSettings:
     path: Assets/Scenes/robysoftScene.unity
   - enabled: 1
     path: Assets/Scenes/powerupScene.unity
+  - enabled: 1
+    path: Assets/Scenes/proTipScene.unity
