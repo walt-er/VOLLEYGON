@@ -55,7 +55,7 @@ public class DemoPlayerController : MonoBehaviour {
 	private bool sizePowerupActive = false; 
 
 	private float pandemoniumTimer;
-	private bool pandemoniumPowerupActive = false;
+	public bool pandemoniumPowerupActive = false;
 
 	// Different base stats for each playerType
 
@@ -160,7 +160,18 @@ public class DemoPlayerController : MonoBehaviour {
 			repeatFreq = .3f;
 			RepeatedlyChangeGrav ();
 			break;
+
+		case 4: 
+			Invoke ("MoveRightAndJump", 1f);
+
+			break;
+		
+		case 5:
+			JumpRepeatedly ();
+			break;
 		}
+
+
 
 	
 	}
@@ -173,12 +184,20 @@ public class DemoPlayerController : MonoBehaviour {
 		yield break; //Is this even needed?
 	}
 
+	void MoveRightAndJump(){
+		GetComponent<Rigidbody2D>().velocity = new Vector3 (10f, 20f, 0f);
+		Invoke ("JumpRepeatedly", 2f);
+	}
+
 	void ChangeGrav(){
 		rb.gravityScale *= -1f;
 		//SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
 		StartCoroutine ("Flash");
 	}
-
+	void JumpRepeatedly(){
+		Jump ();
+		Invoke ("JumpRepeatedly", 1f);
+	}
 	void Jump(){
 		Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
 		rb.AddForce(jumpForce);
@@ -336,9 +355,9 @@ public class DemoPlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "Powerup") {
 			Debug.Log ("Happening");
 			//Script other = coll.gameObject.GetComponent<NewPowerUpScript> ();
-			int whichPowerup = coll.gameObject.GetComponent<NewPowerUpScript> ().powerupType;
-			if (coll.gameObject.GetComponent<NewPowerUpScript> ().isAvailable) {
-				coll.gameObject.GetComponent<NewPowerUpScript> ().FadeOut ();
+			int whichPowerup = coll.gameObject.GetComponent<HardcodedPowerUpScript> ().powerupType;
+			if (coll.gameObject.GetComponent<HardcodedPowerUpScript> ().isAvailable) {
+				coll.gameObject.GetComponent<HardcodedPowerUpScript> ().FadeOut ();
 				ApplyPowerup (whichPowerup);
 			}
 			//Destroy (coll.gameObject);
@@ -370,9 +389,10 @@ public class DemoPlayerController : MonoBehaviour {
 	}
 
 	void ClampPosition(){
-
+		Debug.Log (pandemoniumPowerupActive);
 		// Only clamp position if pandemonium is not active;
 		if (!pandemoniumPowerupActive){
+
 			var pos = transform.position;
 			if (team == 1) {
 				// TODO: Make this dynamic based on raycasting
@@ -414,6 +434,7 @@ public class DemoPlayerController : MonoBehaviour {
 			if (pandemoniumTimer <= 0) {
 			    pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
 				pandemoniumPowerupActive = false;
+				Debug.Log ("setting to false");
 				// run 'punishment' check if player is offsides.
 				checkPenalty();
 			}

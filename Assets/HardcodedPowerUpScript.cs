@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewPowerUpScript : MonoBehaviour {
+public class HardcodedPowerUpScript : MonoBehaviour {
 
 	public int powerupType;
 	public float timer; 
@@ -23,7 +23,7 @@ public class NewPowerUpScript : MonoBehaviour {
 		timer = 5f + (Random.value * 5f);
 		isAvailable = true;
 
-		powerupType = Random.Range (1, 5);
+
 		switch (powerupType){
 		case 1:
 			speedPyramid.SetActive (true);
