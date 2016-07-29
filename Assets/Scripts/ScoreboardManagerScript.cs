@@ -64,6 +64,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 			Transform theNumTwo = Team2Scores.transform.Find (team2Score.ToString ());
 			theNumTwo.gameObject.SetActive (true);
 			iTween.FadeTo (theNumTwo.gameObject, 0.8f, .25f);
+			enableDash ();
 		} else {
 			if (team1Score > team2Score) {
 				Transform theNumOne = Team1Scores.transform.Find ("A");
@@ -88,7 +89,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 			}
 		}		
 
-		enableDash ();
+	
 		scoreBoardShowing = true;
 	
 

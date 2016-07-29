@@ -92,7 +92,7 @@ public class BallScript : MonoBehaviour {
 				blueball.SetActive (true);
 			} else {
 				redball.SetActive (true);
-				blueball.SetActive (false);
+				//blueball.SetActive (false);
 			}
 			flashTime = Time.time;
 			GameObject cTrail = Instantiate(circleTrail) as GameObject;
@@ -191,7 +191,7 @@ public class BallScript : MonoBehaviour {
 			//gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
 			redball.SetActive (true);
-			blueball.SetActive (false);
+			//blueball.SetActive (false);
 		} else {
 		//	gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
@@ -208,7 +208,7 @@ public class BallScript : MonoBehaviour {
 			//Debug.Log ("changing sprite?");
 			//GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
 			redball.SetActive(true);
-			blueball.SetActive(false);
+			//blueball.SetActive(false);
 			gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;

@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour {
 				trail.SetActive (false);
 				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 
-
+				FirePenaltyExplosion();
 			}
 			break;
 
@@ -256,18 +256,22 @@ public class PlayerController : MonoBehaviour {
 				trail.GetComponent<Trail>().ClearSystem (true);
 				trail.SetActive (false);
 				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+
+				FirePenaltyExplosion();
 			}
 
 			break;
 		}
 
-		// fire 'penalty' explosion
-			Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-			GameObject pe = (GameObject)Instantiate(penaltyExplosion, newPos, Quaternion.identity);
-		SoundManagerScript.instance.PlaySingle (playerExplode);
-			pe.SendMessage ("Config", playerColor);
+	
 	}
 
+	void FirePenaltyExplosion(){
+		Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+		GameObject pe = (GameObject)Instantiate(penaltyExplosion, newPos, Quaternion.identity);
+		SoundManagerScript.instance.PlaySingle (playerExplode);
+		pe.SendMessage ("Config", playerColor);
+	}
 	void OnCollisionStay2D(Collision2D collisionInfo) {
 
 		if (collisionInfo.gameObject.tag == "Playfield") {
