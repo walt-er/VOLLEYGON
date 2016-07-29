@@ -16,7 +16,10 @@ public class BallScript : MonoBehaviour {
 	private bool isTimerRunning;
 	public float gravScale = 0.8f;
 	private float originalGrav;
+	public bool singleMode;
 	private int bounces = 0;
+	public int bouncesOnTop;
+	public int bouncesOnBottom;
 	public float baseTimeBetweenGravChanges = 10f;
 	private float lastXPos;
 	public Sprite originalSprite;
@@ -33,6 +36,11 @@ public class BallScript : MonoBehaviour {
 	public GameObject redball;
 	public GameObject blueball;
 	public GameObject circleTrail;
+
+	public GameObject Arena1;
+	public GameObject Arena2;
+	public GameObject Arena3;
+	public GameObject Arena4;
 
 	public AudioSource sfxSource;
 
@@ -59,9 +67,7 @@ public class BallScript : MonoBehaviour {
 		secondToLastTouch = 0;
 		timeSinceLastFlash = 0f;
 		rb = GetComponent<Rigidbody2D>();
-		scoreText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-		winByTwoText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-
+	
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
 		Invoke("LaunchBall", 3f);
@@ -69,7 +75,7 @@ public class BallScript : MonoBehaviour {
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
 
-		scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+	//	scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
 	}
 	
 	// Update is called once per frame
@@ -139,6 +145,8 @@ public class BallScript : MonoBehaviour {
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos)) {
 			bounces = 0;
+			bouncesOnTop = 0;
+			bouncesOnBottom = 0;
 			//Debug.Log ("Bounces reset!");
 			// Credit a return to the last touch player
 			switch (lastTouch) {
@@ -172,6 +180,8 @@ public class BallScript : MonoBehaviour {
 		gameObject.transform.position = new Vector3 (0, 0, 0);
 		rb.velocity = new Vector2 (0, 0);
 		bounces = 0;
+		bouncesOnTop = 0;
+		bouncesOnBottom = 0;
 		timer = 10; // arbitrary high number
 		Transform child = gameObject.transform.Find("CircleTrails");
 		child.gameObject.SetActive (false); 
@@ -371,23 +381,32 @@ public class BallScript : MonoBehaviour {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
 			bounces += 1;
+			if (coll.gameObject.transform.position.y > 0) {
+				bouncesOnTop += 1;
+			} else if (coll.gameObject.transform.position.y < 0) {
+				bouncesOnBottom += 1;
+			}
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
-			if (bounces >= 2){
+			if (bounces >= 2 && singleMode || bouncesOnTop >= 2 && !singleMode || bouncesOnBottom >= 2 && !singleMode) {
 
 				// Fire an explosion
-				audio.Stop();
-				Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-				Instantiate(explosionPrefab, newPos, Quaternion.identity);
+				audio.Stop ();
+				Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+				Instantiate (explosionPrefab, newPos, Quaternion.identity);
 				if (newPos.y > 0) {
-					Instantiate(explosionPrefab, newPos, Quaternion.Euler(0,0,-180));
+					Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, -180));
 				} else {
-					Instantiate(explosionPrefab, newPos,  Quaternion.Euler(0,0,0));
+					Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, 0));
 				}
 				SoundManagerScript.instance.RandomizeSfx (pointScoredSound1, pointScoredSound2);
 				// Award a score.
+				Arena1.BroadcastMessage("ReturnColor");
+				Arena2.BroadcastMessage("ReturnColor");
+				Arena3.BroadcastMessage("ReturnColor");
+				Arena4.BroadcastMessage("ReturnColor");
 
 				if (Mathf.Sign (transform.position.x) < 0) {
 					GameManagerScript.Instance.teamTwoScore += 1; 
@@ -415,7 +434,7 @@ public class BallScript : MonoBehaviour {
 				} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
 					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
 						//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-						CheckForMatchPoint();
+						CheckForMatchPoint ();
 						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
 					}
 					ResetBall ();
@@ -426,6 +445,8 @@ public class BallScript : MonoBehaviour {
 					gameObject.SetActive (false);
 					//Invoke ("GameOver", 5f);
 				}
+			} else {
+				coll.gameObject.GetComponent<BorderScript>().ChangeColor ();
 			}
 
 		} else if (coll.gameObject.tag == "Player"){

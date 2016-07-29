@@ -389,7 +389,7 @@ public class DemoPlayerController : MonoBehaviour {
 	}
 
 	void ClampPosition(){
-		Debug.Log (pandemoniumPowerupActive);
+		//Debug.Log (pandemoniumPowerupActive);
 		// Only clamp position if pandemonium is not active;
 		if (!pandemoniumPowerupActive){
 

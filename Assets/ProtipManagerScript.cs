@@ -5,9 +5,10 @@ public class ProtipManagerScript : MonoBehaviour {
 
 	public GameObject protipContainer;
 	private int whichProtip;
+	public float proTipTime;
 	// Use this for initialization
 	void Start () {
-		Invoke ("StartGame", 10f);
+		Invoke ("StartGame", proTipTime);
 		whichProtip = Random.Range (0, protipContainer.transform.childCount);
 		ChooseRandomProtip ();
 	}
