@@ -8,12 +8,14 @@ public class BorderScript : MonoBehaviour {
 	private Color teamTwoColor;
 	private Color thisColor;
 	public GameObject graphic;
+	private bool isChangingToColor;
+	private bool isReturningToWhite;
 	public Renderer rend;
 	public int side;
 	// Use this for initialization
 	void Start () {
-		teamOneColor = HexToColor ("054f88");
-		teamTwoColor = HexToColor ("861b1c");
+		teamOneColor = HexToColor ("8fc8f4");
+		teamTwoColor = HexToColor ("ee9697");
 		if (transform.position.x < 0) {
 			side = 1;
 			thisColor = teamTwoColor;
@@ -31,15 +33,26 @@ public class BorderScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (isChangingToColor) {
+			rend.material.color = Color.Lerp (rend.material.color, thisColor, .15f);
+		}
+		if (isReturningToWhite) {
+			rend.material.color = Color.Lerp (rend.material.color, Color.white, .05f);
+		}
 	
 	}
 
 	public void ChangeColor(){
-		StartCoroutine ("FadeToColor");
+		isChangingToColor = true;
+		isReturningToWhite = false;
+		//StartCoroutine ("FadeToColor");
 	}
 
 	public void ReturnColor(){
-		StartCoroutine ("ReturnToColor");
+		isReturningToWhite = true;
+		isChangingToColor = false;
+		//StartCoroutine ("ReturnToColor");
 	}
 
 	IEnumerator FadeToColor() {

@@ -147,6 +147,10 @@ public class BallScript : MonoBehaviour {
 			bounces = 0;
 			bouncesOnTop = 0;
 			bouncesOnBottom = 0;
+			Arena1.BroadcastMessage("ReturnColor");
+			Arena2.BroadcastMessage("ReturnColor");
+			Arena3.BroadcastMessage("ReturnColor");
+			Arena4.BroadcastMessage("ReturnColor");
 			//Debug.Log ("Bounces reset!");
 			// Credit a return to the last touch player
 			switch (lastTouch) {
