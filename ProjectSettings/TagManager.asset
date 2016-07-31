@@ -17,6 +17,7 @@ TagManager:
   - ScoringBoundary
   - Powerup
   - Ball
+  - MidpointMarker
   layers:
   - Default
   - TransparentFX

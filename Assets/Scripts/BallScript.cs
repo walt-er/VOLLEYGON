@@ -342,15 +342,15 @@ public class BallScript : MonoBehaviour {
 		// control the color programatically
 		switch (whichNum) {
 		case 1:
-			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(210, 210, 210, 255));
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(160, 160, 160, 100));
 			break;
 
 		case 2:
-			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(233, 233, 233, 255));
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(183, 183, 183, 100));
 			break;
 
 		case 3:
-			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 255));
+			childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(194, 194, 194, 100));
 			break;
 		}
 		//childObject.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(214, 214, 214, 100));

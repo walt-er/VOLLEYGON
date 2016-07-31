@@ -395,6 +395,8 @@ public class PlayerController : MonoBehaviour {
 				pandemoniumPowerupActive = false;
 				// run 'punishment' check if player is offsides.
 				checkPenalty();
+				// if midpoint marker is faded out, fade it back
+				RestoreMidpointMarker();
 			}
 		}
 
@@ -431,6 +433,13 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void RestoreMidpointMarker(){
+		foreach (GameObject mpm in GameObject.FindGameObjectsWithTag("MidpointMarker")) {
+			//mpm.SetActive (false);
+			iTween.FadeTo (mpm, 1.0f, .5f);
+		}
+	}
+
 	void ApplyPowerup(int whichPowerup){
 		Debug.Log (whichPowerup);
 		switch (whichPowerup) {
@@ -458,7 +467,8 @@ public class PlayerController : MonoBehaviour {
 			break;
 
 		case 4:
-			int randomNum = Random.Range (1, 5);
+			int randomNum = Random.Range (1, 7);
+			//int randomNum = 6;
 			switch (randomNum) {
 			case 1:
 				ApplyPowerup (1);
@@ -471,6 +481,25 @@ public class PlayerController : MonoBehaviour {
 				break;
 			case 4: 
 				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
+				break;
+			case 5:
+				// broadcast to all players to activate pandemonium
+				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+					player.GetComponent<PlayerController> ().ApplyPowerup (3); 
+				}
+				foreach (GameObject mpm in GameObject.FindGameObjectsWithTag("MidpointMarker")) {
+					//mpm.SetActive (false);
+					iTween.FadeTo (mpm, 0f, .5f);
+				}
+				//Invoke ("RestoreMidpointMarker", 20f);
+
+
+				//iTween.FadeTo (midpointMarker, 0.8f, .25f);
+				break;
+			case 6:
+				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+					player.GetComponent<PlayerController> ().ApplyPowerup (2); 
+				}
 				break;
 			}
 			break;
