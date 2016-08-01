@@ -23,7 +23,7 @@ public class NewPowerUpScript : MonoBehaviour {
 		timer = 5f + (Random.value * 5f);
 		isAvailable = true;
 
-		powerupType = Random.Range (1, 5);
+		//powerupType = Random.Range (1, 5);
 		switch (powerupType){
 		case 1:
 			speedPyramid.SetActive (true);
@@ -41,12 +41,30 @@ public class NewPowerUpScript : MonoBehaviour {
 
 	}
 
+	void Config(int whichType){
+		powerupType = whichType;
+		switch (powerupType){
+		case 1:
+			speedPyramid.SetActive (true);
+			break;
+		case 2:
+			sizePyramid.SetActive (true);
+			break;
+		case 3:
+			pandemoniumPyramid.SetActive (true);
+			break;
+		case 4:
+			randomPyramid.SetActive (true);
+			break;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		timer -= Time.deltaTime;
 
 		if (timer <= 0) {
-			Destroy (gameObject);
+			//Destroy (gameObject);
+			FadeOut(false);
 		}
 
 
@@ -60,22 +78,28 @@ public class NewPowerUpScript : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	public void FadeOut(){
+	public void FadeOut(bool includeExplosion = true){
+		isAvailable = false;
 		if (!isFading) {
-			GameObject explosion = (GameObject)Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-			switch (powerupType) {
-			case 1:
-				explosion.SendMessage("Config", "FDC54D");
-				break;
-			case 2:
-				explosion.SendMessage("Config", "1069A8");
-				break;
-			case 3:
-				explosion.SendMessage("Config", "363682");
-				break;
-			case 4:
-				explosion.SendMessage("Config", "01884D");
-				break;
+
+			if (includeExplosion) {
+
+				GameObject explosion = (GameObject)Instantiate (explosionPrefab, new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+			
+				switch (powerupType) {
+				case 1:
+					explosion.SendMessage ("Config", "FDC54D");
+					break;
+				case 2:
+					explosion.SendMessage ("Config", "1069A8");
+					break;
+				case 3:
+					explosion.SendMessage ("Config", "363682");
+					break;
+				case 4:
+					explosion.SendMessage ("Config", "01884D");
+					break;
+				}
 			}
 
 

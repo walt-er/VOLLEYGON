@@ -324,6 +324,11 @@ public class PlayerController : MonoBehaviour {
 			if (coll.gameObject.GetComponent<NewPowerUpScript> ().isAvailable) {
 				coll.gameObject.GetComponent<NewPowerUpScript> ().FadeOut ();
 				ApplyPowerup (whichPowerup);
+				// fade out all other powerups
+				foreach (GameObject otherPowerup in GameObject.FindGameObjectsWithTag("Powerup")) {
+				    otherPowerup.gameObject.GetComponent<NewPowerUpScript> ().FadeOut (false);
+					//otherPowerup.SetActive(false);
+				}
 			}
 			//Destroy (coll.gameObject);
 		
