@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public string jumpButton = "Jump_P1";
 	public string gravButton = "Grav_P1";
 	public int team = 1;
+	private bool inPenalty;
 	public float startingGrav = 1;
 	public int playerID;
 	public Mesh meshTypeOne;
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 		startMass = rb.mass;
 		canMove = true;
 		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
-
+		inPenalty = false;
 		// assign player color
 		switch (playerID) {
 		case 1:
@@ -210,21 +211,23 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		//Debug.Log (canMove);
-		if (Input.GetButtonDown (jumpButton)) {
-			//Debug.Log ("Jump hit");
-			if (isJumping == false){
-				Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
-				rb.AddForce(jumpForce);
-				SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-				isJumping = true;
+		if (!inPenalty) {
+			if (Input.GetButtonDown (jumpButton)) {
+				//Debug.Log ("Jump hit");
+				if (isJumping == false) {
+					Vector3 jumpForce = new Vector3 (0f, jumpPower * rb.gravityScale, 0f);
+					rb.AddForce (jumpForce);
+					SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
+					isJumping = true;
+				}
 			}
-		}
 
-		if (Input.GetButtonDown (gravButton)) {
-			rb.gravityScale *= -1f;
-			SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
-			StartCoroutine ("Flash");
+			if (Input.GetButtonDown (gravButton)) {
+				rb.gravityScale *= -1f;
+				SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
+				StartCoroutine ("Flash");
 
+			}
 		}
 
 		ClampPosition ();
@@ -245,6 +248,7 @@ public class PlayerController : MonoBehaviour {
 				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 
 				FirePenaltyExplosion();
+				inPenalty = true;
 			}
 			break;
 
@@ -258,6 +262,7 @@ public class PlayerController : MonoBehaviour {
 				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 
 				FirePenaltyExplosion();
+				inPenalty = true;
 			}
 
 			break;
@@ -430,6 +435,7 @@ public class PlayerController : MonoBehaviour {
 			trail.SetActive (true);
 			trail.GetComponent<Trail>().ClearSystem (true);
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+			inPenalty = false;
 
 	}
 
