@@ -5,7 +5,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 
 	private int markerPos = 0;
-	private float[] markerPositions  = {7f, 2.33f, -2.33f, -7f};
+	private float[] markerPositions  = {7.4f, 3.7f, 0f, -3.7f, -7.4f};
 	private string jumpButton1 = "Jump_P1";
 	private string gravButton1 = "Grav_P1";
 	private string horizAxis1 = "Vertical_P1";
@@ -69,12 +69,21 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton1)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			if (markerPos == 4) {
+				Debug.Log ("choosing random level");
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
 			Application.LoadLevel ("proTipScene");
 		}
 		if (Input.GetButtonDown (gravButton1)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
 			Application.LoadLevel ("proTipScene");
 		}
 
@@ -109,13 +118,21 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton2)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 		if (Input.GetButtonDown (gravButton2)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 
 
@@ -150,13 +167,21 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton3)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 		if (Input.GetButtonDown (gravButton3)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 
 
@@ -191,22 +216,30 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (Input.GetButtonDown (jumpButton4)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 		if (Input.GetButtonDown (gravButton4)) {
 			// log which arena
-			DataManagerScript.arenaType = markerPos;
-			Application.LoadLevel ("gameScene");
+			if (markerPos == 4) {
+				DataManagerScript.arenaType = Random.Range (0, 4);
+			} else {
+				DataManagerScript.arenaType = markerPos;
+			}
+			Application.LoadLevel ("proTipScene");
 		}
 	}
 
 	void updateMarkerPos(){
 		
 		if (markerPos < 0) {
-			markerPos = 3;
+			markerPos = 4;
 		}
-		markerPos = markerPos % 4;
+		markerPos = markerPos % 5;
 		Vector3 tempPos = new Vector3(marker.transform.position.x, markerPositions[markerPos], 1f);
 //		
 		marker.transform.position = tempPos;

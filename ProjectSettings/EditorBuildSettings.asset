@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/Scenes/powerupScene.unity
   - enabled: 1
     path: Assets/Scenes/proTipScene.unity
+  - enabled: 1
+    path: Assets/Scenes/howToPlayScene.unity

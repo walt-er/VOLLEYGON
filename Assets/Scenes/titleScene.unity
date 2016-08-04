@@ -944,7 +944,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11460108, guid: 78d948dd3e7914a488aff4d02fb30162, type: 2}
       propertyPath: nextScene
-      value: powerupScene
+      value: howToPlayScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78d948dd3e7914a488aff4d02fb30162, type: 2}

@@ -33,9 +33,9 @@ public class FakeBallScript : MonoBehaviour {
 	public GameObject redball;
 	public GameObject blueball;
 	public GameObject circleTrail;
-
+	public float startVel = 0f;
 	public AudioSource sfxSource;
-
+	public bool willGravChange = true;
 	public AudioClip ballServedSound;
 	public AudioClip pointScoredSound1;
 	public AudioClip pointScoredSound2;
@@ -71,46 +71,48 @@ public class FakeBallScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (isTimerRunning) {
-			timer -= Time.deltaTime;
-			//Debug.Log (timer);
-		}
-		timeSinceLastFlash = Time.time - flashTime;
 
-		if (timer <= 3 && timeSinceLastFlash >=.25f) {
-
-			if (!didSirenPlayAlready) {
-				//SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
-			//	audio.Play();
-				didSirenPlayAlready = true;
+		if (willGravChange) {
+			if (isTimerRunning) {
+				timer -= Time.deltaTime;
+				//Debug.Log (timer);
 			}
-			if (redball.activeSelf) {
-				redball.SetActive (false);
-				blueball.SetActive (true);
-			} else {
-				redball.SetActive (true);
-				//blueball.SetActive (false);
+			timeSinceLastFlash = Time.time - flashTime;
+
+			if (timer <= 3 && timeSinceLastFlash >= .25f) {
+
+				if (!didSirenPlayAlready) {
+					//SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
+					//	audio.Play();
+					didSirenPlayAlready = true;
+				}
+				if (redball.activeSelf) {
+					redball.SetActive (false);
+					blueball.SetActive (true);
+				} else {
+					redball.SetActive (true);
+					//blueball.SetActive (false);
+				}
+				flashTime = Time.time;
+				GameObject cTrail = Instantiate (circleTrail) as GameObject;
+				cTrail.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 1f);
+				cTrail.transform.parent = transform.Find ("CircleTrails");
+				cTrail.GetComponent<Renderer> ().material.SetColor ("_Color", new Color32 (244, 244, 244, 100));
+				// for yellow, use new Color32(255, 248, 15, 100));
+				cTrail.SendMessage ("Config", 2);
+				//			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
+				//				GetComponent<SpriteRenderer>().sprite = originalSprite;
+				//			} else {
+				//				GetComponent<SpriteRenderer> ().sprite = reverseGravSprite;
+				//			};
 			}
-			flashTime = Time.time;
-			GameObject cTrail = Instantiate(circleTrail) as GameObject;
-			cTrail.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 1f);
-			cTrail.transform.parent = transform.Find("CircleTrails");
-			cTrail.GetComponent<Renderer>().material.SetColor ("_Color", new Color32(244, 244, 244, 100));
-			// for yellow, use new Color32(255, 248, 15, 100));
-			cTrail.SendMessage("Config", 2);
-			//			if (GetComponent<SpriteRenderer> ().sprite == reverseGravSprite) {
-			//				GetComponent<SpriteRenderer>().sprite = originalSprite;
-			//			} else {
-			//				GetComponent<SpriteRenderer> ().sprite = reverseGravSprite;
-			//			};
-		}
-		if (timer <= 0){
-			GravChange ();
-			ResetTimer ();
+			if (timer <= 0) {
+				GravChange ();
+				ResetTimer ();
 
-			//Debug.Log (timer);
+				//Debug.Log (timer);
+			}
 		}
-
 		CheckForSideChange ();
 		lastXPos = transform.position.x; 
 	}
@@ -128,8 +130,10 @@ public class FakeBallScript : MonoBehaviour {
 		child.gameObject.SetActive (true); 
 		ResetTimer();
 		//In the future, factor in the gravity factor;
-		rb.velocity = new Vector2 (Random.Range(0F, 0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
 
+			rb.velocity = new Vector2 (Random.Range(-1*startVel, startVel), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
+
+			
 	}
 
 	void CheckForSideChange(){

@@ -23,7 +23,7 @@ public class AIControllerScript : MonoBehaviour {
 	public int playerType = 0;
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
-
+	public bool willJump = true;
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
@@ -157,7 +157,9 @@ public class AIControllerScript : MonoBehaviour {
 	void Update(){
 
 		CheckForMove ();
-		CheckForJump ();
+		if (willJump) {
+			CheckForJump ();
+		}
 		CheckForGravChange ();
 		ClampPosition ();
 

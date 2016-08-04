@@ -26,6 +26,7 @@ public class DemoPlayerController : MonoBehaviour {
 	private float repeatFreq;
 	public GameObject penaltyExplosion; 
 
+	public bool clampPosition = true;
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
@@ -169,6 +170,9 @@ public class DemoPlayerController : MonoBehaviour {
 		case 5:
 			JumpRepeatedly ();
 			break;
+		case 6:
+			JumpRepeatedlySlowly ();
+			break;
 		}
 
 
@@ -197,6 +201,11 @@ public class DemoPlayerController : MonoBehaviour {
 	void JumpRepeatedly(){
 		Jump ();
 		Invoke ("JumpRepeatedly", 1f);
+	}
+
+	void JumpRepeatedlySlowly(){
+		Jump ();
+		Invoke ("JumpRepeatedlySlowly", 2f);
 	}
 	void Jump(){
 		Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
@@ -391,16 +400,18 @@ public class DemoPlayerController : MonoBehaviour {
 	void ClampPosition(){
 		//Debug.Log (pandemoniumPowerupActive);
 		// Only clamp position if pandemonium is not active;
-		if (!pandemoniumPowerupActive){
+		if (clampPosition) {
+			if (!pandemoniumPowerupActive) {
 
-			var pos = transform.position;
-			if (team == 1) {
-				// TODO: Make this dynamic based on raycasting
-				pos.x = Mathf.Clamp (transform.position.x, -27.2f, -1.0f);
-				transform.position = pos;
-			} else if (team == 2) {
-				pos.x = Mathf.Clamp (transform.position.x, 1f, 27.2f);
-				transform.position = pos;
+				var pos = transform.position;
+				if (team == 1) {
+					// TODO: Make this dynamic based on raycasting
+					pos.x = Mathf.Clamp (transform.position.x, -27.2f, -1.0f);
+					transform.position = pos;
+				} else if (team == 2) {
+					pos.x = Mathf.Clamp (transform.position.x, 1f, 27.2f);
+					transform.position = pos;
+				}
 			}
 		}
 	}
