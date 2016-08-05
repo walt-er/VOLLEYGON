@@ -171,7 +171,8 @@ public class DemoPlayerController : MonoBehaviour {
 			JumpRepeatedly ();
 			break;
 		case 6:
-			JumpRepeatedlySlowly ();
+			float randomStartVal = Random.Range (0f, 2f);
+			Invoke ("JumpRepeatedlySlowly", randomStartVal);
 			break;
 		}
 
