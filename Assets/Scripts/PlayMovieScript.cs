@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayMovieScript : MonoBehaviour {
 	public MovieTexture movTexture;
+	public GameObject pressStartAnimation;
 	private bool fadedOut;
 	// Use this for initialization
 	void Start () {
@@ -20,8 +21,14 @@ public class PlayMovieScript : MonoBehaviour {
 			
 			fadedOut = true;
 			iTween.FadeTo (gameObject, 0f, .5f);
+			Invoke ("FireAnimation", 1f);
+			//gameObject.SetActive(false);
 		}
 			
 	
+	}
+
+	void FireAnimation(){
+		pressStartAnimation.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 	}
 }
