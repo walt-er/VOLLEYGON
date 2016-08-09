@@ -25,6 +25,7 @@ public class DemoPlayerController : MonoBehaviour {
 	private string playerColor;
 	private float repeatFreq;
 	public GameObject penaltyExplosion; 
+	public float startDelay = 0.1f;
 
 	public bool clampPosition = true;
 	public AudioClip jumpSound1;
@@ -146,9 +147,18 @@ public class DemoPlayerController : MonoBehaviour {
 
 		startJumpPower = jumpPower;
 		startSpeed = speed; 
+		Invoke ("Begin", startDelay);
+
+
+
+
+	
+	}
+
+	void Begin(){
 		switch (DemoType) {
 		case 1:
-			
+
 			JumpAndChangeGrav ();
 			break;
 
@@ -166,7 +176,7 @@ public class DemoPlayerController : MonoBehaviour {
 			Invoke ("MoveRightAndJump", 1f);
 
 			break;
-		
+
 		case 5:
 			JumpRepeatedly ();
 			break;
@@ -175,11 +185,8 @@ public class DemoPlayerController : MonoBehaviour {
 			Invoke ("JumpRepeatedlySlowly", randomStartVal);
 			break;
 		}
-
-
-
-	
 	}
+
 	IEnumerator Flash() {
 		Debug.Log ("flash firing");
 		for (float f = .8f; f >= 0; f -= 0.04f) {
@@ -369,6 +376,10 @@ public class DemoPlayerController : MonoBehaviour {
 			if (coll.gameObject.GetComponent<HardcodedPowerUpScript> ().isAvailable) {
 				coll.gameObject.GetComponent<HardcodedPowerUpScript> ().FadeOut ();
 				ApplyPowerup (whichPowerup);
+				// fade out all other powerups
+				foreach (GameObject otherPowerup in GameObject.FindGameObjectsWithTag("Powerup")) {
+					otherPowerup.gameObject.GetComponent<HardcodedPowerUpScript> ().FadeOut (false);
+				}
 			}
 			//Destroy (coll.gameObject);
 		

@@ -60,22 +60,28 @@ public class HardcodedPowerUpScript : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	public void FadeOut(){
+	public void FadeOut(bool includeExplosion = true){
+		isAvailable = false;
 		if (!isFading) {
-			GameObject explosion = (GameObject)Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-			switch (powerupType) {
-			case 1:
-				explosion.SendMessage("Config", "FDC54D");
-				break;
-			case 2:
-				explosion.SendMessage("Config", "1069A8");
-				break;
-			case 3:
-				explosion.SendMessage("Config", "363682");
-				break;
-			case 4:
-				explosion.SendMessage("Config", "01884D");
-				break;
+
+			if (includeExplosion) {
+
+				GameObject explosion = (GameObject)Instantiate (explosionPrefab, new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+
+				switch (powerupType) {
+				case 1:
+					explosion.SendMessage ("Config", "FDC54D");
+					break;
+				case 2:
+					explosion.SendMessage ("Config", "1069A8");
+					break;
+				case 3:
+					explosion.SendMessage ("Config", "363682");
+					break;
+				case 4:
+					explosion.SendMessage ("Config", "01884D");
+					break;
+				}
 			}
 
 

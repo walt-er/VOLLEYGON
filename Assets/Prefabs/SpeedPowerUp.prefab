@@ -272,7 +272,9 @@ MonoBehaviour:
   speedPyramid: {fileID: 0}
   sizePyramid: {fileID: 0}
   pandemoniumPyramid: {fileID: 0}
+  randomPyramid: {fileID: 0}
   explosionPrefab: {fileID: 0}
+  randomSubType: 0
 --- !u!114 &11499000
 MonoBehaviour:
   m_ObjectHideFlags: 1
