@@ -141,10 +141,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 		}
 
 	}
-
-	void StartGame(){
+	IEnumerator StartGame(){
+		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel ("chooseArenaScene");
 	}
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -156,7 +158,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		
 		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
 			locked = true; 	
-			Invoke ("StartGame", .5f);
+			StartCoroutine ("StartGame");
 		}
 	}
 }

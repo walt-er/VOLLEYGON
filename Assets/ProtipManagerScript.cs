@@ -16,13 +16,17 @@ public class ProtipManagerScript : MonoBehaviour {
 	}
 
 	void StartGame(){
-		Application.LoadLevel ("GameScene");
-	}
-	// Update is called once per frame
-	void Update () {
-	
+		StartCoroutine ("NextScene");
 	}
 
+
+	// Update is called once per frame
+
+	IEnumerator NextScene(){
+		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
+		Application.LoadLevel ("GameScene");
+	}
 	void ChooseRandomProtip(){
 		
 		Transform protip = protipContainer.transform.GetChild (whichProtip);

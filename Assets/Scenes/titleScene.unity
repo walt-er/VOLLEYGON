@@ -730,7 +730,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468484, guid: c15dce63593674b7eb65045061baa0c9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -5.21
       objectReference: {fileID: 0}
     - target: {fileID: 468484, guid: c15dce63593674b7eb65045061baa0c9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1268,8 +1268,8 @@ GameObject:
   - 92: {fileID: 1865589693}
   - 124: {fileID: 1865589692}
   - 81: {fileID: 1865589691}
-  - 114: {fileID: 1865589696}
   - 114: {fileID: 1865589697}
+  - 114: {fileID: 1865589696}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865589690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
   m_Name: 
@@ -1359,21 +1359,21 @@ MonoBehaviour:
   AutomaticPhase: 1
   Phase: 0.5
   ConvertToGrayscale: 0
-  NoiseIntensity: 0.5
-  ScanlinesIntensity: 0.9
+  NoiseIntensity: 0.4
+  ScanlinesIntensity: 0.5
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 0.1
-  CubicDistortion: 0.1
-  Scale: 0.9
+  Distortion: 0.05
+  CubicDistortion: 0.05
+  Scale: 1
 --- !u!114 &1865589697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865589690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dd17f8dd41224b7c898c909a7af6854, type: 3}
   m_Name: 

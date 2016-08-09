@@ -179,7 +179,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150690323}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
   m_Name: 
@@ -188,14 +188,14 @@ MonoBehaviour:
   AutomaticPhase: 1
   Phase: 0.5
   ConvertToGrayscale: 0
-  NoiseIntensity: 0.5
-  ScanlinesIntensity: 0.9
+  NoiseIntensity: 0.4
+  ScanlinesIntensity: 0.5
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 0.1
-  CubicDistortion: 0.1
-  Scale: 0.9
+  Distortion: 0.05
+  CubicDistortion: 0.05
+  Scale: 1
 --- !u!114 &150690330
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -212,7 +212,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8dbb9815bc1324265814b2080643c528, type: 3}
+    m_Font: {fileID: 12800000, guid: 24299d427e090474eba7f072182ac4b1, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -459,6 +459,47 @@ MonoBehaviour:
   player2: {fileID: 579324261}
   player3: {fileID: 1040935891}
   player4: {fileID: 736303006}
+--- !u!1 &253826277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 253826279}
+  - 114: {fileID: 253826278}
+  m_Layer: 0
+  m_Name: FadeCurtain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &253826278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253826277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff5fc8f2ba2e434dab4a3321393b918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeOutTexture: {fileID: 2800000, guid: 1a3b039770bbc4f6bbfbfa815b8a491e, type: 3}
+  fadeSpeed: 0.9
+--- !u!4 &253826279
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253826277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.594244, y: 0.9666151, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
 --- !u!1001 &283183326
 Prefab:
   m_ObjectHideFlags: 0
@@ -567,7 +608,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8dbb9815bc1324265814b2080643c528, type: 3}
+    m_Font: {fileID: 12800000, guid: 24299d427e090474eba7f072182ac4b1, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1018,8 +1059,14 @@ MonoBehaviour:
   playerIdentifier: 2
   readyText: {fileID: 286507649}
   toJoinText: {fileID: 0}
+  playerDescription: {fileID: 0}
+  playerDifficulty: {fileID: 0}
   readyToPlay: 0
   taggedIn: 0
+  tickUp: {fileID: 0}
+  tickDown: {fileID: 0}
+  tagInSound: {fileID: 0}
+  readySound: {fileID: 0}
 --- !u!114 &579324264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1228,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8dbb9815bc1324265814b2080643c528, type: 3}
+    m_Font: {fileID: 12800000, guid: 24299d427e090474eba7f072182ac4b1, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1569,8 +1616,14 @@ MonoBehaviour:
   playerIdentifier: 4
   readyText: {fileID: 609940884}
   toJoinText: {fileID: 0}
+  playerDescription: {fileID: 0}
+  playerDifficulty: {fileID: 0}
   readyToPlay: 0
   taggedIn: 0
+  tickUp: {fileID: 0}
+  tickDown: {fileID: 0}
+  tagInSound: {fileID: 0}
+  readySound: {fileID: 0}
 --- !u!114 &736303009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,8 +1916,8 @@ RectTransform:
   m_RootOrder: 13
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 583, y: -37.000237}
-  m_SizeDelta: {x: 178, y: 375}
+  m_AnchoredPosition: {x: 582, y: -37.000237}
+  m_SizeDelta: {x: 181, y: 375}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &778482930
 MonoBehaviour:
@@ -1878,7 +1931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.634}
+  m_Color: {r: 0.8509804, g: 0.47843137, b: 0.48235294, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1945,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.634}
+  m_Color: {r: 0.8392157, g: 0.19607843, b: 0.21176471, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2461,8 +2514,14 @@ MonoBehaviour:
   playerIdentifier: 3
   readyText: {fileID: 1790935825}
   toJoinText: {fileID: 0}
+  playerDescription: {fileID: 0}
+  playerDifficulty: {fileID: 0}
   readyToPlay: 0
   taggedIn: 0
+  tickUp: {fileID: 0}
+  tickDown: {fileID: 0}
+  tagInSound: {fileID: 0}
+  readySound: {fileID: 0}
 --- !u!114 &1040935894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2709,7 +2768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.634}
+  m_Color: {r: 0.4862745, g: 0.74509805, b: 0.9098039, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3217,8 +3276,8 @@ RectTransform:
   m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -37.000195}
-  m_SizeDelta: {x: 178, y: 375}
+  m_AnchoredPosition: {x: 38, y: -37.000195}
+  m_SizeDelta: {x: 181, y: 375}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1333142071
 MonoBehaviour:
@@ -3232,7 +3291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.634}
+  m_Color: {r: 0.0627451, g: 0.4117647, b: 0.65882355, a: 0.78039217}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3352,8 +3411,14 @@ MonoBehaviour:
   playerIdentifier: 1
   readyText: {fileID: 77226046}
   toJoinText: {fileID: 0}
+  playerDescription: {fileID: 0}
+  playerDifficulty: {fileID: 0}
   readyToPlay: 0
   taggedIn: 0
+  tickUp: {fileID: 0}
+  tickDown: {fileID: 0}
+  tagInSound: {fileID: 0}
+  readySound: {fileID: 0}
 --- !u!114 &1370663623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4103,7 +4168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8dbb9815bc1324265814b2080643c528, type: 3}
+    m_Font: {fileID: 12800000, guid: 24299d427e090474eba7f072182ac4b1, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -4490,7 +4555,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865589690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
   m_Name: 
@@ -4499,14 +4564,14 @@ MonoBehaviour:
   AutomaticPhase: 1
   Phase: 0.5
   ConvertToGrayscale: 0
-  NoiseIntensity: 0.5
-  ScanlinesIntensity: 0.9
+  NoiseIntensity: 0.4
+  ScanlinesIntensity: 0.5
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 0.1
-  CubicDistortion: 0.1
-  Scale: 0.9
+  Distortion: 0.05
+  CubicDistortion: 0.05
+  Scale: 1
 --- !u!114 &1865589697
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -287,6 +287,7 @@ MonoBehaviour:
   playerType: 0
   trianglePC: {fileID: 16993498}
   trapezoidPC: {fileID: 16993498}
+  willJump: 1
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -1351,6 +1352,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1249345c1d52d4bcdb143e4b1db36779, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &238458655
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -9.594244
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.9666151
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435880, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: fadeSpeed
+      value: 0.9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &241171989
 Prefab:
@@ -3456,6 +3503,7 @@ MonoBehaviour:
   playerType: 0
   trianglePC: {fileID: 655527187}
   trapezoidPC: {fileID: 655527187}
+  willJump: 1
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -5670,6 +5718,7 @@ MonoBehaviour:
   playerType: 0
   trianglePC: {fileID: 1067319487}
   trapezoidPC: {fileID: 1067319487}
+  willJump: 1
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -10265,6 +10314,7 @@ MonoBehaviour:
   playerType: 0
   trianglePC: {fileID: 1944651239}
   trapezoidPC: {fileID: 1944651239}
+  willJump: 1
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}

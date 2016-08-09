@@ -117,6 +117,11 @@ public class GameManagerScript : MonoBehaviour {
 		Application.LoadLevel ("titleScene");
 	}
 	void LaunchStatsScreen(){
+		StartCoroutine ("FadeToStats");
+	}
+	IEnumerator FadeToStats(){
+		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel ("statsScene");
 	}
 	void teamWins(int whichTeam){

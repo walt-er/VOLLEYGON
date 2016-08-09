@@ -23,7 +23,7 @@ public class ArenaManagerScript : MonoBehaviour {
 	private bool axis2InUse = false;
 	private bool axis3InUse = false;
 	private bool axis4InUse = false;
-
+	private bool locked = false;
 	public AudioClip tickUp;
 	public AudioClip tickDown;
 
@@ -32,206 +32,215 @@ public class ArenaManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		audio = GetComponent<AudioSource> ();
+		locked = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if (Input.GetAxisRaw (horizAxis1) == -1) {
+		if (!locked) {
+			if (Input.GetAxisRaw (horizAxis1) == -1) {
 
 
-			if (axis1InUse == false) {
-				// Call your event function here.
-				axis1InUse = true;
-				markerPos++;
-				updateMarkerPos ();
-				audio.PlayOneShot (tickUp);
+				if (axis1InUse == false) {
+					// Call your event function here.
+					axis1InUse = true;
+					markerPos++;
+					updateMarkerPos ();
+					audio.PlayOneShot (tickUp);
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis1) == 1) {
+
+
+				if (axis1InUse == false) {
+					// Call your event function here.
+					axis1InUse = true;
+					markerPos--;
+					audio.PlayOneShot (tickDown);
+					updateMarkerPos ();
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis1) == 0) {
+
+
+				axis1InUse = false;
+			}
+
+			if (Input.GetButtonDown (jumpButton1)) {
+				// log which arena
+				if (markerPos == 4) {
+					Debug.Log ("choosing random level");
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+			if (Input.GetButtonDown (gravButton1)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+
+			if (Input.GetAxisRaw (horizAxis2) == -1) {
+
+
+				if (axis2InUse == false) {
+					// Call your event function here.
+					axis2InUse = true;
+					markerPos++;
+					updateMarkerPos ();
+
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis2) == 1) {
+
+
+				if (axis2InUse == false) {
+					// Call your event function here.
+					axis2InUse = true;
+					markerPos--;
+					updateMarkerPos ();
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis2) == 0) {
+
+
+				axis2InUse = false;
+			}
+
+			if (Input.GetButtonDown (jumpButton2)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+			if (Input.GetButtonDown (gravButton2)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+
+
+			if (Input.GetAxisRaw (horizAxis3) == -1) {
+
+
+				if (axis3InUse == false) {
+					// Call your event function here.
+					axis3InUse = true;
+					markerPos++;
+					updateMarkerPos ();
+
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis3) == 1) {
+
+
+				if (axis3InUse == false) {
+					// Call your event function here.
+					axis3InUse = true;
+					markerPos--;
+					updateMarkerPos ();
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis3) == 0) {
+
+
+				axis3InUse = false;
+			}
+
+			if (Input.GetButtonDown (jumpButton3)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+			if (Input.GetButtonDown (gravButton3)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+
+
+			if (Input.GetAxisRaw (horizAxis4) == -1) {
+
+
+				if (axis4InUse == false) {
+					// Call your event function here.
+					axis4InUse = true;
+					markerPos++;
+					updateMarkerPos ();
+
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis4) == 1) {
+
+
+				if (axis4InUse == false) {
+					// Call your event function here.
+					axis4InUse = true;
+					markerPos--;
+					updateMarkerPos ();
+				}
+			}
+
+			if (Input.GetAxisRaw (horizAxis4) == 0) {
+
+
+				axis4InUse = false;
+			}
+
+			if (Input.GetButtonDown (jumpButton4)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
+			}
+			if (Input.GetButtonDown (gravButton4)) {
+				// log which arena
+				if (markerPos == 4) {
+					DataManagerScript.arenaType = Random.Range (0, 4);
+				} else {
+					DataManagerScript.arenaType = markerPos;
+				}
+				StartCoroutine ("NextScene");
 			}
 		}
+	}
 
-		if (Input.GetAxisRaw (horizAxis1) == 1) {
-
-
-			if (axis1InUse == false) {
-				// Call your event function here.
-				axis1InUse = true;
-				markerPos--;
-				audio.PlayOneShot (tickDown);
-				updateMarkerPos ();
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis1) == 0) {
-
-
-			axis1InUse = false;
-		}
-
-		if (Input.GetButtonDown (jumpButton1)) {
-			// log which arena
-			if (markerPos == 4) {
-				Debug.Log ("choosing random level");
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-		if (Input.GetButtonDown (gravButton1)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-
-		if (Input.GetAxisRaw (horizAxis2) == -1) {
-
-
-			if (axis2InUse == false) {
-				// Call your event function here.
-				axis2InUse = true;
-				markerPos++;
-				updateMarkerPos ();
-
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis2) == 1) {
-
-
-			if (axis2InUse == false) {
-				// Call your event function here.
-				axis2InUse = true;
-				markerPos--;
-				updateMarkerPos ();
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis2) == 0) {
-
-
-			axis2InUse = false;
-		}
-
-		if (Input.GetButtonDown (jumpButton2)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-		if (Input.GetButtonDown (gravButton2)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-
-
-		if (Input.GetAxisRaw (horizAxis3) == -1) {
-
-
-			if (axis3InUse == false) {
-				// Call your event function here.
-				axis3InUse = true;
-				markerPos++;
-				updateMarkerPos ();
-
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis3) == 1) {
-
-
-			if (axis3InUse == false) {
-				// Call your event function here.
-				axis3InUse = true;
-				markerPos--;
-				updateMarkerPos ();
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis3) == 0) {
-
-
-			axis3InUse = false;
-		}
-
-		if (Input.GetButtonDown (jumpButton3)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-		if (Input.GetButtonDown (gravButton3)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-
-
-		if (Input.GetAxisRaw (horizAxis4) == -1) {
-
-
-			if (axis4InUse == false) {
-				// Call your event function here.
-				axis4InUse = true;
-				markerPos++;
-				updateMarkerPos ();
-
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis4) == 1) {
-
-
-			if (axis4InUse == false) {
-				// Call your event function here.
-				axis4InUse = true;
-				markerPos--;
-				updateMarkerPos ();
-			}
-		}
-
-		if (Input.GetAxisRaw (horizAxis4) == 0) {
-
-
-			axis4InUse = false;
-		}
-
-		if (Input.GetButtonDown (jumpButton4)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
-		if (Input.GetButtonDown (gravButton4)) {
-			// log which arena
-			if (markerPos == 4) {
-				DataManagerScript.arenaType = Random.Range (0, 4);
-			} else {
-				DataManagerScript.arenaType = markerPos;
-			}
-			Application.LoadLevel ("proTipScene");
-		}
+	IEnumerator NextScene(){
+		locked = true;
+		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
+		Application.LoadLevel ("proTipScene");
 	}
 
 	void updateMarkerPos(){

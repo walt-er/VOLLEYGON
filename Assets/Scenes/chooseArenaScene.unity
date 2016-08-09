@@ -544,6 +544,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 184236849}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &210937425
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -9.594244
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.9666151
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 456974, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435880, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+      propertyPath: fadeSpeed
+      value: 0.9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 002c8043162dd4a8b8916f3c3b81d043, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &305808712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,7 +2704,7 @@ Transform:
   - {fileID: 348813937}
   - {fileID: 892387601}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &1439942906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3781,17 +3827,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
-  AutomaticPhase: 0
+  AutomaticPhase: 1
   Phase: 0.5
   ConvertToGrayscale: 0
-  NoiseIntensity: 0.5
-  ScanlinesIntensity: 0.9
+  NoiseIntensity: 0.4
+  ScanlinesIntensity: 0.5
   ScanlinesCount: 768
   ScanlinesOffset: 0
   VerticalScanlines: 0
-  Distortion: 0.1
-  CubicDistortion: 0.1
-  Scale: 0.9
+  Distortion: 0.05
+  CubicDistortion: 0.05
+  Scale: 1
 --- !u!114 &1865589697
 MonoBehaviour:
   m_ObjectHideFlags: 0

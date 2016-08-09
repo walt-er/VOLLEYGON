@@ -95,15 +95,17 @@ public class StatManagerScript : MonoBehaviour {
 			playersPlaying++; 
 		}
 
-		Invoke ("BackToTitle", 30f);
+		Invoke ("TimeOutTitle", 30f);
 
 	}
 	
 	// Update is called once per frame
-
+	void TimeOutTitle(){
+		StartCoroutine ("BackToTitle");
+	}
 	void Update () {
 		if (playersReady == playersPlaying) {
-			BackToTitle ();
+			StartCoroutine ("BackToTitle");
 		}
 	}
 
@@ -176,7 +178,9 @@ public class StatManagerScript : MonoBehaviour {
 		}
 	}
 
-	void BackToTitle(){
+	IEnumerator BackToTitle(){
+		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel ("titleScene");
 	}
 
