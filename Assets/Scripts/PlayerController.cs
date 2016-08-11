@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip collideWithBallSound2;
 	public AudioClip collideWithBallSoundBig;
 	public AudioClip playerExplode;
+	public AudioClip powerupSound;
 
 	public TextMesh pandemoniumCounter;
 
@@ -324,6 +325,7 @@ public class PlayerController : MonoBehaviour {
 			if (coll.gameObject.GetComponent<NewPowerUpScript> ().isAvailable) {
 				coll.gameObject.GetComponent<NewPowerUpScript> ().FadeOut ();
 				ApplyPowerup (whichPowerup);
+				SoundManagerScript.instance.PlaySingle (powerupSound);
 				// fade out all other powerups
 				foreach (GameObject otherPowerup in GameObject.FindGameObjectsWithTag("Powerup")) {
 				    otherPowerup.gameObject.GetComponent<NewPowerUpScript> ().FadeOut (false);
