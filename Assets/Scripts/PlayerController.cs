@@ -38,6 +38,18 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip playerExplode;
 	public AudioClip powerupSound;
 
+	public AudioClip speedUpSFX1;
+	public AudioClip speedUpSFX2;
+	public AudioClip speedUpSFX3;
+
+	public AudioClip sizeUpSFX1;
+	public AudioClip sizeUpSFX2;
+
+	public AudioClip pandemoniumSFX1;
+	public AudioClip pandemoniumSFX2;
+
+
+
 	public TextMesh pandemoniumCounter;
 
 	public GameObject trail;
@@ -452,8 +464,23 @@ public class PlayerController : MonoBehaviour {
 			iTween.FadeTo (mpm, 1.0f, .5f);
 		}
 	}
-
-	void ApplyPowerup(int whichPowerup){
+	IEnumerator PlaySFXWithDelay(int whichSFX){
+		yield return new WaitForSeconds(.5f);
+		switch (whichSFX) {
+		case 1:
+			SoundManagerScript.instance.RandomizeSfx (speedUpSFX1, speedUpSFX2, speedUpSFX3);
+			break;
+		case 2:
+			SoundManagerScript.instance.RandomizeSfx (sizeUpSFX1, sizeUpSFX2);
+			break;
+		case 3:
+			SoundManagerScript.instance.RandomizeSfx (pandemoniumSFX1, pandemoniumSFX2);
+			break;
+		case 4:
+			break;
+		}
+	}
+	void ApplyPowerup(int whichPowerup, bool playSFX = true){
 		Debug.Log (whichPowerup);
 		switch (whichPowerup) {
 
@@ -461,7 +488,9 @@ public class PlayerController : MonoBehaviour {
 			speedPowerupActive = true;
 			speed = 22f;
 			speedPowerupTimer = 20f; 
-
+			if (playSFX){
+				StartCoroutine ("PlaySFXWithDelay", 1);
+			}
 			break;
 
 		case 2:
@@ -471,12 +500,17 @@ public class PlayerController : MonoBehaviour {
 			rb.mass = startMass * 2f;
 			jumpPower = startJumpPower * 1.75f;
 			sizePowerupTimer = 20f;
-
+			if (playSFX){
+				StartCoroutine ("PlaySFXWithDelay", 2);
+			}
 			break;
 		
 		case 3:
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
+			if (playSFX) {
+				StartCoroutine ("PlaySFXWithDelay", 3);
+			}
 			break;
 
 		case 4:
@@ -498,7 +532,8 @@ public class PlayerController : MonoBehaviour {
 			case 5:
 				// broadcast to all players to activate pandemonium
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (3); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (3, false); 
+					PlaySFXWithDelay (3);
 				}
 				foreach (GameObject mpm in GameObject.FindGameObjectsWithTag("MidpointMarker")) {
 					//mpm.SetActive (false);
@@ -511,7 +546,8 @@ public class PlayerController : MonoBehaviour {
 				break;
 			case 6:
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (2); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (2, false); 
+					PlaySFXWithDelay (2);
 				}
 				break;
 			}

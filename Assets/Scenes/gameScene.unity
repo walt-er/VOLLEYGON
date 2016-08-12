@@ -349,6 +349,13 @@ MonoBehaviour:
     type: 3}
   playerExplode: {fileID: 0}
   powerupSound: {fileID: 0}
+  speedUpSFX1: {fileID: 0}
+  speedUpSFX2: {fileID: 0}
+  speedUpSFX3: {fileID: 0}
+  sizeUpSFX1: {fileID: 0}
+  sizeUpSFX2: {fileID: 0}
+  pandemoniumSFX1: {fileID: 0}
+  pandemoniumSFX2: {fileID: 0}
   pandemoniumCounter: {fileID: 535072815}
   trail: {fileID: 1755531475}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -1108,6 +1115,34 @@ Prefab:
       propertyPath: powerupSound
       value: 
       objectReference: {fileID: 8300000, guid: 1de9e5ba2487e49f29d9194b9b06d5e1, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: cba33e4b13f224e9280679fe6fab2511, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 387f41762c872483a83e29d2bd4ee418, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX3
+      value: 
+      objectReference: {fileID: 8300000, guid: b7ce188f9fe904a119c0c729bb653bb2, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ddf3f3b37038423e8c6aa4e943f96b0, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a1f8078117f44c3b1370eff1b867b3, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: ea24cb5fae850443586c873c4aa9d805, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 4654b401563124b1bba565ca39dec944, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -3570,6 +3605,13 @@ MonoBehaviour:
     type: 3}
   playerExplode: {fileID: 0}
   powerupSound: {fileID: 0}
+  speedUpSFX1: {fileID: 0}
+  speedUpSFX2: {fileID: 0}
+  speedUpSFX3: {fileID: 0}
+  sizeUpSFX1: {fileID: 0}
+  sizeUpSFX2: {fileID: 0}
+  pandemoniumSFX1: {fileID: 0}
+  pandemoniumSFX2: {fileID: 0}
   pandemoniumCounter: {fileID: 1754763959}
   trail: {fileID: 1461331819}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -4193,6 +4235,34 @@ Prefab:
       propertyPath: powerupSound
       value: 
       objectReference: {fileID: 8300000, guid: 1de9e5ba2487e49f29d9194b9b06d5e1, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: cba33e4b13f224e9280679fe6fab2511, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 387f41762c872483a83e29d2bd4ee418, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX3
+      value: 
+      objectReference: {fileID: 8300000, guid: b7ce188f9fe904a119c0c729bb653bb2, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ddf3f3b37038423e8c6aa4e943f96b0, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a1f8078117f44c3b1370eff1b867b3, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: ea24cb5fae850443586c873c4aa9d805, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 4654b401563124b1bba565ca39dec944, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -5790,6 +5860,13 @@ MonoBehaviour:
     type: 3}
   playerExplode: {fileID: 0}
   powerupSound: {fileID: 0}
+  speedUpSFX1: {fileID: 0}
+  speedUpSFX2: {fileID: 0}
+  speedUpSFX3: {fileID: 0}
+  sizeUpSFX1: {fileID: 0}
+  sizeUpSFX2: {fileID: 0}
+  pandemoniumSFX1: {fileID: 0}
+  pandemoniumSFX2: {fileID: 0}
   pandemoniumCounter: {fileID: 1937652866}
   trail: {fileID: 1568223550}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
@@ -7091,6 +7168,34 @@ Prefab:
       propertyPath: powerupSound
       value: 
       objectReference: {fileID: 8300000, guid: 1de9e5ba2487e49f29d9194b9b06d5e1, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: cba33e4b13f224e9280679fe6fab2511, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 387f41762c872483a83e29d2bd4ee418, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX3
+      value: 
+      objectReference: {fileID: 8300000, guid: b7ce188f9fe904a119c0c729bb653bb2, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ddf3f3b37038423e8c6aa4e943f96b0, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a1f8078117f44c3b1370eff1b867b3, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: ea24cb5fae850443586c873c4aa9d805, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 4654b401563124b1bba565ca39dec944, type: 3}
     m_RemovedComponents:
     - {fileID: 2303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -8283,6 +8388,34 @@ Prefab:
       propertyPath: powerupSound
       value: 
       objectReference: {fileID: 8300000, guid: 1de9e5ba2487e49f29d9194b9b06d5e1, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: cba33e4b13f224e9280679fe6fab2511, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 387f41762c872483a83e29d2bd4ee418, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: speedUpSFX3
+      value: 
+      objectReference: {fileID: 8300000, guid: b7ce188f9fe904a119c0c729bb653bb2, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: a4a1f8078117f44c3b1370eff1b867b3, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: sizeUpSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ddf3f3b37038423e8c6aa4e943f96b0, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: ea24cb5fae850443586c873c4aa9d805, type: 3}
+    - target: {fileID: 11415504, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
+      propertyPath: pandemoniumSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 4654b401563124b1bba565ca39dec944, type: 3}
     m_RemovedComponents:
     - {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
     - {fileID: 3303506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 2}
@@ -10395,6 +10528,13 @@ MonoBehaviour:
     type: 3}
   playerExplode: {fileID: 0}
   powerupSound: {fileID: 0}
+  speedUpSFX1: {fileID: 0}
+  speedUpSFX2: {fileID: 0}
+  speedUpSFX3: {fileID: 0}
+  sizeUpSFX1: {fileID: 0}
+  sizeUpSFX2: {fileID: 0}
+  pandemoniumSFX1: {fileID: 0}
+  pandemoniumSFX2: {fileID: 0}
   pandemoniumCounter: {fileID: 983609930}
   trail: {fileID: 25047247}
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
