@@ -18,9 +18,11 @@ public class NewPowerUpScript : MonoBehaviour {
 
 	// Use this for initialization
 
-
-	void Start () {
+	void Awake () {
 		timer = 5f + (Random.value * 5f);
+	}
+	void Start () {
+		
 		isAvailable = true;
 
 		//powerupType = Random.Range (1, 5);
@@ -39,6 +41,10 @@ public class NewPowerUpScript : MonoBehaviour {
 			break;
 		}
 
+	}
+	void ResetTime(float newTime){
+		timer = newTime;
+		Debug.Log ("timer is now " + timer);
 	}
 
 	void Config(int whichType){
