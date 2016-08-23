@@ -716,7 +716,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 133766, guid: e241f0b08689e4d8b8c81984d26532ac, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e241f0b08689e4d8b8c81984d26532ac, type: 2}
@@ -2527,7 +2527,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da3a55290c4f643d09e11117c73e45c6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6460,11 +6460,11 @@ Prefab:
         type: 3}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: timestampHigh
-      value: 30528873
+      value: 30531019
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: timestampLow
-      value: 761262592
+      value: -1513521920
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: m_size.x
@@ -6727,7 +6727,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1c21438af0fc34b63bc3b8398bc35e70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f47bd5a5b5e1434da2e38e88e54836c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -4913,6 +4913,7 @@ MonoBehaviour:
   trianglePC: {fileID: 544801934}
   trapezoidPC: {fileID: 544801933}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -5043,7 +5044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &556807003
 Transform:
   m_ObjectHideFlags: 0
@@ -6421,6 +6422,7 @@ MonoBehaviour:
   trianglePC: {fileID: 692900236}
   trapezoidPC: {fileID: 692900235}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -10275,6 +10277,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1177845248}
   trapezoidPC: {fileID: 1177845247}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -11429,6 +11432,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1356025044}
   trapezoidPC: {fileID: 1356025043}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -12999,6 +13003,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1580120579}
   trapezoidPC: {fileID: 1580120578}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 0
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -14510,6 +14515,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1734693902}
   trapezoidPC: {fileID: 1734693901}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -15558,6 +15564,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1826883200}
   trapezoidPC: {fileID: 1826883199}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -15713,6 +15720,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1841888615}
   trapezoidPC: {fileID: 1841888614}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -16049,6 +16057,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1854584136}
   trapezoidPC: {fileID: 1854584135}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -17135,6 +17144,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1955294999}
   trapezoidPC: {fileID: 1955294998}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -18180,6 +18190,7 @@ MonoBehaviour:
   trianglePC: {fileID: 2066794111}
   trapezoidPC: {fileID: 2066794110}
   penaltyExplosion: {fileID: 0}
+  startDelay: 0.1
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}

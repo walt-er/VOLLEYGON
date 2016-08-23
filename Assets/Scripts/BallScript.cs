@@ -422,8 +422,12 @@ public class BallScript : MonoBehaviour {
 				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
 
 					//Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
-
+					if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1) {
+						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+					} else {
+						
+						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
+					}
 
 					CheckForMatchPoint ();
 					//scoreboard.GetComponent<ScoreboardManagerScript> ().enableDash ();

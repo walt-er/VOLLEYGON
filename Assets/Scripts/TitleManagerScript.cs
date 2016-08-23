@@ -12,6 +12,11 @@ public class TitleManagerScript : MonoBehaviour {
 	public string gravButton3 = "Grav_P3";
 	public string jumpButton4 = "Jump_P4";
 	public string gravButton4 = "Grav_P4";
+	public string startButton1 = "Start_P1";
+	public string startButton2 = "Start_P2";
+	public string startButton3 = "Start_P3";
+	public string startButton4 = "Start_P4";
+
 	private int markerPos = 0;
 	private float[] markerPositions  = {-15f, -5f, 5f, 15f};
 
@@ -34,6 +39,7 @@ public class TitleManagerScript : MonoBehaviour {
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
 		DataManagerScript.ResetPlayerTypes ();
+
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
 	}
@@ -62,6 +68,22 @@ public class TitleManagerScript : MonoBehaviour {
 			Application.LoadLevel("choosePlayerScene");
 		}
 		if (Input.GetButtonDown (gravButton4)) {
+			Application.LoadLevel("choosePlayerScene");
+		}
+
+		if (Input.GetButtonDown (startButton1)) {
+			Application.LoadLevel("choosePlayerScene");
+		}
+
+		if (Input.GetButtonDown (startButton2)) {
+			Application.LoadLevel("choosePlayerScene");
+		}
+
+		if (Input.GetButtonDown (startButton3)) {
+			Application.LoadLevel("choosePlayerScene");
+		}
+
+		if (Input.GetButtonDown (startButton4)) {
 			Application.LoadLevel("choosePlayerScene");
 		}
 	}

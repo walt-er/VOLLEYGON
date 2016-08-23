@@ -51,6 +51,8 @@ public class StatManagerScript : MonoBehaviour {
 	public int playersPlaying = 0;
 	public int playersReady = 0;
 
+	private int MVP = 0;
+
 	private float scoreWeight = 1f;
 	private float aceWeight = 1f;
 	private float returnWeight = .25f;
@@ -94,7 +96,7 @@ public class StatManagerScript : MonoBehaviour {
 		if (DataManagerScript.playerFourPlaying) {
 			playersPlaying++; 
 		}
-
+		LogStats ();
 		Invoke ("TimeOutTitle", 30f);
 
 	}
@@ -122,6 +124,11 @@ public class StatManagerScript : MonoBehaviour {
 		playersReady--;
 	}
 
+	void LogStats(){
+		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game!\n";
+		System.IO.File.AppendAllText("playlog.txt", logText);
+
+	}
 	void DetermineMVP(){
 		float p1Score = DataManagerScript.playerOneAces * aceWeight + DataManagerScript.playerOneScores * scoreWeight + DataManagerScript.playerOneReturns * returnWeight - DataManagerScript.playerOneBumbles * bumbleWeight; 
 		float p2Score = DataManagerScript.playerTwoAces * aceWeight + DataManagerScript.playerTwoScores * scoreWeight + DataManagerScript.playerTwoReturns * returnWeight - DataManagerScript.playerTwoBumbles * bumbleWeight; 
@@ -132,18 +139,22 @@ public class StatManagerScript : MonoBehaviour {
 
 		if (p1Score == scores.Max ()) {
 			activateMVP (1);
+			MVP = 1;
 		}
 
 		if (p2Score == scores.Max ()) {
 			activateMVP (2);
+			MVP = 2;
 		}
 
 		if (p3Score == scores.Max ()) {
 			activateMVP (3);
+			MVP = 3;
 		}
 
 		if (p4Score == scores.Max ()) {
 			activateMVP (4);
+			MVP = 4;
 		}
 	}
 

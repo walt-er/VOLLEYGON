@@ -5,11 +5,10 @@ public class PlayMovieScript : MonoBehaviour {
 	public MovieTexture movTexture;
 	public GameObject pressStartAnimation;
 	private bool fadedOut;
-	// Use this for initialization
+
 	void Start () {
 		fadedOut = false;
-		// this line of code will make the Movie Texture begin playing
-		//((MovieTexture)GetComponent<Renderer>().material.mainTexture).Play();
+	
 		GetComponent<Renderer>().material.mainTexture = movTexture;
 		movTexture.Play();
 	}
