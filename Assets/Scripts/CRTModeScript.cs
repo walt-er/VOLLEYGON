@@ -9,6 +9,8 @@ public class CRTModeScript : MonoBehaviour {
 		if (DataManagerScript.CRTMode) {
 			
 			gameObject.GetComponent<AnalogTV> ().enabled = true;
+		} else {
+			gameObject.GetComponent<AnalogTV> ().enabled = false;
 		}
 	}
 	

@@ -10,6 +10,7 @@ public class ProtipManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		MusicManagerScript.Instance.StartIntro ();
 		Invoke ("StartGame", proTipTime);
 		whichProtip = Random.Range (0, protipContainer.transform.childCount);
 		ChooseRandomProtip ();

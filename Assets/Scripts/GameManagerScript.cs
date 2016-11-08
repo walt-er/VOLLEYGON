@@ -44,6 +44,7 @@ public class GameManagerScript : MonoBehaviour {
 		EZReplayManager.get.record();
 	}
 	void Start () {
+		MusicManagerScript.Instance.StartRoot ();
 		launchTimer ();
 		timeSinceLastPowerup = 0f;
 		powerupAppearTime = 10f;

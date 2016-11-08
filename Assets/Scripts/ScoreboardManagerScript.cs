@@ -46,11 +46,13 @@ public class ScoreboardManagerScript : MonoBehaviour {
 
 	public void TeamOneWin(){
 		Team1Wins.gameObject.SetActive (true);
+		MusicManagerScript.Instance.StartRoot ();
 		scoreBoardShowing = true;
 	}
 
 	public void TeamTwoWin(){
 		Team2Wins.gameObject.SetActive (true);
+		MusicManagerScript.Instance.StartRoot ();
 		scoreBoardShowing = true;
 	}
 
@@ -86,6 +88,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 				
 				deuce.SetActive (true);
 				iTween.FadeTo (deuce, 0.8f, .25f);
+				MusicManagerScript.Instance.StartFourth ();
 			}
 		}		
 

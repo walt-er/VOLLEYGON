@@ -75,7 +75,7 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	void Start () {
-
+		MusicManagerScript.Instance.StartIntro ();
 		Player1MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player2MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player3MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);

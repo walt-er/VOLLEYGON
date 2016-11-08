@@ -36,6 +36,7 @@ public class TitleManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		MusicManagerScript.Instance.FadeOutEverything ();
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
 		DataManagerScript.ResetPlayerTypes ();
@@ -46,6 +47,7 @@ public class TitleManagerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		MusicManagerScript.Instance.FadeOutEverything ();
 		if (Input.GetButtonDown (jumpButton1)) {
 			Application.LoadLevel("choosePlayerScene");
 		}

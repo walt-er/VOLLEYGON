@@ -66,6 +66,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		Instance = this;
 	}
 	void Start(){
+		MusicManagerScript.Instance.StartRoot ();
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
 		msgBG.enabled = false;

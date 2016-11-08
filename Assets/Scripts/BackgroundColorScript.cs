@@ -8,8 +8,10 @@ public class BackgroundColorScript : MonoBehaviour {
 	public Color originalColor;
 	public bool matchPoint;
 	public bool matchOver;
+	public bool deuce;
 	public Color teamOneColor;
 	public Color teamTwoColor;
+	public Color deuceColor;
 	public int whoWon;
 	public int whoIsAboutToWin;
 	// Use this for initialization
@@ -20,8 +22,10 @@ public class BackgroundColorScript : MonoBehaviour {
 		originalColor = HexToColor ("282828FF");
 		teamOneColor = HexToColor ("054f88");
 		teamTwoColor = HexToColor ("861b1c");
+		deuceColor = HexToColor ("363682");
 		//matchPoint = true;
 		matchOver = false;
+		deuce = false;
 	}
 	
 	// Update is called once per frame
@@ -36,7 +40,10 @@ public class BackgroundColorScript : MonoBehaviour {
 				break;
 			}
 			rend.material.SetColor ("_Color", lerpedColor);
-		} else if (!matchPoint && !matchOver) {
+		} else if (deuce){
+			lerpedColor = Color.Lerp (originalColor, deuceColor, Mathf.PingPong (Time.time / 1.1f, 1));
+			rend.material.SetColor ("_Color", lerpedColor);
+		} else if (!matchPoint && !matchOver && !deuce) {
 			rend.material.color = Color.Lerp (rend.material.color, originalColor, 0.05f);
 		}
 
@@ -58,6 +65,14 @@ public class BackgroundColorScript : MonoBehaviour {
 		matchPoint = false;
 	//	matchOver = false;
 
+	}
+
+	public void TurnOnDeuce(){
+		deuce = true;
+	}
+
+	public void TurnOffDeuce(){
+		deuce = false;
 	}
 
 	Color HexToColor(string hex)

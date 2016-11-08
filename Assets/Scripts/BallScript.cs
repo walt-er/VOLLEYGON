@@ -36,6 +36,7 @@ public class BallScript : MonoBehaviour {
 	public GameObject redball;
 	public GameObject blueball;
 	public GameObject circleTrail;
+	int lastScore;
 
 	public GameObject Arena1;
 	public GameObject Arena2;
@@ -60,7 +61,7 @@ public class BallScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		audio = GetComponent<AudioSource> ();
-
+		lastScore = 0;
 		didSirenPlayAlready = false;
 		lastTouch = 0;
 		flashTime = 0f;
@@ -368,10 +369,15 @@ public class BallScript : MonoBehaviour {
 		// check for match point
 		if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.teamOneScore) {
 			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+			//MusicManagerScript.Instance.SwitchMusic ();
 		} else if (GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo) {
 			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
+			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
+			MusicManagerScript.Instance.StartFifth ();
 		} else if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
 			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
+			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
+			MusicManagerScript.Instance.StartFifth ();
 
 		} 
 	}
@@ -415,15 +421,28 @@ public class BallScript : MonoBehaviour {
 				if (Mathf.Sign (transform.position.x) < 0) {
 					GameManagerScript.Instance.teamTwoScore += 1; 
 					ComputeStat (2); 
+					if (lastScore != 2) {
+						MusicManagerScript.Instance.SwitchMusic ();
+					}
+
+					lastScore = 2;
 				} else {
 					GameManagerScript.Instance.teamOneScore += 1;
 					ComputeStat (1);
+
+					if (lastScore != 1) {
+						MusicManagerScript.Instance.SwitchMusic ();
+					}
+
+
+					lastScore = 1;
 				}
 				if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
 
 					//Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2
 					if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1) {
 						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+						background.GetComponent<BackgroundColorScript> ().TurnOnDeuce();
 					} else {
 						
 						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
@@ -442,6 +461,7 @@ public class BallScript : MonoBehaviour {
 				} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
 					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
 						//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+						MusicManagerScript.Instance.StartFifth();
 						CheckForMatchPoint ();
 						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
 					}

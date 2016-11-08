@@ -482,6 +482,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	void ApplyPowerup(int whichPowerup, bool playSFX = true){
 		Debug.Log (whichPowerup);
+		MusicManagerScript.Instance.StartFourth ();
 		switch (whichPowerup) {
 
 		case 1:
