@@ -22,7 +22,7 @@ public class BackgroundColorScript : MonoBehaviour {
 		originalColor = HexToColor ("282828FF");
 		teamOneColor = HexToColor ("054f88");
 		teamTwoColor = HexToColor ("861b1c");
-		deuceColor = HexToColor ("363682");
+		deuceColor = HexToColor ("5d068a");
 		//matchPoint = true;
 		matchOver = false;
 		deuce = false;
@@ -40,7 +40,7 @@ public class BackgroundColorScript : MonoBehaviour {
 				break;
 			}
 			rend.material.SetColor ("_Color", lerpedColor);
-		} else if (deuce){
+		} else if (deuce && !matchOver){
 			lerpedColor = Color.Lerp (originalColor, deuceColor, Mathf.PingPong (Time.time / 1.1f, 1));
 			rend.material.SetColor ("_Color", lerpedColor);
 		} else if (!matchPoint && !matchOver && !deuce) {

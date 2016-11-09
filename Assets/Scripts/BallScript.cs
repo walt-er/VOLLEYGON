@@ -20,6 +20,10 @@ public class BallScript : MonoBehaviour {
 	private int bounces = 0;
 	public int bouncesOnTop;
 	public int bouncesOnBottom;
+	public int bouncesOnTopLeft;
+	public int bouncesOnTopRight;
+	public int bouncesOnBottomRight;
+	public int bouncesOnBottomLeft;
 	public float baseTimeBetweenGravChanges = 10f;
 	private float lastXPos;
 	public Sprite originalSprite;
@@ -148,6 +152,10 @@ public class BallScript : MonoBehaviour {
 			bounces = 0;
 			bouncesOnTop = 0;
 			bouncesOnBottom = 0;
+			bouncesOnTopLeft = 0;
+			bouncesOnTopRight = 0;
+			bouncesOnBottomLeft = 0;
+			bouncesOnBottomRight = 0;
 			Arena1.BroadcastMessage("ReturnColor");
 			Arena2.BroadcastMessage("ReturnColor");
 			Arena3.BroadcastMessage("ReturnColor");
@@ -187,6 +195,10 @@ public class BallScript : MonoBehaviour {
 		bounces = 0;
 		bouncesOnTop = 0;
 		bouncesOnBottom = 0;
+		bouncesOnBottomLeft = 0;
+		bouncesOnBottomRight = 0;
+		bouncesOnTopLeft = 0;
+		bouncesOnTopRight = 0;
 		timer = 10; // arbitrary high number
 		Transform child = gameObject.transform.Find("CircleTrails");
 		child.gameObject.SetActive (false); 
@@ -392,15 +404,28 @@ public class BallScript : MonoBehaviour {
 			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
 			bounces += 1;
 			if (coll.gameObject.transform.position.y > 0) {
-				bouncesOnTop += 1;
+				if (coll.gameObject.transform.position.x < 0) {
+					//bouncesOnTop += 1;
+					bouncesOnTopLeft += 1;
+				}
+				if (coll.gameObject.transform.position.x > 0) {
+					bouncesOnTopRight += 1;
+				}
 			} else if (coll.gameObject.transform.position.y < 0) {
-				bouncesOnBottom += 1;
+				//bouncesOnBottom += 1;
+				if (coll.gameObject.transform.position.x < 0) {
+					//bouncesOnTop += 1;
+					bouncesOnBottomLeft += 1;
+				}
+				if (coll.gameObject.transform.position.x > 0) {
+					bouncesOnBottomRight += 1;
+				}
 			}
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
-			if (bounces >= 2 && singleMode || bouncesOnTop >= 2 && !singleMode || bouncesOnBottom >= 2 && !singleMode) {
+			if (bounces >= 2 && singleMode || bouncesOnTopLeft >= 2 && !singleMode || bouncesOnTopRight >= 2 && !singleMode || bouncesOnBottomRight >= 2 && !singleMode || bouncesOnBottomLeft >= 2 && !singleMode) {
 
 				// Fire an explosion
 				audio.Stop ();
