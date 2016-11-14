@@ -70,7 +70,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 			if (Input.GetButtonDown (jumpButton1)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					Debug.Log ("choosing random level");
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
@@ -80,7 +80,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 			if (Input.GetButtonDown (gravButton1)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -119,7 +119,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 			if (Input.GetButtonDown (jumpButton2)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -128,7 +128,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 			if (Input.GetButtonDown (gravButton2)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -168,7 +168,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 			if (Input.GetButtonDown (jumpButton3)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -177,7 +177,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 			if (Input.GetButtonDown (gravButton3)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -217,7 +217,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 			if (Input.GetButtonDown (jumpButton4)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;
@@ -226,7 +226,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 			if (Input.GetButtonDown (gravButton4)) {
 				// log which arena
-				if (markerPos == 4) {
+				if (markerPos == 0) {
 					DataManagerScript.arenaType = Random.Range (0, 4);
 				} else {
 					DataManagerScript.arenaType = markerPos;

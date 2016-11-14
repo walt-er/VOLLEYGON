@@ -59,7 +59,7 @@ public class BallScript : MonoBehaviour {
 	public AudioClip bounceOffWallSound;
 	public AudioClip bounceOffScoringBoundarySound; 
 	public AudioClip largeHitSound;
-
+	private float maxSpeed = 68f;
 	private AudioSource audio;
 	public bool didSirenPlayAlready;
 	// Use this for initialization
@@ -82,9 +82,21 @@ public class BallScript : MonoBehaviour {
 
 	//	scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
 	}
-	
+
+	void FixedUpdate(){
+		
+	}
 	// Update is called once per frame
 	void Update () {
+		if (rb.velocity.magnitude > 80f) {
+
+			Debug.Log (rb.velocity.magnitude);
+		}
+		if(rb.velocity.magnitude > maxSpeed)
+		{
+
+			rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+		}
 		if (isTimerRunning) {
 			timer -= Time.deltaTime;
 			//Debug.Log (timer);
@@ -143,6 +155,8 @@ public class BallScript : MonoBehaviour {
 		ResetTimer();
 		//In the future, factor in the gravity factor;
 		rb.velocity = new Vector2 (Random.Range(-10.0F, 10.0F), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
+		//rb.velocity = new Vector2 (80f,0f);
+
 		SoundManagerScript.instance.PlaySingle (ballServedSound);
 
 	}

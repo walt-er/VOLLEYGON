@@ -8,6 +8,19 @@ public class MusicManagerScript : MonoBehaviour {
 	public AudioSource secondSource;
 	public AudioSource fourthSource;
 	public AudioSource fifthSource;
+
+	public AudioSource introSourceSetOne;
+	public AudioSource rootSourceSetOne;
+	public AudioSource secondSourceSetOne;
+	public AudioSource fourthSourceSetOne;
+	public AudioSource fifthSourceSetOne;
+
+	public AudioSource introSourceSetTwo;
+	public AudioSource rootSourceSetTwo;
+	public AudioSource secondSourceSetTwo;
+	public AudioSource fourthSourceSetTwo;
+	public AudioSource fifthSourceSetTwo;
+
 	public int whichSource;
 	public float masterVolume;
 
@@ -24,6 +37,8 @@ public class MusicManagerScript : MonoBehaviour {
 	void Start () {
 		TurnOffEverything ();
 		whichSource = 0;
+
+		introSource = rootSourceSetTwo;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +52,18 @@ public class MusicManagerScript : MonoBehaviour {
 		secondSource.volume = 0;
 		fourthSource.volume = 0;
 		fifthSource.volume = 0;
+
+		introSourceSetOne.volume = 0;
+		rootSourceSetOne.volume = 0;
+		secondSourceSetOne.volume = 0;
+		fourthSourceSetOne.volume = 0;
+		fifthSourceSetOne.volume = 0;
+
+		introSourceSetTwo.volume = 0;
+		rootSourceSetTwo.volume = 0;
+		secondSourceSetTwo.volume = 0;
+		fourthSourceSetTwo.volume = 0;
+		fifthSourceSetTwo.volume = 0;
 	}
 	public void StartIntro(){
 		TurnOffEverything ();

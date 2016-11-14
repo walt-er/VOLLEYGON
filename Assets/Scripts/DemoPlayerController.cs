@@ -26,7 +26,8 @@ public class DemoPlayerController : MonoBehaviour {
 	private float repeatFreq;
 	public GameObject penaltyExplosion; 
 	public float startDelay = 0.1f;
-
+	private bool moveToLeft;
+	private bool moveToRight;
 	public bool clampPosition = true;
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
@@ -182,11 +183,29 @@ public class DemoPlayerController : MonoBehaviour {
 			break;
 		case 6:
 			float randomStartVal = Random.Range (0f, 2f);
-			Invoke ("JumpRepeatedlySlowly", randomStartVal);
+			Invoke ("JumpRepeatedlySlowly", 1f);
+			break;
+		case 7: 
+
+			moveToLeft = true;
+			Invoke ("StopMoving", 1.0f);
+
+			break;
+
+		case 8:
+			moveToRight = true;
+			Invoke ("StopMoving", 1.0f);
+
 			break;
 		}
 	}
+	void StopMoving(){
+		moveToLeft = false;
+		moveToRight = false;
+		Invoke ("StopMoving", 0.2f);
 
+		rb.velocity = new Vector2 (0f, 0f);
+	}
 	IEnumerator Flash() {
 		Debug.Log ("flash firing");
 		for (float f = .8f; f >= 0; f -= 0.04f) {
@@ -215,6 +234,8 @@ public class DemoPlayerController : MonoBehaviour {
 		Jump ();
 		Invoke ("JumpRepeatedlySlowly", 2f);
 	}
+
+
 	void Jump(){
 		Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
 		rb.AddForce(jumpForce);
@@ -287,7 +308,13 @@ public class DemoPlayerController : MonoBehaviour {
 //			StartCoroutine ("Flash");
 //
 //		}
+		if (moveToLeft) {
+			rb.velocity = new Vector2 (-15f, 0f);
+		}
 
+		if (moveToRight) {
+			rb.velocity = new Vector2 (15f, 0f);
+		}
 		ClampPosition ();
 
 

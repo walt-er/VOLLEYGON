@@ -5,7 +5,7 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
-	public static string version; 
+	//public static string version; 
 	public int teamOneWins;
 	public int teamTwoWins;
 	public static bool playerOnePlaying = true;
@@ -47,7 +47,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static int TM_TeamOneWins;
 	public static int TM_TeamTwoWins;
 
-
+	public static string version;
 	void Awake(){
 		if (dataManager == null) {
 			DontDestroyOnLoad (gameObject);
@@ -58,14 +58,15 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V0.6";
-	
+		version = "V1.1";
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
 
 	public static void ResetPlayerTypes(){
 		playerOneType = 0;

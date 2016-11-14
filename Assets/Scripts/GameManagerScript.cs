@@ -62,19 +62,19 @@ public class GameManagerScript : MonoBehaviour {
 
 		switch (arenaType) {
 
-		case 0:
+		case 1:
 			Arena1.SetActive (true);
 			break;
 
-		case 1:
+		case 2:
 			Arena2.SetActive (true);
 			break;
 
-		case 2:
+		case 3:
 			Arena3.SetActive (true);
 			break;
 
-		case 3:
+		case 4:
 			Arena4.SetActive (true);
 			break;
 

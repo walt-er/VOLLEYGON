@@ -22,6 +22,7 @@ public class FakeBallScript : MonoBehaviour {
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
 	public Sprite changingSprite;
+	public bool neverFire = false;
 	private Sprite theSprite;
 	public GameObject prefab;
 	public GameObject trail;
@@ -61,7 +62,10 @@ public class FakeBallScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 
 		rb.isKinematic = true;
-		Invoke("LaunchBall", 1f);
+
+			
+			Invoke ("LaunchBall", 1f);
+		
 		timer = baseTimeBetweenGravChanges ; 
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
@@ -123,6 +127,7 @@ public class FakeBallScript : MonoBehaviour {
 		didSirenPlayAlready = false;
 	}
 	void LaunchBall(){
+		
 		rb.isKinematic = false;
 		trail.SetActive (true);
 		//Send the ball in a random direction 
@@ -130,9 +135,9 @@ public class FakeBallScript : MonoBehaviour {
 		child.gameObject.SetActive (true); 
 		ResetTimer();
 		//In the future, factor in the gravity factor;
-
-			rb.velocity = new Vector2 (Random.Range(-1*startVel, startVel), Random.Range(10f*rb.gravityScale, 20F*rb.gravityScale));
-
+		if (!neverFire) {
+			rb.velocity = new Vector2 (Random.Range (0f, 0f), Random.Range (15f * rb.gravityScale, 15F * rb.gravityScale));
+		}
 			
 	}
 

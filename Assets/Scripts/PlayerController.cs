@@ -85,8 +85,8 @@ public class PlayerController : MonoBehaviour {
 	private float triangleSpeed = 18f;
 	private float triangleSpinRate = -200f;
 
-	private float trapezoidJumpPower = 1800f;
-	private float trapezoidSpeed = 12f;
+	private float trapezoidJumpPower = 2000f;
+	private float trapezoidSpeed = 15f;
 	private float trapezoidSpinRate = -150f;
 
 
@@ -362,7 +362,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (coll.gameObject.tag == "Ball") {
-			Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
+		//	Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
 			var mag = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
 			if (mag > 30) {
 				SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);
@@ -487,7 +487,7 @@ public class PlayerController : MonoBehaviour {
 
 		case 1:
 			speedPowerupActive = true;
-			speed = 22f;
+			speed = 20f; //was 22
 			speedPowerupTimer = 20f; 
 			if (playSFX){
 				StartCoroutine ("PlaySFXWithDelay", 1);
