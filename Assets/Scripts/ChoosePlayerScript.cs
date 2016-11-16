@@ -9,6 +9,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
 	public Image msgBG;
+	public Image msgBG2;
+
 
 	public Text oneOnOneMessage;
 	public Text twoOnOneMessage;
@@ -64,12 +66,17 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	void Awake(){
 		Instance = this;
+		MusicManagerScript.Instance.whichSource += 1;
+		MusicManagerScript.Instance.whichSource = MusicManagerScript.Instance.whichSource % 2;
+		MusicManagerScript.Instance.SwitchToSource();
+
 	}
 	void Start(){
 		MusicManagerScript.Instance.StartRoot ();
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
 		msgBG.enabled = false;
+		msgBG2.enabled = false;
 		locked = false;
 
 		DataManagerScript.playerOnePlaying = false;
@@ -124,6 +131,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				// display 2v1 message
 				twoOnOneMessage.enabled = true;
 				msgBG.enabled = true;
+				msgBG2.enabled = true;
 				Debug.Log ("Showing 2v1 message");
 				oneOnOneMessage.enabled = false;
 			} else if (playersOnLeft == 1 && playersOnRight == 1){
@@ -131,12 +139,14 @@ public class ChoosePlayerScript : MonoBehaviour {
 				oneOnOneMessage.enabled = true;
 				twoOnOneMessage.enabled = false;
 				msgBG.enabled = true;
+				msgBG2.enabled = true;
 				Debug.Log ("showing one on one message");
 			}
 		} else {
 			twoOnOneMessage.enabled = false;
 			oneOnOneMessage.enabled = false;
 			msgBG.enabled = false;
+			msgBG2.enabled = false;
 			Debug.Log ("No longer startable. Hiding messages");
 			gameIsStartable = false;
 		}

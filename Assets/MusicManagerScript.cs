@@ -23,7 +23,7 @@ public class MusicManagerScript : MonoBehaviour {
 
 	public int whichSource;
 	public float masterVolume;
-
+	private int whichTrack;
 	// Static singleton property
 	public static MusicManagerScript Instance { get; private set; }
 
@@ -37,10 +37,31 @@ public class MusicManagerScript : MonoBehaviour {
 	void Start () {
 		TurnOffEverything ();
 		whichSource = 0;
+		whichTrack = 0;
 
-		introSource = rootSourceSetTwo;
+
+	SwitchToSource ();
+
 	}
-	
+
+	public void SwitchToSource(){
+		switch (whichSource) {
+		case 0:
+			introSource = introSourceSetOne;
+			rootSource = rootSourceSetOne;
+			secondSource = secondSourceSetOne;
+			fourthSource = fourthSourceSetOne;
+			fifthSource = fifthSourceSetOne;
+			break;
+		case 1:
+			introSource = introSourceSetTwo;
+			rootSource = rootSourceSetTwo;
+			secondSource = secondSourceSetTwo;
+			fourthSource = fourthSourceSetTwo;
+			fifthSource = fifthSourceSetTwo;
+			break;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 	
@@ -97,18 +118,13 @@ public class MusicManagerScript : MonoBehaviour {
 	}
 	public void SwitchMusic(){
 		TurnOffEverything ();
-		whichSource += 1;
-		whichSource = whichSource % 2;
-		switch (whichSource) {
-		case 0:
+
 			rootSource.volume = masterVolume;
 			secondSource.volume = 0;
-			break;
-		case 1:
+
 			rootSource.volume = 0;
 			secondSource.volume = masterVolume;
-			break;
-		}
+			
 	}
 		
 }
