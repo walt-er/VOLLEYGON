@@ -461,7 +461,7 @@ public class BallScript : MonoBehaviour {
 					GameManagerScript.Instance.teamTwoScore += 1; 
 					ComputeStat (2); 
 					if (lastScore != 2) {
-						MusicManagerScript.Instance.SwitchMusic ();
+						MusicManagerScript.Instance.SwitchMusic (2);
 					}
 
 					lastScore = 2;
@@ -470,7 +470,7 @@ public class BallScript : MonoBehaviour {
 					ComputeStat (1);
 
 					if (lastScore != 1) {
-						MusicManagerScript.Instance.SwitchMusic ();
+						MusicManagerScript.Instance.SwitchMusic (1);
 					}
 
 

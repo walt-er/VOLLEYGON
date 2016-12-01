@@ -116,15 +116,18 @@ public class MusicManagerScript : MonoBehaviour {
 		fourthSource.volume -= .005f;
 		fifthSource.volume -= .005f;
 	}
-	public void SwitchMusic(){
+	public void SwitchMusic(int whichTrack){
 		TurnOffEverything ();
-
+		switch(whichTrack){
+		case 1:
 			rootSource.volume = masterVolume;
 			secondSource.volume = 0;
-
+			break;
+		case 2:
 			rootSource.volume = 0;
 			secondSource.volume = masterVolume;
-			
+			break;
+		}			
 	}
 		
 }
