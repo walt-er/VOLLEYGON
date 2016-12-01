@@ -42,6 +42,9 @@ public class StatManagerScript : MonoBehaviour {
 	public Text Player3MVP;
 	public Text Player4MVP;
 
+	public Text longestRallyText;
+	public Text matchTimeText;
+
 	//private int[] aces = { 1, 2, 3, 4, 5, 6, 7 };
 	public int[] aces;
 	private int[] scores;
@@ -63,7 +66,7 @@ public class StatManagerScript : MonoBehaviour {
 	public GameObject player3;
 	public GameObject player4;
 
-
+	private string formattedMatchTime;
 //	nums.Max(); // Will result in 7
 //	nums.Min(); // Will result in 1
 
@@ -80,6 +83,13 @@ public class StatManagerScript : MonoBehaviour {
 		Player2MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player3MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player4MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+
+		// calculate match time
+		int minutes = Mathf.FloorToInt(DataManagerScript.gameTime / 60F);
+		int seconds = Mathf.FloorToInt(DataManagerScript.gameTime - minutes * 60);
+		formattedMatchTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+		Debug.Log (formattedMatchTime);
+
 
 		PopulateStats ();
 
@@ -125,7 +135,7 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	void LogStats(){
-		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game!\n";
+		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game and the match time was " + formattedMatchTime + ". The longest rally was " + DataManagerScript.longestRallyCount.ToString() + "\n";
 		System.IO.File.AppendAllText("playlog.txt", logText);
 
 	}
@@ -224,6 +234,10 @@ public class StatManagerScript : MonoBehaviour {
 			DataManagerScript.playerThreeBumbles,
 			DataManagerScript.playerFourBumbles
 		};
+
+		//populate matchtime and longest rally counters
+		longestRallyText.text = "LONGEST RALLY: " + DataManagerScript.longestRallyCount.ToString (); 
+		matchTimeText.text = "MATCH TIME: " + formattedMatchTime; 
 
 
 		// if player active...

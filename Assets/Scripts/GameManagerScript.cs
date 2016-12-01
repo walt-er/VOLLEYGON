@@ -164,6 +164,10 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Update () {
 
+		// keep track of match time
+		DataManagerScript.gameTime += Time.deltaTime;
+
+
 		timeSinceLastPowerup += Time.deltaTime;
 
 		if (timerRunning) {

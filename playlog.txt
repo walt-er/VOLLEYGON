@@ -46,3 +46,16 @@
 2016/11/15 12:21:00 4 played a game!
 2016/11/16 18:25:48 2 played a game!
 2016/11/16 19:43:13 2 played a game!
+2016/11/30 17:41:28 2 played a game!
+2016/11/30 18:06:32 2 played a game!
+2016/11/30 18:34:15 2 played a game and the match time was 0:39. The longest rally was 4
+2016/11/30 18:42:16 2 played a game and the match time was 00:57. The longest rally was 3
+2016/11/30 18:53:43 2 played a game and the match time was 00:35. The longest rally was 2
+2016/11/30 18:56:09 2 played a game and the match time was 01:04. The longest rally was 7
+2016/11/30 18:58:19 4 played a game and the match time was 01:19. The longest rally was 7
+2016/11/30 19:08:15 2 played a game and the match time was 00:24. The longest rally was 0
+2016/11/30 19:09:22 4 played a game and the match time was 00:18. The longest rally was 0
+2016/11/30 19:27:43 2 played a game and the match time was 00:28. The longest rally was 1
+2016/11/30 19:30:23 2 played a game and the match time was 02:23. The longest rally was 7
+2016/11/30 19:32:53 2 played a game and the match time was 00:35. The longest rally was 2
+2016/11/30 19:36:10 2 played a game and the match time was 00:21. The longest rally was 2

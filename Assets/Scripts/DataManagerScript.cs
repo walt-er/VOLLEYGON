@@ -42,6 +42,12 @@ public class DataManagerScript : MonoBehaviour {
 	public static int playerFourBumbles;
 	public static int playerFourScores;
 
+	public static int longestRallyCount;
+	public static int matchTime;
+	public static int currentRallyCount;
+
+	public static float gameTime;
+
 	// Tournament mode variables
 	public bool tournamentMode;
 	public static int TM_TeamOneWins;
@@ -58,7 +64,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V1.1";
+		version = "V1.2";
 	}
 	
 	// Update is called once per frame
@@ -95,6 +101,11 @@ public class DataManagerScript : MonoBehaviour {
 		 playerFourReturns = 0;
 		 playerFourBumbles = 0;
 		 playerFourScores = 0;
+
+		longestRallyCount = 0;
+		currentRallyCount = 0;
+
+		gameTime = 0;
 	}
 		
 }

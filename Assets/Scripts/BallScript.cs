@@ -175,6 +175,13 @@ public class BallScript : MonoBehaviour {
 			Arena3.BroadcastMessage("ReturnColor");
 			Arena4.BroadcastMessage("ReturnColor");
 			//Debug.Log ("Bounces reset!");
+
+			DataManagerScript.currentRallyCount += 1;
+			if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
+				DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
+				Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
+			}
+
 			// Credit a return to the last touch player
 			switch (lastTouch) {
 			case 1:
@@ -440,6 +447,9 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 			if (bounces >= 2 && singleMode || bouncesOnTopLeft >= 2 && !singleMode || bouncesOnTopRight >= 2 && !singleMode || bouncesOnBottomRight >= 2 && !singleMode || bouncesOnBottomLeft >= 2 && !singleMode) {
+
+				// reset current rally count
+				DataManagerScript.currentRallyCount = 0;
 
 				// Fire an explosion
 				audio.Stop ();

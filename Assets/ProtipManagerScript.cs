@@ -7,6 +7,10 @@ public class ProtipManagerScript : MonoBehaviour {
 	private int whichProtip;
 	public float proTipTime;
 	public Text numberText;
+	public string startButton1 = "Start_P1";
+	public string startButton2 = "Start_P2";
+	public string startButton3 = "Start_P3";
+	public string startButton4 = "Start_P4";
 
 	// Use this for initialization
 	void Start () {
@@ -19,9 +23,13 @@ public class ProtipManagerScript : MonoBehaviour {
 	void StartGame(){
 		StartCoroutine ("NextScene");
 	}
-
-
-	// Update is called once per frame
+		
+	void Update(){
+		if (Input.GetButton (startButton1) && Input.GetButton (startButton2) && Input.GetButton (startButton3) && Input.GetButton (startButton4)) {
+			Debug.Log ("Skipping protip");
+			StartCoroutine ("NextScene");
+		}	
+	}
 
 	IEnumerator NextScene(){
 		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
