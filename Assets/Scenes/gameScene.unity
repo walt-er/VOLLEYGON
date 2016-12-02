@@ -3914,6 +3914,10 @@ MonoBehaviour:
   Arena2: {fileID: 951625225}
   Arena3: {fileID: 564574188}
   Arena4: {fileID: 1716086910}
+  startButton1: Start_P1
+  startButton2: Start_P2
+  startButton3: Start_P3
+  startButton4: Start_P4
 --- !u!4 &685068964
 Transform:
   m_ObjectHideFlags: 0
@@ -6462,11 +6466,11 @@ Prefab:
         type: 3}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: timestampHigh
-      value: 30528873
+      value: 30528848
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: timestampLow
-      value: 761262592
+      value: 135444992
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: m_size.x

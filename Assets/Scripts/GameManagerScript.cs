@@ -33,6 +33,12 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject Arena3;
 	public GameObject Arena4;
 
+	public string startButton1 = "Start_P1";
+	public string startButton2 = "Start_P2";
+	public string startButton3 = "Start_P3";
+	public string startButton4 = "Start_P4";
+
+
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -163,6 +169,12 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	void Update () {
+
+		// if all 4 start buttons are pressed, warp back to title screen 
+		if (Input.GetButton (startButton1) && Input.GetButton (startButton2) && Input.GetButton (startButton3) && Input.GetButton (startButton4)) {
+			Debug.Log ("returning to title");
+			Application.LoadLevel ("titleScene");
+		}
 
 		// keep track of match time
 		DataManagerScript.gameTime += Time.deltaTime;
