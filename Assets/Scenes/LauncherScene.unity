@@ -634,7 +634,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 44ff8267b09e14b3a96b6960af89c8ca, type: 3}
     - target: {fileID: 11438510, guid: 3160e343349ca4188b4726c6604d9b8b, type: 2}
       propertyPath: masterVolume
-      value: 0.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11438510, guid: 3160e343349ca4188b4726c6604d9b8b, type: 2}
       propertyPath: fifthSourceSetOne
@@ -983,6 +983,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triangleCollider: {fileID: 0}
+  trapezoidCollider: {fileID: 0}
+  squareCollider: {fileID: 0}
+  circleCollider: {fileID: 0}
 --- !u!33 &1844411589
 MeshFilter:
   m_ObjectHideFlags: 0

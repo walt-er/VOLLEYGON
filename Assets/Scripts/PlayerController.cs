@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
-	public PolygonCollider2D trianglePC, trapezoidPC;
+	public PolygonCollider2D trianglePC, trapezoidPC, squarePC;
 	private bool canMove;
 	private string playerColor;
 
@@ -48,16 +48,11 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip pandemoniumSFX1;
 	public AudioClip pandemoniumSFX2;
 
-
+	public Material masterColor;
 
 	public TextMesh pandemoniumCounter;
 
 	public GameObject trail;
-
-	public Sprite squareSprite;
-	public Sprite circleSprite;
-	public Sprite triangleSprite;
-	public Sprite trapezoidSprite;
 
 	public float penaltyTimer;
 	private bool penaltyTimerActive = false;
@@ -120,10 +115,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (playerType == 0) {
-			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
-			//gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeOne;
-			gameObject.GetComponent<SpriteRenderer> ().sprite = squareSprite;
+		   squarePC.enabled = true;
+		//	gameObject.GetComponent<SpriteRenderer> ().sprite = squareSprite;
 
 			jumpPower = squareJumpPower;
 			speed = squareSpeed;
@@ -131,27 +124,27 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (playerType == 1) {
-			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-		//	gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
-			gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
+		    gameObject.GetComponent<CircleCollider2D> ().enabled = true;
+		//	gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
+			// this is a special case for circle
+			Transform circle = transform.Find("Circle");
+			circle.gameObject.SetActive (true);
 			jumpPower = circleJumpPower;
 			speed = circleSpeed;
 			spinPower = circleSpinRate;
 		}
 
 		if (playerType == 2) {
-			trianglePC.enabled = true;
-			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
-			gameObject.GetComponent<SpriteRenderer> ().sprite = triangleSprite;
+	        trianglePC.enabled = true;
+		//	gameObject.GetComponent<SpriteRenderer> ().sprite = triangleSprite;
 			jumpPower = triangleJumpPower;
 			speed = triangleSpeed;
 			spinPower = triangleSpinRate;
 		}
 
 		if (playerType == 3) {
-			trapezoidPC.enabled = true;
-			//gameObject.GetComponent<MeshFilter> ().mesh = meshTypeTwo;
-			gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
+		    trapezoidPC.enabled = true;
+		//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
 			jumpPower = trapezoidJumpPower;
 			speed = trapezoidSpeed;
 			spinPower = trapezoidSpinRate;
