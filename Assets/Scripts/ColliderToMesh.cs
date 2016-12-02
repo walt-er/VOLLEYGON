@@ -4,10 +4,40 @@ using System.Collections;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [ExecuteInEditMode]
+
 public class ColliderToMesh : MonoBehaviour {
+
+	public PolygonCollider2D triangleCollider;
+	public PolygonCollider2D trapezoidCollider;
+	public PolygonCollider2D squareCollider;
+	public CircleCollider2D circleCollider;
+
 	PolygonCollider2D pc2 ;
 	void Start () {
-		pc2 = gameObject.GetComponent<PolygonCollider2D>();
+
+		switch (gameObject.GetComponent<PlayerController> ().playerType) {
+
+		case 0:
+			pc2 = squareCollider;
+			break;
+
+		case 1: 
+			//pc2 = circleCollider;
+			gameObject.GetComponent<MeshRenderer>().enabled = false;
+			break;
+
+		case 2:
+			pc2 = triangleCollider;
+			break;
+
+		case 3:
+			pc2 = trapezoidCollider;
+			break;
+
+		}
+
+		// don't act if type is circle 
+		if (gameObject.GetComponent<PlayerController> ().playerType != 1){
 		//Render thing
 		int pointCount = 0;
 		pointCount = pc2.GetTotalPointCount();
@@ -25,5 +55,6 @@ public class ColliderToMesh : MonoBehaviour {
 		mesh.triangles = triangles;
 		mf.mesh = mesh;
 		//Render thing
+		}
 	}
 }
