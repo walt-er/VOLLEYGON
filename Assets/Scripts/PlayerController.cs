@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
-	public PolygonCollider2D trianglePC, trapezoidPC, squarePC;
+	public PolygonCollider2D trianglePC, trapezoidPC, squarePC, rectanglePC;
 	private bool canMove;
 	private string playerColor;
 
@@ -83,6 +83,10 @@ public class PlayerController : MonoBehaviour {
 	private float trapezoidJumpPower = 2000f;
 	private float trapezoidSpeed = 15f;
 	private float trapezoidSpinRate = -150f;
+
+	private float rectangleJumpPower = 2000f;
+	private float rectangleSpeed = 13f;
+	private float rectangleSpinRate = -150f;
 
 
 	Rigidbody2D rb;
@@ -148,6 +152,14 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = trapezoidJumpPower;
 			speed = trapezoidSpeed;
 			spinPower = trapezoidSpinRate;
+		}
+
+		if (playerType == 4) {
+			rectanglePC.enabled = true;
+			//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
+			jumpPower = rectangleJumpPower;
+			speed = rectangleSpeed;
+			spinPower = rectangleSpinRate;
 		}
 
 		startJumpPower = jumpPower;

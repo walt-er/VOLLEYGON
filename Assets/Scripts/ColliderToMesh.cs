@@ -10,6 +10,7 @@ public class ColliderToMesh : MonoBehaviour {
 	public PolygonCollider2D triangleCollider;
 	public PolygonCollider2D trapezoidCollider;
 	public PolygonCollider2D squareCollider;
+	public PolygonCollider2D rectangleCollider;
 	public CircleCollider2D circleCollider;
 
 	PolygonCollider2D pc2 ;
@@ -34,6 +35,9 @@ public class ColliderToMesh : MonoBehaviour {
 			pc2 = trapezoidCollider;
 			break;
 
+		case 4:
+			pc2 = rectangleCollider;
+			break;
 		}
 
 		// don't act if type is circle 

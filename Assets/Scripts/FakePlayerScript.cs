@@ -28,8 +28,15 @@ public class FakePlayerScript : MonoBehaviour {
 	public AudioClip tickDown;
 	public AudioClip tagInSound;
 	public AudioClip readySound;
+	public int thisType = 0;
 
-	private int numberOfPlayerTypes = 4;
+	GameObject square;
+	GameObject circle;
+	GameObject triangle;
+	GameObject trapezoid;
+	GameObject rectangle;
+
+	private int numberOfPlayerTypes = 5;
 
 
 	SpriteRenderer sr;
@@ -51,28 +58,45 @@ public class FakePlayerScript : MonoBehaviour {
 				DataManagerScript.playerFourType = whichType;
 				break;
 			}
+			square.SetActive (false);
+			circle.SetActive (false);
+			triangle.SetActive (false);
+			trapezoid.SetActive (false);
+			rectangle.SetActive (false);
+
 			if (whichType == 0) {
 //				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
 				//change sprite here
-				sr.sprite = squareSprite;
+				//sr.sprite = squareSprite;
+				square.SetActive (true);
 				playerDescription.text = "CLASSIC\nDEFENSIVE";
 				playerDifficulty.text = "EASY";
 			} else if (whichType == 1) {
-				sr.sprite = circleSprite;
+				//sr.sprite = circleSprite;
+				circle.SetActive (true);
 				playerDescription.text = "ALL-AROUND\nVERSATILE";
 				playerDifficulty.text = "MEDIUM";
 				//change sprite here
 			} else if (whichType == 2){
-				sr.sprite = triangleSprite;
+				//sr.sprite = triangleSprite;
+				triangle.SetActive (true);
 				playerDescription.text = "AIRBORNE\nAGGRESSIVE";
 				playerDifficulty.text = "HARD";
 				//change sprite here
 			} else if (whichType == 3){
-				sr.sprite = trapezoidSprite;
+			//	sr.sprite = trapezoidSprite;
+				trapezoid.SetActive (true);
 				playerDescription.text = "CRAZY!\nWEIRD!";
 				playerDifficulty.text = "EXPERTS ONLY";
 				//change sprite here
+			} else if (whichType == 4){
+				//	sr.sprite = trapezoidSprite;
+				rectangle.SetActive (true);
+				playerDescription.text = "DEFENSIVE\nSLOW";
+				playerDifficulty.text = "EASY";
+				//change sprite here
 			}
+
 		}
 	}
 
@@ -101,7 +125,31 @@ public class FakePlayerScript : MonoBehaviour {
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 			playerDescription.enabled = true;
 			playerDifficulty.enabled = true;
-			sr.enabled = true;
+			//sr.enabled = true;
+			square.SetActive (false);
+			circle.SetActive (false);
+			triangle.SetActive (false);
+			trapezoid.SetActive (false);
+			rectangle.SetActive (false);
+
+			switch (thisType) {
+			case 0:
+				square.SetActive (true);
+				break;
+			case 1:
+				circle.SetActive (true);
+				break;
+			case 2:
+				triangle.SetActive (true);
+				break;
+			case 3:
+				trapezoid.SetActive (true);
+				break;
+			case 4:
+				rectangle.SetActive (true);
+				break;
+			}
+
 			switch(playerIdentifier){
 
 			case 1:
@@ -133,6 +181,11 @@ public class FakePlayerScript : MonoBehaviour {
 			taggedIn = false;
 			toJoinText.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 			sr.enabled = false;
+			square.SetActive (false);
+			circle.SetActive (false);
+			triangle.SetActive (false);
+			trapezoid.SetActive (false);
+			rectangle.SetActive (false);
 			playerDescription.enabled = false;
 			playerDifficulty.enabled = false;
 			switch(playerIdentifier){
@@ -158,7 +211,8 @@ public class FakePlayerScript : MonoBehaviour {
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-		sr.sprite = squareSprite;
+		//sr.sprite = squareSprite;
+
 		readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 		sr.enabled = false;
 		playerDescription.enabled = false;
@@ -166,6 +220,17 @@ public class FakePlayerScript : MonoBehaviour {
 
 		audio = GetComponent<AudioSource> ();
 
+		square = transform.Find ("Square").gameObject;
+		circle = transform.Find ("Circle").gameObject;
+		triangle = transform.Find ("Triangle").gameObject;
+		trapezoid = transform.Find ("Trapezoid").gameObject;
+		rectangle = transform.Find ("Rectangle").gameObject;
+
+		square.SetActive (false);
+		circle.SetActive (false);
+		triangle.SetActive (false);
+		trapezoid.SetActive (false);
+		rectangle.SetActive (false);
 	}
 
 	// Update is called once per frame
@@ -186,12 +251,14 @@ public class FakePlayerScript : MonoBehaviour {
 						if (playerIdentifier == 1) {
 							DataManagerScript.playerOneType += 1; 
 							DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+							thisType = DataManagerScript.playerOneType;
 							Debug.Log (DataManagerScript.playerOneType);
 							audio.PlayOneShot (tickUp);
 							UpdatePlayerType (DataManagerScript.playerOneType);
 						} else if (playerIdentifier == 2) {
 							DataManagerScript.playerTwoType += 1; 
 							DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
+							thisType = DataManagerScript.playerTwoType;
 							Debug.Log (DataManagerScript.playerTwoType);
 							audio.PlayOneShot (tickUp);
 							UpdatePlayerType (DataManagerScript.playerTwoType);
@@ -199,6 +266,7 @@ public class FakePlayerScript : MonoBehaviour {
 						} else if (playerIdentifier == 3) {
 							DataManagerScript.playerThreeType += 1; 
 							DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
+							thisType = DataManagerScript.playerThreeType;
 							Debug.Log (DataManagerScript.playerThreeType);
 							audio.PlayOneShot (tickUp);
 							UpdatePlayerType (DataManagerScript.playerThreeType);
@@ -206,6 +274,7 @@ public class FakePlayerScript : MonoBehaviour {
 						} else if (playerIdentifier == 4) {
 							DataManagerScript.playerFourType += 1; 
 							DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
+							thisType = DataManagerScript.playerFourType;
 							Debug.Log (DataManagerScript.playerFourType);
 							audio.PlayOneShot (tickUp);
 							UpdatePlayerType (DataManagerScript.playerFourType);
@@ -229,6 +298,7 @@ public class FakePlayerScript : MonoBehaviour {
 							}
 							Debug.Log (DataManagerScript.playerOneType);
 							audio.PlayOneShot (tickDown);
+							thisType = DataManagerScript.playerOneType;
 							UpdatePlayerType (DataManagerScript.playerOneType);
 						} else if (playerIdentifier == 2) {
 							DataManagerScript.playerTwoType -= 1; 
@@ -238,6 +308,7 @@ public class FakePlayerScript : MonoBehaviour {
 							}
 							Debug.Log (DataManagerScript.playerTwoType);
 							audio.PlayOneShot (tickDown);
+							thisType = DataManagerScript.playerTwoType;
 							UpdatePlayerType (DataManagerScript.playerTwoType);
 
 						} else if (playerIdentifier == 3) {
@@ -248,6 +319,7 @@ public class FakePlayerScript : MonoBehaviour {
 							}
 							Debug.Log (DataManagerScript.playerThreeType);
 							audio.PlayOneShot (tickDown);
+							thisType = DataManagerScript.playerThreeType;
 							UpdatePlayerType (DataManagerScript.playerThreeType);
 
 						} else if (playerIdentifier == 4) {
@@ -258,6 +330,7 @@ public class FakePlayerScript : MonoBehaviour {
 							}
 							Debug.Log (DataManagerScript.playerFourType);
 							audio.PlayOneShot (tickDown);
+							thisType = DataManagerScript.playerFourType;
 							UpdatePlayerType (DataManagerScript.playerFourType);
 						}
 					}
