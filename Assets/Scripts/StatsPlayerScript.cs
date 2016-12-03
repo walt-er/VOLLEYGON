@@ -29,6 +29,11 @@ public class StatsPlayerScript : MonoBehaviour {
 
 	SpriteRenderer sr;
 
+	GameObject square;
+	GameObject circle;
+	GameObject triangle;
+	GameObject trapezoid;
+	GameObject rectangle;
 
 	void activateReadyState(){
 		if (taggedIn) {
@@ -53,6 +58,13 @@ public class StatsPlayerScript : MonoBehaviour {
 
 
 	void Start () {
+
+		square = transform.Find ("Square").gameObject;
+		circle = transform.Find ("Circle").gameObject;
+		triangle = transform.Find ("Triangle").gameObject;
+		trapezoid = transform.Find ("Trapezoid").gameObject;
+		rectangle = transform.Find ("Rectangle").gameObject;
+
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
@@ -81,46 +93,49 @@ public class StatsPlayerScript : MonoBehaviour {
 		switch (playerIdentifier) {
 		case 1:
 			if (DataManagerScript.playerOnePlaying) {
-				sr.enabled = true;
+			//	sr.enabled = true;
 				taggedIn = true;
 			}
 			break;
 		case 2:
 			if (DataManagerScript.playerTwoPlaying) {
-				sr.enabled = true;
+			//	sr.enabled = true;
 				taggedIn = true;
 			}
 			break;
 		case 3:
 			if (DataManagerScript.playerThreePlaying) {
-				sr.enabled = true;
+			//	sr.enabled = true;
 				taggedIn = true;
 			}
 			break;
 		case 4:
 			if (DataManagerScript.playerFourPlaying) {
-				sr.enabled = true;
+			//	sr.enabled = true;
 				taggedIn = true;
 			}
 			break;
 
 		}
 
-		if (sr.enabled) {
+		if (taggedIn) {
 			if (whichType == 0) {
-								//				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
-								//change sprite here
-								sr.sprite = squareSprite;
-							} else if (whichType == 1) {
-								sr.sprite = circleSprite;
-								//change sprite here
-							} else if (whichType == 2){
-								sr.sprite = triangleSprite;
-								//change sprite here
-							} else if (whichType == 3){
-								sr.sprite = trapezoidSprite;
-								//change sprite here
-							}
+				//				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
+				//change sprite here
+				//				sr.sprite = squareSprite;
+				square.SetActive (true);
+			} else if (whichType == 1) {
+				circle.SetActive (true);
+				//change sprite here
+			} else if (whichType == 2) {
+				triangle.SetActive (true);
+				//change sprite here
+			} else if (whichType == 3) {
+				trapezoid.SetActive (true);
+				//change sprite here
+			} else if (whichType == 4) {
+				rectangle.SetActive (true);
+			}
 		}
 
 	//	Invoke ("BackToTitle", 8f);

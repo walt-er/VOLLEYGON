@@ -30,11 +30,11 @@ public class FakePlayerScript : MonoBehaviour {
 	public AudioClip readySound;
 	public int thisType = 0;
 
-	GameObject square;
-	GameObject circle;
-	GameObject triangle;
-	GameObject trapezoid;
-	GameObject rectangle;
+	public GameObject square;
+	public GameObject circle;
+	public GameObject triangle;
+	public GameObject trapezoid;
+	public GameObject rectangle;
 
 	private int numberOfPlayerTypes = 5;
 
