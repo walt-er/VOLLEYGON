@@ -143,7 +143,7 @@ public class Circle : MonoBehaviour {
 			//-- recalculate limits --//
 			mesh.RecalculateNormals();
             mesh.RecalculateBounds();
-			mesh.Optimize();
+			;
         }
         
 }

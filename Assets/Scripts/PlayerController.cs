@@ -90,12 +90,15 @@ public class PlayerController : MonoBehaviour {
 
 
 	Rigidbody2D rb;
+	MeshRenderer mr;
+
 	// Use this for initialization
 	void Start () {
 
 
 
 		rb = GetComponent<Rigidbody2D>();
+		mr = GetComponent<MeshRenderer> ();
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
@@ -260,10 +263,11 @@ public class PlayerController : MonoBehaviour {
 			if (transform.position.x > -1.0f){
 				penaltyTimerActive = true;
 				penaltyTimer = 10f;
-				gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+				//gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+				DisableShapeAndCollider ();
 				trail.GetComponent<Trail>().ClearSystem (true);
 				trail.SetActive (false);
-				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+			//	gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 
 				FirePenaltyExplosion();
 				inPenalty = true;
@@ -274,11 +278,9 @@ public class PlayerController : MonoBehaviour {
 			if (transform.position.x < 1.0f){
 				penaltyTimerActive = true;
 				penaltyTimer = 10f;
-				gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+				DisableShapeAndCollider ();
 				trail.GetComponent<Trail>().ClearSystem (true);
 				trail.SetActive (false);
-				gameObject.GetComponent<BoxCollider2D> ().enabled = false;
-
 				FirePenaltyExplosion();
 				inPenalty = true;
 			}
@@ -288,6 +290,63 @@ public class PlayerController : MonoBehaviour {
 
 	
 	}
+
+	void DisableShapeAndCollider(){
+		switch (playerType) {
+		case 0:
+			squarePC.enabled = false;
+			break;
+		case 1:
+			//circle.enabled = false;
+			gameObject.GetComponent<CircleCollider2D> ().enabled = false;
+			// this is a special case for circle
+			Transform circle = transform.Find("Circle");
+			circle.gameObject.SetActive (false);
+			break;
+		case 2:
+			trianglePC.enabled = false;
+			break;
+		case 3:
+			trapezoidPC.enabled = false;
+			break;
+		case 4: 
+			rectanglePC.enabled = false;
+			break;
+		}
+		mr.enabled = false;
+	}
+
+	void EnableShapeAndCollider(){
+		
+		switch (playerType) {
+		case 0:
+			squarePC.enabled = true;
+			mr.enabled = true;
+			break;
+		case 1:
+			//circle.enabled = false;
+			gameObject.GetComponent<CircleCollider2D> ().enabled = true;
+			// this is a special case for circle
+			Transform circle = transform.Find("Circle");
+			circle.gameObject.SetActive (true);
+			break;
+		case 2:
+			trianglePC.enabled = true;
+			mr.enabled = true;
+			break;
+		case 3:
+			trapezoidPC.enabled = true;
+			mr.enabled = true;
+			break;
+		case 4: 
+			rectanglePC.enabled = true;
+			mr.enabled = true;
+			break;
+		}
+
+
+	}
+
 
 	void FirePenaltyExplosion(){
 		Vector3 newPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
@@ -454,11 +513,12 @@ public class PlayerController : MonoBehaviour {
 		}
 			rb.velocity = Vector3.zero;
 			rb.gravityScale = startingGrav;
-			gameObject.GetComponent<SpriteRenderer> ().enabled = true;
-		
+			//gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+			
 			trail.SetActive (true);
 			trail.GetComponent<Trail>().ClearSystem (true);
-			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+			//gameObject.GetComponent<BoxCollider2D> ().enabled = true;
+			EnableShapeAndCollider();
 			inPenalty = false;
 
 	}

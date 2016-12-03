@@ -144,7 +144,7 @@ public class CircleEfficient : MonoBehaviour {
 			//-- recalculate limits --//
 			mesh.RecalculateNormals();
             mesh.RecalculateBounds();
-			mesh.Optimize();
+			;
         }
         
 }

@@ -801,7 +801,7 @@ public class TiledSpriteRenderer : MonoBehaviour
 		renderer.GetPropertyBlock(materialProperties);
 		
 		if ((m_sprite != null) && (m_sprite.texture != null)) {
-			materialProperties.AddTexture("_MainTex", m_sprite.texture);
+			materialProperties.SetTexture("_MainTex", m_sprite.texture);
 		}
 		else if (m_material != null) {
 			if (materialProperties.GetTexture("_MainTex") != null) {
