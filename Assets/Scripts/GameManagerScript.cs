@@ -33,6 +33,10 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject Arena3;
 	public GameObject Arena4;
 	public GameObject Arena5;
+	public GameObject Arena6;
+	public GameObject Arena7;
+	public GameObject Arena8;
+	public GameObject Arena9;
 
 	public GameObject CurrentArena;
 
@@ -107,6 +111,26 @@ public class GameManagerScript : MonoBehaviour {
 		case 5:
 			Arena5.SetActive (true);
 			CurrentArena = Arena5;
+			break;
+
+		case 6:
+			Arena6.SetActive (true);
+			CurrentArena = Arena6;
+			break;
+
+		case 7:
+			Arena7.SetActive (true);
+			CurrentArena = Arena7;
+			break;
+
+		case 8:
+			Arena8.SetActive (true);
+			CurrentArena = Arena8;
+			break;
+
+		case 9:
+			Arena9.SetActive (true);
+			CurrentArena = Arena9;
 			break;
 
 		default:
