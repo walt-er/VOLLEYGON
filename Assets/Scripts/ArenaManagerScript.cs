@@ -5,7 +5,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 
 	private int markerPos = 0;
-	private float[] markerPositions  = {7.4f, 3.7f, 0f, -3.7f, -7.4f};
+	private float[] markerPositions  = {7.4f, 3.7f, 0f, -3.7f, -7.4f, -2f};
 	private string jumpButton1 = "Jump_P1";
 	private string gravButton1 = "Grav_P1";
 	private string horizAxis1 = "Vertical_P1";
@@ -23,6 +23,7 @@ public class ArenaManagerScript : MonoBehaviour {
 	private bool axis2InUse = false;
 	private bool axis3InUse = false;
 	private bool axis4InUse = false;
+	private int numberOfArenas = 5;
 	private bool locked = false;
 	public AudioClip tickUp;
 	public AudioClip tickDown;
@@ -72,7 +73,7 @@ public class ArenaManagerScript : MonoBehaviour {
 				// log which arena
 				if (markerPos == 0) {
 					Debug.Log ("choosing random level");
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -81,7 +82,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (gravButton1)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -120,7 +121,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (jumpButton2)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -129,7 +130,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (gravButton2)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -169,7 +170,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (jumpButton3)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -178,7 +179,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (gravButton3)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -218,7 +219,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (jumpButton4)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -227,7 +228,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			if (Input.GetButtonDown (gravButton4)) {
 				// log which arena
 				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, 4);
+					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
 				} else {
 					DataManagerScript.arenaType = markerPos;
 				}
@@ -246,9 +247,9 @@ public class ArenaManagerScript : MonoBehaviour {
 	void updateMarkerPos(){
 		
 		if (markerPos < 0) {
-			markerPos = 4;
+			markerPos = numberOfArenas;
 		}
-		markerPos = markerPos % 5;
+		markerPos = markerPos % (numberOfArenas + 1);
 		Vector3 tempPos = new Vector3(marker.transform.position.x, markerPositions[markerPos], 1f);
 //		
 		marker.transform.position = tempPos;

@@ -47,6 +47,8 @@ public class BallScript : MonoBehaviour {
 	public GameObject Arena3;
 	public GameObject Arena4;
 
+	GameObject CurrentArena;
+
 	public AudioSource sfxSource;
 
 	public AudioClip ballServedSound;
@@ -63,6 +65,12 @@ public class BallScript : MonoBehaviour {
 	private AudioSource audio;
 	public bool didSirenPlayAlready;
 	// Use this for initialization
+
+	void Awake(){
+		//Debug.Log (GameManagerScript.Instance.CurrentArena);
+	//	CurrentArena = GameManagerScript.Instance.CurrentArena;
+		Debug.Log ("assign arena");
+	}
 	void Start () {
 		audio = GetComponent<AudioSource> ();
 		lastScore = 0;
@@ -72,7 +80,7 @@ public class BallScript : MonoBehaviour {
 		secondToLastTouch = 0;
 		timeSinceLastFlash = 0f;
 		rb = GetComponent<Rigidbody2D>();
-	
+		CurrentArena = GameManagerScript.Instance.CurrentArena;
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
 		Invoke("LaunchBall", 3f);
@@ -88,6 +96,9 @@ public class BallScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		//CurrentArena = GameManagerScript.Instance.CurrentArena;
+		Debug.Log (GameManagerScript.Instance.CurrentArena);
+		Debug.Log (CurrentArena);
 		if (rb.velocity.magnitude > 80f) {
 
 			Debug.Log (rb.velocity.magnitude);
@@ -170,10 +181,11 @@ public class BallScript : MonoBehaviour {
 			bouncesOnTopRight = 0;
 			bouncesOnBottomLeft = 0;
 			bouncesOnBottomRight = 0;
-			Arena1.BroadcastMessage("ReturnColor");
-			Arena2.BroadcastMessage("ReturnColor");
-			Arena3.BroadcastMessage("ReturnColor");
-			Arena4.BroadcastMessage("ReturnColor");
+			CurrentArena.BroadcastMessage ("ReturnColor");
+//			Arena1.BroadcastMessage("ReturnColor");
+//			Arena2.BroadcastMessage("ReturnColor");
+//			Arena3.BroadcastMessage("ReturnColor");
+//			Arena4.BroadcastMessage("ReturnColor");
 			//Debug.Log ("Bounces reset!");
 
 			DataManagerScript.currentRallyCount += 1;
@@ -462,10 +474,11 @@ public class BallScript : MonoBehaviour {
 				}
 				SoundManagerScript.instance.RandomizeSfx (pointScoredSound1, pointScoredSound2);
 				// Award a score.
-				Arena1.BroadcastMessage("ReturnColor");
-				Arena2.BroadcastMessage("ReturnColor");
-				Arena3.BroadcastMessage("ReturnColor");
-				Arena4.BroadcastMessage("ReturnColor");
+				CurrentArena.BroadcastMessage("ReturnColor");
+//				Arena1.BroadcastMessage("ReturnColor");
+//				Arena2.BroadcastMessage("ReturnColor");
+//				Arena3.BroadcastMessage("ReturnColor");
+//				Arena4.BroadcastMessage("ReturnColor");
 
 				if (Mathf.Sign (transform.position.x) < 0) {
 					GameManagerScript.Instance.teamTwoScore += 1; 

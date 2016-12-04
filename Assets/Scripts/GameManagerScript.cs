@@ -32,6 +32,9 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject Arena2;
 	public GameObject Arena3;
 	public GameObject Arena4;
+	public GameObject Arena5;
+
+	public GameObject CurrentArena;
 
 	public string startButton1 = "Start_P1";
 	public string startButton2 = "Start_P2";
@@ -50,6 +53,19 @@ public class GameManagerScript : MonoBehaviour {
 		EZReplayManager.get.record();
 	}
 	void Start () {
+		
+
+	}
+	void Awake()
+	{
+		// Save a reference to the AudioHandler component as our singleton instance
+		Instance = this;
+
+		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
+		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
+		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;
+		Player4.GetComponent<PlayerController>().playerType = DataManagerScript.playerFourType;
+
 		MusicManagerScript.Instance.StartRoot ();
 		launchTimer ();
 		timeSinceLastPowerup = 0f;
@@ -60,7 +76,7 @@ public class GameManagerScript : MonoBehaviour {
 
 
 		// Set up players and their rigidbodies based on character selection choice
-	//	Player1.SetActive (false);
+		//	Player1.SetActive (false);
 
 
 		// Set up arena based on options
@@ -70,26 +86,36 @@ public class GameManagerScript : MonoBehaviour {
 
 		case 1:
 			Arena1.SetActive (true);
+			CurrentArena = Arena1;
 			break;
 
 		case 2:
 			Arena2.SetActive (true);
+			CurrentArena = Arena2;
 			break;
 
 		case 3:
 			Arena3.SetActive (true);
+			CurrentArena = Arena3;
 			break;
 
 		case 4:
 			Arena4.SetActive (true);
+			CurrentArena = Arena4;
+			break;
+
+		case 5:
+			Arena5.SetActive (true);
+			CurrentArena = Arena5;
 			break;
 
 		default:
 			Arena1.SetActive (true);
+			CurrentArena = Arena1;
 			break;
 
 		}
-			
+
 		if (DataManagerScript.playerOnePlaying == false) {
 			Player1.SetActive (false);
 		}
@@ -102,18 +128,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (DataManagerScript.playerFourPlaying == false) {
 			Player4.SetActive (false);
 		}
-			
 
-	}
-	void Awake()
-	{
-		// Save a reference to the AudioHandler component as our singleton instance
-		Instance = this;
-
-		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
-		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
-		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;
-		Player4.GetComponent<PlayerController>().playerType = DataManagerScript.playerFourType;
 	}
 	void launchTimer(){
 		timerRunning = true;
