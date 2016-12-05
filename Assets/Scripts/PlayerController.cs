@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
 	private bool canMove;
 	private string playerColor;
 
+	public ParticleSystem ps;
+
 	public GameObject penaltyExplosion; 
 
 	public AudioClip jumpSound1;
@@ -96,7 +98,8 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 
 
-
+		ps = transform.Find("ssps").GetComponent<ParticleSystem> ();
+		ps.Stop ();
 		rb = GetComponent<Rigidbody2D>();
 		mr = GetComponent<MeshRenderer> ();
 		PolygonCollider2D pg = GetComponent<PolygonCollider2D> ();
@@ -457,6 +460,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (speedPowerupTimer <= 0){
 				speedPowerupActive = false;
+				ps.Stop ();
 				speed = startSpeed;
 			}
 		}
@@ -552,6 +556,7 @@ public class PlayerController : MonoBehaviour {
 
 		case 1:
 			speedPowerupActive = true;
+			ps.Play ();
 			speed = 20f; //was 22
 			speedPowerupTimer = 20f; 
 			if (playSFX){
