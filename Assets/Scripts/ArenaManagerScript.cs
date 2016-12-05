@@ -7,7 +7,7 @@ public class ArenaManagerScript : MonoBehaviour {
 
 	private int markerPos = 0;
 	private float[] markerYPositions  = {7.4f, 3.7f, 0f, -3.7f, -7.4f};
-	private float[] markerXPositions = { -10f, -8f };
+	private float[] markerXPositions = { -17.58f, -1.81f };
 	private string jumpButton1 = "Jump_P1";
 	private string gravButton1 = "Grav_P1";
 	private string vertAxis1 = "Vertical_P1";
@@ -234,10 +234,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
 		if (markerPos > 4) {
 			posX = markerXPositions [1];
+			marker.transform.localScale = new Vector3(-3f, marker.transform.localScale.y, marker.transform.localScale.z) ;
 			posY = markerYPositions [markerPos - 5];
 
 		} else {
 			posX = markerXPositions [0];
+			marker.transform.localScale = new Vector3(3f, marker.transform.localScale.y, marker.transform.localScale.z) ;
 			posY = markerYPositions [markerPos];
 		}
 		Vector3 tempPos = new Vector3(posX, posY, 1f);
