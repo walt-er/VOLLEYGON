@@ -71,7 +71,8 @@ public class ArenaManagerScript : MonoBehaviour {
 		horizontalAxes.Add (ha3);
 		horizontalAxes.Add (ha4);
 
-
+		Vector3 tempPos = new Vector3( markerXPositions [0],  markerYPositions [0], 1f);
+		marker.transform.position = tempPos;
 	}
 	
 	// Update is called once per frame
