@@ -27,6 +27,8 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject Player3;
 	public GameObject Player4;
 
+	private bool OnePlayerMode;
+
 	// Hold references to each of the arenas
 	public GameObject Arena1;
 	public GameObject Arena2;
@@ -139,24 +141,45 @@ public class GameManagerScript : MonoBehaviour {
 			break;
 
 		}
+		int playersActive = 0;
+		int whichSoloPlayer;
 
-		if (DataManagerScript.playerOnePlaying == false) {
-			Player1.SetActive (false);
+		if (DataManagerScript.playerOnePlaying == true) {
+			Player1.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 1;
 		}
-		if (DataManagerScript.playerTwoPlaying == false) {
-			Player2.SetActive (false);
+		if (DataManagerScript.playerTwoPlaying == true) {
+			Player2.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 2;
 		}
-		if (DataManagerScript.playerThreePlaying == false) {
-			Player3.SetActive (false);
+		if (DataManagerScript.playerThreePlaying == true) {
+			Player3.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 3;
 		}
-		if (DataManagerScript.playerFourPlaying == false) {
-			Player4.SetActive (false);
+		if (DataManagerScript.playerFourPlaying == true) {
+			Player4.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 4;
+		}
+
+		if (playersActive == 1) {
+			OnePlayerMode = true;
+			InstantiateClone (whichSoloPlayer);
+		} else {
+			OnePlayerMode = false;
 		}
 
 	}
 	void launchTimer(){
 		timerRunning = true;
 
+	}
+
+	void InstantiateClone(int whichSoloPlayer){
+		// create a clone of the current player, place it on the opposite team, and bind the same controls to it
 	}
 
 	void LaunchTitleScreen(){
