@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip pandemoniumSFX2;
 
 	public Material masterColor;
+	public Material player1Material;
+	public Material player2Material;
+	public Material player3Material;
+	public Material player4Material;
 
 	public TextMesh pandemoniumCounter;
 
@@ -107,6 +111,8 @@ public class PlayerController : MonoBehaviour {
 		startMass = rb.mass;
 		canMove = true;
 		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
+
+		//GetComponent<MeshRenderer> ().material = masterColor;
 		inPenalty = false;
 		// assign player color
 		switch (playerID) {

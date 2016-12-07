@@ -97,8 +97,8 @@ public class BallScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//CurrentArena = GameManagerScript.Instance.CurrentArena;
-		Debug.Log (GameManagerScript.Instance.CurrentArena);
-		Debug.Log (CurrentArena);
+		//Debug.Log (GameManagerScript.Instance.CurrentArena);
+		//Debug.Log (CurrentArena);
 		if (rb.velocity.magnitude > 80f) {
 
 			Debug.Log (rb.velocity.magnitude);

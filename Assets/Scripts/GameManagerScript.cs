@@ -21,11 +21,18 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject speedPowerupPrefab;
 	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
+	public GameObject playerClonePrefab;
+
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
 	public GameObject Player2;
 	public GameObject Player3;
 	public GameObject Player4;
+
+	public Material Player1Material;
+	public Material Player2Material;
+	public Material Player3Material;
+	public Material Player4Material;
 
 	private bool OnePlayerMode;
 
@@ -142,7 +149,7 @@ public class GameManagerScript : MonoBehaviour {
 
 		}
 		int playersActive = 0;
-		int whichSoloPlayer;
+		int whichSoloPlayer = 0;
 
 		if (DataManagerScript.playerOnePlaying == true) {
 			Player1.SetActive (true);
@@ -164,9 +171,10 @@ public class GameManagerScript : MonoBehaviour {
 			playersActive++;
 			whichSoloPlayer = 4;
 		}
-
+		Debug.Log (playersActive);
 		if (playersActive == 1) {
 			OnePlayerMode = true;
+			Debug.Log("one player mode on");
 			InstantiateClone (whichSoloPlayer);
 		} else {
 			OnePlayerMode = false;
@@ -180,6 +188,73 @@ public class GameManagerScript : MonoBehaviour {
 
 	void InstantiateClone(int whichSoloPlayer){
 		// create a clone of the current player, place it on the opposite team, and bind the same controls to it
+
+		GameObject playerClone = null;
+		int playerType = 0;
+		Material whichMat = null;
+
+		switch (whichSoloPlayer) {
+		case 1:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+			playerType = Player1.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P1";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P1";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P1";
+			playerClone.GetComponent<PlayerController> ().startingGrav = 1;
+			whichMat = Player1Material;
+			// determine position
+			// run a config function to bind the controls
+			break;
+		case 2:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, 5f, 0), Quaternion.identity);
+			playerType = Player2.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P2";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P2";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P2";
+			playerClone.GetComponent<PlayerController> ().startingGrav = -1;
+			whichMat = Player2Material;
+			break;
+		case 3:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, -5f, 0), Quaternion.identity);
+			playerType = Player3.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 1;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P3";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P3";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P3";
+			playerClone.GetComponent<PlayerController> ().startingGrav = 1;
+			whichMat = Player3Material;
+			break;
+		case 4:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, 5f, 0), Quaternion.identity);
+			playerType = Player4.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 1;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P4";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P4";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P4";
+			playerClone.GetComponent<PlayerController> ().startingGrav = -1;
+			whichMat = Player4Material;
+			break;
+
+		default:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+
+			playerType = Player1.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			break;
+		}
+
+		playerClone.SetActive (true);
+	//	playerClone.GetComponent<BoxCollider2D> ().enabled = true;
+		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
+		playerClone.GetComponent<PlayerController>().playerType = playerType;
+		playerClone.GetComponent<MeshRenderer> ().material = whichMat;
+		if (playerType == 1) {
+			playerClone.transform.Find ("Circle").GetComponent<CircleEfficient> ().Rebuild ();
+			playerClone.transform.Find ("Circle").GetComponent<MeshRenderer> ().material = whichMat;
+		}
+
 	}
 
 	void LaunchTitleScreen(){
@@ -209,7 +284,6 @@ public class GameManagerScript : MonoBehaviour {
 			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamTwoWin ();
 			background.GetComponent<BackgroundColorScript> ().whoWon = 2;
 			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
 			break;
 		}
 		isGameOver = true;
