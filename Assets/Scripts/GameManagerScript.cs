@@ -13,6 +13,8 @@ public class GameManagerScript : MonoBehaviour {
 	public int teamOneScore;
 	public int teamTwoScore;
 	public Text winText;
+	public int rallyCount;
+	public Text rallyCountText;
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
 	public int arenaType;
@@ -22,6 +24,8 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
+
+	public GameObject ball;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
@@ -87,7 +91,7 @@ public class GameManagerScript : MonoBehaviour {
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		Invoke ("StartReplay", 2f);
 
-
+		rallyCount = 0;
 		// Set up players and their rigidbodies based on character selection choice
 		//	Player1.SetActive (false);
 
@@ -176,6 +180,9 @@ public class GameManagerScript : MonoBehaviour {
 			OnePlayerMode = true;
 			Debug.Log("one player mode on");
 			InstantiateClone (whichSoloPlayer);
+			ball.GetComponent<BallScript> ().onePlayerMode = true;
+			rallyCountText.gameObject.SetActive (true);
+			Debug.Log ("rally count text enabled");
 		} else {
 			OnePlayerMode = false;
 		}
@@ -246,6 +253,7 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 		playerClone.SetActive (true);
+		playerClone.transform.SetParent (GameObject.Find ("Players").transform);
 	//	playerClone.GetComponent<BoxCollider2D> ().enabled = true;
 		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
 		playerClone.GetComponent<PlayerController>().playerType = playerType;
@@ -268,6 +276,12 @@ public class GameManagerScript : MonoBehaviour {
 		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel ("statsScene");
 	}
+
+	public void endGame(){
+		isGameOver = true;
+		Invoke ("LaunchStatsScreen", 5f);
+	}
+
 	void teamWins(int whichTeam){
 		Debug.Log ("Team wins running");
 //		winText.text = "Team " + whichTeam.ToString () + " Wins!";
@@ -306,6 +320,9 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Update () {
 
+		if (OnePlayerMode) {
+			rallyCountText.text = rallyCount.ToString();
+		}
 		// if all 4 start buttons are pressed, warp back to title screen 
 		if (Input.GetButton (startButton1) && Input.GetButton (startButton2) && Input.GetButton (startButton3) && Input.GetButton (startButton4)) {
 			Debug.Log ("returning to title");
@@ -333,7 +350,7 @@ public class GameManagerScript : MonoBehaviour {
 		//	Debug.Log ("Run team two wins routine here");
 			teamWins (2);
 		}
-
+			
 		if (!isGameOver) {
 			ConsiderAPowerup ();
 		}

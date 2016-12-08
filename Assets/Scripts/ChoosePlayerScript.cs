@@ -75,6 +75,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		MusicManagerScript.Instance.StartRoot ();
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
+		onePlayerMessage.enabled = false;
 		msgBG.enabled = false;
 		msgBG2.enabled = false;
 		locked = false;
@@ -124,7 +125,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		}
 		Debug.Log (playersOnLeft);
 		Debug.Log (playersOnRight);
-		if ((playersOnLeft == 1 && playersOnRight == 0) || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
+		if ((playersOnLeft == 1 && playersOnRight == 0) && noUnreadyPlayers () || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
 			gameIsStartable = true;
 			msgBG.enabled = true;
 			msgBG2.enabled = true;
