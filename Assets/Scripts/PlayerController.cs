@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
+		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player" || coll.gameObject.tag == "Obstacle") {
 			//Debug.Log ("a collision!");
 			isJumping = false;
 		//	Debug.Log (isJumping);
