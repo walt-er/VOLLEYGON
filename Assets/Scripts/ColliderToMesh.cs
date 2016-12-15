@@ -11,6 +11,7 @@ public class ColliderToMesh : MonoBehaviour {
 	public PolygonCollider2D trapezoidCollider;
 	public PolygonCollider2D squareCollider;
 	public PolygonCollider2D rectangleCollider;
+	public PolygonCollider2D starCollider;
 	public CircleCollider2D circleCollider;
 
 	PolygonCollider2D pc2 ;
@@ -37,6 +38,10 @@ public class ColliderToMesh : MonoBehaviour {
 
 		case 4:
 			pc2 = rectangleCollider;
+			break;
+
+		case 5:
+			pc2 = starCollider;
 			break;
 		}
 

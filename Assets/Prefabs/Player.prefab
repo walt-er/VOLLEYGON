@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2302278}
   - component: {fileID: 11458410}
   - component: {fileID: 60036370542313274}
+  - component: {fileID: 60248737273344664}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -637,6 +638,7 @@ MonoBehaviour:
   trapezoidPC: {fileID: 6036696}
   squarePC: {fileID: 6025172}
   rectanglePC: {fileID: 60036370542313274}
+  starPC: {fileID: 60248737273344664}
   ps: {fileID: 0}
   penaltyExplosion: {fileID: 108616, guid: d0cbb75be89ae449082865ff56811ed8, type: 2}
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
@@ -660,6 +662,10 @@ MonoBehaviour:
   pandemoniumSFX1: {fileID: 0}
   pandemoniumSFX2: {fileID: 0}
   masterColor: {fileID: 2100000, guid: 2f71c584eb55c40e3b87754cbfafcfe8, type: 2}
+  player1Material: {fileID: 2100000, guid: 9b5598fb09f9e4265ab421416b3cfbc3, type: 2}
+  player2Material: {fileID: 2100000, guid: e83bc0752e39846e8bad56f347f67541, type: 2}
+  player3Material: {fileID: 2100000, guid: 891c6e8167fe043f4bcf7a8bd0ce7e85, type: 2}
+  player4Material: {fileID: 2100000, guid: 714222d34b50443f59662c66d2468bc3, type: 2}
   pandemoniumCounter: {fileID: 10291542}
   trail: {fileID: 183056}
   penaltyTimer: 0
@@ -689,6 +695,7 @@ MonoBehaviour:
   trapezoidCollider: {fileID: 6036696}
   squareCollider: {fileID: 6025172}
   rectangleCollider: {fileID: 60036370542313274}
+  starCollider: {fileID: 60248737273344664}
   circleCollider: {fileID: 5883576}
 --- !u!212 &21277264
 SpriteRenderer:
@@ -784,6 +791,30 @@ PolygonCollider2D:
       - {x: 1.3, y: -0.4}
       - {x: 1.3, y: 0.4}
       - {x: -1.3, y: 0.4}
+--- !u!60 &60248737273344664
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103506}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: ffdc2e4047c6d4b89b794a666d731944, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: -1.35}
+      - {x: 0.32, y: -0.32}
+      - {x: 1.43, y: -0.32}
+      - {x: 0.54, y: 0.32}
+      - {x: 0.88, y: 1.35}
+      - {x: 0, y: 0.71}
+      - {x: -0.88, y: 1.35}
+      - {x: -0.54, y: 0.32}
+      - {x: -1.43, y: -0.32}
+      - {x: -0.34, y: -0.32}
 --- !u!198 &198272547298816168
 ParticleSystem:
   m_ObjectHideFlags: 1

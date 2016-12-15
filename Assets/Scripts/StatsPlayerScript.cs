@@ -34,6 +34,7 @@ public class StatsPlayerScript : MonoBehaviour {
 	GameObject triangle;
 	GameObject trapezoid;
 	GameObject rectangle;
+	GameObject star;
 
 	void activateReadyState(){
 		if (taggedIn) {
@@ -64,6 +65,7 @@ public class StatsPlayerScript : MonoBehaviour {
 		triangle = transform.Find ("Triangle").gameObject;
 		trapezoid = transform.Find ("Trapezoid").gameObject;
 		rectangle = transform.Find ("Rectangle").gameObject;
+		star = transform.Find ("Star").gameObject;
 
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
@@ -135,6 +137,8 @@ public class StatsPlayerScript : MonoBehaviour {
 				//change sprite here
 			} else if (whichType == 4) {
 				rectangle.SetActive (true);
+			} else if (whichType == 5) {
+				star.SetActive (true);
 			}
 		}
 

@@ -35,8 +35,9 @@ public class FakePlayerScript : MonoBehaviour {
 	public GameObject triangle;
 	public GameObject trapezoid;
 	public GameObject rectangle;
+	public GameObject star;
 
-	private int numberOfPlayerTypes = 5;
+	private int numberOfPlayerTypes = 6;
 
 
 	SpriteRenderer sr;
@@ -63,6 +64,8 @@ public class FakePlayerScript : MonoBehaviour {
 			triangle.SetActive (false);
 			trapezoid.SetActive (false);
 			rectangle.SetActive (false);
+			star.SetActive (false);
+
 
 			if (whichType == 0) {
 //				fakePlayer1.GetComponent<MeshFilter> ().mesh = meshType1;
@@ -94,6 +97,12 @@ public class FakePlayerScript : MonoBehaviour {
 				rectangle.SetActive (true);
 				playerDescription.text = "DEFENSIVE\nSLOW";
 				playerDifficulty.text = "EASY";
+				//change sprite here
+			} else if (whichType == 5){
+				//	sr.sprite = trapezoidSprite;
+				star.SetActive (true);
+				playerDescription.text = "STRONG\nUNPREDICTABLE";
+				playerDifficulty.text = "HARD";
 				//change sprite here
 			}
 
@@ -131,6 +140,7 @@ public class FakePlayerScript : MonoBehaviour {
 			triangle.SetActive (false);
 			trapezoid.SetActive (false);
 			rectangle.SetActive (false);
+			star.SetActive (false);
 
 			switch (thisType) {
 			case 0:
@@ -148,6 +158,10 @@ public class FakePlayerScript : MonoBehaviour {
 			case 4:
 				rectangle.SetActive (true);
 				break;
+			case 5:
+				star.SetActive (true);
+				break;
+
 			}
 
 			switch(playerIdentifier){
@@ -186,6 +200,7 @@ public class FakePlayerScript : MonoBehaviour {
 			triangle.SetActive (false);
 			trapezoid.SetActive (false);
 			rectangle.SetActive (false);
+			star.SetActive (false);
 			playerDescription.enabled = false;
 			playerDifficulty.enabled = false;
 			switch(playerIdentifier){
@@ -225,12 +240,14 @@ public class FakePlayerScript : MonoBehaviour {
 		triangle = transform.Find ("Triangle").gameObject;
 		trapezoid = transform.Find ("Trapezoid").gameObject;
 		rectangle = transform.Find ("Rectangle").gameObject;
+		star = transform.Find ("Star").gameObject;
 
 		square.SetActive (false);
 		circle.SetActive (false);
 		triangle.SetActive (false);
 		trapezoid.SetActive (false);
 		rectangle.SetActive (false);
+		star.SetActive (false);
 	}
 
 	// Update is called once per frame
