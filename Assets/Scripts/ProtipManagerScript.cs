@@ -16,7 +16,37 @@ public class ProtipManagerScript : MonoBehaviour {
 	void Start () {
 		MusicManagerScript.Instance.StartIntro ();
 		Invoke ("StartGame", proTipTime);
-		whichProtip = Random.Range (0, protipContainer.transform.childCount);
+		// make this a common shared function somehow
+		int playersActive = 0;
+		int whichSoloPlayer = 0;
+
+		// make this a common function in a class
+		if (DataManagerScript.playerOnePlaying == true) {
+			Player1.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 1;
+		}
+		if (DataManagerScript.playerTwoPlaying == true) {
+			Player2.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 2;
+		}
+		if (DataManagerScript.playerThreePlaying == true) {
+			Player3.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 3;
+		}
+		if (DataManagerScript.playerFourPlaying == true) {
+			Player4.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 4;
+		}
+
+		if (playersActive == 1) {
+			whichProtip = 13;
+		} else {
+			whichProtip = Random.Range (0, protipContainer.transform.childCount);
+		}
 		ChooseRandomProtip ();
 	}
 

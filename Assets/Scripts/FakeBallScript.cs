@@ -47,7 +47,8 @@ public class FakeBallScript : MonoBehaviour {
 	public AudioClip bounceOffWallSound;
 	public AudioClip bounceOffScoringBoundarySound; 
 	public AudioClip largeHitSound;
-
+	private int rallyCount = 12;
+	public Text rallyCountText;
 	private AudioSource audio;
 	public bool didSirenPlayAlready;
 	// Use this for initialization
@@ -142,7 +143,10 @@ public class FakeBallScript : MonoBehaviour {
 	}
 
 	void CheckForSideChange(){
-		
+		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos) && lastXPos != 0 && transform.position.x != 0) {
+			rallyCount++;
+			rallyCountText.text = rallyCount.ToString();
+		}
 	}
 
 	void FadeOutScore(){

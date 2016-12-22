@@ -359,6 +359,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &26738264
 AudioSource:
@@ -2422,6 +2423,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &193234907
 AudioSource:
@@ -3097,6 +3099,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &215496168
 AudioSource:
@@ -3451,6 +3454,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &231245075
 AudioSource:
@@ -4038,6 +4042,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &266121038
 AudioSource:
@@ -7393,6 +7398,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &439554385
 AudioSource:
@@ -10974,7 +10980,7 @@ MonoBehaviour:
   trianglePC: {fileID: 590965880}
   trapezoidPC: {fileID: 590965879}
   penaltyExplosion: {fileID: 0}
-  startDelay: 1.5
+  startDelay: 1.25
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -11769,6 +11775,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &605743368
 AudioSource:
@@ -12005,6 +12012,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &612604811
 AudioSource:
@@ -27103,7 +27111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1343954887
 Transform:
   m_ObjectHideFlags: 0
@@ -34043,6 +34051,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &1668837807
 AudioSource:
@@ -37529,7 +37538,7 @@ GameObject:
   - component: {fileID: 1808244537}
   - component: {fileID: 1808244536}
   m_Layer: 5
-  m_Name: ProtipTitleText (1)
+  m_Name: RallyCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37970,6 +37979,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &1831702226
 AudioSource:
@@ -38491,7 +38501,7 @@ MonoBehaviour:
   trianglePC: {fileID: 1849167022}
   trapezoidPC: {fileID: 1849167021}
   penaltyExplosion: {fileID: 0}
-  startDelay: 1.5
+  startDelay: 1.25
   clampPosition: 1
   jumpSound1: {fileID: 0}
   jumpSound2: {fileID: 0}
@@ -39247,7 +39257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 19.608423
+  Phase: 21.05586
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -40950,7 +40960,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9ff7a88a5c9f2438a785c0e9349807, type: 2}
@@ -42155,6 +42165,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 1808244537}
   didSirenPlayAlready: 0
 --- !u!82 &1968361247
 AudioSource:
@@ -42285,7 +42296,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.7853982
+  m_Mass: 1
   m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 0.8
@@ -42303,7 +42314,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1968361244}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 71baa53746dc643019846a1b08d93a3f, type: 2}
+  m_Material: {fileID: 6200000, guid: 5cbff325204bc494f8761a1a5520730f, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -42906,6 +42917,7 @@ MonoBehaviour:
   bounceOffWallSound: {fileID: 0}
   bounceOffScoringBoundarySound: {fileID: 0}
   largeHitSound: {fileID: 0}
+  rallyCountText: {fileID: 0}
   didSirenPlayAlready: 0
 --- !u!82 &1999030577
 AudioSource:
