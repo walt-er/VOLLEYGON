@@ -93,3 +93,6 @@
 2016/12/15 18:32:44 1 played a game and the match time was 00:40. The longest rally was 4
 2016/12/15 18:34:21 1 played a game and the match time was 01:17. The longest rally was 9
 2016/12/21 16:36:48 1 played a game and the match time was 01:13. The longest rally was 6
+2016/12/21 17:30:15 1 played a game and the match time was 00:42. The longest rally was 2
+2016/12/21 17:40:14 1 played a game and the match time was 00:37. The longest rally was 1
+2016/12/21 17:41:16 2 played a game and the match time was 00:44. The longest rally was 3

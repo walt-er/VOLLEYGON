@@ -274,11 +274,16 @@ public class GameManagerScript : MonoBehaviour {
 	IEnumerator FadeToStats(){
 		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
-		Application.LoadLevel ("statsScene");
+		if (!OnePlayerMode) {
+			Application.LoadLevel ("statsScene");
+		} else {
+			Application.LoadLevel ("singlePlayerStatsScene");
+		}
 	}
 
 	public void endGame(){
 		isGameOver = true;
+		DataManagerScript.rallyCount = rallyCount;
 		Invoke ("LaunchStatsScreen", 5f);
 	}
 

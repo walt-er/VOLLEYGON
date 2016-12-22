@@ -197,8 +197,27 @@ public class DemoPlayerController : MonoBehaviour {
 			Invoke ("StopMoving", 1.0f);
 
 			break;
+
+		case 9:
+			moveToRight = true;
+			Invoke ("ChangeDirection", 0.4f);
+			break;
 		}
 	}
+
+	void ChangeDirection(){
+
+		if (moveToRight) {
+			moveToRight = false;
+			moveToLeft = true;
+		} else {
+			moveToRight = true;
+			moveToLeft = false;
+		}
+
+		Invoke ("ChangeDirection", 0.4f);
+	}
+
 	void StopMoving(){
 		moveToLeft = false;
 		moveToRight = false;
