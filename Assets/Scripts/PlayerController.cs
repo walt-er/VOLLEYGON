@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public Mesh meshTypeOne;
 	public Mesh meshTypeTwo;
 	public int playerType = 0;
-	public PolygonCollider2D trianglePC, trapezoidPC, squarePC, rectanglePC;
+	public PolygonCollider2D trianglePC, trapezoidPC, squarePC, rectanglePC, starPC;
 	private bool canMove;
 	private string playerColor;
 
@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip pandemoniumSFX2;
 
 	public Material masterColor;
+	public Material player1Material;
+	public Material player2Material;
+	public Material player3Material;
+	public Material player4Material;
 
 	public TextMesh pandemoniumCounter;
 
@@ -90,6 +94,9 @@ public class PlayerController : MonoBehaviour {
 	private float rectangleSpeed = 13f;
 	private float rectangleSpinRate = -150f;
 
+	private float starJumpPower = 2000f;
+	private float starSpeed = 15f;
+	private float starSpinRate = -150f;
 
 	Rigidbody2D rb;
 	MeshRenderer mr;
@@ -107,6 +114,8 @@ public class PlayerController : MonoBehaviour {
 		startMass = rb.mass;
 		canMove = true;
 		pandemoniumCounter.GetComponent<TextMesh> ().color = new Vector4(0f, 0f, 0f, 0f);
+
+		//GetComponent<MeshRenderer> ().material = masterColor;
 		inPenalty = false;
 		// assign player color
 		switch (playerID) {
@@ -167,6 +176,15 @@ public class PlayerController : MonoBehaviour {
 			speed = rectangleSpeed;
 			spinPower = rectangleSpinRate;
 		}
+
+		if (playerType == 5) {
+			starPC.enabled = true;
+			//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
+			jumpPower = starJumpPower;
+			speed = starSpeed;
+			spinPower = starSpinRate;
+		}
+			
 
 		startJumpPower = jumpPower;
 		startSpeed = speed; 

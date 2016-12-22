@@ -13,6 +13,8 @@ public class GameManagerScript : MonoBehaviour {
 	public int teamOneScore;
 	public int teamTwoScore;
 	public Text winText;
+	public int rallyCount;
+	public Text rallyCountText;
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
 	public int arenaType;
@@ -21,11 +23,22 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject speedPowerupPrefab;
 	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
+	public GameObject playerClonePrefab;
+
+	public GameObject ball;
+
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
 	public GameObject Player1;
 	public GameObject Player2;
 	public GameObject Player3;
 	public GameObject Player4;
+
+	public Material Player1Material;
+	public Material Player2Material;
+	public Material Player3Material;
+	public Material Player4Material;
+
+	private bool OnePlayerMode;
 
 	// Hold references to each of the arenas
 	public GameObject Arena1;
@@ -78,7 +91,7 @@ public class GameManagerScript : MonoBehaviour {
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		Invoke ("StartReplay", 2f);
 
-
+		rallyCount = 0;
 		// Set up players and their rigidbodies based on character selection choice
 		//	Player1.SetActive (false);
 
@@ -139,23 +152,116 @@ public class GameManagerScript : MonoBehaviour {
 			break;
 
 		}
+		int playersActive = 0;
+		int whichSoloPlayer = 0;
 
-		if (DataManagerScript.playerOnePlaying == false) {
-			Player1.SetActive (false);
+		if (DataManagerScript.playerOnePlaying == true) {
+			Player1.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 1;
 		}
-		if (DataManagerScript.playerTwoPlaying == false) {
-			Player2.SetActive (false);
+		if (DataManagerScript.playerTwoPlaying == true) {
+			Player2.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 2;
 		}
-		if (DataManagerScript.playerThreePlaying == false) {
-			Player3.SetActive (false);
+		if (DataManagerScript.playerThreePlaying == true) {
+			Player3.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 3;
 		}
-		if (DataManagerScript.playerFourPlaying == false) {
-			Player4.SetActive (false);
+		if (DataManagerScript.playerFourPlaying == true) {
+			Player4.SetActive (true);
+			playersActive++;
+			whichSoloPlayer = 4;
+		}
+		Debug.Log (playersActive);
+		if (playersActive == 1) {
+			OnePlayerMode = true;
+			Debug.Log("one player mode on");
+			InstantiateClone (whichSoloPlayer);
+			ball.GetComponent<BallScript> ().onePlayerMode = true;
+			rallyCountText.gameObject.SetActive (true);
+			Debug.Log ("rally count text enabled");
+		} else {
+			OnePlayerMode = false;
 		}
 
 	}
 	void launchTimer(){
 		timerRunning = true;
+
+	}
+
+	void InstantiateClone(int whichSoloPlayer){
+		// create a clone of the current player, place it on the opposite team, and bind the same controls to it
+
+		GameObject playerClone = null;
+		int playerType = 0;
+		Material whichMat = null;
+
+		switch (whichSoloPlayer) {
+		case 1:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+			playerType = Player1.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P1";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P1";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P1";
+			playerClone.GetComponent<PlayerController> ().startingGrav = 1;
+			whichMat = Player1Material;
+			// determine position
+			// run a config function to bind the controls
+			break;
+		case 2:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, 5f, 0), Quaternion.identity);
+			playerType = Player2.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P2";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P2";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P2";
+			playerClone.GetComponent<PlayerController> ().startingGrav = -1;
+			whichMat = Player2Material;
+			break;
+		case 3:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, -5f, 0), Quaternion.identity);
+			playerType = Player3.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 1;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P3";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P3";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P3";
+			playerClone.GetComponent<PlayerController> ().startingGrav = 1;
+			whichMat = Player3Material;
+			break;
+		case 4:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, 5f, 0), Quaternion.identity);
+			playerType = Player4.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 1;
+			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P4";
+			playerClone.GetComponent<PlayerController> ().jumpButton = "Jump_P4";
+			playerClone.GetComponent<PlayerController> ().gravButton = "Grav_P4";
+			playerClone.GetComponent<PlayerController> ().startingGrav = -1;
+			whichMat = Player4Material;
+			break;
+
+		default:
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+
+			playerType = Player1.GetComponent<PlayerController> ().playerType;
+			playerClone.GetComponent<PlayerController> ().team = 2;
+			break;
+		}
+
+		playerClone.SetActive (true);
+		playerClone.transform.SetParent (GameObject.Find ("Players").transform);
+	//	playerClone.GetComponent<BoxCollider2D> ().enabled = true;
+		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
+		playerClone.GetComponent<PlayerController>().playerType = playerType;
+		playerClone.GetComponent<MeshRenderer> ().material = whichMat;
+		if (playerType == 1) {
+			playerClone.transform.Find ("Circle").GetComponent<CircleEfficient> ().Rebuild ();
+			playerClone.transform.Find ("Circle").GetComponent<MeshRenderer> ().material = whichMat;
+		}
 
 	}
 
@@ -170,6 +276,12 @@ public class GameManagerScript : MonoBehaviour {
 		yield return new WaitForSeconds (fadeTime);
 		Application.LoadLevel ("statsScene");
 	}
+
+	public void endGame(){
+		isGameOver = true;
+		Invoke ("LaunchStatsScreen", 5f);
+	}
+
 	void teamWins(int whichTeam){
 		Debug.Log ("Team wins running");
 //		winText.text = "Team " + whichTeam.ToString () + " Wins!";
@@ -186,7 +298,6 @@ public class GameManagerScript : MonoBehaviour {
 			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamTwoWin ();
 			background.GetComponent<BackgroundColorScript> ().whoWon = 2;
 			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
 			break;
 		}
 		isGameOver = true;
@@ -209,6 +320,9 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Update () {
 
+		if (OnePlayerMode) {
+			rallyCountText.text = rallyCount.ToString();
+		}
 		// if all 4 start buttons are pressed, warp back to title screen 
 		if (Input.GetButton (startButton1) && Input.GetButton (startButton2) && Input.GetButton (startButton3) && Input.GetButton (startButton4)) {
 			Debug.Log ("returning to title");
@@ -236,7 +350,7 @@ public class GameManagerScript : MonoBehaviour {
 		//	Debug.Log ("Run team two wins routine here");
 			teamWins (2);
 		}
-
+			
 		if (!isGameOver) {
 			ConsiderAPowerup ();
 		}
