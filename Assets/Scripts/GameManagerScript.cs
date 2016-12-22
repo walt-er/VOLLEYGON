@@ -155,6 +155,7 @@ public class GameManagerScript : MonoBehaviour {
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
 
+		// make this a common function in a class
 		if (DataManagerScript.playerOnePlaying == true) {
 			Player1.SetActive (true);
 			playersActive++;
@@ -202,7 +203,7 @@ public class GameManagerScript : MonoBehaviour {
 
 		switch (whichSoloPlayer) {
 		case 1:
-			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, -0.5f), Quaternion.identity);
 			playerType = Player1.GetComponent<PlayerController> ().playerType;
 			playerClone.GetComponent<PlayerController> ().team = 2;
 			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P1";
@@ -214,7 +215,7 @@ public class GameManagerScript : MonoBehaviour {
 			// run a config function to bind the controls
 			break;
 		case 2:
-			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, 5f, 0), Quaternion.identity);
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, 5f, -0.5f), Quaternion.identity);
 			playerType = Player2.GetComponent<PlayerController> ().playerType;
 			playerClone.GetComponent<PlayerController> ().team = 2;
 			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P2";
@@ -224,7 +225,7 @@ public class GameManagerScript : MonoBehaviour {
 			whichMat = Player2Material;
 			break;
 		case 3:
-			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, -5f, 0), Quaternion.identity);
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, -5f, -0.5f), Quaternion.identity);
 			playerType = Player3.GetComponent<PlayerController> ().playerType;
 			playerClone.GetComponent<PlayerController> ().team = 1;
 			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P3";
@@ -234,7 +235,7 @@ public class GameManagerScript : MonoBehaviour {
 			whichMat = Player3Material;
 			break;
 		case 4:
-			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, 5f, 0), Quaternion.identity);
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (-10.0f, 5f, -0.5f), Quaternion.identity);
 			playerType = Player4.GetComponent<PlayerController> ().playerType;
 			playerClone.GetComponent<PlayerController> ().team = 1;
 			playerClone.GetComponent<PlayerController> ().horiz = "Horizontal_P4";
@@ -245,7 +246,7 @@ public class GameManagerScript : MonoBehaviour {
 			break;
 
 		default:
-			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, 0), Quaternion.identity);
+			playerClone = Instantiate (playerClonePrefab, new Vector3 (10.0f, -5f, -0.5f), Quaternion.identity);
 
 			playerType = Player1.GetComponent<PlayerController> ().playerType;
 			playerClone.GetComponent<PlayerController> ().team = 2;

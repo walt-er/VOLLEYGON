@@ -22,22 +22,22 @@ public class ProtipManagerScript : MonoBehaviour {
 
 		// make this a common function in a class
 		if (DataManagerScript.playerOnePlaying == true) {
-			Player1.SetActive (true);
+			
 			playersActive++;
 			whichSoloPlayer = 1;
 		}
 		if (DataManagerScript.playerTwoPlaying == true) {
-			Player2.SetActive (true);
+			
 			playersActive++;
 			whichSoloPlayer = 2;
 		}
 		if (DataManagerScript.playerThreePlaying == true) {
-			Player3.SetActive (true);
+			
 			playersActive++;
 			whichSoloPlayer = 3;
 		}
 		if (DataManagerScript.playerFourPlaying == true) {
-			Player4.SetActive (true);
+			
 			playersActive++;
 			whichSoloPlayer = 4;
 		}

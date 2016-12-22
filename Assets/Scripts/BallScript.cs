@@ -549,6 +549,9 @@ public class BallScript : MonoBehaviour {
 					// single mode
 					singleModeBalls--;
 					Debug.Log ("scored");
+					// generate a random number between one and two
+					int randomTrack = Random.Range(1,3);
+					MusicManagerScript.Instance.SwitchMusic (randomTrack);
 					if (singleModeBalls <= 0) {
 						// GAME IS OVER
 						transform.position = new Vector3 (0f, 0f, 0f);

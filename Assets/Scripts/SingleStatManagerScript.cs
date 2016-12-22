@@ -16,6 +16,8 @@ public class SingleStatManagerScript : MonoBehaviour {
 	private string gravButton4 = "Grav_P4";
 
 	public Text rallyCountText;
+	public Text highScoreText;
+	public Text newText;
 
 	string formattedMatchTime;
 
@@ -33,6 +35,7 @@ public class SingleStatManagerScript : MonoBehaviour {
 
 	void Start () {
 		MusicManagerScript.Instance.StartIntro ();
+
 
 		buttons.Add (jumpButton1);
 		buttons.Add (jumpButton2);
@@ -132,7 +135,17 @@ public class SingleStatManagerScript : MonoBehaviour {
 
 		int rallyCount = DataManagerScript.rallyCount;
 		//populate matchtime and longest rally counters
+
 		rallyCountText.text = rallyCount.ToString (); 
+		int highScore = PlayerPrefs.GetInt ("highscore");
+		newText.enabled = false;
+		if (rallyCount > highScore) {
+			PlayerPrefs.SetInt ("highscore", rallyCount);
+			highScore = rallyCount;
+			newText.enabled = true;
+
+		}
+		highScoreText.text = highScore.ToString ();
 	}
 
 	Color HexToColor(string hex)
