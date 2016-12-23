@@ -363,6 +363,10 @@ public class PlayerController : MonoBehaviour {
 			rectanglePC.enabled = true;
 			mr.enabled = true;
 			break;
+		case 5:
+			starPC.enabled = true;
+			mr.enabled = true;
+			break;
 		}
 
 

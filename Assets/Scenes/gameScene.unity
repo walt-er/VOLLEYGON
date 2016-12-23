@@ -8634,7 +8634,7 @@ MonoBehaviour:
   gravButton: Grav_P2
   team: 1
   startingGrav: -1
-  playerID: 1
+  playerID: 2
   meshTypeOne: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   meshTypeTwo: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   playerType: 0
