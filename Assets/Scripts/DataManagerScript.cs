@@ -65,7 +65,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V1.4";
+		version = "V1.4.1";
 	}
 	
 	// Update is called once per frame
