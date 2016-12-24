@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = squareJumpPower;
 			speed = squareSpeed;
 			spinPower = squareSpinRate;
+			IncreasePlayCount ("squarePlays");
 		}
 
 		if (playerType == 1) {
@@ -151,6 +152,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = circleJumpPower;
 			speed = circleSpeed;
 			spinPower = circleSpinRate;
+			IncreasePlayCount ("circlePlays");
 		}
 
 		if (playerType == 2) {
@@ -159,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = triangleJumpPower;
 			speed = triangleSpeed;
 			spinPower = triangleSpinRate;
+			IncreasePlayCount ("trianglePlays");
 		}
 
 		if (playerType == 3) {
@@ -167,6 +170,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = trapezoidJumpPower;
 			speed = trapezoidSpeed;
 			spinPower = trapezoidSpinRate;
+			IncreasePlayCount ("trapezoidPlays");
 		}
 
 		if (playerType == 4) {
@@ -175,6 +179,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = rectangleJumpPower;
 			speed = rectangleSpeed;
 			spinPower = rectangleSpinRate;
+			IncreasePlayCount ("rectanglePlays");
 		}
 
 		if (playerType == 5) {
@@ -183,6 +188,7 @@ public class PlayerController : MonoBehaviour {
 			jumpPower = starJumpPower;
 			speed = starSpeed;
 			spinPower = starSpinRate;
+			IncreasePlayCount ("starPlays");
 		}
 			
 
@@ -203,6 +209,13 @@ public class PlayerController : MonoBehaviour {
 //		pg.points = thePoints;
 
 	}
+
+	void IncreasePlayCount(string whichType){
+		int tempTotal = PlayerPrefs.GetInt (whichType);
+		tempTotal += 1;
+		PlayerPrefs.SetInt (whichType, tempTotal);
+	}
+
 	IEnumerator Flash() {
 		Debug.Log ("flash firing");
 		for (float f = .8f; f >= 0; f -= 0.04f) {

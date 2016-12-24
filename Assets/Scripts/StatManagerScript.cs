@@ -135,8 +135,16 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	void LogStats(){
-		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game and the match time was " + formattedMatchTime + ". The longest rally was " + DataManagerScript.longestRallyCount.ToString() + "\n";
+		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game and the longest rally was " + DataManagerScript.longestRallyCount.ToString() + " and the match time was " + DataManagerScript.gameTime + " seconds. The MVP was Player " + MVP +  "\n";
 		System.IO.File.AppendAllText("playlog.txt", logText);
+		int squarePlays = PlayerPrefs.GetInt ("squarePlays");
+		int circlePlays = PlayerPrefs.GetInt ("circlePlays");
+		int trianglePlays = PlayerPrefs.GetInt ("trianglePlays");
+		int trapezoidPlays = PlayerPrefs.GetInt ("trapezoidPlays");
+		int rectanglePlays = PlayerPrefs.GetInt ("recetanglePlays");
+		int starPlays = PlayerPrefs.GetInt ("starPlays");
+		string totalsText = "Square plays: " + squarePlays.ToString () + " Circle plays: " + circlePlays.ToString () + " Triangle plays: " + trianglePlays.ToString () + " Trapezoid plays: " + trapezoidPlays.ToString () + "Rectangle plays: " + rectanglePlays.ToString () + "Star plays: " + starPlays.ToString ();
+		System.IO.File.WriteAllText("stattotals.txt", totalsText);
 
 	}
 	void DetermineMVP(){
