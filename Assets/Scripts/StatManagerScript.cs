@@ -143,7 +143,7 @@ public class StatManagerScript : MonoBehaviour {
 		int trapezoidPlays = PlayerPrefs.GetInt ("trapezoidPlays");
 		int rectanglePlays = PlayerPrefs.GetInt ("recetanglePlays");
 		int starPlays = PlayerPrefs.GetInt ("starPlays");
-		string totalsText = "Square plays: " + squarePlays.ToString () + " Circle plays: " + circlePlays.ToString () + " Triangle plays: " + trianglePlays.ToString () + " Trapezoid plays: " + trapezoidPlays.ToString () + "Rectangle plays: " + rectanglePlays.ToString () + "Star plays: " + starPlays.ToString ();
+		string totalsText = "Square plays: " + squarePlays.ToString () + " Circle plays: " + circlePlays.ToString () + " Triangle plays: " + trianglePlays.ToString () + " Trapezoid plays: " + trapezoidPlays.ToString () + " Rectangle plays: " + rectanglePlays.ToString () + " Star plays: " + starPlays.ToString ();
 		System.IO.File.WriteAllText("stattotals.txt", totalsText);
 
 	}
