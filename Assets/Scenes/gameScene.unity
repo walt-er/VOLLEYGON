@@ -4938,7 +4938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &835292216
 Transform:
   m_ObjectHideFlags: 0
@@ -5483,7 +5483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &951625226
 Transform:
   m_ObjectHideFlags: 0
@@ -10557,6 +10557,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0
@@ -11805,7 +11809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 400.1666
+  Phase: 400.58832
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -11841,7 +11845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 278.928
+  Timer: 280.2773
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
@@ -12272,6 +12276,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
   m_IsPrefabParent: 0
@@ -12387,6 +12395,10 @@ Prefab:
     - target: {fileID: 182950, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
       propertyPath: m_TagString
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 410124, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a2330bd448b4b829f3c67573ed1e16, type: 2}
