@@ -146,6 +146,22 @@ public class StatManagerScript : MonoBehaviour {
 		string totalsText = "Square plays: " + squarePlays.ToString () + " Circle plays: " + circlePlays.ToString () + " Triangle plays: " + trianglePlays.ToString () + " Trapezoid plays: " + trapezoidPlays.ToString () + " Rectangle plays: " + rectanglePlays.ToString () + " Star plays: " + starPlays.ToString ();
 		System.IO.File.WriteAllText("stattotals.txt", totalsText);
 
+
+
+		int randomArenaPlays = PlayerPrefs.GetInt ("randomArenaPlays");
+		int arena1Plays = PlayerPrefs.GetInt ("arena1Plays");
+		int arena2Plays = PlayerPrefs.GetInt ("arena2Plays");
+		int arena3Plays = PlayerPrefs.GetInt ("arena3Plays");
+		int arena4Plays = PlayerPrefs.GetInt ("arena4Plays");
+		int arena5Plays = PlayerPrefs.GetInt ("arena5Plays");
+		int arena6Plays = PlayerPrefs.GetInt ("arena6Plays");
+		int arena7Plays = PlayerPrefs.GetInt ("arena7Plays");
+		int arena8Plays = PlayerPrefs.GetInt ("arena8Plays");
+		int arena9Plays = PlayerPrefs.GetInt ("arena9Plays");
+
+		string arenaTotals = "Random Arena plays: " + randomArenaPlays.ToString () + " Arena 1 plays: " + arena1Plays.ToString () + " Arena 2 plays: " + arena2Plays.ToString () + " Arena 3 plays: " + arena3Plays.ToString () + " Arena 4 plays: " + arena4Plays.ToString () + " Arena 5 plays: " + arena5Plays.ToString ()  + " Arena 6 plays: " + arena6Plays.ToString ()  + " Arena 7 plays: " + arena7Plays.ToString ()  + " Arena 8 plays: " + arena8Plays.ToString ()  + " Arena 9 plays: " + arena9Plays.ToString ();
+		System.IO.File.WriteAllText("arenatotals.txt", arenaTotals);
+
 	}
 	void DetermineMVP(){
 		float p1Score = DataManagerScript.playerOneAces * aceWeight + DataManagerScript.playerOneScores * scoreWeight + DataManagerScript.playerOneReturns * returnWeight - DataManagerScript.playerOneBumbles * bumbleWeight; 

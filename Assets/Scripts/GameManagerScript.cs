@@ -194,6 +194,12 @@ public class GameManagerScript : MonoBehaviour {
 
 	}
 
+	void IncreasePlayCount(string whichType){
+		int tempTotal = PlayerPrefs.GetInt (whichType);
+		tempTotal += 1;
+		PlayerPrefs.SetInt (whichType, tempTotal);
+	}
+
 	void InstantiateClone(int whichSoloPlayer){
 		// create a clone of the current player, place it on the opposite team, and bind the same controls to it
 

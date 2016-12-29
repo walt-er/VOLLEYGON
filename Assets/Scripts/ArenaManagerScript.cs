@@ -46,6 +46,8 @@ public class ArenaManagerScript : MonoBehaviour {
 	List<Axis> verticalAxes = new List<Axis>();
 	List<Axis> horizontalAxes = new List<Axis>();
 
+	List<string> buttons = new List<string>();
+
 	// Use this for initialization
 	void Start () {
 		audio = GetComponent<AudioSource> ();
@@ -71,12 +73,29 @@ public class ArenaManagerScript : MonoBehaviour {
 		horizontalAxes.Add (ha3);
 		horizontalAxes.Add (ha4);
 
+		buttons.Add (jumpButton1);
+		buttons.Add (gravButton1);
+		buttons.Add (jumpButton2);
+		buttons.Add (gravButton2);
+		buttons.Add (jumpButton3);
+		buttons.Add (gravButton3);
+		buttons.Add (jumpButton4);
+		buttons.Add (gravButton4);
+
+
 		Vector3 tempPos = new Vector3( markerXPositions [0],  markerYPositions [0], 1f);
 		marker.transform.position = tempPos;
+	}
+
+	void IncreasePlayCount(string whichType){
+		int tempTotal = PlayerPrefs.GetInt (whichType);
+		tempTotal += 1;
+		PlayerPrefs.SetInt (whichType, tempTotal);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if (!locked) {
 			foreach (Axis va in verticalAxes) {
 				if (Input.GetAxisRaw (va.axisName) == -1) {
@@ -131,87 +150,20 @@ public class ArenaManagerScript : MonoBehaviour {
 				}
 			}
 
-		
+			foreach (string butt in buttons) {
+				if (Input.GetButtonDown (butt)) {
+					// log which arena
+					if (markerPos == 0) {
+						Debug.Log ("choosing random level");
+						DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
+						IncreasePlayCount ("randomArenaPlays");
 
-			if (Input.GetButtonDown (jumpButton1)) {
-				// log which arena
-				if (markerPos == 0) {
-					Debug.Log ("choosing random level");
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
+					} else {
+						DataManagerScript.arenaType = markerPos;
+						IncreasePlayCount ("arena" + markerPos + "Plays");
+					}
+					StartCoroutine ("NextScene");
 				}
-				StartCoroutine ("NextScene");
-			}
-			if (Input.GetButtonDown (gravButton1)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-
-
-
-			if (Input.GetButtonDown (jumpButton2)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-			if (Input.GetButtonDown (gravButton2)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-
-
-		
-			if (Input.GetButtonDown (jumpButton3)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-			if (Input.GetButtonDown (gravButton3)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-				
-			if (Input.GetButtonDown (jumpButton4)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
-			}
-			if (Input.GetButtonDown (gravButton4)) {
-				// log which arena
-				if (markerPos == 0) {
-					DataManagerScript.arenaType = Random.Range (0, numberOfArenas);
-				} else {
-					DataManagerScript.arenaType = markerPos;
-				}
-				StartCoroutine ("NextScene");
 			}
 		}
 	}
