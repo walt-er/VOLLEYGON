@@ -15,6 +15,8 @@ public class FakePlayerScript : MonoBehaviour {
 
 	public string confirmKey;
 	public string cancelKey;
+	private string confirmKey_Xbox;
+	private string cancelKey_Xbox;
 	public int playerIdentifier; 
 	public Text readyText;
 	public Text toJoinText;
@@ -225,6 +227,10 @@ public class FakePlayerScript : MonoBehaviour {
 
 
 	void Start () {
+
+		// assign xbox keys dynamically
+		confirmKey_Xbox = confirmKey + "_Xbox";
+		cancelKey_Xbox = cancelKey + "_Xbox";
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		//sr.sprite = squareSprite;
@@ -266,10 +272,11 @@ public class FakePlayerScript : MonoBehaviour {
 				CheckAxis (chooseAxis_Xbox);
 			}
 
-			if (Input.GetButtonDown (confirmKey)) {
+			if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown(confirmKey_Xbox)) {
 				activateReadyState ();
 			}
-			if (Input.GetButtonDown (cancelKey)) {
+
+			if (Input.GetButtonDown (cancelKey) || Input.GetButtonDown(cancelKey_Xbox)) {
 				cancelReadyState ();
 			}
 		}

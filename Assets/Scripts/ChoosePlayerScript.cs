@@ -21,6 +21,10 @@ public class ChoosePlayerScript : MonoBehaviour {
 		private string start2 = "Start_P2";
 		private string start3 = "Start_P3";
 		private string start4 = "Start_P4";
+	private string start1_Xbox = "Start_P1_Xbox";
+	private string start2_Xbox = "Start_P2_Xbox";
+	private string start3_Xbox = "Start_P3_Xbox";
+	private string start4_Xbox = "Start_P4_Xbox";
 
 	private bool gameIsStartable = false;
 //	public Text player1ReadyText;
@@ -173,7 +177,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4)) {
+		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4) || Input.GetButtonDown (start1_Xbox) || Input.GetButtonDown (start2_Xbox) || Input.GetButtonDown (start3_Xbox) || Input.GetButtonDown (start4_Xbox)) {
 			if (gameIsStartable) {	
 				Application.LoadLevel ("chooseArenaScene");
 			}

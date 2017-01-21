@@ -20,6 +20,16 @@ public class ArenaManagerScript : MonoBehaviour {
 	private string jumpButton4 = "Jump_P4";
 	private string gravButton4 = "Grav_P4";
 	private string vertAxis4 = "Vertical_P4";
+	private string jumpButton1_Xbox = "Jump_P1_Xbox";
+	private string jumpButton2_Xbox = "Jump_P2_Xbox";
+	private string jumpButton3_Xbox = "Jump_P3_Xbox";
+	private string jumpButton4_Xbox = "Jump_P4_Xbox";
+
+	private string gravButton1_Xbox = "Grav_P1_Xbox";
+	private string gravButton2_Xbox = "Grav_P2_Xbox";
+	private string gravButton3_Xbox = "Grav_P3_Xbox";
+	private string gravButton4_Xbox = "Grav_P4_Xbox";
+
 	public GameObject marker;
 	private bool axis1InUse = false;
 	private bool axis2InUse = false;
@@ -37,10 +47,20 @@ public class ArenaManagerScript : MonoBehaviour {
 	Axis va3;
 	Axis va4;
 
+	Axis va1_Xbox;
+	Axis va2_Xbox;
+	Axis va3_Xbox;
+	Axis va4_Xbox;
+
 	Axis ha1;
 	Axis ha2;
 	Axis ha3;
 	Axis ha4;
+
+	Axis ha1_Xbox;
+	Axis ha2_Xbox;
+	Axis ha3_Xbox;
+	Axis ha4_Xbox;
 
 	//VertAxis[] verticalAxes;
 	List<Axis> verticalAxes = new List<Axis>();
@@ -58,20 +78,40 @@ public class ArenaManagerScript : MonoBehaviour {
 		va3 = new Axis("Vertical_P3");
 		va4 = new Axis("Vertical_P4");
 
+		va1_Xbox = new Axis("Vertical_P1_Xbox");
+		va2_Xbox = new Axis("Vertical_P2_Xbox");
+		va3_Xbox = new Axis("Vertical_P3_Xbox");
+		va4_Xbox = new Axis("Vertical_P4_Xbox");
+
 		verticalAxes.Add (va1);
 		verticalAxes.Add (va2);
 		verticalAxes.Add (va3);
 		verticalAxes.Add (va4);
+
+		verticalAxes.Add (va1_Xbox);
+		verticalAxes.Add (va2_Xbox);
+		verticalAxes.Add (va3_Xbox);
+		verticalAxes.Add (va4_Xbox);
 
 		ha1 = new Axis("Horizontal_P1");
 		ha2 = new Axis("Horizontal_P2");
 		ha3 = new Axis("Horizontal_P3");
 		ha4 = new Axis("Horizontal_P4");
 
+		ha1_Xbox = new Axis("Horizontal_P1_Xbox");
+		ha2_Xbox = new Axis("Horizontal_P2_Xbox");
+		ha3_Xbox = new Axis("Horizontal_P3_Xbox");
+		ha4_Xbox = new Axis("Horizontal_P4_Xbox");
+
 		horizontalAxes.Add (ha1);
 		horizontalAxes.Add (ha2);
 		horizontalAxes.Add (ha3);
 		horizontalAxes.Add (ha4);
+
+		horizontalAxes.Add (ha1_Xbox);
+		horizontalAxes.Add (ha2_Xbox);
+		horizontalAxes.Add (ha3_Xbox);
+		horizontalAxes.Add (ha4_Xbox);
 
 		buttons.Add (jumpButton1);
 		buttons.Add (gravButton1);
@@ -81,6 +121,17 @@ public class ArenaManagerScript : MonoBehaviour {
 		buttons.Add (gravButton3);
 		buttons.Add (jumpButton4);
 		buttons.Add (gravButton4);
+
+		buttons.Add (jumpButton1_Xbox);
+		buttons.Add (gravButton1_Xbox);
+		buttons.Add (jumpButton2_Xbox);
+		buttons.Add (gravButton2_Xbox);
+		buttons.Add (jumpButton3_Xbox);
+		buttons.Add (gravButton3_Xbox);
+		buttons.Add (jumpButton4_Xbox);
+		buttons.Add (gravButton4_Xbox);
+
+
 
 
 		Vector3 tempPos = new Vector3( markerXPositions [0],  markerYPositions [0], 1f);
