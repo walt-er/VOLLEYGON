@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
 	public string horiz = "Horizontal_P1";
 	public string jumpButton = "Jump_P1";
 	public string gravButton = "Grav_P1";
+	private string horiz_Xbox;
+	private string jumpButton_Xbox;
+	private string gravButton_Xbox;
 	public int team = 1;
 	private bool inPenalty;
 	public float startingGrav = 1;
@@ -104,6 +107,9 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		gravButton_Xbox = gravButton + "_Xbox";
+		jumpButton_Xbox = jumpButton + "_Xbox";
+		horiz_Xbox = horiz + "_Xbox";
 
 		ps = transform.Find("ssps").GetComponent<ParticleSystem> ();
 		ps.Stop ();
@@ -228,7 +234,13 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate () {
 		
-		float moveHorizontal = Input.GetAxis (horiz);
+		float moveHorizontal;
+
+		if (DataManagerScript.xboxMode) {
+			moveHorizontal = Input.GetAxis (horiz_Xbox);
+		} else {
+			moveHorizontal = Input.GetAxis (horiz);
+		}
 		//Debug.Log (moveHorizontal);
 //		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
 //		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
@@ -267,7 +279,7 @@ public class PlayerController : MonoBehaviour {
 	void Update(){
 		//Debug.Log (canMove);
 		if (!inPenalty) {
-			if (Input.GetButtonDown (jumpButton)) {
+			if (Input.GetButtonDown (jumpButton) || Input.GetButtonDown(jumpButton_Xbox)) {
 				//Debug.Log ("Jump hit");
 				if (isJumping == false) {
 					Vector3 jumpForce = new Vector3 (0f, jumpPower * rb.gravityScale, 0f);
@@ -277,7 +289,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetButtonDown (gravButton)) {
+			if (Input.GetButtonDown (gravButton) || Input.GetButtonDown(gravButton_Xbox)) {
 				rb.gravityScale *= -1f;
 				SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
 				StartCoroutine ("Flash");

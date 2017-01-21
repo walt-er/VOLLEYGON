@@ -263,7 +263,7 @@ public class FakePlayerScript : MonoBehaviour {
 		//Debug.Log(Input.GetAxis("Vertical_P1_Xbox")) ;
 		// only allow input if game isn't already starting
 		//Debug.Log(ChoosePlayerScript.Instance.locked);
-		Debug.Log(DataManagerScript.xboxMode);
+	//	Debug.Log(DataManagerScript.xboxMode);
 		if (!ChoosePlayerScript.Instance.locked) {
 
 			if (!DataManagerScript.xboxMode) {
@@ -273,6 +273,7 @@ public class FakePlayerScript : MonoBehaviour {
 			}
 
 			if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown(confirmKey_Xbox)) {
+				Debug.Log ("CONFIRMED! " + confirmKey_Xbox);
 				activateReadyState ();
 			}
 
