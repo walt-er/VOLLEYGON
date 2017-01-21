@@ -55,6 +55,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static int TM_TeamTwoWins;
 
 	public static string version;
+	public static bool xboxMode = true;
 	void Awake(){
 		if (dataManager == null) {
 			DontDestroyOnLoad (gameObject);
@@ -66,6 +67,7 @@ public class DataManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		version = "V1.4.6";
+		//xboxMode = true;
 	}
 	
 	// Update is called once per frame

@@ -11,6 +11,7 @@ public class FakePlayerScript : MonoBehaviour {
 
 	public Image readyBG;
 	public string chooseAxis;
+	public string chooseAxis_Xbox;
 
 	public string confirmKey;
 	public string cancelKey;
@@ -252,126 +253,18 @@ public class FakePlayerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		
+		//Debug.Log(Input.GetAxis("Vertical_P1_Xbox")) ;
 		// only allow input if game isn't already starting
 		//Debug.Log(ChoosePlayerScript.Instance.locked);
+		Debug.Log(DataManagerScript.xboxMode);
 		if (!ChoosePlayerScript.Instance.locked) {
-			if (Input.GetAxisRaw (chooseAxis) == 1) {
 
-
-
-				if (axisInUse == false) {
-					// Call your event function here.
-					axisInUse = true;
-
-					if (!readyToPlay && taggedIn) {
-						if (playerIdentifier == 1) {
-							DataManagerScript.playerOneType += 1; 
-							DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-							thisType = DataManagerScript.playerOneType;
-							Debug.Log (DataManagerScript.playerOneType);
-							audio.PlayOneShot (tickUp);
-							UpdatePlayerType (DataManagerScript.playerOneType);
-						} else if (playerIdentifier == 2) {
-							DataManagerScript.playerTwoType += 1; 
-							DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
-							thisType = DataManagerScript.playerTwoType;
-							Debug.Log (DataManagerScript.playerTwoType);
-							audio.PlayOneShot (tickUp);
-							UpdatePlayerType (DataManagerScript.playerTwoType);
-
-						} else if (playerIdentifier == 3) {
-							DataManagerScript.playerThreeType += 1; 
-							DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
-							thisType = DataManagerScript.playerThreeType;
-							Debug.Log (DataManagerScript.playerThreeType);
-							audio.PlayOneShot (tickUp);
-							UpdatePlayerType (DataManagerScript.playerThreeType);
-
-						} else if (playerIdentifier == 4) {
-							DataManagerScript.playerFourType += 1; 
-							DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
-							thisType = DataManagerScript.playerFourType;
-							Debug.Log (DataManagerScript.playerFourType);
-							audio.PlayOneShot (tickUp);
-							UpdatePlayerType (DataManagerScript.playerFourType);
-						}
-					}
-				}
+			if (!DataManagerScript.xboxMode) {
+				CheckAxis (chooseAxis);
+			} else if (DataManagerScript.xboxMode) {
+				CheckAxis (chooseAxis_Xbox);
 			}
-
-			if (Input.GetAxisRaw (chooseAxis) == -1) {
-
-
-				if (axisInUse == false) {
-					// Call your event function here.
-					axisInUse = true;
-					if (!readyToPlay && taggedIn) {
-						if (playerIdentifier == 1) {
-							DataManagerScript.playerOneType -= 1; 
-							if (DataManagerScript.playerOneType < 0) {
-								DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
-
-							}
-							Debug.Log (DataManagerScript.playerOneType);
-							audio.PlayOneShot (tickDown);
-							thisType = DataManagerScript.playerOneType;
-							UpdatePlayerType (DataManagerScript.playerOneType);
-						} else if (playerIdentifier == 2) {
-							DataManagerScript.playerTwoType -= 1; 
-							if (DataManagerScript.playerTwoType < 0) {
-								DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
-						
-							}
-							Debug.Log (DataManagerScript.playerTwoType);
-							audio.PlayOneShot (tickDown);
-							thisType = DataManagerScript.playerTwoType;
-							UpdatePlayerType (DataManagerScript.playerTwoType);
-
-						} else if (playerIdentifier == 3) {
-							DataManagerScript.playerThreeType -= 1; 
-							if (DataManagerScript.playerThreeType < 0) {
-								DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
-
-							}
-							Debug.Log (DataManagerScript.playerThreeType);
-							audio.PlayOneShot (tickDown);
-							thisType = DataManagerScript.playerThreeType;
-							UpdatePlayerType (DataManagerScript.playerThreeType);
-
-						} else if (playerIdentifier == 4) {
-							DataManagerScript.playerFourType -= 1; 
-							if (DataManagerScript.playerFourType < 0) {
-								DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
-
-							}
-							Debug.Log (DataManagerScript.playerFourType);
-							audio.PlayOneShot (tickDown);
-							thisType = DataManagerScript.playerFourType;
-							UpdatePlayerType (DataManagerScript.playerFourType);
-						}
-					}
-//				if (!readyToPlay && taggedIn) {
-//					DataManagerScript.playerOneType -= 1; 
-//					if (DataManagerScript.playerOneType < 0) {
-//						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
-//					}
-//					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
-//					Debug.Log ("YES!" + DataManagerScript.playerOneType);
-//					UpdatePlayerType (DataManagerScript.playerOneType);
-//				}
-				}
-			}
-
-			if (Input.GetAxisRaw (chooseAxis) == 0) {
-
-
-				axisInUse = false;
-			}
-
-
-
-
 
 			if (Input.GetButtonDown (confirmKey)) {
 				activateReadyState ();
@@ -379,6 +272,116 @@ public class FakePlayerScript : MonoBehaviour {
 			if (Input.GetButtonDown (cancelKey)) {
 				cancelReadyState ();
 			}
+		}
+	}
+
+	void CheckAxis(string whichAxis){
+		if (Input.GetAxisRaw (whichAxis) > 0) {
+			if (axisInUse == false) {
+				// Call your event function here.
+				axisInUse = true;
+
+				if (!readyToPlay && taggedIn) {
+					if (playerIdentifier == 1) {
+						DataManagerScript.playerOneType += 1; 
+						DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+						thisType = DataManagerScript.playerOneType;
+						Debug.Log (DataManagerScript.playerOneType);
+						audio.PlayOneShot (tickUp);
+						UpdatePlayerType (DataManagerScript.playerOneType);
+					} else if (playerIdentifier == 2) {
+						DataManagerScript.playerTwoType += 1; 
+						DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
+						thisType = DataManagerScript.playerTwoType;
+						Debug.Log (DataManagerScript.playerTwoType);
+						audio.PlayOneShot (tickUp);
+						UpdatePlayerType (DataManagerScript.playerTwoType);
+
+					} else if (playerIdentifier == 3) {
+						DataManagerScript.playerThreeType += 1; 
+						DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
+						thisType = DataManagerScript.playerThreeType;
+						Debug.Log (DataManagerScript.playerThreeType);
+						audio.PlayOneShot (tickUp);
+						UpdatePlayerType (DataManagerScript.playerThreeType);
+
+					} else if (playerIdentifier == 4) {
+						DataManagerScript.playerFourType += 1; 
+						DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
+						thisType = DataManagerScript.playerFourType;
+						Debug.Log (DataManagerScript.playerFourType);
+						audio.PlayOneShot (tickUp);
+						UpdatePlayerType (DataManagerScript.playerFourType);
+					}
+				}
+			}
+		}
+
+		if (Input.GetAxisRaw (whichAxis) < 0) {
+
+
+			if (axisInUse == false) {
+				// Call your event function here.
+				axisInUse = true;
+				if (!readyToPlay && taggedIn) {
+					if (playerIdentifier == 1) {
+						DataManagerScript.playerOneType -= 1; 
+						if (DataManagerScript.playerOneType < 0) {
+							DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+
+						}
+						Debug.Log (DataManagerScript.playerOneType);
+						audio.PlayOneShot (tickDown);
+						thisType = DataManagerScript.playerOneType;
+						UpdatePlayerType (DataManagerScript.playerOneType);
+					} else if (playerIdentifier == 2) {
+						DataManagerScript.playerTwoType -= 1; 
+						if (DataManagerScript.playerTwoType < 0) {
+							DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
+
+						}
+						Debug.Log (DataManagerScript.playerTwoType);
+						audio.PlayOneShot (tickDown);
+						thisType = DataManagerScript.playerTwoType;
+						UpdatePlayerType (DataManagerScript.playerTwoType);
+
+					} else if (playerIdentifier == 3) {
+						DataManagerScript.playerThreeType -= 1; 
+						if (DataManagerScript.playerThreeType < 0) {
+							DataManagerScript.playerThreeType = numberOfPlayerTypes - 1;
+
+						}
+						Debug.Log (DataManagerScript.playerThreeType);
+						audio.PlayOneShot (tickDown);
+						thisType = DataManagerScript.playerThreeType;
+						UpdatePlayerType (DataManagerScript.playerThreeType);
+
+					} else if (playerIdentifier == 4) {
+						DataManagerScript.playerFourType -= 1; 
+						if (DataManagerScript.playerFourType < 0) {
+							DataManagerScript.playerFourType = numberOfPlayerTypes - 1;
+
+						}
+						Debug.Log (DataManagerScript.playerFourType);
+						audio.PlayOneShot (tickDown);
+						thisType = DataManagerScript.playerFourType;
+						UpdatePlayerType (DataManagerScript.playerFourType);
+					}
+				}
+				//				if (!readyToPlay && taggedIn) {
+				//					DataManagerScript.playerOneType -= 1; 
+				//					if (DataManagerScript.playerOneType < 0) {
+				//						DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
+				//					}
+				//					DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
+				//					Debug.Log ("YES!" + DataManagerScript.playerOneType);
+				//					UpdatePlayerType (DataManagerScript.playerOneType);
+				//				}
+			}
+		}
+
+		if (Input.GetAxisRaw (whichAxis) == 0) {
+			axisInUse = false;
 		}
 	}
 }

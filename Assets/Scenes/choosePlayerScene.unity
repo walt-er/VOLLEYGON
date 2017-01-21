@@ -5267,6 +5267,7 @@ MonoBehaviour:
   trapezoidSprite: {fileID: 21300000, guid: bc556868bc2004f7dbf1cc5ac2e41da0, type: 3}
   readyBG: {fileID: 1247775502}
   chooseAxis: Vertical_P2
+  chooseAxis_Xbox: Vertical_P2_Xbox
   confirmKey: Jump_P2
   cancelKey: Grav_P2
   playerIdentifier: 2
@@ -6790,6 +6791,7 @@ MonoBehaviour:
   trapezoidSprite: {fileID: 21300000, guid: 9e3fbb222950549879004c48b34d67ee, type: 3}
   readyBG: {fileID: 1606779916}
   chooseAxis: Vertical_P4
+  chooseAxis_Xbox: Vertical_P4_Xbox
   confirmKey: Jump_P4
   cancelKey: Grav_P4
   playerIdentifier: 4
@@ -8983,6 +8985,7 @@ MonoBehaviour:
   trapezoidSprite: {fileID: 21300000, guid: 2e2a0e80bc11243e78ab354153654b71, type: 3}
   readyBG: {fileID: 1133665959}
   chooseAxis: Vertical_P3
+  chooseAxis_Xbox: Vertical_P3_Xbox
   confirmKey: Jump_P3
   cancelKey: Grav_P3
   playerIdentifier: 3
@@ -11032,6 +11035,18 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 784620587}
+    - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
+      propertyPath: chooseAxis
+      value: Vertical_P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
+      propertyPath: choozeAxis_Xbox
+      value: Vertical_P1_Xbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
+      propertyPath: chooseAxis_Xbox
+      value: Vertical_P1_Xbox
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
   m_IsPrefabParent: 0
@@ -14560,7 +14575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 8.270297
+  Phase: 16.89093
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
