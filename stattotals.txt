@@ -1,1 +1,1 @@
-Square plays: 10 Circle plays: 0 Triangle plays: 0 Trapezoid plays: 0 Rectangle plays: 0 Star plays: 0
+Square plays: 27 Circle plays: 0 Triangle plays: 0 Trapezoid plays: 0 Rectangle plays: 0 Star plays: 3

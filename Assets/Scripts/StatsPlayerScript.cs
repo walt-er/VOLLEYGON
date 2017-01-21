@@ -13,6 +13,10 @@ public class StatsPlayerScript : MonoBehaviour {
 
 	public string confirmKey;
 	public string cancelKey;
+
+	private string confirmKey_Xbox;
+	private string cancelKey_Xbox;
+
 	public int playerIdentifier; 
 	public Text readyText;
 	public Text toJoinText;
@@ -66,6 +70,9 @@ public class StatsPlayerScript : MonoBehaviour {
 		trapezoid = transform.Find ("Trapezoid").gameObject;
 		rectangle = transform.Find ("Rectangle").gameObject;
 		star = transform.Find ("Star").gameObject;
+
+		cancelKey_Xbox = cancelKey + "_Xbox";
+		confirmKey_Xbox = confirmKey + "_Xbox";
 
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
@@ -153,10 +160,10 @@ public class StatsPlayerScript : MonoBehaviour {
 	void Update () {
 
 
-		if (Input.GetButtonDown (confirmKey)) {
+		if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown (confirmKey_Xbox)) {
 			activateReadyState ();
 		}
-		if (Input.GetButtonDown (cancelKey)) {
+		if (Input.GetButtonDown (cancelKey) || Input.GetButtonDown (cancelKey_Xbox)) {
 			cancelReadyState ();
 		}
 	}

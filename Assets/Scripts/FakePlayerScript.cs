@@ -40,8 +40,11 @@ public class FakePlayerScript : MonoBehaviour {
 	public GameObject rectangle;
 	public GameObject star;
 
+
 	private int numberOfPlayerTypes = 6;
 
+	Axis normalAxis;
+	Axis xboxAxis;
 
 	SpriteRenderer sr;
 
@@ -231,6 +234,10 @@ public class FakePlayerScript : MonoBehaviour {
 		// assign xbox keys dynamically
 		confirmKey_Xbox = confirmKey + "_Xbox";
 		cancelKey_Xbox = cancelKey + "_Xbox";
+
+		normalAxis = new Axis(chooseAxis);
+		xboxAxis = new Axis(chooseAxis_Xbox);
+
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		//sr.sprite = squareSprite;
@@ -266,11 +273,14 @@ public class FakePlayerScript : MonoBehaviour {
 	//	Debug.Log(DataManagerScript.xboxMode);
 		if (!ChoosePlayerScript.Instance.locked) {
 
-			if (!DataManagerScript.xboxMode) {
-				CheckAxis (chooseAxis);
-			} else if (DataManagerScript.xboxMode) {
-				CheckAxis (chooseAxis_Xbox);
-			}
+//			if (!DataManagerScript.xboxMode) {
+//				CheckAxis (chooseAxis);
+//			} else if (DataManagerScript.xboxMode) {
+//				CheckAxis (chooseAxis_Xbox);
+//			}
+
+			CheckAxis (normalAxis);
+			CheckAxis (xboxAxis);
 
 			if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown(confirmKey_Xbox)) {
 				Debug.Log ("CONFIRMED! " + confirmKey_Xbox);
@@ -283,11 +293,11 @@ public class FakePlayerScript : MonoBehaviour {
 		}
 	}
 
-	void CheckAxis(string whichAxis){
-		if (Input.GetAxisRaw (whichAxis) > 0) {
-			if (axisInUse == false) {
+	void CheckAxis(Axis whichAxis){
+		if (Input.GetAxisRaw (whichAxis.axisName) > 0) {
+			if (whichAxis.axisInUse == false) {
 				// Call your event function here.
-				axisInUse = true;
+				whichAxis.axisInUse = true;
 
 				if (!readyToPlay && taggedIn) {
 					if (playerIdentifier == 1) {
@@ -325,12 +335,12 @@ public class FakePlayerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (whichAxis) < 0) {
+		if (Input.GetAxisRaw (whichAxis.axisName) < 0) {
 
 
-			if (axisInUse == false) {
+			if (whichAxis.axisInUse == false) {
 				// Call your event function here.
-				axisInUse = true;
+				whichAxis.axisInUse = true;
 				if (!readyToPlay && taggedIn) {
 					if (playerIdentifier == 1) {
 						DataManagerScript.playerOneType -= 1; 
@@ -388,8 +398,8 @@ public class FakePlayerScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetAxisRaw (whichAxis) == 0) {
-			axisInUse = false;
+		if (Input.GetAxisRaw (whichAxis.axisName) == 0) {
+			whichAxis.axisInUse = false;
 		}
 	}
 }

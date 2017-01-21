@@ -149,7 +149,7 @@ public class ArenaManagerScript : MonoBehaviour {
 		
 		if (!locked) {
 			foreach (Axis va in verticalAxes) {
-				if (Input.GetAxisRaw (va.axisName) == -1) {
+				if (Input.GetAxisRaw (va.axisName) < 0) {
 					if (va.axisInUse == false) {
 						// Call your event function here.
 						va.axisInUse = true;
@@ -159,7 +159,7 @@ public class ArenaManagerScript : MonoBehaviour {
 					}
 				}
 
-				if (Input.GetAxisRaw (va.axisName) == 1) {
+				if (Input.GetAxisRaw (va.axisName) > 0) {
 					if (va.axisInUse == false) {
 						// Call your event function here.
 						va.axisInUse = true;
@@ -175,7 +175,7 @@ public class ArenaManagerScript : MonoBehaviour {
 			}
 
 			foreach (Axis va in horizontalAxes) {
-				if (Input.GetAxisRaw (va.axisName) == -1) {
+				if (Input.GetAxisRaw (va.axisName) < 0) {
 					if (va.axisInUse == false) {
 						// Call your event function here.
 						va.axisInUse = true;
@@ -186,7 +186,7 @@ public class ArenaManagerScript : MonoBehaviour {
 					}
 				}
 
-				if (Input.GetAxisRaw (va.axisName) == 1) {
+				if (Input.GetAxisRaw (va.axisName) > 0) {
 					if (va.axisInUse == false) {
 						// Call your event function here.
 						va.axisInUse = true;

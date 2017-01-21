@@ -236,11 +236,12 @@ public class PlayerController : MonoBehaviour {
 		
 		float moveHorizontal;
 
-		if (DataManagerScript.xboxMode) {
+		//if (DataManagerScript.xboxMode) {
 			moveHorizontal = Input.GetAxis (horiz_Xbox);
-		} else {
-			moveHorizontal = Input.GetAxis (horiz);
-		}
+		//} else {
+			moveHorizontal += Input.GetAxis (horiz);
+	//	}
+		moveHorizontal = Mathf.Clamp(moveHorizontal, -1f, 1f);
 		//Debug.Log (moveHorizontal);
 //		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
 //		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
