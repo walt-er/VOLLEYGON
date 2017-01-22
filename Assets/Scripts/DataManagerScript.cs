@@ -66,7 +66,7 @@ public class DataManagerScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		version = "V1.4.6";
+		version = "V1.4.7";
 		//xboxMode = true;
 	}
 	
