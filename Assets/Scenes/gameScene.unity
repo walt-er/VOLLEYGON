@@ -7764,7 +7764,7 @@ MonoBehaviour:
   minPlayFrom: 0
   maxPlayFrom: 16
   playFrom: 0
-  autoStart: 0
+  autoStart: 1
 --- !u!212 &1166926512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11813,7 +11813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 401.19675
+  Phase: 401.20175
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -11849,7 +11849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 282.2239
+  Timer: 282.2399
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
