@@ -136,3 +136,6 @@
 2017/01/21 18:20:52 2 played a game and the longest rally was 1 and the match time was 38.72786 seconds. The MVP was Player 1
 2017/01/21 18:23:21 2 played a game and the longest rally was 1 and the match time was 39.18419 seconds. The MVP was Player 1
 2017/01/21 21:06:04 4 played a game and the longest rally was 4 and the match time was 173.6056 seconds. The MVP was Player 3
+2017/01/30 21:42:49 4 played a game and the longest rally was 0 and the match time was 24.23547 seconds. The MVP was Player 4
+2017/01/30 21:44:59 4 played a game and the longest rally was 0 and the match time was 23.43972 seconds. The MVP was Player 4
+2017/01/30 21:51:12 2 played a game and the longest rally was 1 and the match time was 40.58305 seconds. The MVP was Player 1
