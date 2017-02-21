@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4257022b0b44ec1a62d2931a3d3b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movTexture: {fileID: 15200000, guid: 302d53c1d0eea4a689819c1e7f7bc08e, type: 3}
+  movTexture: {fileID: 15200000, guid: ccf2f1a6bd0d14b2dac833fb7db353a0, type: 3}
   pressStartAnimation: {fileID: 0}
 --- !u!1001 &801772575
 Prefab:
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 4.3844466
+  Phase: 5.8410397
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
