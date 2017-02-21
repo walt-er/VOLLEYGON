@@ -8,7 +8,7 @@ public class PlayHowToMovieScript : MonoBehaviour {
 
 	void Start () {
 		fadedOut = false;
-		QualitySettings.vSyncCount = 0;
+		//QualitySettings.vSyncCount = 0;
 		GetComponent<Renderer>().material.mainTexture = movTexture;
 		movTexture.Play();
 	}
