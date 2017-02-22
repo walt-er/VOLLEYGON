@@ -13847,7 +13847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 424.0859
+  Phase: 424.0909
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -13883,7 +13883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 355.45892
+  Timer: 355.4749
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
@@ -16329,7 +16329,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778723596955858, guid: 1e8747251751a4a8086f8dd75c1f4513, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e8747251751a4a8086f8dd75c1f4513, type: 2}

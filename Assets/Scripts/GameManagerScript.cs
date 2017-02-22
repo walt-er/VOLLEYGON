@@ -67,7 +67,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 
 	void StartReplay(){
-		EZReplayManager.get.record();
+		//EZReplayManager.get.record();
 	}
 	void Start () {
 		
@@ -314,7 +314,7 @@ public class GameManagerScript : MonoBehaviour {
 		}
 		isGameOver = true;
 		if (!readyForReplay) {
-			EZReplayManager.get.stop ();
+		//	EZReplayManager.get.stop ();
 			readyForReplay = true;
 		//	Invoke ("PlayReplay", 2f);
 		}
@@ -327,7 +327,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Update is called once per frame
 
 	void PlayReplay(){
-		EZReplayManager.get.play (0, true, false, true);
+//		EZReplayManager.get.play (0, true, false, true);
 	}
 
 	void Update () {
