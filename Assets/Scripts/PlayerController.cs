@@ -75,32 +75,6 @@ public class PlayerController : MonoBehaviour {
 	private float pandemoniumTimer;
 	private bool pandemoniumPowerupActive = false;
 
-	// Different base stats for each playerType
-
-	private float squareJumpPower = 2000f;
-	private float squareSpeed = 15f;
-	private float squareSpinRate = -150f;
-
-	private float circleJumpPower = 2200f;
-	private float circleSpeed = 18f;
-	private float circleSpinRate = -100f;
-
-	private float triangleJumpPower = 2000f;
-	private float triangleSpeed = 18f;
-	private float triangleSpinRate = -200f;
-
-	private float trapezoidJumpPower = 2000f;
-	private float trapezoidSpeed = 15f;
-	private float trapezoidSpinRate = -150f;
-
-	private float rectangleJumpPower = 2000f;
-	private float rectangleSpeed = 13f;
-	private float rectangleSpinRate = -150f;
-
-	private float starJumpPower = 2000f;
-	private float starSpeed = 15f;
-	private float starSpinRate = -150f;
-
 	Rigidbody2D rb;
 	MeshRenderer mr;
 
@@ -137,67 +111,59 @@ public class PlayerController : MonoBehaviour {
 		case 4:
 			playerColor = "D97A7B";
 			break;
-		}
+        }
 
-		if (playerType == 0) {
+        // Map shape numbers to names, order is important
+        string[] shapeNames = new string[] {
+            "square",
+            "circle",
+            "triangle",
+            "trapezoid",
+            "rectangle",
+            "star"
+        };
+
+        // Get stats for chosen shape
+        ShapeStats stats = new ShapeStats( shapeNames[playerType] );
+        jumpPower = stats.jump;
+        speed = stats.speed;
+        spinPower = stats.spin;
+
+        // Shape-specific stuff (TODO make universal, like stats)
+        if (playerType == 0) {
 		   squarePC.enabled = true;
-		//	gameObject.GetComponent<SpriteRenderer> ().sprite = squareSprite;
-
-			jumpPower = squareJumpPower;
-			speed = squareSpeed;
-			spinPower = squareSpinRate;
 			IncreasePlayCount ("squarePlays");
 		}
 
 		if (playerType == 1) {
-		    gameObject.GetComponent<CircleCollider2D> ().enabled = true;
-		//	gameObject.GetComponent<SpriteRenderer> ().sprite = circleSprite;
-			// this is a special case for circle
-			Transform circle = transform.Find("Circle");
+            // this is a special case for circle
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            Transform circle = transform.Find("Circle");
 			circle.gameObject.SetActive (true);
-			jumpPower = circleJumpPower;
-			speed = circleSpeed;
-			spinPower = circleSpinRate;
-			IncreasePlayCount ("circlePlays");
+
+            IncreasePlayCount ("circlePlays");
 		}
 
 		if (playerType == 2) {
 	        trianglePC.enabled = true;
-		//	gameObject.GetComponent<SpriteRenderer> ().sprite = triangleSprite;
-			jumpPower = triangleJumpPower;
-			speed = triangleSpeed;
-			spinPower = triangleSpinRate;
 			IncreasePlayCount ("trianglePlays");
 		}
 
 		if (playerType == 3) {
 		    trapezoidPC.enabled = true;
-		//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
-			jumpPower = trapezoidJumpPower;
-			speed = trapezoidSpeed;
-			spinPower = trapezoidSpinRate;
 			IncreasePlayCount ("trapezoidPlays");
 		}
 
 		if (playerType == 4) {
 			rectanglePC.enabled = true;
-			//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
-			jumpPower = rectangleJumpPower;
-			speed = rectangleSpeed;
-			spinPower = rectangleSpinRate;
 			IncreasePlayCount ("rectanglePlays");
 		}
 
 		if (playerType == 5) {
 			starPC.enabled = true;
-			//	gameObject.GetComponent<SpriteRenderer> ().sprite = trapezoidSprite;
-			jumpPower = starJumpPower;
-			speed = starSpeed;
-			spinPower = starSpinRate;
 			IncreasePlayCount ("starPlays");
 		}
 			
-
 		startJumpPower = jumpPower;
 		startSpeed = speed; 
 
