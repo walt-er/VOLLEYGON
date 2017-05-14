@@ -232,7 +232,6 @@ public class ArenaManagerScript : MonoBehaviour {
 			markerPos = numberOfArenas;
 		}
 		markerPos = markerPos % (numberOfArenas + 1);
-		Debug.Log (markerPos);
 		float posX;
 		float posY;
 

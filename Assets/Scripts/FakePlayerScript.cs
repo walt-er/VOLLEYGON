@@ -283,7 +283,6 @@ public class FakePlayerScript : MonoBehaviour {
 			CheckAxis (xboxAxis);
 
 			if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown(confirmKey_Xbox)) {
-				Debug.Log ("CONFIRMED! " + confirmKey_Xbox);
 				activateReadyState ();
 			}
 
@@ -304,14 +303,12 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerOneType += 1; 
 						DataManagerScript.playerOneType = DataManagerScript.playerOneType % numberOfPlayerTypes;
 						thisType = DataManagerScript.playerOneType;
-						Debug.Log (DataManagerScript.playerOneType);
 						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerOneType);
 					} else if (playerIdentifier == 2) {
 						DataManagerScript.playerTwoType += 1; 
 						DataManagerScript.playerTwoType = DataManagerScript.playerTwoType % numberOfPlayerTypes;
 						thisType = DataManagerScript.playerTwoType;
-						Debug.Log (DataManagerScript.playerTwoType);
 						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerTwoType);
 
@@ -319,7 +316,6 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerThreeType += 1; 
 						DataManagerScript.playerThreeType = DataManagerScript.playerThreeType % numberOfPlayerTypes;
 						thisType = DataManagerScript.playerThreeType;
-						Debug.Log (DataManagerScript.playerThreeType);
 						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerThreeType);
 
@@ -327,7 +323,6 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerFourType += 1; 
 						DataManagerScript.playerFourType = DataManagerScript.playerFourType % numberOfPlayerTypes;
 						thisType = DataManagerScript.playerFourType;
-						Debug.Log (DataManagerScript.playerFourType);
 						audio.PlayOneShot (tickUp);
 						UpdatePlayerType (DataManagerScript.playerFourType);
 					}
@@ -346,9 +341,7 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerOneType -= 1; 
 						if (DataManagerScript.playerOneType < 0) {
 							DataManagerScript.playerOneType = numberOfPlayerTypes - 1;
-
 						}
-						Debug.Log (DataManagerScript.playerOneType);
 						audio.PlayOneShot (tickDown);
 						thisType = DataManagerScript.playerOneType;
 						UpdatePlayerType (DataManagerScript.playerOneType);
@@ -356,9 +349,7 @@ public class FakePlayerScript : MonoBehaviour {
 						DataManagerScript.playerTwoType -= 1; 
 						if (DataManagerScript.playerTwoType < 0) {
 							DataManagerScript.playerTwoType = numberOfPlayerTypes - 1;
-
 						}
-						Debug.Log (DataManagerScript.playerTwoType);
 						audio.PlayOneShot (tickDown);
 						thisType = DataManagerScript.playerTwoType;
 						UpdatePlayerType (DataManagerScript.playerTwoType);

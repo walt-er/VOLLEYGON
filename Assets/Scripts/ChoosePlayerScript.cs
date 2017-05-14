@@ -112,8 +112,10 @@ public class ChoosePlayerScript : MonoBehaviour {
 	}
 
 	public void CheckStartable(){
+
 		playersOnLeft = 0;
 		playersOnRight = 0;
+
 		if (fakePlayer1.GetComponent<FakePlayerScript> ().readyToPlay) {
 			playersOnLeft++;
 		}
@@ -127,8 +129,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 		if (fakePlayer4.GetComponent<FakePlayerScript> ().readyToPlay) {
 			playersOnRight++;
 		}
-		Debug.Log (playersOnLeft);
-		Debug.Log (playersOnRight);
+
 		if ((playersOnLeft == 1 && playersOnRight == 0) && noUnreadyPlayers () || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
 			gameIsStartable = true;
 			msgBG.enabled = true;
@@ -141,33 +142,39 @@ public class ChoosePlayerScript : MonoBehaviour {
 			Debug.Log ("Game is now startable");
 			gameIsStartable = true;
 			if (playersOnLeft == 2 && playersOnRight == 1 || playersOnLeft == 1 && playersOnRight == 2) {
+
 				// display 2v1 message
 				twoOnOneMessage.enabled = true;
 				msgBG.enabled = true;
 				msgBG2.enabled = true;
-				Debug.Log ("Showing 2v1 message");
+				// Debug.Log ("Showing 2v1 message");
 				oneOnOneMessage.enabled = false;
 				onePlayerMessage.enabled = false;
+
 			} else if (playersOnLeft == 1 && playersOnRight == 1){
+
 				//display press start to begin 1v 1 message
 				oneOnOneMessage.enabled = true;
 				twoOnOneMessage.enabled = false;
 				onePlayerMessage.enabled = false;
 				msgBG.enabled = true;
 				msgBG2.enabled = true;
-				Debug.Log ("showing one on one message");
+				// Debug.Log ("showing one on one message");
+
 			}
 		} else {
+
 			twoOnOneMessage.enabled = false;
 			oneOnOneMessage.enabled = false;
 			onePlayerMessage.enabled = false;
 			msgBG.enabled = false;
 			msgBG2.enabled = false;
-			Debug.Log ("No longer startable. Hiding messages");
+			// Debug.Log ("No longer startable. Hiding messages");
 			gameIsStartable = false;
-		}
 
+		}
 	}
+
 	IEnumerator StartGame(){
 		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);

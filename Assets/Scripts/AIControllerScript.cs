@@ -206,7 +206,6 @@ public class AIControllerScript : MonoBehaviour {
 	}
 
 	void CheckForGravChange(){
-		Debug.Log (ball.GetComponent<Rigidbody2D> ().gravityScale);
 		if (ball.GetComponent<Rigidbody2D> ().gravityScale > 0) {
 			if (playerID % 2 == 1) {
 				rb.gravityScale = 1;

@@ -400,8 +400,10 @@ public class DemoPlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "Ball") {
 			// update the ball's touch information
 			BallScript ball = coll.gameObject.GetComponent<BallScript>();
-			ball.secondToLastTouch = ball.lastTouch;
-			ball.lastTouch = playerID;
+            if (ball != null) {
+                ball.secondToLastTouch = ball.lastTouch;
+                ball.lastTouch = playerID;
+            }
 
 			// check relative velocity of collision
 //			Debug.Log(coll.relativeVelocity.magnitude);
@@ -445,7 +447,6 @@ public class DemoPlayerController : MonoBehaviour {
 		}
 
 		if (coll.gameObject.tag == "Ball") {
-			Debug.Log (coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude);
 			var mag = coll.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude;
 			if (mag > 30) {
 				//SoundManagerScript.instance.PlaySingle (collideWithBallSoundBig);

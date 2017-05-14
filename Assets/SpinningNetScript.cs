@@ -17,7 +17,6 @@ public class SpinningNetScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (1.0f / Time.deltaTime);
 		vel += acceleration * Time.deltaTime;
 		rb.angularVelocity = vel;
 
