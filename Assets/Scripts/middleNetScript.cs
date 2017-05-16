@@ -6,21 +6,24 @@ public class middleNetScript : MonoBehaviour {
 	public float speed = 1000.0f;
 	public float borderPosition;
 	public float directionModifier;
+
 	// Use this for initialization
 	void Start () {
-		rb = gameObject.GetComponent<Rigidbody2D>();
 
-		rb.velocity = new Vector2 (0, directionModifier * speed);
+        if (rb != null) {
+            rb = gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(0, directionModifier * speed);
+        }
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (transform.localPosition.y >= borderPosition) {
-			rb.velocity = new Vector2 (0, speed * -1);
+            if (rb != null) rb.velocity = new Vector2 (0, speed * -1);
 		}
 
 		if (transform.localPosition.y <= -1 * borderPosition) {
-			rb.velocity = new Vector2 (0, speed * 1);
+            if (rb != null) rb.velocity = new Vector2 (0, speed * 1);
 		}
 	}
 
