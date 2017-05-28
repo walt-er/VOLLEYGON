@@ -1,6 +1,11 @@
 # VOLLEYGON
-Dubbed the game of polygon volleyball, VOLLEYGON is a raucous 2-on-2 anti-gravity showdown where geometric shapes flying through space take center stage! Utilize the ceiling and floor to bounce, lob, and smash the ball into your opponent's zone! Just be careful as the ball can change gravity on a whim, and so can your opponents!
-### Version History
+
+v1.5.6 -- Refactored player stats code.
+v1.5.4 -- Removed some extraneous assets, changed some compression settings.
+v1.5.3 -- Added 'how to' video during attract mode.
+v1.5.2 -- Removed unnecessary features from arenas and altered 'netless' arena.
+v1.5.1 -- Made spinning propellor frame-rate independent.
+v1.5 -- Changed ball to continuous collision detection and adjusted settings for better kiosk performance.
 v1.4.8 -- Implemented potential fix for 'star gets stuck on other star / ball' issue.  
 v1.4.7 -- Added analog stick / Xbox controller support  
 v1.4.6 -- Fixed bug with single player protip.  
