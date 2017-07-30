@@ -181,12 +181,13 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate () {
 		
 		float moveHorizontal;
-
 		//if (DataManagerScript.xboxMode) {
 			moveHorizontal = Input.GetAxis (horiz_Xbox);
 		//} else {
 			moveHorizontal += Input.GetAxis (horiz);
         //	}
+
+        // Clamp input
         moveHorizontal = Mathf.Clamp(moveHorizontal, -1f, 1f);
 
 		if (isJumping) {
