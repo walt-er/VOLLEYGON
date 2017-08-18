@@ -15,15 +15,10 @@ public class PlayerController : MonoBehaviour {
 	private float startJumpPower;
 
     // Button names
-	public string horiz = "Horizontal_P1";
-    public string jumpButton = "Jump_P1";
-    public string gravButton = "Grav_P1";
-	private string horiz_Xbox;
-	private string jumpButton_Xbox;
-	private string gravButton_Xbox;
+    private JoystickButtons buttons;
 
     // Properties of player by ID
-	public int playerID;
+    public int playerID;
 	public int playerType = 0;
     private string playerColor;
 
@@ -93,11 +88,6 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        // Input strings for Xbox
-		gravButton_Xbox = gravButton + "_Xbox";
-		jumpButton_Xbox = jumpButton + "_Xbox";
-		horiz_Xbox = horiz + "_Xbox";
-
         // Particle system?
         if ( GetComponent<ParticleSystem>() != null) {
             ps = transform.Find("ssps").GetComponent<ParticleSystem>();
@@ -140,21 +130,30 @@ public class PlayerController : MonoBehaviour {
             pandemoniumCounter.GetComponent<TextMesh>().color = new Vector4(0f, 0f, 0f, 0f);
         }
 
-		// Assign player color
+        int joystick = -1;
+
+		// Assign player color and joystick
 		switch (playerID) {
 		    case 1:
 			    playerColor = "1069A8";
+                joystick = DataManagerScript.playerOneJoystick;
 			    break;
 		    case 2:
 			    playerColor = "7CBEE8";
-			    break;
+                joystick = DataManagerScript.playerTwoJoystick;
+                break;
 		    case 3:
 			    playerColor = "D63236";
-			    break;
+                joystick = DataManagerScript.playerThreeJoystick;
+                break;
 		    case 4:
 			    playerColor = "D97A7B";
-			    break;
+                joystick = DataManagerScript.playerFourJoystick;
+                break;
         }
+
+        // Get player input names
+        buttons = new JoystickButtons(joystick);
 
         // Get stats for chosen shape
         string playerShape = shapeNames[playerType];
@@ -179,13 +178,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate () {
-		
-		float moveHorizontal;
-		//if (DataManagerScript.xboxMode) {
-			moveHorizontal = Input.GetAxis (horiz_Xbox);
-		//} else {
-			moveHorizontal += Input.GetAxis (horiz);
-        //	}
+
+        // Get horizontal input 
+        float moveHorizontal = Input.GetAxis ( buttons.horizontal );
 
         // Clamp input
         moveHorizontal = Mathf.Clamp(moveHorizontal, -1f, 1f);
@@ -203,10 +198,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
-		if (!inPenalty) {
+		if (!inPenalty && buttons != null) {
 
             // Handle jumping
-			if (Input.GetButtonDown (jumpButton) || Input.GetButtonDown(jumpButton_Xbox)) {
+			if ( Input.GetButtonDown (buttons.jump) ) {
 
 				if (isJumping == false && rb != null) {
 					Vector3 jumpForce = new Vector3 (0f, jumpPower * rb.gravityScale, 0f);
@@ -217,7 +212,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
             // Handle gravity switch
-			if (Input.GetButtonDown (gravButton) || Input.GetButtonDown(gravButton_Xbox)) {
+			if ( Input.GetButtonDown (buttons.grav) && rb != null ) {
 				rb.gravityScale *= -1f;
 				SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
 			}
