@@ -42,12 +42,7 @@ public class TitleManagerScript : MonoBehaviour {
 		MusicManagerScript.Instance.FadeOutEverything ();
 		versionText.text = DataManagerScript.version;
 
-		if (DataManagerScript.creditMode){
-			creditsText.text = "CREDITS: " + DataManagerScript.credits;
-		} else {
-			creditsText.text = "FREE PLAY";
-		}
-
+		UpdateCredits ();
 
 		DataManagerScript.ResetStats ();
 		DataManagerScript.ResetPlayerTypes ();
@@ -58,6 +53,7 @@ public class TitleManagerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
 	void Update () {
 		MusicManagerScript.Instance.FadeOutEverything ();
 
@@ -66,49 +62,15 @@ public class TitleManagerScript : MonoBehaviour {
 				Application.LoadLevel ("choosePlayerScene");
 			}
 		}
-//		}
-//		if (Input.GetButtonDown ("Jump_P1_Xbox")) {
-//			Debug.Log ("button");
-//		}
-//		if (Input.GetButtonDown (jumpButton1)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (gravButton1)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (jumpButton2)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (gravButton2)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (jumpButton3)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (gravButton3)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (jumpButton4)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//		if (Input.GetButtonDown (gravButton4)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//
-//		if (Input.GetButtonDown (startButton1)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//
-//		if (Input.GetButtonDown (startButton2)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//
-//		if (Input.GetButtonDown (startButton3)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
-//
-//		if (Input.GetButtonDown (startButton4)) {
-//			Application.LoadLevel("choosePlayerScene");
-//		}
+
+		UpdateCredits ();
+	}
+
+	void UpdateCredits(){
+		if (DataManagerScript.creditMode) {
+			creditsText.text = "CREDITS: " + DataManagerScript.credits;
+		} else {
+			creditsText.text = "FREE PLAY";
+		}
 	}
 }
