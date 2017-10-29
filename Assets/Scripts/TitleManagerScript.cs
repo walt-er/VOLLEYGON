@@ -127,4 +127,7 @@ public class TitleManagerScript : MonoBehaviour {
 	public void StartMultiplayerGame(){
 		Application.LoadLevel ("ChoosePlayerScene");
 	}
+	public void StartOptionsMenu(){
+		Application.LoadLevel ("OptionsScene");
+	}
 }
