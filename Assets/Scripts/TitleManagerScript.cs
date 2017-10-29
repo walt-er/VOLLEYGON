@@ -112,7 +112,6 @@ public class TitleManagerScript : MonoBehaviour {
 						mainMenuPanel.SetActive (true);
 					}
 				}
-			
 			}
 		
 		
