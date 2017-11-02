@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using PigeonCoopToolkit.Effects.Trails;
 
@@ -28,10 +29,13 @@ public class PlayerController : MonoBehaviour {
     public bool isJumping = false;
     private bool inPenalty = false;
     private bool canMove = true;
+	private bool recentlyPaused = false;
 
     // Particle system
 	public ParticleSystem ps;
 
+	// Eventsystem
+	public EventSystem es;
     // Rigidbody, mesh, colliders
     Rigidbody2D rb;
     MeshRenderer mr;
@@ -203,7 +207,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 
-		if (!inPenalty && buttons != null && buttons.jump != null) {
+		if (!inPenalty && buttons != null && buttons.jump != null && !GameManagerScript.Instance.paused && !GameManagerScript.Instance.recentlyPaused ) {
 
             // Handle jumping
 			if ( Input.GetButtonDown (buttons.jump) ) {
@@ -217,9 +221,19 @@ public class PlayerController : MonoBehaviour {
 			}
 
             // Handle gravity switch
-			if ( Input.GetButtonDown (buttons.grav) && rb != null ) {
+			if ( Input.GetButtonDown (buttons.grav) && rb != null && !GameManagerScript.Instance.paused ) {
 				rb.gravityScale *= -1f;
 				SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
+			}
+		}
+
+		if (Input.GetButtonDown (buttons.start)) {
+			if (!GameManagerScript.Instance.paused) {
+				GameManagerScript.Instance.Pause ();
+				es.GetComponent<StandaloneInputModule> ().horizontalAxis = buttons.horizontal;
+				es.GetComponent<StandaloneInputModule> ().verticalAxis = buttons.vertical;
+				es.GetComponent<StandaloneInputModule> ().submitButton = buttons.jump;
+				es.GetComponent<StandaloneInputModule> ().cancelButton = buttons.grav;
 			}
 		}
 

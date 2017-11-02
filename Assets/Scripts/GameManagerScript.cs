@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManagerScript : MonoBehaviour {
 
@@ -18,12 +19,15 @@ public class GameManagerScript : MonoBehaviour {
 	public bool isGameOver;
 	public int scorePlayedTo = 5;
 	public int arenaType;
+	public bool paused = false;
+	public bool recentlyPaused = false;
 	private float timeSinceLastPowerup;
 	private float powerupAppearTime;
 	public GameObject speedPowerupPrefab;
 	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
+	public GameObject pausePanel;
 
 	public GameObject ball;
 
@@ -57,6 +61,8 @@ public class GameManagerScript : MonoBehaviour {
 	public string startButton2 = "Start_P2";
 	public string startButton3 = "Start_P3";
 	public string startButton4 = "Start_P4";
+
+	public EventSystem es;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -350,6 +356,45 @@ public class GameManagerScript : MonoBehaviour {
 		if (!isGameOver) {
 			ConsiderAPowerup ();
 		}
+
+//		if (Input.GetKeyDown (KeyCode.P)) {
+//			Pause ();
+//		}
+	}
+
+	public void Pause(){
+		if (!paused) {
+			pausePanel.SetActive (true);
+			es.SetSelectedGameObject(null);
+			es.SetSelectedGameObject(es.firstSelectedGameObject);
+			MusicManagerScript.Instance.TurnOffEverything ();
+			SoundManagerScript.instance.muteSFX ();
+			//TODO: Move the ball's SFX to sound manager script
+			ball.GetComponent<BallScript>().Pause ();
+			Time.timeScale = 0;
+			paused = true;
+		} 
+	}
+
+	public void Unpause(){
+		if (paused){
+			Time.timeScale = 1;
+			paused = false;
+			pausePanel.SetActive (false);
+			recentlyPaused = true;
+			MusicManagerScript.Instance.RestoreFromPause ();
+			//TODO: Move the ball's SFX to sound manager script
+			SoundManagerScript.instance.unMuteSFX ();
+			ball.GetComponent<BallScript>().UnPause ();
+			Invoke ("CancelRecentlyPaused", 0.1f);
+		}
+	}
+
+	public void CancelRecentlyPaused(){
+		recentlyPaused = false;
+	}
+	public void QuitGame(){
+		Application.LoadLevel ("TitleScene");
 	}
 
 	void ConsiderAPowerup(){
