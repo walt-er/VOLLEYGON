@@ -7,7 +7,7 @@
 [Ll]ibrary/
 sysinfo.txt
 *.stackdump
- 
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -21,7 +21,7 @@ sysinfo.txt
 /*.user
 /*.unityproj
 /*.booproj
- 
+
 # ============ #
 # OS generated #
 # ============ #
@@ -32,3 +32,10 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+
+
+# ================= #
+# Sublime generated #
+# ================= #
+VOLLEYGON.sublime-project
+VOLLEYGON.sublime-workspace
