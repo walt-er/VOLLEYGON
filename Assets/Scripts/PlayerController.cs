@@ -5,7 +5,7 @@ using PigeonCoopToolkit.Effects.Trails;
 
 public class PlayerController : MonoBehaviour {
 
-    // Core shape stats, public for tesitng 
+    // Core shape stats, public for tesitng
     public float jumpPower;
     public float speed;
 	public float spinPower;
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "circle":
                 Transform circle = transform.Find("Circle");
-                // Special case for circle mesh rendering 
+                // Special case for circle mesh rendering
                 circle.gameObject.SetActive(true);
                 shapeCollider = GetComponent<CircleCollider2D>();
                 break;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
 
-        // Starting physics 
+        // Starting physics
         if (rb != null) {
             rb.gravityScale = startingGrav;
             startMass = rb.mass;
@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour {
         if (transform.parent.tag != "FakePlayer")
         {
 
-            // Get horizontal input 
+            // Get horizontal input
             if (buttons != null && buttons.horizontal != null)
             {
                 float moveHorizontal = Input.GetAxis(buttons.horizontal);
@@ -260,9 +260,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void checkPenalty(){
-        
+
 		if (team == 1 && transform.position.x > -1.0f // if blue is on the right side
-            || team == 2 && transform.position.x < 1.0f ) { // or if red is on the left side 
+            || team == 2 && transform.position.x < 1.0f ) { // or if red is on the left side
 
 			penaltyTimerActive = true;
 			penaltyTimer = 10f;
@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviour {
 			isJumping = false;
 			SoundManagerScript.instance.PlaySingle (landSound);
 		}
-			
+
 		if (coll.gameObject.tag == "Playfield") {
 		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
@@ -373,7 +373,7 @@ public class PlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			//Debug.Log ("a collision ended!");
 			if (!isJumping) {
-					//isJumping = true;   
+					//isJumping = true;
 			}
 			//Debug.Log (isJumping);
 		}
@@ -505,14 +505,14 @@ public class PlayerController : MonoBehaviour {
 			speedPowerupActive = true;
 			ps.Play ();
 			speed = 20f; //was 22
-			speedPowerupTimer = 20f; 
+			speedPowerupTimer = 20f;
 			if (playSFX){
 				StartCoroutine ("PlaySFXWithDelay", 1);
 			}
 			break;
 
 		case 2:
-			
+
 			sizePowerupActive = true;
 			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
@@ -522,7 +522,7 @@ public class PlayerController : MonoBehaviour {
 				StartCoroutine ("PlaySFXWithDelay", 2);
 			}
 			break;
-		
+
 		case 3:
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
@@ -538,19 +538,19 @@ public class PlayerController : MonoBehaviour {
 			case 1:
 				ApplyPowerup (1);
 				break;
-			case 2: 
+			case 2:
 				ApplyPowerup (2);
 				break;
-			case 3: 
+			case 3:
 				ApplyPowerup (3);
 				break;
-			case 4: 
-				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
+			case 4:
+				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle ();
 				break;
 			case 5:
 				// broadcast to all players to activate pandemonium
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (3, false); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (3, false);
 					PlaySFXWithDelay (3);
 				}
 				foreach (GameObject mpm in GameObject.FindGameObjectsWithTag("MidpointMarker")) {
@@ -564,14 +564,14 @@ public class PlayerController : MonoBehaviour {
 				break;
 			case 6:
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (2, false); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (2, false);
 					PlaySFXWithDelay (2);
 				}
 				break;
 			}
 			break;
-		
+
 		}
-	
+
 	}
 }
