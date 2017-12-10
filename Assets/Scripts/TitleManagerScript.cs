@@ -74,8 +74,8 @@ public class TitleManagerScript : MonoBehaviour {
 					print("resetting selected game object");
 					es1.SetSelectedGameObject(null);
 					es1.SetSelectedGameObject(es1.firstSelectedGameObject);
-		
-					// get the player number 
+
+					// get the player number
 
 					if (buttons[i].Contains ("P1")) {
 						player = 1;
@@ -91,7 +91,6 @@ public class TitleManagerScript : MonoBehaviour {
 					};
 					// depending on which controller was tagged in, set the input stringes here
 					joyButts = new JoystickButtons (player);
-					print (joyButts.vertical);
 					es1.GetComponent<StandaloneInputModule> ().horizontalAxis = joyButts.horizontal;
 					es1.GetComponent<StandaloneInputModule> ().verticalAxis = joyButts.vertical;
 					es1.GetComponent<StandaloneInputModule> ().submitButton = joyButts.jump;
@@ -103,9 +102,9 @@ public class TitleManagerScript : MonoBehaviour {
 					if (mainMenuActive && !singlePlayerPanel.active) {
 						mainMenuActive = false;
 						mainMenuPanel.SetActive (false);
-						Debug.Log ("Canceling out of main menu");
+						// Debug.Log ("Canceling out of main menu");
 					} else if (singlePlayerPanel.active) {
-						print ("Cancelling out of single player menu");
+						// print ("Cancelling out of single player menu");
 						es1.SetSelectedGameObject(null);
 						es1.SetSelectedGameObject(es1.firstSelectedGameObject);
 						singlePlayerPanel.SetActive (false);
@@ -113,8 +112,8 @@ public class TitleManagerScript : MonoBehaviour {
 					}
 				}
 			}
-		
-		
+
+
 		}
 		// TODO: Listen for 'cancel' button to close menus here.
 
