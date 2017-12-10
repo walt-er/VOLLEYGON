@@ -5,7 +5,7 @@ using PigeonCoopToolkit.Effects.Trails;
 
 public class PlayerController : MonoBehaviour {
 
-    // Core shape stats, public for tesitng 
+    // Core shape stats, public for tesitng
     public float jumpPower;
     public float speed;
 	public float spinPower;
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "circle":
                 Transform circle = transform.Find("Circle");
-                // Special case for circle mesh rendering 
+                // Special case for circle mesh rendering
                 circle.gameObject.SetActive(true);
                 shapeCollider = GetComponent<CircleCollider2D>();
                 break;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
 
-        // Starting physics 
+        // Starting physics
         if (rb != null) {
             rb.gravityScale = startingGrav;
             startMass = rb.mass;
@@ -181,27 +181,85 @@ public class PlayerController : MonoBehaviour {
         PlayerPrefs.SetInt(whichType, tempTotal);
     }
 
-    void FixedUpdate () {
-
-        // Get horizontal input 
-        if (buttons != null && buttons.horizontal != null)
+    void FixedUpdate()
+    {
+        if (transform.parent.tag != "FakePlayer")
         {
             float moveHorizontal = Input.GetAxis(buttons.horizontal);
 
             // Clamp input
             moveHorizontal = Mathf.Clamp(moveHorizontal, -1f, 1f);
 
-            if (isJumping)
+            // Get horizontal input
+            if (buttons != null && buttons.horizontal != null)
             {
-                GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
+                float moveHorizontal = Input.GetAxis(buttons.horizontal);
+
+                // Clamp input
+                moveHorizontal = Mathf.Clamp(moveHorizontal, -1f, 1f);
+
+                if (isJumping)
+                {
+                    GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
+                }
+
+                if (GetComponent<Rigidbody2D>() != null)
+                {
+                    Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
+                    v3.x = moveHorizontal * speed;
+                    GetComponent<Rigidbody2D>().velocity = v3;
+                }
+            }
+        }
+    }
+
+	void Update() {
+        if (transform.parent.tag != "FakePlayer")
+        {
+
+            if (!inPenalty
+                && buttons != null
+                && buttons.jump != null
+                && GameManagerScript.Instance != null
+                && !GameManagerScript.Instance.paused
+                && !GameManagerScript.Instance.recentlyPaused)
+            {
+
+                // Handle jumping
+                if (Input.GetButtonDown(buttons.jump))
+                {
+
+                    if (isJumping == false && rb != null)
+                    {
+                        Vector3 jumpForce = new Vector3(0f, jumpPower * rb.gravityScale, 0f);
+                        rb.AddForce(jumpForce);
+                        SoundManagerScript.instance.RandomizeSfx(jumpSound1, jumpSound2);
+                        isJumping = true;
+                    }
+                }
+
+                // Handle gravity switch
+                if (Input.GetButtonDown(buttons.grav) && rb != null && !GameManagerScript.Instance.paused)
+                {
+                    rb.gravityScale *= -1f;
+                    SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
+                }
             }
 
-            if (GetComponent<Rigidbody2D>() != null)
+            if (buttons != null && Input.GetButtonDown(buttons.start))
             {
-                Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-                v3.x = moveHorizontal * speed;
-                GetComponent<Rigidbody2D>().velocity = v3;
+                if (!GameManagerScript.Instance.paused)
+                {
+                    GameManagerScript.Instance.Pause();
+                    es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
+                    es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
+                    es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
+                    es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
+                }
             }
+
+            ClampPosition();
+            ManagePowerups();
         }
 	}
 
@@ -242,9 +300,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void checkPenalty(){
-        
+
 		if (team == 1 && transform.position.x > -1.0f // if blue is on the right side
-            || team == 2 && transform.position.x < 1.0f ) { // or if red is on the left side 
+            || team == 2 && transform.position.x < 1.0f ) { // or if red is on the left side
 
 			penaltyTimerActive = true;
 			penaltyTimer = 10f;
@@ -311,7 +369,7 @@ public class PlayerController : MonoBehaviour {
 			isJumping = false;
 			SoundManagerScript.instance.PlaySingle (landSound);
 		}
-			
+
 		if (coll.gameObject.tag == "Playfield") {
 		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
@@ -355,7 +413,7 @@ public class PlayerController : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			//Debug.Log ("a collision ended!");
 			if (!isJumping) {
-					//isJumping = true;   
+					//isJumping = true;
 			}
 			//Debug.Log (isJumping);
 		}
@@ -487,14 +545,14 @@ public class PlayerController : MonoBehaviour {
 			speedPowerupActive = true;
 			ps.Play ();
 			speed = 20f; //was 22
-			speedPowerupTimer = 20f; 
+			speedPowerupTimer = 20f;
 			if (playSFX){
 				StartCoroutine ("PlaySFXWithDelay", 1);
 			}
 			break;
 
 		case 2:
-			
+
 			sizePowerupActive = true;
 			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
@@ -504,7 +562,7 @@ public class PlayerController : MonoBehaviour {
 				StartCoroutine ("PlaySFXWithDelay", 2);
 			}
 			break;
-		
+
 		case 3:
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
@@ -520,19 +578,19 @@ public class PlayerController : MonoBehaviour {
 			case 1:
 				ApplyPowerup (1);
 				break;
-			case 2: 
+			case 2:
 				ApplyPowerup (2);
 				break;
-			case 3: 
+			case 3:
 				ApplyPowerup (3);
 				break;
-			case 4: 
-				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
+			case 4:
+				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle ();
 				break;
 			case 5:
 				// broadcast to all players to activate pandemonium
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (3, false); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (3, false);
 					PlaySFXWithDelay (3);
 				}
 				foreach (GameObject mpm in GameObject.FindGameObjectsWithTag("MidpointMarker")) {
@@ -546,14 +604,14 @@ public class PlayerController : MonoBehaviour {
 				break;
 			case 6:
 				foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
-					player.GetComponent<PlayerController> ().ApplyPowerup (2, false); 
+					player.GetComponent<PlayerController> ().ApplyPowerup (2, false);
 					PlaySFXWithDelay (2);
 				}
 				break;
 			}
 			break;
-		
+
 		}
-	
+
 	}
 }
