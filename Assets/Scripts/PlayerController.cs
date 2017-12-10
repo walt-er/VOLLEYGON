@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour {
         "star"
     };
 
+    void ResourceAvailabilityChangedEvent(bool amConstrained) {
+   		print(amConstrained);
+    }
+
     // Use this for initialization
     void Start () {
 

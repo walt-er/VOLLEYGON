@@ -5,7 +5,7 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
-	//public static string version; 
+	//public static string version;
 
     // Universal game variables
 
@@ -80,7 +80,6 @@ public class DataManagerScript : MonoBehaviour {
 
     // Save instance of self over scene loads
 	void Awake() {
-
 		if (dataManager == null) {
 			DontDestroyOnLoad (gameObject);
 			dataManager = this;
@@ -97,7 +96,7 @@ public class DataManagerScript : MonoBehaviour {
 		version = "V1.5.6";
 
         // Determine if on Xbox
-        // TODO: make dynamic 
+        // TODO: make dynamic
         xboxMode = false;
 
 	}
@@ -139,5 +138,5 @@ public class DataManagerScript : MonoBehaviour {
 
 		rallyCount = 0;
 	}
-		
+
 }
