@@ -253,22 +253,22 @@ public class PlayerController : MonoBehaviour {
                     rb.gravityScale *= -1f;
                     SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
                 }
-            }
 
-            if (buttons != null && Input.GetButtonDown(buttons.start))
-            {
-                if (!GameManagerScript.Instance.paused)
-                {
+            	// Handle start button
+            	if (Input.GetButtonDown(buttons.start)
+            		&& GameManagerScript.Instance != null
+	                && !GameManagerScript.Instance.paused)
+	                {
                     GameManagerScript.Instance.Pause();
                     es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
                     es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
                     es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
                     es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
                 }
-            }
 
-            ClampPosition();
-            ManagePowerups();
+	            ClampPosition();
+	            ManagePowerups();
+	        }
         }
 	}
 
