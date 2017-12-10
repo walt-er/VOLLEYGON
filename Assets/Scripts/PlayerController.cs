@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour {
 
 		// Assign player color and joystick
 		if (isChallengeMode) {
+
 			Debug.Log ("CHALLENGE MODE!");
 			Debug.Log(DataManagerScript.playerControllingMenus);
 			joystick = DataManagerScript.playerControllingMenus;
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour {
         // Get collider for chosen shape
         shapeCollider.enabled = true;
 
-      
+
     }
 
     void IncreasePlayCount(string whichType)
@@ -222,10 +223,9 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update() {
-//		Debug.Log ("update");
         if (transform.parent.tag != "FakePlayer")
         {
-//			Debug.Log (buttons.jump);
+
             if (!inPenalty
                 && buttons != null
                 && buttons.jump != null
@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour {
                 && !GameManagerScript.Instance.paused
                 && !GameManagerScript.Instance.recentlyPaused)
             {
-				Debug.Log ("Checking buttons");
+
                 // Handle jumping
                 if (Input.GetButtonDown(buttons.jump))
                 {
@@ -253,22 +253,22 @@ public class PlayerController : MonoBehaviour {
                     rb.gravityScale *= -1f;
                     SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
                 }
+            }
 
-            	// Handle start button
-            	if (Input.GetButtonDown(buttons.start)
-            		&& GameManagerScript.Instance != null
-	                && !GameManagerScript.Instance.paused)
-	                {
+            if (buttons != null && Input.GetButtonDown(buttons.start))
+            {
+                if (!GameManagerScript.Instance.paused)
+                {
                     GameManagerScript.Instance.Pause();
                     es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
                     es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
                     es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
                     es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
                 }
+            }
 
-	            ClampPosition();
-	            ManagePowerups();
-	        }
+            ClampPosition();
+            ManagePowerups();
         }
 	}
 
