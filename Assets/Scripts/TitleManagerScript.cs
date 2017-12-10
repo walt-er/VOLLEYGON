@@ -126,6 +126,9 @@ public class TitleManagerScript : MonoBehaviour {
 	public void StartMultiplayerGame(){
 		Application.LoadLevel ("ChoosePlayerScene");
 	}
+	public void StartChallengesGame(){
+		Application.LoadLevel ("ChooseChallengeScene");	
+	}
 	public void StartOptionsMenu(){
 		DataManagerScript.playerControllingMenus = player;
 		Application.LoadLevel ("OptionsScene");
