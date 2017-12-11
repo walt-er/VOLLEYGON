@@ -16,6 +16,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static bool playerThreePlaying = true;
 	public static bool playerFourPlaying = true;
 	public static bool CRTMode = true;
+	public static bool isChallengeMode = false;
 
 	// UI Flags
 
