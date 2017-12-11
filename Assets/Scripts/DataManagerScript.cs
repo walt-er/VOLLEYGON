@@ -16,6 +16,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static bool playerThreePlaying = true;
 	public static bool playerFourPlaying = true;
 	public static bool CRTMode = true;
+	public static bool isChallengeMode = false;
 
 	// UI Flags
 
@@ -54,13 +55,15 @@ public class DataManagerScript : MonoBehaviour {
 	public static int playerFourAces;
 	public static int playerFourReturns;
 	public static int playerFourBumbles;
+	public static int playerFourScores;
 
     // Arena type
     public static int arenaType;
 
-    // Match stats
+    // Challenge type (for single player challenge mode)
+    public static int challengeType;
 
-    public static int playerFourScores;
+    // Match stats
 
 	public static int longestRallyCount;
 	public static int matchTime;
