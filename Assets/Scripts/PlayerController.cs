@@ -168,12 +168,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-        // Get player input names
-		Debug.Log("Setting buttons");
-		Debug.Log(joystick);
-
+        // Get player input names\
         buttons = new JoystickButtons(joystick);
-		Debug.Log (buttons);
+
         // Get stats for chosen shape
         string playerShape = shapeNames[playerType];
         ShapeStats stats = new ShapeStats( playerShape );
@@ -183,8 +180,6 @@ public class PlayerController : MonoBehaviour {
 
         // Get collider for chosen shape
         shapeCollider.enabled = true;
-
-      
     }
 
     void IncreasePlayCount(string whichType)
@@ -222,10 +217,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update() {
-//		Debug.Log ("update");
-        if (transform.parent.tag != "FakePlayer")
-        {
-//			Debug.Log (buttons.jump);
+        if (transform.parent.tag != "FakePlayer") {
             if (!inPenalty
                 && buttons != null
                 && buttons.jump != null
@@ -233,7 +225,6 @@ public class PlayerController : MonoBehaviour {
                 && !GameManagerScript.Instance.paused
                 && !GameManagerScript.Instance.recentlyPaused)
             {
-				Debug.Log ("Checking buttons");
                 // Handle jumping
                 if (Input.GetButtonDown(buttons.jump))
                 {

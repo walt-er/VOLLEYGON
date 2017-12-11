@@ -16,7 +16,7 @@ public class GamepadController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        // Get button strings from joystick number 
+        // Get button strings from joystick number
         buttons = new JoystickButtons(joystick);
 
         // Get horizontal axis
@@ -64,7 +64,9 @@ public class GamepadController : MonoBehaviour {
 
         // Unselect slot
         if (Input.GetButtonDown(buttons.grav)) {
-            if (!playerReady) {
+        	if (!slotSelected) {
+        		gameObject.active = false;
+        	} else if (!playerReady) {
                 unselectSlotForJoystick();
             }
         }
@@ -98,7 +100,7 @@ public class GamepadController : MonoBehaviour {
         }
 
         // Debug.Log("Slot assigned: " + joystick);
-        
+
         // Tell fake player it has a joystick now, and activate
         selectedSlotPlayer = GameObject.Find("Fake Player " + slot);
         shouldActivate = true;
@@ -161,7 +163,7 @@ public class GamepadController : MonoBehaviour {
                 // Move the icon
                 moveIcon(true);
             }
-            
+
         }
         else if (Input.GetAxisRaw(axis.axisName) == 0)
         {
@@ -169,10 +171,10 @@ public class GamepadController : MonoBehaviour {
             axis.axisInUse = false;
         }
     }
-    
+
     // Function for looping over availible slots and selecting next open slot
     void iterateSlot(bool goingRight)
-    { 
+    {
         // Move up or down through joystick ints
         int difference = (goingRight) ? 1 : -1;
 

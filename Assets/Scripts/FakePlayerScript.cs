@@ -13,7 +13,7 @@ public class FakePlayerScript : MonoBehaviour {
     public JoystickButtons buttons;
     private int joystickIdentifier = -1;
 
-	public int playerIdentifier; 
+	public int playerIdentifier;
 	public Text readyText;
 	public Text toJoinText;
 	public Text playerDescription;
@@ -38,7 +38,7 @@ public class FakePlayerScript : MonoBehaviour {
 	public GameObject star;
 
 	private int numberOfPlayerTypes = 6;
-    
+
 	Axis verticalAxis;
     SpriteRenderer sr;
 
@@ -100,7 +100,7 @@ public class FakePlayerScript : MonoBehaviour {
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 
 			} else {
-				
+
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 
@@ -160,7 +160,7 @@ public class FakePlayerScript : MonoBehaviour {
 				    break;
 
 			}
-                                
+
 			switch(playerIdentifier){
 
 			    case 1:
@@ -357,7 +357,7 @@ public class FakePlayerScript : MonoBehaviour {
                 // Move up or down through shape ints
                 int difference = (goingUp) ? 1 : -1;
 
-                // Set type for player 
+                // Set type for player
 				switch (playerIdentifier) {
 
                     case 1:
@@ -366,10 +366,10 @@ public class FakePlayerScript : MonoBehaviour {
                     case 2:
                         thisType = DataManagerScript.playerTwoType = ( numberOfPlayerTypes + DataManagerScript.playerTwoType + difference ) % numberOfPlayerTypes;
                         break;
-                    case 3: 
+                    case 3:
                         thisType = DataManagerScript.playerThreeType = ( numberOfPlayerTypes + DataManagerScript.playerThreeType + difference ) % numberOfPlayerTypes;
                         break;
-                    case 4: 
+                    case 4:
                         thisType = DataManagerScript.playerFourType = ( numberOfPlayerTypes + DataManagerScript.playerFourType + difference ) % numberOfPlayerTypes;
                         break;
 
@@ -389,6 +389,6 @@ public class FakePlayerScript : MonoBehaviour {
             // Reset boolean to prevent scrolling more than one tick per press when joystick returns to 0
             whichAxis.axisInUse = false;
         }
-        
+
 	}
 }
