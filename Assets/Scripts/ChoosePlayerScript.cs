@@ -8,6 +8,17 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject fakePlayer2;
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
+
+	public GameObject gamepadIcon1;
+	public GameObject gamepadIcon2;
+	public GameObject gamepadIcon3;
+	public GameObject gamepadIcon4;
+
+	private JoystickButtons gamepad1;
+	private JoystickButtons gamepad2;
+	private JoystickButtons gamepad3;
+	private JoystickButtons gamepad4;
+
 	public Image msgBG;
 	public Image msgBG2;
 
@@ -16,22 +27,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public Text twoOnOneMessage;
 
 	public bool locked;
-
-	private string start1 = "Start_P1";
-	private string start2 = "Start_P2";
-	private string start3 = "Start_P3";
-	private string start4 = "Start_P4";
-	private string start1_Xbox = "Start_P1_Xbox";
-	private string start2_Xbox = "Start_P2_Xbox";
-	private string start3_Xbox = "Start_P3_Xbox";
-	private string start4_Xbox = "Start_P4_Xbox";
-
 	private bool gameIsStartable = false;
 
-	private bool player1Ready = false;
-	private bool player2Ready = false;
-	private bool player3Ready = false;
-	private bool player4Ready = false;
+    public bool player1Ready = false;
+    public bool player2Ready = false;
+    public bool player3Ready = false;
+    public bool player4Ready = false;
 
 	private int playersOnLeft = 0;
 	private int playersOnRight = 0;
@@ -62,12 +63,32 @@ public class ChoosePlayerScript : MonoBehaviour {
 		DataManagerScript.playerOnePlaying = false;
 		DataManagerScript.playerTwoPlaying = false;
 		DataManagerScript.playerThreePlaying = false;
-		DataManagerScript.playerFourPlaying = false; 
+		DataManagerScript.playerFourPlaying = false;
 
 		DataManagerScript.playerOneType = 0;
 		DataManagerScript.playerTwoType = 0;
 		DataManagerScript.playerThreeType = 0;
 		DataManagerScript.playerFourType = 0;
+
+		// Get all possible gamepads
+		gamepad1 = new JoystickButtons(1);
+		gamepad2 = new JoystickButtons(2);
+		gamepad3 = new JoystickButtons(3);
+		gamepad4 = new JoystickButtons(4);
+
+		// Activate gamepad for player who selected the game mode
+		if (DataManagerScript.playerControllingMenus == 1) {
+			gamepadIcon1.SetActive(true);
+		}
+		else if (DataManagerScript.playerControllingMenus == 2) {
+			gamepadIcon2.SetActive(true);
+		}
+		else if (DataManagerScript.playerControllingMenus == 3) {
+			gamepadIcon3.SetActive(true);
+		}
+		else if (DataManagerScript.playerControllingMenus == 4) {
+			gamepadIcon4.SetActive(true);
+		}
 	}
 
     // See if all players that are tagged in have also readied up
@@ -109,13 +130,15 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 		if ((playersOnLeft == 1 && playersOnRight == 0) && noUnreadyPlayers () || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
 
+			// disable single player, to be replaced with "solo mode"
+
             // Single player startable
-            gameIsStartable = true;
-			msgBG.enabled = true;
-			msgBG2.enabled = true;
-			onePlayerMessage.enabled = true;
-			twoOnOneMessage.enabled = false;
-			oneOnOneMessage.enabled = false;
+   			// gameIsStartable = true;
+			// msgBG.enabled = true;
+			// msgBG2.enabled = true;
+			// onePlayerMessage.enabled = true;
+			// twoOnOneMessage.enabled = false;
+			// oneOnOneMessage.enabled = false;
 
 		} else if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
 
@@ -161,15 +184,32 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
-		if (Input.GetButtonDown (start1) || Input.GetButtonDown (start2) || Input.GetButtonDown (start3) || Input.GetButtonDown (start4) || Input.GetButtonDown (start1_Xbox) || Input.GetButtonDown (start2_Xbox) || Input.GetButtonDown (start3_Xbox) || Input.GetButtonDown (start4_Xbox)) {
-			if (gameIsStartable) {	
+		bool pressed1 = Input.GetButtonDown (gamepad1.start);
+		bool pressed2 = Input.GetButtonDown (gamepad2.start);
+		bool pressed3 = Input.GetButtonDown (gamepad3.start);
+		bool pressed4 = Input.GetButtonDown (gamepad4.start);
+
+		if (pressed1 || pressed2 || pressed3 || pressed4) {
+			if (gameIsStartable) {
 				Application.LoadLevel ("chooseArenaScene");
+			} else {
+				if (pressed1 && gamepadIcon1.activeSelf == false) {
+					gamepadIcon1.SetActive(true);
+				}
+				else if (pressed2 && gamepadIcon2.activeSelf == false) {
+					gamepadIcon2.SetActive(true);
+				}
+				else if (pressed3 && gamepadIcon3.activeSelf == false) {
+					gamepadIcon3.SetActive(true);
+				}
+				else if (pressed4 && gamepadIcon4.activeSelf == false) {
+					gamepadIcon4.SetActive(true);
+				}
 			}
 		}
-		
+
 		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
-			locked = true; 	
+			locked = true;
 			StartCoroutine ("StartGame");
 		}
 	}
