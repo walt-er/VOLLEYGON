@@ -8,21 +8,21 @@ public class FakePlayerScript : MonoBehaviour {
 	public Sprite circleSprite;
 	public Sprite triangleSprite;
 	public Sprite trapezoidSprite;
-
 	public Image readyBG;
 
-    private JoystickButtons buttons;
+    public JoystickButtons buttons;
     private int joystickIdentifier = -1;
 
-	public int playerIdentifier; 
+	public int playerIdentifier;
 	public Text readyText;
 	public Text toJoinText;
 	public Text playerDescription;
 	public Text playerDifficulty;
 
-	private bool axisInUse = false;
+    private bool axisInUse = false;
 	public bool readyToPlay;
 	public bool taggedIn = false;
+    private bool shouldDeactivate = false;
 	private AudioSource audio;
 	public AudioClip tickUp;
 	public AudioClip tickDown;
@@ -38,9 +38,8 @@ public class FakePlayerScript : MonoBehaviour {
 	public GameObject star;
 
 	private int numberOfPlayerTypes = 6;
-    
-	Axis verticalAxis;
 
+	Axis verticalAxis;
     SpriteRenderer sr;
 
 	void UpdatePlayerType(int whichType){
@@ -82,12 +81,11 @@ public class FakePlayerScript : MonoBehaviour {
 		}
 	}
 
-	void activateReadyState(){
+	public void activateReadyState(){
 
 		if (taggedIn) {
 
             // Ready up
-
 			if (!readyToPlay) {
 				audio.PlayOneShot (readySound);
 			}
@@ -102,13 +100,30 @@ public class FakePlayerScript : MonoBehaviour {
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (1.0f);
 
 			} else {
-				
+
 				readyText.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 				readyBG.GetComponent<CanvasRenderer> ().SetAlpha (0.0f);
 
-			}
+            }
 
-		} else {
+            switch (playerIdentifier)
+            {
+
+                case 1:
+                    ChoosePlayerScript.Instance.player1Ready = true;
+                    break;
+                case 2:
+                    ChoosePlayerScript.Instance.player2Ready = true;
+                    break;
+                case 3:
+                    ChoosePlayerScript.Instance.player3Ready = true;
+                    break;
+                case 4:
+                    ChoosePlayerScript.Instance.player4Ready = true;
+                    break;
+            }
+
+        } else {
 
             // Tag in
 			taggedIn = true;
@@ -145,7 +160,7 @@ public class FakePlayerScript : MonoBehaviour {
 				    break;
 
 			}
-                                
+
 			switch(playerIdentifier){
 
 			    case 1:
@@ -178,8 +193,25 @@ public class FakePlayerScript : MonoBehaviour {
 			playerDescription.enabled = true;
 			playerDifficulty.enabled = true;
 
-        // Revert from tagged in to nothingness
-		} else if (taggedIn) {
+            switch (playerIdentifier)
+            {
+
+                case 1:
+                    ChoosePlayerScript.Instance.player1Ready = false;
+                    break;
+                case 2:
+                    ChoosePlayerScript.Instance.player2Ready = false;
+                    break;
+                case 3:
+                    ChoosePlayerScript.Instance.player3Ready = false;
+                    break;
+                case 4:
+                    ChoosePlayerScript.Instance.player4Ready = false;
+                    break;
+            }
+
+            // Revert from tagged in to nothingness
+        } else if (taggedIn) {
 
             joystickIdentifier = -1;
             buttons = null;
@@ -256,18 +288,27 @@ public class FakePlayerScript : MonoBehaviour {
             // Joystick movements
             checkVerticalAxis(verticalAxis);
 
-            if (Input.GetButtonDown(buttons.jump))
+            if (Input.GetButtonDown(buttons.jump) && taggedIn)
             {
                 activateReadyState();
             }
 
             if ( Input.GetButtonDown (buttons.grav ) ) {
-				cancelReadyState ();
+                shouldDeactivate = true;
 			}
 		}
 	}
 
-    void checkForJoystick()
+    private void FixedUpdate()
+    {
+        if (shouldDeactivate)
+        {
+            cancelReadyState();
+            shouldDeactivate = false;
+        }
+    }
+
+    public void checkForJoystick()
     {
         // Get joystick for player slot
         switch (playerIdentifier)
@@ -291,9 +332,6 @@ public class FakePlayerScript : MonoBehaviour {
         // Activate slot if a joystick was selected
         if (joystickIdentifier != -1)
         {
-
-            Debug.Log("Player " + playerIdentifier + " Joystick " + joystickIdentifier);
-
             // Assign joystick to player
             buttons = new JoystickButtons(joystickIdentifier);
 
@@ -305,7 +343,7 @@ public class FakePlayerScript : MonoBehaviour {
     void checkVerticalAxis(Axis whichAxis){
 
         // Up or down pressed
-		if (Input.GetAxisRaw (whichAxis.axisName) > 0 || Input.GetAxisRaw(whichAxis.axisName) < 0) {
+		if (Input.GetAxisRaw(whichAxis.axisName) > 0 || Input.GetAxisRaw(whichAxis.axisName) < 0) {
 
             // Only proceed if player is tagged in but not ready, and joystick not already pressed up/down
             if (whichAxis.axisInUse == false && !readyToPlay && taggedIn ) {
@@ -319,7 +357,7 @@ public class FakePlayerScript : MonoBehaviour {
                 // Move up or down through shape ints
                 int difference = (goingUp) ? 1 : -1;
 
-                // Set type for player 
+                // Set type for player
 				switch (playerIdentifier) {
 
                     case 1:
@@ -328,10 +366,10 @@ public class FakePlayerScript : MonoBehaviour {
                     case 2:
                         thisType = DataManagerScript.playerTwoType = ( numberOfPlayerTypes + DataManagerScript.playerTwoType + difference ) % numberOfPlayerTypes;
                         break;
-                    case 3: 
+                    case 3:
                         thisType = DataManagerScript.playerThreeType = ( numberOfPlayerTypes + DataManagerScript.playerThreeType + difference ) % numberOfPlayerTypes;
                         break;
-                    case 4: 
+                    case 4:
                         thisType = DataManagerScript.playerFourType = ( numberOfPlayerTypes + DataManagerScript.playerFourType + difference ) % numberOfPlayerTypes;
                         break;
 
@@ -351,6 +389,6 @@ public class FakePlayerScript : MonoBehaviour {
             // Reset boolean to prevent scrolling more than one tick per press when joystick returns to 0
             whichAxis.axisInUse = false;
         }
-        
+
 	}
 }
