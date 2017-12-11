@@ -54,6 +54,7 @@ public class TitleManagerScript : MonoBehaviour {
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
 		DataManagerScript.ResetPlayerTypes ();
+		DataManagerScript.isChallengeMode = false;
 
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
@@ -128,7 +129,10 @@ public class TitleManagerScript : MonoBehaviour {
 		Application.LoadLevel ("ChoosePlayerScene");
 	}
 	public void StartChallengesGame(){
+		DataManagerScript.playerControllingMenus = player;
+		DataManagerScript.isChallengeMode = true;
 		Application.LoadLevel ("ChooseChallengeScene");	
+
 	}
 	public void StartOptionsMenu(){
 		DataManagerScript.playerControllingMenus = player;

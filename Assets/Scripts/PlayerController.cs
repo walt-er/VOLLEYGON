@@ -4,7 +4,9 @@ using System.Collections;
 using PigeonCoopToolkit.Effects.Trails;
 
 public class PlayerController : MonoBehaviour {
+	// Switch player behavior based on mode
 
+	public bool isChallengeMode;
     // Core shape stats, public for tesitng
     public float jumpPower;
     public float speed;
@@ -92,6 +94,9 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+		//check for challenge mode
+		isChallengeMode = DataManagerScript.isChallengeMode;
+
         // Particle system?
         if ( GetComponent<ParticleSystem>() != null) {
             ps = transform.Find("ssps").GetComponent<ParticleSystem>();
@@ -137,28 +142,38 @@ public class PlayerController : MonoBehaviour {
         int joystick = -1;
 
 		// Assign player color and joystick
-		switch (playerID) {
-		    case 1:
-			    playerColor = "1069A8";
-                joystick = DataManagerScript.playerOneJoystick;
-			    break;
-		    case 2:
-			    playerColor = "7CBEE8";
-                joystick = DataManagerScript.playerTwoJoystick;
-                break;
-		    case 3:
-			    playerColor = "D63236";
-                joystick = DataManagerScript.playerThreeJoystick;
-                break;
-		    case 4:
-			    playerColor = "D97A7B";
-                joystick = DataManagerScript.playerFourJoystick;
-                break;
-        }
+		if (isChallengeMode) {
+			Debug.Log ("CHALLENGE MODE!");
+			Debug.Log(DataManagerScript.playerControllingMenus);
+			joystick = DataManagerScript.playerControllingMenus;
+
+		} else {
+			switch (playerID) {
+			case 1:
+				playerColor = "1069A8";
+				joystick = DataManagerScript.playerOneJoystick;
+				break;
+			case 2:
+				playerColor = "7CBEE8";
+				joystick = DataManagerScript.playerTwoJoystick;
+				break;
+			case 3:
+				playerColor = "D63236";
+				joystick = DataManagerScript.playerThreeJoystick;
+				break;
+			case 4:
+				playerColor = "D97A7B";
+				joystick = DataManagerScript.playerFourJoystick;
+				break;
+			}
+		}
 
         // Get player input names
-        buttons = new JoystickButtons(joystick);
+		Debug.Log("Setting buttons");
+		Debug.Log(joystick);
 
+        buttons = new JoystickButtons(joystick);
+		Debug.Log (buttons);
         // Get stats for chosen shape
         string playerShape = shapeNames[playerType];
         ShapeStats stats = new ShapeStats( playerShape );
@@ -169,9 +184,7 @@ public class PlayerController : MonoBehaviour {
         // Get collider for chosen shape
         shapeCollider.enabled = true;
 
-        // Push play event
-        string shapePlayEvent = playerShape + "Plays";
-        IncreasePlayCount(shapePlayEvent);
+      
     }
 
     void IncreasePlayCount(string whichType)
@@ -209,9 +222,10 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update() {
+//		Debug.Log ("update");
         if (transform.parent.tag != "FakePlayer")
         {
-
+//			Debug.Log (buttons.jump);
             if (!inPenalty
                 && buttons != null
                 && buttons.jump != null
@@ -219,7 +233,7 @@ public class PlayerController : MonoBehaviour {
                 && !GameManagerScript.Instance.paused
                 && !GameManagerScript.Instance.recentlyPaused)
             {
-
+				Debug.Log ("Checking buttons");
                 // Handle jumping
                 if (Input.GetButtonDown(buttons.jump))
                 {
