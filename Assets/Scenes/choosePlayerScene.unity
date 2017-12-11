@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -260,8 +260,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -372,8 +372,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 70616939}
   trapezoidCollider: {fileID: 70616935}
   squareCollider: {fileID: 70616936}
@@ -609,8 +609,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -620,6 +620,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 70616939}
   trapezoidPC: {fileID: 70616935}
   rectanglePC: {fileID: 0}
@@ -679,7 +680,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -697,7 +698,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -748,59 +749,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0.099999994, z: 0}
     m_Extent: {x: 1.6, y: 0.9, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &77226044
 GameObject:
@@ -846,8 +847,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -920,8 +921,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -996,8 +997,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1079,8 +1080,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -1139,7 +1140,7 @@ Prefab:
     - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 2100000, guid: 714222d34b50443f59662c66d2468bc3, type: 2}
     - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_IsActive
@@ -1148,7 +1149,7 @@ Prefab:
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 646997015}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1269,8 +1270,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -1401,7 +1402,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1419,7 +1420,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -1470,59 +1471,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.43, y: 1.35, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &251343684
 GameObject:
@@ -1575,8 +1576,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 251343693}
   trapezoidCollider: {fileID: 251343689}
   squareCollider: {fileID: 251343690}
@@ -1812,8 +1813,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -1823,6 +1824,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 251343693}
   trapezoidPC: {fileID: 251343689}
   rectanglePC: {fileID: 0}
@@ -1921,8 +1923,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1997,8 +1999,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99215686, g: 0.77254903, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
@@ -2032,7 +2034,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2050,7 +2052,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -2101,59 +2103,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1, y: 1, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &286273654
 GameObject:
@@ -2199,8 +2201,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99215686, g: 0.77254903, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
@@ -2273,8 +2275,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -2352,8 +2354,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -2407,8 +2409,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -2511,8 +2513,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -2719,8 +2721,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -2774,8 +2776,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -2994,8 +2996,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -3064,8 +3066,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -3265,8 +3267,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -3451,8 +3453,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
@@ -3509,8 +3511,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -3712,8 +3714,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -3828,8 +3830,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 480526817}
   trapezoidCollider: {fileID: 480526813}
   squareCollider: {fileID: 480526814}
@@ -4065,8 +4067,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -4076,6 +4078,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 480526817}
   trapezoidPC: {fileID: 480526813}
   rectanglePC: {fileID: 480526821}
@@ -4209,8 +4212,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 499084701}
   trapezoidCollider: {fileID: 499084697}
   squareCollider: {fileID: 499084698}
@@ -4446,8 +4449,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -4457,6 +4460,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 499084701}
   trapezoidPC: {fileID: 499084697}
   rectanglePC: {fileID: 0}
@@ -4551,8 +4555,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -4754,8 +4758,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -4869,8 +4873,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 555820042}
   trapezoidCollider: {fileID: 555820038}
   squareCollider: {fileID: 555820039}
@@ -5106,8 +5110,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -5117,6 +5121,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 555820042}
   trapezoidPC: {fileID: 555820038}
   rectanglePC: {fileID: 0}
@@ -5211,8 +5216,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -5468,8 +5473,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358f60f7bf2073242bfd7d16eb909be7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   joystick: 1
   slot: 0
 --- !u!1 &579324261
@@ -5531,8 +5536,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04f63447dc9e7415ba15bf81ce58840e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   squareSprite: {fileID: 21300000, guid: 9fe4c7a13a6d1409cb1eae5332af2cac, type: 3}
   circleSprite: {fileID: 21300000, guid: 5c6568b2e89ab4b6494e77e8b4598440, type: 3}
   triangleSprite: {fileID: 21300000, guid: 2bba8a631f27f4cb9b09bfbf76d3f8ca, type: 3}
@@ -5768,8 +5773,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -5804,7 +5809,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -5822,7 +5827,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -5873,59 +5878,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.43, y: 1.35, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &609940882
 GameObject:
@@ -5971,8 +5976,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -6052,8 +6057,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 622331648}
   trapezoidCollider: {fileID: 622331644}
   squareCollider: {fileID: 622331645}
@@ -6289,8 +6294,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -6300,6 +6305,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 622331648}
   trapezoidPC: {fileID: 622331644}
   rectanglePC: {fileID: 0}
@@ -6382,8 +6388,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358f60f7bf2073242bfd7d16eb909be7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   joystick: 2
   slot: 0
 --- !u!23 &625683639
@@ -6459,7 +6465,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6477,7 +6483,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -6528,59 +6534,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.43, y: 1.35, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &650891543
 GameObject:
@@ -6624,8 +6630,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -6715,8 +6721,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
   m_BlockingMask:
@@ -6731,8 +6737,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
@@ -6840,8 +6846,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -6911,7 +6917,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21226206, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: 14e88756fef304e8e8b78a6a753efafe,
         type: 3}
     - target: {fileID: 11408324, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
@@ -6993,8 +6999,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -7213,8 +7219,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04f63447dc9e7415ba15bf81ce58840e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   squareSprite: {fileID: 21300000, guid: 8eb79f22bf2f24f0bb4b64533f73c178, type: 3}
   circleSprite: {fileID: 21300000, guid: 1ab3c63c2c1c0408a9750609f36b98b8, type: 3}
   triangleSprite: {fileID: 21300000, guid: 3ae6aca68e46141bc883f632a7bf002e, type: 3}
@@ -7465,8 +7471,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -7670,8 +7676,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -7707,7 +7713,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -7725,7 +7731,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -7776,59 +7782,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1, y: 1, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &792009917
 GameObject:
@@ -7882,8 +7888,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 792009926}
   trapezoidCollider: {fileID: 792009922}
   squareCollider: {fileID: 792009923}
@@ -8119,8 +8125,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -8130,6 +8136,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 792009926}
   trapezoidPC: {fileID: 792009922}
   rectanglePC: {fileID: 792009930}
@@ -8256,8 +8263,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -8330,8 +8337,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -8436,8 +8443,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -8542,8 +8549,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -8650,8 +8657,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -8725,8 +8732,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 894976736}
   trapezoidCollider: {fileID: 894976732}
   squareCollider: {fileID: 894976733}
@@ -8962,8 +8969,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -8973,6 +8980,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 894976736}
   trapezoidPC: {fileID: 894976732}
   rectanglePC: {fileID: 0}
@@ -9068,7 +9076,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21226206, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: 14e88756fef304e8e8b78a6a753efafe,
         type: 3}
     - target: {fileID: 11408324, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
@@ -9240,8 +9248,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99215686, g: 0.77254903, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
@@ -9314,8 +9322,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -9351,7 +9359,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -9369,7 +9377,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -9420,59 +9428,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.43, y: 1.35, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &1040935891
 GameObject:
@@ -9533,8 +9541,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04f63447dc9e7415ba15bf81ce58840e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   squareSprite: {fileID: 21300000, guid: 7c75eb27a5c2c4b29b06ab96366f1f6b, type: 3}
   circleSprite: {fileID: 21300000, guid: 3001a84d13adc4e17a99c6c69d7d5f40, type: 3}
   triangleSprite: {fileID: 21300000, guid: 901c365e9be9f4c0e8168162dda5c858, type: 3}
@@ -9796,8 +9804,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1047990873}
   trapezoidCollider: {fileID: 1047990869}
   squareCollider: {fileID: 1047990870}
@@ -10033,8 +10041,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -10044,6 +10052,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1047990873}
   trapezoidPC: {fileID: 1047990869}
   rectanglePC: {fileID: 0}
@@ -10188,8 +10197,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -10262,8 +10271,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -10339,7 +10348,7 @@ Prefab:
     - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 2100000, guid: 891c6e8167fe043f4bcf7a8bd0ce7e85, type: 2}
     - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_IsActive
@@ -10348,7 +10357,7 @@ Prefab:
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 232893951}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -10406,8 +10415,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8392157, g: 0.19607843, b: 0.21176471, a: 0.78431374}
   m_RaycastTarget: 1
@@ -10481,8 +10490,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1146637871}
   trapezoidCollider: {fileID: 1146637867}
   squareCollider: {fileID: 1146637868}
@@ -10718,8 +10727,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -10729,6 +10738,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1146637871}
   trapezoidPC: {fileID: 1146637867}
   rectanglePC: {fileID: 0}
@@ -10834,8 +10844,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1147612617}
   trapezoidCollider: {fileID: 1147612613}
   squareCollider: {fileID: 1147612614}
@@ -11071,8 +11081,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -11082,6 +11092,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1147612617}
   trapezoidPC: {fileID: 1147612613}
   rectanglePC: {fileID: 0}
@@ -11226,8 +11237,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -11300,8 +11311,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -11418,7 +11429,7 @@ Prefab:
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 1034355777}
     - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_IsActive
@@ -11475,8 +11486,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -11547,8 +11558,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -11655,8 +11666,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.4862745, g: 0.74509805, b: 0.9098039, a: 0.78431374}
   m_RaycastTarget: 1
@@ -11720,19 +11731,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 3346346, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 262043046}
     - target: {fileID: 3357702, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 1994683576}
     - target: {fileID: 6471094, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 1581492899}
     - target: {fileID: 3342236, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 2073420935}
     - target: {fileID: 103506, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Name
@@ -11740,35 +11751,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: readyBG
-      value:
+      value: 
       objectReference: {fileID: 1911771134}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: readyText
-      value:
+      value: 
       objectReference: {fileID: 394512636}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: toJoinText
-      value:
+      value: 
       objectReference: {fileID: 256670322}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: playerDescription
-      value:
+      value: 
       objectReference: {fileID: 1720743976}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: playerDifficulty
-      value:
+      value: 
       objectReference: {fileID: 257299397}
     - target: {fileID: 3379932, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 1787653678}
     - target: {fileID: 3359294, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 74986978}
     - target: {fileID: 3338538, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 784620587}
     - target: {fileID: 11432246, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 2}
       propertyPath: chooseAxis
@@ -11829,8 +11840,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -12037,8 +12048,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -12078,8 +12089,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358f60f7bf2073242bfd7d16eb909be7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   joystick: 3
   slot: 0
 --- !u!23 &1367096268
@@ -12228,8 +12239,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -12440,8 +12451,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1439899512}
   trapezoidCollider: {fileID: 1439899508}
   squareCollider: {fileID: 1439899509}
@@ -12677,8 +12688,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -12688,6 +12699,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1439899512}
   trapezoidPC: {fileID: 1439899508}
   rectanglePC: {fileID: 0}
@@ -12794,8 +12806,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1456609309}
   trapezoidCollider: {fileID: 1456609305}
   squareCollider: {fileID: 1456609306}
@@ -13031,8 +13043,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -13042,6 +13054,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1456609309}
   trapezoidPC: {fileID: 1456609305}
   rectanglePC: {fileID: 0}
@@ -13166,8 +13179,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -13274,8 +13287,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99215686, g: 0.77254903, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
@@ -13355,8 +13368,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 1539305110}
   trapezoidCollider: {fileID: 1539305106}
   squareCollider: {fileID: 1539305107}
@@ -13592,8 +13605,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -13603,6 +13616,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 1539305110}
   trapezoidPC: {fileID: 1539305106}
   rectanglePC: {fileID: 0}
@@ -13699,8 +13713,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -13786,7 +13800,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -13837,59 +13851,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0.00000011920929, y: -0.00000017881393, z: 0}
     m_Extent: {x: 1.0000006, y: 1.0000005, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &1594300144
 GameObject:
@@ -13919,8 +13933,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358f60f7bf2073242bfd7d16eb909be7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   joystick: 4
   slot: 0
 --- !u!23 &1594300146
@@ -14035,8 +14049,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8509804, g: 0.47843137, b: 0.48235294, a: 0.78431374}
   m_RaycastTarget: 1
@@ -14103,8 +14117,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -14179,8 +14193,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -14249,8 +14263,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -14450,8 +14464,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -14651,8 +14665,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -14853,8 +14867,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78ab298ef8e19b7438234a1a9d162304, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   radius: 1
   segments: 20
   noise: 0
@@ -14958,8 +14972,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -15041,7 +15055,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15059,7 +15073,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -15110,59 +15124,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.3, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &1790935823
 GameObject:
@@ -15196,7 +15210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 452.62503, y: -31.5}
+  m_AnchoredPosition: {x: 452.625, y: -31.5}
   m_SizeDelta: {x: 181.05, y: 63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1790935825
@@ -15208,8 +15222,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -15282,8 +15296,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -15356,8 +15370,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
@@ -15425,8 +15439,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -15464,8 +15478,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0db71ed13d01c437fbc2036f82a6f1ab, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1865589690
 GameObject:
   m_ObjectHideFlags: 0
@@ -15565,11 +15579,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249169bbea0dd51478b14718e62f7e54, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 88.392525
+  Phase: 88.8142
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -15588,8 +15602,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dd17f8dd41224b7c898c909a7af6854, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899593082
 GameObject:
   m_ObjectHideFlags: 0
@@ -15634,8 +15648,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -15704,8 +15718,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -15909,8 +15923,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.0627451, g: 0.4117647, b: 0.65882355, a: 0.784}
   m_RaycastTarget: 1
@@ -15938,7 +15952,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15956,7 +15970,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -16007,59 +16021,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0.00000011920929, y: -0.00000017881393, z: 0}
     m_Extent: {x: 1.0000006, y: 1.0000005, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &2006971224
 GameObject:
@@ -16108,8 +16122,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -16172,8 +16186,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2369e6ca2dd2444cdbc802f7af82a1e0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   triangleCollider: {fileID: 2035558789}
   trapezoidCollider: {fileID: 2035558785}
   squareCollider: {fileID: 2035558786}
@@ -16409,8 +16423,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c0c6b1e1a834d5a807d483811a9276, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpPower: 2000
   speed: 15
   spinPower: -150
@@ -16420,6 +16434,7 @@ MonoBehaviour:
   startingGrav: 1
   isJumping: 0
   ps: {fileID: 0}
+  es: {fileID: 0}
   trianglePC: {fileID: 2035558789}
   trapezoidPC: {fileID: 2035558785}
   rectanglePC: {fileID: 0}
@@ -16515,7 +16530,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21226206, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: 14e88756fef304e8e8b78a6a753efafe,
         type: 3}
     - target: {fileID: 11408324, guid: 3ab40002004ef4a209c9872e5653cd76, type: 2}
@@ -16562,7 +16577,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name:
+  m_Name: 
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -16580,7 +16595,7 @@ Mesh:
     channels: []
     fullWeights: []
   m_BindPose: []
-  m_BoneNameHashes:
+  m_BoneNameHashes: 
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
   m_IsReadable: 1
@@ -16631,59 +16646,59 @@ Mesh:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UV:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Weights:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_FloatColors:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 0
-      m_Data:
+      m_Data: 
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0.099999994, z: 0}
     m_Extent: {x: 1.6, y: 0.9, z: 0}
   m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh:
-  m_BakedTriangleCollisionMesh:
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
 --- !u!1 &2077946493
 GameObject:
@@ -16725,8 +16740,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f742ccbd25717e438dd6fdea4d66bad, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   TrailData:
     TrailMaterial: {fileID: 2100000, guid: 5725b4eefd31f4339916a6040251d1eb, type: 2}
     Lifetime: 0.2
@@ -16972,8 +16987,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -17029,8 +17044,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a038b1c302bf4ed2a8ec899a77b2df6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fakePlayer1: {fileID: 1370663620}
   fakePlayer2: {fileID: 579324261}
   fakePlayer3: {fileID: 1040935891}
@@ -17045,6 +17060,10 @@ MonoBehaviour:
   oneOnOneMessage: {fileID: 1899593084}
   twoOnOneMessage: {fileID: 1190058800}
   locked: 0
+  player1Ready: 0
+  player2Ready: 0
+  player3Ready: 0
+  player4Ready: 0
 --- !u!4 &2126456561
 Transform:
   m_ObjectHideFlags: 0
@@ -17100,7 +17119,7 @@ Prefab:
     - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
-      value:
+      value: 
       objectReference: {fileID: 2100000, guid: e83bc0752e39846e8bad56f347f67541, type: 2}
     - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_IsActive
@@ -17109,7 +17128,7 @@ Prefab:
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 2}
       propertyPath: m_Mesh
-      value:
+      value: 
       objectReference: {fileID: 604874960}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z

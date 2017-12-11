@@ -258,42 +258,6 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-	void Update(){
-
-		if (!inPenalty && buttons != null && buttons.jump != null && !GameManagerScript.Instance.paused && !GameManagerScript.Instance.recentlyPaused ) {
-
-            // Handle jumping
-			if ( Input.GetButtonDown (buttons.jump) ) {
-
-				if (isJumping == false && rb != null) {
-					Vector3 jumpForce = new Vector3 (0f, jumpPower * rb.gravityScale, 0f);
-					rb.AddForce (jumpForce);
-					SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-					isJumping = true;
-				}
-			}
-
-            // Handle gravity switch
-			if ( Input.GetButtonDown (buttons.grav) && rb != null && !GameManagerScript.Instance.paused ) {
-				rb.gravityScale *= -1f;
-				SoundManagerScript.instance.RandomizeSfx (changeGravSound1, changeGravSound2);
-			}
-		}
-
-		if (Input.GetButtonDown (buttons.start)) {
-			if (!GameManagerScript.Instance.paused) {
-				GameManagerScript.Instance.Pause ();
-				es.GetComponent<StandaloneInputModule> ().horizontalAxis = buttons.horizontal;
-				es.GetComponent<StandaloneInputModule> ().verticalAxis = buttons.vertical;
-				es.GetComponent<StandaloneInputModule> ().submitButton = buttons.jump;
-				es.GetComponent<StandaloneInputModule> ().cancelButton = buttons.grav;
-			}
-		}
-
-		ClampPosition ();
-		ManagePowerups ();
-	}
-
 	void checkPenalty(){
 
 		if (team == 1 && transform.position.x > -1.0f // if blue is on the right side
