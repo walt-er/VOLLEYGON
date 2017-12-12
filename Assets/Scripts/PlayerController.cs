@@ -144,8 +144,6 @@ public class PlayerController : MonoBehaviour {
 		// Assign player color and joystick
 		if (isChallengeMode) {
 
-			Debug.Log ("CHALLENGE MODE!");
-			Debug.Log(DataManagerScript.playerControllingMenus);
 			joystick = DataManagerScript.playerControllingMenus;
 
 		} else {
@@ -510,7 +508,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void ApplyPowerup(int whichPowerup, bool playSFX = true){
-		Debug.Log (whichPowerup);
 		MusicManagerScript.Instance.StartFourth ();
 		switch (whichPowerup) {
 
