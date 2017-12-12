@@ -283,7 +283,9 @@ public class FakePlayerScript : MonoBehaviour {
             checkForJoystick();
         }
 
-        if (!ChoosePlayerScript.Instance.locked && buttons != null) {
+        if (ChoosePlayerScript.Instance != null
+        	&& !ChoosePlayerScript.Instance.locked
+        	&& buttons != null) {
 
             // Joystick movements
             checkVerticalAxis(verticalAxis);

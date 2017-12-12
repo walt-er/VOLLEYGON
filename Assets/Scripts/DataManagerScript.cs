@@ -5,7 +5,7 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
-	//public static string version; 
+	//public static string version;
 
     // Universal game variables
 
@@ -100,8 +100,7 @@ public class DataManagerScript : MonoBehaviour {
 		version = "V1.5.6";
 
         // Determine if on Xbox
-        // TODO: make dynamic 
-        xboxMode = false;
+        xboxMode = Application.platform == RuntimePlatform.XboxOne;
 
 	}
 
@@ -142,5 +141,5 @@ public class DataManagerScript : MonoBehaviour {
 
 		rallyCount = 0;
 	}
-		
+
 }
