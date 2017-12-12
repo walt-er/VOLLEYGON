@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public class LifecycleManager : MonoBehaviour {
 
@@ -10,17 +11,19 @@ public class LifecycleManager : MonoBehaviour {
 
 	void Start () {
 
-    	// Initial Activation
+#if UNITY_XBOXONE
+		// Initial Activation
 		XboxOnePLM.OnActivationEvent += HandleActivation;
 
 		// Contrained
-    	XboxOnePLM.OnResourceAvailabilityChangedEvent += HandleResourceAvailabilityChange;
+		XboxOnePLM.OnResourceAvailabilityChangedEvent += HandleResourceAvailabilityChange;
 
-    	// Suspended
+		// Suspended
 		XboxOnePLM.OnSuspendingEvent += HandleSuspension;
 
 		// Resumed
-    	XboxOnePLM.OnResumingEvent += HandleResume;
+		XboxOnePLM.OnResumingEvent += HandleResume;
+#endif
 
 	}
 
@@ -85,10 +88,7 @@ public class LifecycleManager : MonoBehaviour {
 		// Debug.Log("Away from app for " + timeSuspended);
 
 		// Only unpause if not in game
-		// Leave pause screen open if game in progress
-		if (GameManagerScript.Instance == null) {
-			PauseOrUnpause(false);
-		}
+		PauseOrUnpause(false);
 
 	}
 
@@ -99,25 +99,24 @@ public class LifecycleManager : MonoBehaviour {
 	void PauseOrUnpause(bool shouldPause) {
 
 		// See if we're in a game and pause if so
-        if (GameManagerScript.Instance != null) {
+		if (GameManagerScript.Instance != null) {
 
-        	// Hand pause reponsibility to game manager
-        	if (shouldPause) {
-        		GameManagerScript.Instance.Pause();
-        	} else {
-        		GameManagerScript.Instance.Unpause();
-        	}
+			// Hand pause reponsibility to game manager
+			// Never unpause game, leave pause screen open if game in progress
+			if (shouldPause) {
+				GameManagerScript.Instance.Pause();
+			}
 
-        } else {
+		} else {
 
-        	// If not in game, pause manually
-        	if (shouldPause) {
-				MusicManagerScript.Instance.TurnOffEverything ();
-				SoundManagerScript.instance.muteSFX ();
+			// If not in game, pause/unpause time and musix manually
+			if (shouldPause) {
+				if (MusicManagerScript.Instance != null) MusicManagerScript.Instance.TurnOffEverything ();
+				if (SoundManagerScript.instance != null) SoundManagerScript.instance.muteSFX ();
 				Time.timeScale = 0;
 			} else {
-				MusicManagerScript.Instance.RestoreFromPause ();
-				SoundManagerScript.instance.unMuteSFX ();
+				if (MusicManagerScript.Instance != null) MusicManagerScript.Instance.RestoreFromPause ();
+				if (SoundManagerScript.instance != null) SoundManagerScript.instance.unMuteSFX ();
 				Time.timeScale = 1;
 			}
 		}
