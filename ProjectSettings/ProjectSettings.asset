@@ -615,7 +615,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     4: 
-    21: UNITY_XBOXONE_DEVELOPMENT_BUILD
+    21: 
   platformArchitecture:
     iOS: 2
     tvOS: 1
