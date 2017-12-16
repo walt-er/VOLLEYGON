@@ -89,6 +89,14 @@ public class ChoosePlayerScript : MonoBehaviour {
 		else if (DataManagerScript.playerControllingMenus == 4) {
 			gamepadIcon4.SetActive(true);
 		}
+
+		// foreach (Users.User u in Users.UsersManager.Users) {
+		// 	if (u.IsSignedIn) {
+		// 		Debug.Log("Logged in: " + u.OnlineID);
+		// 		Debug.Log("Logged in: " + u.Index);
+		// 		Debug.Log("Logged in: " + u.Id);
+		// 	}
+		// }
 	}
 
     // See if all players that are tagged in have also readied up
