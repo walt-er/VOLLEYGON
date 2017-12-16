@@ -131,7 +131,7 @@ PlayerSettings:
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
-  xboxOneDisableKinectGpuReservation: 0
+  xboxOneDisableKinectGpuReservation: 1
   xboxOneEnable7thCore: 0
   vrSettings:
     cardboard:
@@ -615,7 +615,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     4: 
-    21: 
+    21: UNITY_XBOXONE_DEVELOPMENT_BUILD
   platformArchitecture:
     iOS: 2
     tvOS: 1
@@ -687,8 +687,8 @@ PlayerSettings:
   XboxOneUpdateKey: 
   XboxOneSandboxId: 
   XboxOneContentId: 
-  XboxOneTitleId: 
-  XboxOneSCId: 
+  XboxOneTitleId: 2BC2A407
+  XboxOneSCId: b8e80100-3022-4db2-a2e1-89e92bc2a407
   XboxOneGameOsOverridePath: 
   XboxOnePackagingOverridePath: 
   XboxOneAppManifestOverridePath: 
@@ -698,7 +698,21 @@ PlayerSettings:
   XboxOneLanguage:
   - enus
   XboxOneCapability: []
-  XboxOneGameRating: {}
+  XboxOneGameRating:
+    CERO (Japan): 0
+    COB-AU (Australia): 0
+    CSRR (Taiwan): 0
+    DJCTQ (Brazil): 0
+    ESRB (US): 0
+    FPB (South Africa): 0
+    GRB (South Korea): 0
+    MDA (Singapore): 0
+    Microsoft: 0
+    OFLC-NZ (New Zealand): 0
+    PCBP (Russia): 0
+    PEGI (Europe): 0
+    PEGI (Portugal): 0
+    USK (Germany): 0
   XboxOneIsContentPackage: 0
   XboxOneEnableGPUVariability: 0
   XboxOneSockets: {}
