@@ -21,11 +21,6 @@ public class BallScript : MonoBehaviour {
 	public bool onePlayerMode = false;
 	private int bounces = 0;
 	public int bouncesOnTop;
-	public int bouncesOnBottom;
-	public int bouncesOnTopLeft;
-	public int bouncesOnTopRight;
-	public int bouncesOnBottomRight;
-	public int bouncesOnBottomLeft;
 	public float baseTimeBetweenGravChanges = 10f;
 	private float lastXPos;
 	public Sprite originalSprite;
@@ -90,6 +85,7 @@ public class BallScript : MonoBehaviour {
 
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
+		//TODO: Replace invoke with a coroutine and add parameters
 		Invoke("LaunchBall", 3f);
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ; 
 		rb.gravityScale = gravScale;
@@ -121,7 +117,7 @@ public class BallScript : MonoBehaviour {
 			if (timer <= 3 && timeSinceLastFlash >= .25f) {
 
 				if (!didSirenPlayAlready) {
-					//SoundManagerScript.instance.PlaySingle (gravityIsAboutToChangeSound);
+					//SoundManagerScript.Instance.PlaySingle (gravityIsAboutToChangeSound);
 					audio.Play ();
 					didSirenPlayAlready = true;
 				}
@@ -139,7 +135,7 @@ public class BallScript : MonoBehaviour {
 				cTrail.GetComponent<Renderer> ().material.SetColor ("_Color", new Color32 (244, 244, 244, 100));
 				cTrail.SendMessage ("Config", 2);
 			}
-				
+
 			if (timer <= 0) {
 				GravChange ();
 				ResetTimer ();
@@ -172,13 +168,13 @@ public class BallScript : MonoBehaviour {
 
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos) && lastXPos != 0 && transform.position.x !=0) {
-			bounces = 0;
-			bouncesOnTop = 0;
-			bouncesOnBottom = 0;
-			bouncesOnTopLeft = 0;
-			bouncesOnTopRight = 0;
-			bouncesOnBottomLeft = 0;
-			bouncesOnBottomRight = 0;
+			GameManagerScript.Instance.bounces = 0;
+
+			GameManagerScript.Instance.bouncesOnBottom = 0;
+			GameManagerScript.Instance.bouncesOnTopLeft = 0;
+			GameManagerScript.Instance.bouncesOnTopRight = 0;
+			GameManagerScript.Instance.bouncesOnBottomLeft = 0;
+			GameManagerScript.Instance.bouncesOnBottomRight = 0;
 			CurrentArena.BroadcastMessage ("ReturnColor");
 
 			DataManagerScript.currentRallyCount += 1;
@@ -224,13 +220,12 @@ public class BallScript : MonoBehaviour {
 		rb.isKinematic = true;
 		gameObject.transform.position = new Vector3 (0, 0, 0);
 		rb.velocity = new Vector2 (0, 0);
-		bounces = 0;
-		bouncesOnTop = 0;
-		bouncesOnBottom = 0;
-		bouncesOnBottomLeft = 0;
-		bouncesOnBottomRight = 0;
-		bouncesOnTopLeft = 0;
-		bouncesOnTopRight = 0;
+		GameManagerScript.Instance.bounces = 0;
+		GameManagerScript.Instance.bouncesOnBottom = 0;
+		GameManagerScript.Instance.bouncesOnBottomLeft = 0;
+		GameManagerScript.Instance.bouncesOnBottomRight = 0;
+		GameManagerScript.Instance.bouncesOnTopLeft = 0;
+		GameManagerScript.Instance.bouncesOnTopRight = 0;
 		timer = 10; // arbitrary high number
 		Transform child = gameObject.transform.Find("CircleTrails");
 		child.gameObject.SetActive (false); 
@@ -274,9 +269,7 @@ public class BallScript : MonoBehaviour {
 		}
 		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 	}
-	void GameOver(){
-		//Application.LoadLevel ("titleScene");
-	}
+
 	void ComputeStat(int whichTeamScored){
 		if (whichTeamScored == 1) {
 			if (lastTouch == 1) {
@@ -440,32 +433,34 @@ public class BallScript : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
-			bounces += 1;
+			GameManagerScript.Instance.bounces += 1;
 			if (coll.gameObject.transform.position.y > 0) {
 				if (coll.gameObject.transform.position.x < 0) {
-					//bouncesOnTop += 1;
-					bouncesOnTopLeft += 1;
+					//GameManagerScript.Instance.bouncesOnTop += 1;
+					GameManagerScript.Instance.bouncesOnTopLeft += 1;
 				}
 				if (coll.gameObject.transform.position.x > 0) {
-					bouncesOnTopRight += 1;
+					GameManagerScript.Instance.bouncesOnTopRight += 1;
 				}
 			} else if (coll.gameObject.transform.position.y < 0) {
-				//bouncesOnBottom += 1;
+				//GameManagerScript.Instance.bouncesOnBottom += 1;
 				if (coll.gameObject.transform.position.x < 0) {
-					//bouncesOnTop += 1;
-					bouncesOnBottomLeft += 1;
+					//GameManagerScript.Instance.bouncesOnTop += 1;
+					GameManagerScript.Instance.bouncesOnBottomLeft += 1;
 				}
 				if (coll.gameObject.transform.position.x > 0) {
-					bouncesOnBottomRight += 1;
+					GameManagerScript.Instance.bouncesOnBottomRight += 1;
 				}
 			}
+
+
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
 
 			// If there were two bounces on a side, take action
-			if (bounces >= 2 && singleMode || bouncesOnTopLeft >= 2 && !singleMode || bouncesOnTopRight >= 2 && !singleMode || bouncesOnBottomRight >= 2 && !singleMode || bouncesOnBottomLeft >= 2 && !singleMode) {
+			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
 
 				// reset current rally count
 				DataManagerScript.currentRallyCount = 0;
@@ -492,11 +487,11 @@ public class BallScript : MonoBehaviour {
 
 						lastScore = 1;
 					}
-					
-					
+
+
 					GameManagerScript.Instance.ReportScore ();
-					
-				// If you're in one player mode....	
+
+					// If you're in one player mode....	
 				} else {
 					// single mode
 					singleModeBalls--;
@@ -518,7 +513,7 @@ public class BallScript : MonoBehaviour {
 			}
 
 		} else if (coll.gameObject.tag == "Player"){
-			//SoundManagerScript.instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
+			//SoundManagerScript.Instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
 		} else if (coll.gameObject.tag == "Playfield"){
 			SoundManagerScript.instance.PlaySingle (bounceOffWallSound);
 

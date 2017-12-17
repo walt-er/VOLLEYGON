@@ -29,6 +29,13 @@ public class GameManagerScript : MonoBehaviour {
 	public GameObject playerClonePrefab;
 	public GameObject pausePanel;
 
+	public int bouncesOnBottom;
+	public int bouncesOnTopLeft;
+	public int bouncesOnTopRight;
+	public int bouncesOnBottomRight;
+	public int bouncesOnBottomLeft;
+	public int bounces = 0;
+
 	public GameObject ball;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page. 
@@ -427,6 +434,86 @@ public class GameManagerScript : MonoBehaviour {
 		} 
 	}
 
+//	void ComputeStat(int whichTeamScored){
+//		if (whichTeamScored == 1) {
+//			if (lastTouch == 1) {
+//				DataManagerScript.playerOneAces += 1;
+//				DataManagerScript.playerOneScores += 1;
+//			}
+//			if (lastTouch == 2) {
+//				DataManagerScript.playerTwoAces += 1;
+//				DataManagerScript.playerTwoScores += 1;
+//			}
+//
+//			if (lastTouch == 3) {
+//				if (secondToLastTouch == 1) {
+//					DataManagerScript.playerOneScores += 1;
+//				}
+//				if (secondToLastTouch == 2) {
+//					DataManagerScript.playerTwoScores += 1;
+//				}
+//				if (secondToLastTouch == 3) {
+//					DataManagerScript.playerThreeBumbles += 1;
+//				}
+//				if (secondToLastTouch == 4) {
+//					DataManagerScript.playerThreeBumbles += 1;
+//				}
+//			}
+//			if (lastTouch == 4) {
+//				if (secondToLastTouch == 1) {
+//					DataManagerScript.playerOneScores += 1;
+//				}
+//				if (secondToLastTouch == 2) {
+//					DataManagerScript.playerTwoScores += 1;
+//				}
+//				if (secondToLastTouch == 3) {
+//					DataManagerScript.playerFourBumbles += 1;
+//				}
+//				if (secondToLastTouch == 4) {
+//					DataManagerScript.playerFourBumbles += 1;
+//				}
+//			}
+//		}
+//		if (whichTeamScored == 2) {
+//			if (lastTouch == 3) {
+//				DataManagerScript.playerThreeAces += 1;
+//				DataManagerScript.playerThreeScores += 1;
+//			}
+//			if (lastTouch == 4) {
+//				DataManagerScript.playerFourAces += 1;
+//				DataManagerScript.playerFourScores += 1;
+//			}
+//
+//			if (lastTouch == 1) {
+//				if (secondToLastTouch == 1) {
+//					DataManagerScript.playerOneBumbles += 1;
+//				}
+//				if (secondToLastTouch == 2) {
+//					DataManagerScript.playerOneBumbles += 1;
+//				}
+//				if (secondToLastTouch == 3) {
+//					DataManagerScript.playerThreeScores += 1;
+//				}
+//				if (secondToLastTouch == 4) {
+//					DataManagerScript.playerFourScores += 1;
+//				}
+//			}
+//			if (lastTouch == 2) {
+//				if (secondToLastTouch == 1) {
+//					DataManagerScript.playerTwoBumbles += 1;
+//				}
+//				if (secondToLastTouch == 2) {
+//					DataManagerScript.playerTwoBumbles += 1;
+//				}
+//				if (secondToLastTouch == 3) {
+//					DataManagerScript.playerThreeScores += 1;
+//				}
+//				if (secondToLastTouch == 4) {
+//					DataManagerScript.playerFourScores += 1;
+//				}
+//			}
+//		}
+//	}
 	public void ReportScore(){
 
 		CurrentArena.BroadcastMessage ("ReturnColor");
@@ -462,3 +549,5 @@ public class GameManagerScript : MonoBehaviour {
 		}
 	}
 }
+
+
