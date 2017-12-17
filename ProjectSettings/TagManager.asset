@@ -18,6 +18,7 @@ TagManager:
   - Powerup
   - Ball
   - MidpointMarker
+  - Arena
   layers:
   - Default
   - TransparentFX
