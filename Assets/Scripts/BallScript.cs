@@ -18,11 +18,10 @@ public class BallScript : MonoBehaviour {
 	public float gravScale = 0.8f;
 	private float originalGrav;
 	public bool singleMode;
-	public bool onePlayerMode = false;
 	private int bounces = 0;
 	public int bouncesOnTop;
 	public float baseTimeBetweenGravChanges = 10f;
-	private float lastXPos;
+	public float lastXPos;
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
 	public Sprite changingSprite;
@@ -45,8 +44,6 @@ public class BallScript : MonoBehaviour {
 
 	GameObject CurrentArena;
 
-	public int singleModeBalls;
-
 	public AudioSource sfxSource;
 
 	public AudioClip ballServedSound;
@@ -54,7 +51,6 @@ public class BallScript : MonoBehaviour {
 	public AudioClip pointScoredSound2;
 	public AudioClip gravityChangeSound;
 	public AudioClip gravityIsAboutToChangeSound;
-	public AudioClip bounceOffPlayerSound1;
 	public AudioClip bounceOffPlayerSound2;
 	public AudioClip bounceOffWallSound;
 	public AudioClip bounceOffScoringBoundarySound; 
@@ -72,17 +68,12 @@ public class BallScript : MonoBehaviour {
 
 	void Start () {
 		audio = GetComponent<AudioSource> ();
-		lastScore = 0;
+	
 		didSirenPlayAlready = false;
-		lastTouch = 0;
 		flashTime = 0f;
-		secondToLastTouch = 0;
 		timeSinceLastFlash = 0f;
-		singleModeBalls = 3;
 		rb = GetComponent<Rigidbody2D>();
-
 		CurrentArena = GameObject.FindWithTag("Arena");
-
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
 		//TODO: Replace invoke with a coroutine and add parameters
@@ -143,7 +134,7 @@ public class BallScript : MonoBehaviour {
 		}
 
 		CheckForSideChange ();
-		lastXPos = transform.position.x; 
+		 
 	}
 
 	void ResetTimer(){
@@ -168,44 +159,13 @@ public class BallScript : MonoBehaviour {
 
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos) && lastXPos != 0 && transform.position.x !=0) {
-			GameManagerScript.Instance.bounces = 0;
+			GameManagerScript.Instance.SideChange ();
 
-			GameManagerScript.Instance.bouncesOnBottom = 0;
-			GameManagerScript.Instance.bouncesOnTopLeft = 0;
-			GameManagerScript.Instance.bouncesOnTopRight = 0;
-			GameManagerScript.Instance.bouncesOnBottomLeft = 0;
-			GameManagerScript.Instance.bouncesOnBottomRight = 0;
-			CurrentArena.BroadcastMessage ("ReturnColor");
-
-			DataManagerScript.currentRallyCount += 1;
-			if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
-				DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
-				Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
-			}
-
-			// Credit a return to the last touch player
-			switch (lastTouch) {
-			case 1:
-				DataManagerScript.playerOneReturns += 1;
-				break;
-			case 2:
-				DataManagerScript.playerTwoReturns += 1;
-				break;
-			case 3:
-				DataManagerScript.playerThreeReturns += 1;
-				break;
-			case 4:
-				DataManagerScript.playerFourReturns += 1;
-				break;
-
-			}
-
-			if (onePlayerMode && lastXPos != 0) {
-				GameManagerScript.Instance.GetComponent<GameManagerScript>().rallyCount++;
-			}
 			// Is this doing anything?
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
 		}
+
+		lastXPos = transform.position.x;
 
 	}
 
@@ -270,86 +230,7 @@ public class BallScript : MonoBehaviour {
 		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
 	}
 
-	void ComputeStat(int whichTeamScored){
-		if (whichTeamScored == 1) {
-			if (lastTouch == 1) {
-				DataManagerScript.playerOneAces += 1;
-				DataManagerScript.playerOneScores += 1;
-			}
-			if (lastTouch == 2) {
-				DataManagerScript.playerTwoAces += 1;
-				DataManagerScript.playerTwoScores += 1;
-			}
 
-			if (lastTouch == 3) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-			}
-			if (lastTouch == 4) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-			}
-		}
-		if (whichTeamScored == 2) {
-			if (lastTouch == 3) {
-				DataManagerScript.playerThreeAces += 1;
-				DataManagerScript.playerThreeScores += 1;
-			}
-			if (lastTouch == 4) {
-				DataManagerScript.playerFourAces += 1;
-				DataManagerScript.playerFourScores += 1;
-			}
-
-			if (lastTouch == 1) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-			if (lastTouch == 2) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-		}
-	}
 
 	void CreateBounceImpact (Collision2D coll, int whichType, int whichNum){
 		//Instantiate(bounceImpact, new Vector3(0f, 0, 0), Quaternion.identity);
@@ -426,13 +307,13 @@ public class BallScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 
 		if (coll.gameObject.tag == "Wall") {
-			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
+			SoundManagerScript.instance.PlaySingle (bounceOffWallSound);
 		}
 
 		// If ball has hit a scoring boundary
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
-			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
+			SoundManagerScript.instance.PlaySingle (bounceOffScoringBoundarySound);
 			GameManagerScript.Instance.bounces += 1;
 			if (coll.gameObject.transform.position.y > 0) {
 				if (coll.gameObject.transform.position.x < 0) {
@@ -457,7 +338,7 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 1, 1);
 			CreateBounceImpact (coll, 2, 2);
 			CreateBounceImpact (coll, 3, 3);
-			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
+			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .8f);
 
 			// If there were two bounces on a side, take action
 			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
@@ -467,51 +348,11 @@ public class BallScript : MonoBehaviour {
 
 				FireExplosion ();
 
-				if (!onePlayerMode) {
-					if (Mathf.Sign (transform.position.x) < 0) {
-						GameManagerScript.Instance.teamTwoScore += 1; 
-						ComputeStat (2); 
-						if (lastScore != 2) {
-							MusicManagerScript.Instance.SwitchMusic (2);
-						}
-
-						lastScore = 2;
-					} else {
-						GameManagerScript.Instance.teamOneScore += 1;
-						ComputeStat (1);
-
-						if (lastScore != 1) {
-							MusicManagerScript.Instance.SwitchMusic (1);
-						}
-
-
-						lastScore = 1;
-					}
-
-
-					GameManagerScript.Instance.ReportScore ();
-
-					// If you're in one player mode....	
-				} else {
-					// single mode
-					singleModeBalls--;
-					// Debug.Log ("scored");
-					// generate a random number between one and two
-					int randomTrack = Random.Range (1, 3);
-					MusicManagerScript.Instance.SwitchMusic (randomTrack);
-					if (singleModeBalls <= 0) {
-						// GAME IS OVER
-						transform.position = new Vector3 (0f, 0f, 0f);
-						gameObject.SetActive (false);
-						GameManagerScript.Instance.endGame ();
-					} else {
-						ResetBall ();
-					}
-				}
+				GameManagerScript.Instance.ManageScore (this.transform.position.x);
 			} else {
-				coll.gameObject.GetComponent<BorderScript>().ChangeColor ();
-			}
-
+		
+				coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();
+				}
 		} else if (coll.gameObject.tag == "Player"){
 			//SoundManagerScript.Instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
 		} else if (coll.gameObject.tag == "Playfield"){
