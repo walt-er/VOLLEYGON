@@ -109,7 +109,7 @@ public class BallScript : MonoBehaviour {
 			rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
 		}
 
-		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges)
+		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges). This should be in game manager.
 		if (gravChangeMode) {
 			if (isTimerRunning) {
 				timer -= Time.deltaTime;
@@ -218,7 +218,7 @@ public class BallScript : MonoBehaviour {
 		winByTwoText.CrossFadeAlpha (0f, .25f, false);
 	}
 
-	void ResetBall(){
+	public void ResetBall(){
 		trail.GetComponent<Trail>().ClearSystem (true);
 		trail.SetActive (false);
 		rb.isKinematic = true;
@@ -406,22 +406,6 @@ public class BallScript : MonoBehaviour {
 		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
 		return new Color32(r,g,b, 255);
 	}
-	void CheckForMatchPoint(){
-		// check for match point
-		if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.teamOneScore) {
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
-			//MusicManagerScript.Instance.SwitchMusic ();
-		} else if (GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-		} else if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-
-		} 
-	}
 
 	//TODO: Other elements play SFX through the sound manager. It's bad that the ball is different. 
 	public void Pause(){
@@ -434,12 +418,25 @@ public class BallScript : MonoBehaviour {
 		audio.UnPause ();
 	}
 
+	public void FireExplosion(){
+		audio.Stop ();
+		Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+		Instantiate (explosionPrefab, newPos, Quaternion.identity);
+		if (newPos.y > 0) {
+			Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, -180));
+		} else {
+			Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, 0));
+		}
+		SoundManagerScript.instance.RandomizeSfx (pointScoredSound1, pointScoredSound2);
+	}
+
 	void OnCollisionEnter2D(Collision2D coll){
 
 		if (coll.gameObject.tag == "Wall") {
 			SoundManagerScript.instance.PlaySingle(bounceOffWallSound);
 		}
 
+		// If ball has hit a scoring boundary
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle(bounceOffScoringBoundarySound);
@@ -466,100 +463,54 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 2, 2);
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, .8f);
+
+			// If there were two bounces on a side, take action
 			if (bounces >= 2 && singleMode || bouncesOnTopLeft >= 2 && !singleMode || bouncesOnTopRight >= 2 && !singleMode || bouncesOnBottomRight >= 2 && !singleMode || bouncesOnBottomLeft >= 2 && !singleMode) {
-					// reset current rally count
-					DataManagerScript.currentRallyCount = 0;
 
-					// Fire an explosion
-					audio.Stop ();
-					Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-					Instantiate (explosionPrefab, newPos, Quaternion.identity);
-					if (newPos.y > 0) {
-						Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, -180));
+				// reset current rally count
+				DataManagerScript.currentRallyCount = 0;
+
+				FireExplosion ();
+
+				if (!onePlayerMode) {
+					if (Mathf.Sign (transform.position.x) < 0) {
+						GameManagerScript.Instance.teamTwoScore += 1; 
+						ComputeStat (2); 
+						if (lastScore != 2) {
+							MusicManagerScript.Instance.SwitchMusic (2);
+						}
+
+						lastScore = 2;
 					} else {
-						Instantiate (explosionPrefab, newPos, Quaternion.Euler (0, 0, 0));
+						GameManagerScript.Instance.teamOneScore += 1;
+						ComputeStat (1);
+
+						if (lastScore != 1) {
+							MusicManagerScript.Instance.SwitchMusic (1);
+						}
+
+
+						lastScore = 1;
 					}
-					SoundManagerScript.instance.RandomizeSfx (pointScoredSound1, pointScoredSound2);
-					// Award a score.
-					CurrentArena.BroadcastMessage ("ReturnColor");
-	
-					if (!onePlayerMode) {
-						if (Mathf.Sign (transform.position.x) < 0) {
-							GameManagerScript.Instance.teamTwoScore += 1; 
-							ComputeStat (2); 
-							if (lastScore != 2) {
-								MusicManagerScript.Instance.SwitchMusic (2);
-							}
-
-							lastScore = 2;
-						} else {
-							GameManagerScript.Instance.teamOneScore += 1;
-							ComputeStat (1);
-
-							if (lastScore != 1) {
-								MusicManagerScript.Instance.SwitchMusic (1);
-							}
-
-
-							lastScore = 1;
-						}
-						
+					
+					
 					GameManagerScript.Instance.ReportScore ();
-						
-					// Move this to game manager
-						if (GameManagerScript.Instance.teamTwoScore < GameManagerScript.Instance.scorePlayedTo && GameManagerScript.Instance.teamOneScore < GameManagerScript.Instance.scorePlayedTo) {
-
-							//Mathf.Abs(GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2
-							if (GameManagerScript.Instance.teamTwoScore == GameManagerScript.Instance.scorePlayedTo - 1 && GameManagerScript.Instance.teamOneScore == GameManagerScript.Instance.scorePlayedTo - 1) {
-								scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-								background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
-							} else {
-
-								scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
-							}
-
-							CheckForMatchPoint ();
-							//scoreboard.GetComponent<ScoreboardManagerScript> ().enableDash ();
-							//
-							//					if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
-							//						//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-							//						scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-							//					}
-							
-
-							ResetBall ();
-							//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
-							//Destroy (gameObject);
-						} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
-							if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
-								//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-								MusicManagerScript.Instance.StartFifth ();
-								CheckForMatchPoint ();
-								scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-							}
-							ResetBall ();
-
-						} else {
-							// GAME IS OVER
-							transform.position = new Vector3 (0f, 0f, 0f);
-							gameObject.SetActive (false);
-							//Invoke ("GameOver", 5f);
-						}
+					
+				// If you're in one player mode....	
+				} else {
+					// single mode
+					singleModeBalls--;
+					// Debug.Log ("scored");
+					// generate a random number between one and two
+					int randomTrack = Random.Range (1, 3);
+					MusicManagerScript.Instance.SwitchMusic (randomTrack);
+					if (singleModeBalls <= 0) {
+						// GAME IS OVER
+						transform.position = new Vector3 (0f, 0f, 0f);
+						gameObject.SetActive (false);
+						GameManagerScript.Instance.endGame ();
 					} else {
-						// single mode
-						singleModeBalls--;
-						// Debug.Log ("scored");
-						// generate a random number between one and two
-						int randomTrack = Random.Range (1, 3);
-						MusicManagerScript.Instance.SwitchMusic (randomTrack);
-						if (singleModeBalls <= 0) {
-							// GAME IS OVER
-							transform.position = new Vector3 (0f, 0f, 0f);
-							gameObject.SetActive (false);
-							GameManagerScript.Instance.endGame ();
-						} else {
-							ResetBall ();
-						}
+						ResetBall ();
 					}
 				}
 			} else {
