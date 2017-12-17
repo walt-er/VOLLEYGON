@@ -88,7 +88,7 @@ public class SimpleBallScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 		//TODO: Find current arena rather than relying on game manager
 		//CurrentArena = GameManagerScript.Instance.CurrentArena;
-		CurrentArena = this.transform.parent.gameObject.FindWithTag("Arena");
+		CurrentArena = GameObject.FindWithTag("Arena");
 
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;

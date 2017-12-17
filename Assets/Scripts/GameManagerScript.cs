@@ -416,4 +416,53 @@ public class GameManagerScript : MonoBehaviour {
 			powerupAppearTime = 20f + Random.value * 20f;
 		}
 	}
+
+	void CheckForMatchPoint(){
+		// check for match point
+		if (teamTwoScore == teamOneScore) {
+			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+			//MusicManagerScript.Instance.SwitchMusic ();
+		} else if (teamOneScore == scorePlayedTo - 1 && teamTwoScore < scorePlayedTo) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
+			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
+			MusicManagerScript.Instance.StartFifth ();
+		} else if (teamTwoScore == scorePlayedTo - 1 && teamOneScore < scorePlayedTo) {
+			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
+			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
+			MusicManagerScript.Instance.StartFifth ();
+		} 
+	}
+
+	public void ReportScore(){
+		
+		if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
+			if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
+				scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+				background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
+			} else {
+
+				scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
+			}
+
+			CheckForMatchPoint ();
+
+			ResetBall ();
+			//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
+			//Destroy (gameObject);
+		} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
+			if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+				//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+				MusicManagerScript.Instance.StartFifth ();
+				CheckForMatchPoint ();
+				scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+			}
+			ResetBall ();
+
+		} else {
+			// GAME IS OVER
+			transform.position = new Vector3 (0f, 0f, 0f);
+			gameObject.SetActive (false);
+			//Invoke ("GameOver", 5f);
+		}
+	}
 }
