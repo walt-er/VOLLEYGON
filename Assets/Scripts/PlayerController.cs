@@ -341,9 +341,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (coll.gameObject.tag == "Ball") {
 			// update the ball's touch information
-			BallScript ball = coll.gameObject.GetComponent<BallScript>();
-			ball.secondToLastTouch = ball.lastTouch;
-			ball.lastTouch = playerID;
+			GameManagerScript.Instance.secondToLastTouch = GameManagerScript.Instance.lastTouch;
+			GameManagerScript.Instance.lastTouch = playerID;
 
 			// check relative velocity of collision
 //			if (coll.relativeVelocity.magnitude > 40) {
