@@ -8,10 +8,10 @@ public class LifecycleManager : MonoBehaviour {
 	//
 	// Init
 	//
-
+	#if UNITY_XBOXONE
 	void Start () {
 
-#if UNITY_XBOXONE
+
 		// Initial Activation
 		XboxOnePLM.OnActivationEvent += HandleActivation;
 
@@ -23,7 +23,7 @@ public class LifecycleManager : MonoBehaviour {
 
 		// Resumed
 		XboxOnePLM.OnResumingEvent += HandleResume;
-#endif
+
 
 	}
 
@@ -121,4 +121,5 @@ public class LifecycleManager : MonoBehaviour {
 			}
 		}
 	}
+	#endif
 }
