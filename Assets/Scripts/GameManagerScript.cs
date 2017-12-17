@@ -93,60 +93,54 @@ public class GameManagerScript : MonoBehaviour {
 
 		// Set up arena based on options
 		arenaType = DataManagerScript.arenaType;
-
+	
+		// This is so dumb.
 		switch (arenaType) {
 
 		case 1:
 			Arena1.SetActive (true);
-			CurrentArena = Arena1;
 			break;
 
 		case 2:
 			Arena2.SetActive (true);
-			CurrentArena = Arena2;
 			break;
 
 		case 3:
 			Arena3.SetActive (true);
-			CurrentArena = Arena3;
 			break;
 
 		case 4:
 			Arena4.SetActive (true);
-			CurrentArena = Arena4;
 			break;
 
 		case 5:
 			Arena5.SetActive (true);
-			CurrentArena = Arena5;
 			break;
 
 		case 6:
 			Arena6.SetActive (true);
-			CurrentArena = Arena6;
 			break;
 
 		case 7:
 			Arena7.SetActive (true);
-			CurrentArena = Arena7;
 			break;
 
 		case 8:
 			Arena8.SetActive (true);
-			CurrentArena = Arena8;
 			break;
 
 		case 9:
 			Arena9.SetActive (true);
-			CurrentArena = Arena9;
 			break;
 
 		default:
 			Arena1.SetActive (true);
-			CurrentArena = Arena1;
 			break;
 
 		}
+
+		CurrentArena = GameObject.FindWithTag("Arena");
+
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
 
@@ -434,7 +428,9 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void ReportScore(){
-		
+
+		CurrentArena.BroadcastMessage ("ReturnColor");
+
 		if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
 			if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
 				scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
@@ -446,7 +442,7 @@ public class GameManagerScript : MonoBehaviour {
 
 			CheckForMatchPoint ();
 
-			ResetBall ();
+			ball.GetComponent<BallScript> ().ResetBall ();
 			//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
 			//Destroy (gameObject);
 		} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
@@ -456,7 +452,7 @@ public class GameManagerScript : MonoBehaviour {
 				CheckForMatchPoint ();
 				scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
 			}
-			ResetBall ();
+			ball.GetComponent<BallScript> ().ResetBall ();
 
 		} else {
 			// GAME IS OVER
