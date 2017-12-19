@@ -79,6 +79,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	void Start(){
 
+		// Reset slots
+    	DataManagerScript.playerOneJoystick = -1;
+    	DataManagerScript.playerTwoJoystick = -1;
+    	DataManagerScript.playerThreeJoystick = -1;
+    	DataManagerScript.playerFourJoystick = -1;
+
 		MusicManagerScript.Instance.StartRoot ();
 		oneOnOneMessage.enabled = false;
 		twoOnOneMessage.enabled = false;
@@ -233,12 +239,6 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 				// Start game if startable and gamepad not tagged in
 				if (gameIsStartable && gamepadIcons[i].activeSelf) {
-
-					// Reset slots
-                	DataManagerScript.playerOneJoystick = -1;
-                	DataManagerScript.playerTwoJoystick = -1;
-                	DataManagerScript.playerThreeJoystick = -1;
-                	DataManagerScript.playerFourJoystick = -1;
 
                 	// Load arena picker
 					Application.LoadLevel ("chooseArenaScene");
