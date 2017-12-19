@@ -281,7 +281,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 			    if (slotTaken && !usernames[i].activeSelf) {
 
 			    	int id = XboxOneInput.GetUserIdForGamepad((uint)joystickForSlot);
-			    	showLoginPrompt(i, id);
+			    	showLoginPrompt(slotId, id);
 
 			    } else if (!slotTaken && usernames[i].activeSelf) {
 
@@ -313,7 +313,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 		exitIfNoOtherGamepads();
 	}
 
-	public void showLoginPrompt(int slot, int userId) {
+	public void showLoginPrompt(int slotId, int userId) {
+		int slotIndex = slotId - 1;
 
     	// Show default text or username
     	string promptText = defaultText;
@@ -325,18 +326,18 @@ public class ChoosePlayerScript : MonoBehaviour {
     	}
 
     	Debug.Log("ID: " + userId + " | Name: " + promptText);
-    	Debug.Log(usernames[slot].GetComponent<Text>().text);
-`
+    	Debug.Log(usernames[slotIndex].GetComponent<Text>().text);
+
     	// Show text
-    	Text prompt = usernames[slot].GetComponent<Text>();
+    	Text prompt = usernames[slotIndex].GetComponent<Text>();
     	prompt.text = promptText;
-		if (usernames[slot].activeSelf) {
-			usernames[slot].SetActive(true);
+		if (!usernames[slotIndex].activeSelf) {
+			usernames[slotIndex].SetActive(true);
 		}
 
 		// Attempted fix for canvas not re-rendering with new value
 		Canvas.ForceUpdateCanvases();
 
-    	Debug.Log(usernames[slot].GetComponent<Text>().text);
+    	Debug.Log(usernames[slotIndex].GetComponent<Text>().text);
     }
 }
