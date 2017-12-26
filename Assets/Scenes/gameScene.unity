@@ -5390,7 +5390,7 @@ MonoBehaviour:
   rallyCount: 0
   rallyCountText: {fileID: 952702020}
   isGameOver: 0
-  scorePlayedTo: 1
+  scorePlayedTo: 11
   arenaType: 0
   paused: 0
   recentlyPaused: 0
@@ -14612,7 +14612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 582.0295
+  Phase: 582.0345
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -14648,7 +14648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 860.8582
+  Timer: 860.8742
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
