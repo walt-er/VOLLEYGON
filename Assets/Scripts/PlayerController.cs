@@ -168,11 +168,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
         // Get player input names
-		Debug.Log("Setting buttons");
-		Debug.Log(joystick);
-
         buttons = new JoystickButtons(joystick);
-		Debug.Log (buttons);
+
         // Get stats for chosen shape
         string playerShape = shapeNames[playerType];
         ShapeStats stats = new ShapeStats( playerShape );
