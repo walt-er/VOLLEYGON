@@ -134,9 +134,6 @@ public class ArenaManagerScript : MonoBehaviour {
         buttons.Add(jumpButton4_Xbox);
         buttons.Add(gravButton4_Xbox);
 
-
-
-
         Vector3 tempPos = new Vector3(markerXPositions[0], markerYPositions[0], 1f);
         marker.transform.position = tempPos;
     }

@@ -9,21 +9,23 @@ public class middleNetScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+      	rb = gameObject.GetComponent<Rigidbody2D>();
 
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        if (rb != null) {
-            rb.velocity = new Vector2(0, directionModifier * speed);
-        }
+		if (rb != null) {
+			rb.velocity = new Vector2(0, directionModifier * speed);
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (transform.localPosition.y >= borderPosition) {
-            if (rb != null) rb.velocity = new Vector2 (0, speed * -1);
-		}
+		if (rb != null) {
+			if (transform.localPosition.y >= borderPosition) {
+				rb.velocity = new Vector2 (0, speed * -1);
+			}
 
-		if (transform.localPosition.y <= -1 * borderPosition) {
-            if (rb != null) rb.velocity = new Vector2 (0, speed * 1);
+			if (transform.localPosition.y <= -1 * borderPosition) {
+				rb.velocity = new Vector2 (0, speed * 1);
+			}
 		}
 	}
 
@@ -32,7 +34,6 @@ public class middleNetScript : MonoBehaviour {
 			float tempVel = rb.velocity.y;
 			tempVel *= -1;
 			rb.velocity = new Vector2 (0, tempVel);
-
 		}
 	}
 }

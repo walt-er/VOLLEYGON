@@ -18,7 +18,7 @@ public class GameManagerScript : MonoBehaviour {
 	public int rallyCount;
 	public Text rallyCountText;
 	public bool isGameOver;
-	public int scorePlayedTo = 5;
+	public int scorePlayedTo = 11;
 	public int arenaType;
 	public bool paused = false;
 	public bool recentlyPaused = false;
@@ -99,8 +99,9 @@ public class GameManagerScript : MonoBehaviour {
 		readyForReplay = false;
 		lastTouch = 0;
 		secondToLastTouch = 0;
+		ball.SetActive(true);
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-		Invoke ("StartReplay", 2f);
+		// Invoke ("StartReplay", 2f);
 
 		rallyCount = 0;
 		// Set up players and their rigidbodies based on character selection choice
@@ -296,9 +297,7 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	void teamWins(int whichTeam){
-		Debug.Log ("Team wins running");
-//		winText.text = "Team " + whichTeam.ToString () + " Wins!";
-//		winText.CrossFadeAlpha(1f,.25f,false);
+
 		switch (whichTeam) {
 		case 1:
 			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamOneWin ();
@@ -325,7 +324,6 @@ public class GameManagerScript : MonoBehaviour {
 		//Invoke ("LaunchTitleScreen", 5f);
 		Invoke ("LaunchStatsScreen", 5f);
 	}
-	// Update is called once per frame
 
 	void PlayReplay(){
 //		EZReplayManager.get.play (0, true, false, true);
@@ -344,23 +342,23 @@ public class GameManagerScript : MonoBehaviour {
 
 		// keep track of match time
 		DataManagerScript.gameTime += Time.deltaTime;
-
-
 		timeSinceLastPowerup += Time.deltaTime;
 
 		if (timerRunning) {
 			gameTimer -= Time.deltaTime;
 		}
+
+		// Match point
 		if (teamOneScore >= scorePlayedTo && teamOneScore == teamTwoScore + 1) {
 			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
 		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore == teamOneScore + 1) {
 			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
 		}
+
+		// Team wins
 		if (teamOneScore >= scorePlayedTo && teamOneScore > teamTwoScore + 1) {
-			//Debug.Log ("Run team one wins routine here");
 			teamWins (1);
-		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore > teamOneScore + 1){
-		//	Debug.Log ("Run team two wins routine here");
+		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore > teamOneScore + 1) {
 			teamWins (2);
 		}
 
@@ -646,9 +644,8 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 	}
+
 	public void ManageScore(float ballPosition){
-
-
 		if (!soloMode) {
 			if (Mathf.Sign (ballPosition) < 0) {
 				teamTwoScore += 1;
@@ -697,27 +694,27 @@ public class GameManagerScript : MonoBehaviour {
 			} else {
 				// GAME IS OVER
 				transform.position = new Vector3 (0f, 0f, 0f);
-				gameObject.SetActive (false);
-				//Invoke ("GameOver", 5f);
+                ball.SetActive(false);
 			}
 		}
 		// If you're in one player mode....
 	 	else {
-		// single mode
-		soloModeBalls--;
-		// Debug.Log ("scored");
-		// generate a random number between one and two
-		int randomTrack = Random.Range (1, 3);
-		MusicManagerScript.Instance.SwitchMusic (randomTrack);
-		if (soloModeBalls <= 0) {
-			// GAME IS OVER
-			transform.position = new Vector3 (0f, 0f, 0f);
-			gameObject.SetActive (false);
-			GameManagerScript.Instance.endGame ();
-		} else {
-				ball.GetComponent<BallScript>().ResetBall ();
+			// single mode
+			soloModeBalls--;
+			// Debug.Log ("scored");
+			// generate a random number between one and two
+			int randomTrack = Random.Range (1, 3);
+			MusicManagerScript.Instance.SwitchMusic (randomTrack);
+			if (soloModeBalls <= 0) {
+				// GAME IS OVER
+				transform.position = new Vector3 (0f, 0f, 0f);
+				gameObject.SetActive (false);
+				GameManagerScript.Instance.endGame ();
+			} else {
+				// Hide ball on game over
+				ball.SetActive(false);
+			}
 		}
-	}
 	}
 }
 
