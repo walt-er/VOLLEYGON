@@ -421,8 +421,11 @@ public class PlayerController : MonoBehaviour {
 
 			if (speedPowerupTimer <= 0){
 				speedPowerupActive = false;
-				ps.Stop ();
 				speed = startSpeed;
+
+				if (ps != null) {
+					ps.Stop();
+				}
 			}
 		}
 
@@ -507,8 +510,11 @@ public class PlayerController : MonoBehaviour {
 		switch (whichPowerup) {
 
 		case 1:
-			speedPowerupActive = true;
-			ps.Play ();
+			if (ps != null) {
+				ps.Play();
+			}
+
+            speedPowerupActive = true;
 			speed = 20f; //was 22
 			speedPowerupTimer = 20f;
 			if (playSFX){
