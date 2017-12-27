@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour {
 		if (isChallengeMode) {
 
 			joystick = DataManagerScript.gamepadControllingMenus;
+            playerColor = "1069A8";
 
 		} else {
 
