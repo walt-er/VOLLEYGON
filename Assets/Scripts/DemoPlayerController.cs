@@ -24,7 +24,7 @@ public class DemoPlayerController : MonoBehaviour {
 	private bool canMove;
 	private string playerColor;
 	private float repeatFreq;
-	public GameObject penaltyExplosion; 
+	public GameObject penaltyExplosion;
 	public float startDelay = 0.1f;
 	private bool moveToLeft;
 	private bool moveToRight;
@@ -52,10 +52,10 @@ public class DemoPlayerController : MonoBehaviour {
 	private bool penaltyTimerActive = false;
 
 	private float speedPowerupTimer;
-	private bool speedPowerupActive = false; 
+	private bool speedPowerupActive = false;
 
 	private float sizePowerupTimer;
-	private bool sizePowerupActive = false; 
+	private bool sizePowerupActive = false;
 
 	private float pandemoniumTimer;
 	public bool pandemoniumPowerupActive = false;
@@ -147,13 +147,13 @@ public class DemoPlayerController : MonoBehaviour {
 		}
 
 		startJumpPower = jumpPower;
-		startSpeed = speed; 
+		startSpeed = speed;
 		Invoke ("Begin", startDelay);
 
 
 
 
-	
+
 	}
 
 	void Begin(){
@@ -173,7 +173,7 @@ public class DemoPlayerController : MonoBehaviour {
 			RepeatedlyChangeGrav ();
 			break;
 
-		case 4: 
+		case 4:
 			Invoke ("MoveRightAndJump", 1f);
 
 			break;
@@ -185,7 +185,7 @@ public class DemoPlayerController : MonoBehaviour {
 			float randomStartVal = Random.Range (0f, 2f);
 			Invoke ("JumpRepeatedlySlowly", 1f);
 			break;
-		case 7: 
+		case 7:
 
 			moveToLeft = true;
 			Invoke ("StopMoving", 1.0f);
@@ -226,7 +226,6 @@ public class DemoPlayerController : MonoBehaviour {
 		rb.velocity = new Vector2 (0f, 0f);
 	}
 	IEnumerator Flash() {
-		Debug.Log ("flash firing");
 		for (float f = .8f; f >= 0; f -= 0.04f) {
 			GetComponent<SpriteRenderer>().material.SetFloat ("_FlashAmount", f);
 			yield return null;
@@ -272,7 +271,7 @@ public class DemoPlayerController : MonoBehaviour {
 		Invoke ("RepeatedlyChangeGrav", repeatFreq);
 	}
 	void FixedUpdate () {
-		
+
 	//	float moveHorizontal = Input.GetAxis (horiz);
 		//Debug.Log (moveHorizontal);
 //		float moveVertical = Input.GetAxis ("Vertical"); // these return between 0 and 1
@@ -285,7 +284,7 @@ public class DemoPlayerController : MonoBehaviour {
 //		}
 //		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
 //		v3.x = moveHorizontal * speed;
-////		
+////
 
 		//v3.z = 0.0f;
 		//if (canMove) {
@@ -390,7 +389,7 @@ public class DemoPlayerController : MonoBehaviour {
 		//	Debug.Log (isJumping);
 			//SoundManagerScript.instance.PlaySingle (landSound);
 		}
-			
+
 		if (coll.gameObject.tag == "Playfield") {
 		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			canMove = false;
@@ -430,14 +429,14 @@ public class DemoPlayerController : MonoBehaviour {
 				}
 			}
 			//Destroy (coll.gameObject);
-		
+
 		}
 	}
 	void OnCollisionExit2D(Collision2D coll){
 		if (coll.gameObject.tag == "ScoringBoundary" || coll.gameObject.tag == "Player") {
 			//Debug.Log ("a collision ended!");
 			if (!isJumping) {
-					//isJumping = true;   
+					//isJumping = true;
 			}
 			//Debug.Log (isJumping);
 		}
@@ -536,7 +535,7 @@ public class DemoPlayerController : MonoBehaviour {
 			rb.velocity = Vector3.zero;
 			rb.gravityScale = startingGrav;
 			gameObject.GetComponent<SpriteRenderer> ().enabled = true;
-		
+
 			trail.SetActive (true);
 			trail.GetComponent<Trail>().ClearSystem (true);
 			gameObject.GetComponent<BoxCollider2D> ().enabled = true;
@@ -550,12 +549,12 @@ public class DemoPlayerController : MonoBehaviour {
 		case 1:
 			speedPowerupActive = true;
 			speed = 22f;
-			speedPowerupTimer = 20f; 
+			speedPowerupTimer = 20f;
 
 			break;
 
 		case 2:
-			
+
 			sizePowerupActive = true;
 			gameObject.transform.localScale = new Vector3 (2f, 2f, 1f);
 			rb.mass = startMass * 2f;
@@ -563,7 +562,7 @@ public class DemoPlayerController : MonoBehaviour {
 			sizePowerupTimer = 20f;
 
 			break;
-		
+
 		case 3:
 			pandemoniumPowerupActive = true;
 			pandemoniumTimer = 20f;
@@ -575,19 +574,19 @@ public class DemoPlayerController : MonoBehaviour {
 			case 1:
 				ApplyPowerup (1);
 				break;
-			case 2: 
+			case 2:
 				ApplyPowerup (2);
 				break;
-			case 3: 
+			case 3:
 				ApplyPowerup (3);
 				break;
-			case 4: 
-				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle (); 
+			case 4:
+				Camera.main.GetComponent<ManageWiggleScript> ().ActivateWiggle ();
 				break;
 			}
 			break;
-		
+
 		}
-	
+
 	}
 }

@@ -13,7 +13,7 @@ public class CutsceneScript : MonoBehaviour {
 	}
 
 	void NextScene(){
-		SceneManager.LoadScene(nextScene);
+		SceneManager.LoadSceneAsync(nextScene);
 	}
 	// Update is called once per frame
 	void Update () {

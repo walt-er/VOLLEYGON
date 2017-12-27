@@ -13,6 +13,8 @@ public class ProtipManagerScript : MonoBehaviour {
 	public string startButton3 = "Start_P3";
 	public string startButton4 = "Start_P4";
 
+    private bool locked;
+
 	// Use this for initialization
 	void Start () {
 		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);
@@ -20,6 +22,7 @@ public class ProtipManagerScript : MonoBehaviour {
 		Invoke ("StartGame", proTipTime);
 		// make this a common shared function somehow
 		int playersActive = 0;
+		locked = false;
 
 		// make this a common function in a class
 		if (DataManagerScript.playerOnePlaying == true) {
@@ -54,12 +57,15 @@ public class ProtipManagerScript : MonoBehaviour {
 	}
 
 	IEnumerator NextScene(){
-		float fadeTime = GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (1f);
-		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene("GameScene");
+		if (!locked) {
+			locked = true;
+			float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+			yield return new WaitForSeconds (fadeTime);
+			SceneManager.LoadSceneAsync("GameScene");
+		}
 	}
-	void ChooseRandomProtip(){
 
+	void ChooseRandomProtip(){
 		Transform protip = protipContainer.transform.GetChild (whichProtip);
 		int textNumber = whichProtip + 1;
 		numberText.text = textNumber.ToString () + "/" + protipContainer.transform.childCount.ToString ();

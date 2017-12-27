@@ -56,6 +56,7 @@ public class StatManagerScript : MonoBehaviour {
 	public int playersReady = 0;
 
 	private int MVP = 0;
+	private bool locked;
 
 	private float scoreWeight = 1f;
 	private float aceWeight = 1f;
@@ -85,6 +86,8 @@ public class StatManagerScript : MonoBehaviour {
 		Player2MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player3MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player4MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
+
+		locked = false;
 
 		// calculate match time
 		int minutes = Mathf.FloorToInt(DataManagerScript.gameTime / 60F);
@@ -226,9 +229,12 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	IEnumerator BackToTitle(){
-		float fadeTime = GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (1f);
-		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene ("titleScene");
+		if (!locked) {
+			locked = true;
+            float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
+            SceneManager.LoadSceneAsync("titleScene");
+		}
 	}
 
 	void PopulateStats(){
