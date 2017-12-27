@@ -121,10 +121,12 @@ public class ChallengesManagerScript : MonoBehaviour {
 
     IEnumerator NextScene()
     {
-        locked = true;
-        float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
-        yield return new WaitForSeconds(fadeTime);
-       SceneManager.LoadScene("challengeScene");
+        if (!locked) {
+            locked = true;
+            float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
+            SceneManager.LoadSceneAsync("challengeScene");
+        }
     }
 
     void updateMarkerPos()

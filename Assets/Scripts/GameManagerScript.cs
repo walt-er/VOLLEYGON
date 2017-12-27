@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour {
 	public float gameTimer;
 	private bool timerRunning = false;
 	private bool readyForReplay;
+	private bool locked;
 	public int teamOneScore;
 	public int teamTwoScore;
 	public Text winText;
@@ -85,6 +86,8 @@ public class GameManagerScript : MonoBehaviour {
 	{
 		// Save a reference to the AudioHandler component as our singleton instance
 		Instance = this;
+
+		locked = false;
 
 		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
 		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
@@ -272,30 +275,35 @@ public class GameManagerScript : MonoBehaviour {
 
 	}
 
-	void LaunchTitleScreen(){
-		SceneManager.LoadScene("titleScene");
-	}
+	// void LaunchTitleScreen(){
+	// 	SceneManager.LoadSceneAsync("titleScene");
+	// }
 
 	void LaunchStatsScreen(){
 		StartCoroutine ("FadeToStats");
 	}
 
 	IEnumerator FadeToStats(){
-		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-		yield return new WaitForSeconds (fadeTime);
-		if (!OnePlayerMode) {
-			SceneManager.LoadScene("statsScene");
-		} else {
-			SceneManager.LoadScene("singlePlayerStatsScene");
+		if (!locked) {
+			locked = true;
+			float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+			yield return new WaitForSeconds (fadeTime);
+			if (!OnePlayerMode) {
+				SceneManager.LoadSceneAsync("statsScene");
+			} else {
+				SceneManager.LoadSceneAsync("singlePlayerStatsScene");
+			}
 		}
 	}
 
+	// End game for single player only
 	public void endGame(){
 		isGameOver = true;
 		DataManagerScript.rallyCount = rallyCount;
 		Invoke ("LaunchStatsScreen", 5f);
 	}
 
+	// End game for team maches
 	void teamWins(int whichTeam){
 
 		switch (whichTeam) {
@@ -337,7 +345,7 @@ public class GameManagerScript : MonoBehaviour {
 		// if all 4 start buttons are pressed, warp back to title screen
 		if (Input.GetButton (startButton1) && Input.GetButton (startButton2) && Input.GetButton (startButton3) && Input.GetButton (startButton4)) {
 			Debug.Log ("returning to title");
-			SceneManager.LoadScene("titleScene");
+			SceneManager.LoadSceneAsync("titleScene");
 		}
 
 		// keep track of match time
@@ -408,7 +416,7 @@ public class GameManagerScript : MonoBehaviour {
 		recentlyPaused = false;
 	}
 	public void QuitGame(){
-		SceneManager.LoadScene("TitleScene");
+		SceneManager.LoadSceneAsync("TitleScene");
 	}
 
 	void ConsiderAPowerup(){

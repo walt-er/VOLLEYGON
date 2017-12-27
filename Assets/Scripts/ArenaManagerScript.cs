@@ -237,6 +237,8 @@ public class ArenaManagerScript : MonoBehaviour {
                         IncreasePlayCount("arena" + markerPos + "Plays"); // log which arena
 
                     }
+
+                    // Start fade to next scene
                     StartCoroutine("NextScene");
                 }
             }
@@ -245,10 +247,12 @@ public class ArenaManagerScript : MonoBehaviour {
 
     IEnumerator NextScene()
     {
-        locked = true;
-        float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
-        yield return new WaitForSeconds(fadeTime);
-        SceneManager.LoadScene("proTipScene");
+        if (!locked) {
+            locked = true;
+            float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
+            SceneManager.LoadSceneAsync("proTipScene");
+        }
     }
 
     void updateMarkerPos()

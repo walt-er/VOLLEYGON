@@ -185,14 +185,14 @@ public class TitleManagerScript : MonoBehaviour {
 		es1.SetSelectedGameObject(soloModeButton);
 	}
 	public void StartMultiplayerGame(){
-		SceneManager.LoadScene ("ChoosePlayerScene");
+		SceneManager.LoadSceneAsync ("ChoosePlayerScene");
 	}
 	public void StartChallengesGame(){
 		DataManagerScript.isChallengeMode = true;
-		SceneManager.LoadScene ("ChooseChallengeScene");
+		SceneManager.LoadSceneAsync ("ChooseChallengeScene");
 
 	}
 	public void StartOptionsMenu(){
-		SceneManager.LoadScene ("OptionsScene");
+		SceneManager.LoadSceneAsync ("OptionsScene");
 	}
 }

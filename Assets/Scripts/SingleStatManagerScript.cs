@@ -20,6 +20,8 @@ public class SingleStatManagerScript : MonoBehaviour {
 	public Text highScoreText;
 	public Text newText;
 
+	private bool locked;
+
 	string formattedMatchTime;
 
 	public int playersPlaying = 1;
@@ -29,14 +31,10 @@ public class SingleStatManagerScript : MonoBehaviour {
 	// Use this for initialization
 	List<string> buttons = new List<string>();
 
-
-
-
-
-
 	void Start () {
 		MusicManagerScript.Instance.StartIntro ();
 
+		locked = false;
 
 		buttons.Add (jumpButton1);
 		buttons.Add (jumpButton2);
@@ -53,7 +51,6 @@ public class SingleStatManagerScript : MonoBehaviour {
 		int seconds = Mathf.FloorToInt(DataManagerScript.gameTime - minutes * 60);
 		formattedMatchTime = string.Format("{0:00}:{1:00}", minutes, seconds);
 		Debug.Log (formattedMatchTime);
-
 
 		PopulateStats ();
 
@@ -97,11 +94,13 @@ public class SingleStatManagerScript : MonoBehaviour {
 
 	}
 
-
 	IEnumerator BackToTitle(){
-		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene("titleScene");
+		if (!locked) {
+			locked = true;
+            float fadeTime = GameObject.Find("FadeCurtain").GetComponent<FadingScript>().BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
+            SceneManager.LoadSceneAsync("titleScene");
+		}
 	}
 
 	void PopulateStats(){

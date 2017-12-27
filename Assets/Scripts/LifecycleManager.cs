@@ -5,11 +5,11 @@ using System;
 
 public class LifecycleManager : MonoBehaviour {
 
-	//
-	// Init
-	//
-	#if UNITY_XBOXONE
-	void Start () {
+    //
+    // Init
+    //
+
+    void Start () {
 
 
 		// Initial Activation
@@ -32,8 +32,6 @@ public class LifecycleManager : MonoBehaviour {
 	//
 
 	void HandleActivation(ActivatedEventArgs args) {
-
-		// See if the app was simply (re)activated or launched from scratch
 		if (args.Kind == XboxOneActivationKind.Protocol) {
 
 			// The app was activated and may or way not have already been running
@@ -78,12 +76,6 @@ public class LifecycleManager : MonoBehaviour {
 
 	void HandleResume(double span) {
 
-		// Reinitialize network connections, etc etc.
-		// Unity passes you back the wallclock time span that you were suspended for
-		// You should tailor your actions to the amount of time that they application
-		// was suspended. IE: do you bring the user back into furious action when they have
-		// been suspended for a week? Probably not, perhaps you bring them back to a pause
-		// screen or something like it.
 		// TimeSpan timeSuspended = TimeSpan.FromSeconds(span);
 		// Debug.Log("Away from app for " + timeSuspended);
 
@@ -122,5 +114,4 @@ public class LifecycleManager : MonoBehaviour {
 			}
 		}
 	}
-	#endif
 }
