@@ -5,12 +5,13 @@ using System;
 
 public class LifecycleManager : MonoBehaviour {
 
+#if UNITY_XBOXONE
+
     //
     // Init
     //
 
     void Start () {
-
 
 		// Initial Activation
 		XboxOnePLM.OnActivationEvent += HandleActivation;
@@ -23,7 +24,6 @@ public class LifecycleManager : MonoBehaviour {
 
 		// Resumed
 		XboxOnePLM.OnResumingEvent += HandleResume;
-
 
 	}
 
@@ -51,22 +51,24 @@ public class LifecycleManager : MonoBehaviour {
 	void HandleResourceAvailabilityChange(bool isConstrained) {
 
 		// Pause or unpause depending on contraint status
+		// Debug.Log(">>> Resource change: constrained set to " + isConstrained);
 		PauseOrUnpause(isConstrained);
 
 	}
 
 	void HandleSuspension() {
 
-		// Save game state here, or do it across multiple frame if required.
-		// +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
-		// YOU MUST CALL THIS BEFORE WE TIME OUT.
-		// This tells Unity that you are done all work
-		// and it is now safe to suspend the application
-		//
-		// You have less than 1 second to call this method
-		// +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
+        // Save game state here, or do it across multiple frame if required.
+        // +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
+        // YOU MUST CALL THIS BEFORE WE TIME OUT.
+        // This tells Unity that you are done all work
+        // and it is now safe to suspend the application
+        //
+        // You have less than 1 second to call this method
+        // +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
 
-		// Pause or unpause depending on contraint status
+        // Pause or unpause depending on contraint status
+        // Debug.Log(">>> Suspending...");
 		PauseOrUnpause(true);
 
 		// Ready to suspend
@@ -76,10 +78,11 @@ public class LifecycleManager : MonoBehaviour {
 
 	void HandleResume(double span) {
 
-		// TimeSpan timeSuspended = TimeSpan.FromSeconds(span);
-		// Debug.Log("Away from app for " + timeSuspended);
+        // TimeSpan timeSuspended = TimeSpan.FromSeconds(span);
+        // Debug.Log("Away from app for " + timeSuspended);
 
-		// Only unpause if not in game
+        // Only unpause if not in game
+        // Debug.Log(">>> Resuming...");
 		PauseOrUnpause(false);
 
 	}
@@ -114,4 +117,7 @@ public class LifecycleManager : MonoBehaviour {
 			}
 		}
 	}
+
+#endif
+
 }
