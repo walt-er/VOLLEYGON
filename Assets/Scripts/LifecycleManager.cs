@@ -5,12 +5,13 @@ using System;
 
 public class LifecycleManager : MonoBehaviour {
 
-	//
-	// Init
-	//
-	#if UNITY_XBOXONE
-	void Start () {
+#if UNITY_XBOXONE
 
+    //
+    // Init
+    //
+
+    void Start () {
 
 		// Initial Activation
 		XboxOnePLM.OnActivationEvent += HandleActivation;
@@ -24,7 +25,6 @@ public class LifecycleManager : MonoBehaviour {
 		// Resumed
 		XboxOnePLM.OnResumingEvent += HandleResume;
 
-
 	}
 
 	//
@@ -32,8 +32,6 @@ public class LifecycleManager : MonoBehaviour {
 	//
 
 	void HandleActivation(ActivatedEventArgs args) {
-
-		// See if the app was simply (re)activated or launched from scratch
 		if (args.Kind == XboxOneActivationKind.Protocol) {
 
 			// The app was activated and may or way not have already been running
@@ -53,22 +51,24 @@ public class LifecycleManager : MonoBehaviour {
 	void HandleResourceAvailabilityChange(bool isConstrained) {
 
 		// Pause or unpause depending on contraint status
+		// Debug.Log(">>> Resource change: constrained set to " + isConstrained);
 		PauseOrUnpause(isConstrained);
 
 	}
 
 	void HandleSuspension() {
 
-		// Save game state here, or do it across multiple frame if required.
-		// +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
-		// YOU MUST CALL THIS BEFORE WE TIME OUT.
-		// This tells Unity that you are done all work
-		// and it is now safe to suspend the application
-		//
-		// You have less than 1 second to call this method
-		// +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
+        // Save game state here, or do it across multiple frame if required.
+        // +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
+        // YOU MUST CALL THIS BEFORE WE TIME OUT.
+        // This tells Unity that you are done all work
+        // and it is now safe to suspend the application
+        //
+        // You have less than 1 second to call this method
+        // +!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!+!
 
-		// Pause or unpause depending on contraint status
+        // Pause or unpause depending on contraint status
+        // Debug.Log(">>> Suspending...");
 		PauseOrUnpause(true);
 
 		// Ready to suspend
@@ -78,16 +78,11 @@ public class LifecycleManager : MonoBehaviour {
 
 	void HandleResume(double span) {
 
-		// Reinitialize network connections, etc etc.
-		// Unity passes you back the wallclock time span that you were suspended for
-		// You should tailor your actions to the amount of time that they application
-		// was suspended. IE: do you bring the user back into furious action when they have
-		// been suspended for a week? Probably not, perhaps you bring them back to a pause
-		// screen or something like it.
-		// TimeSpan timeSuspended = TimeSpan.FromSeconds(span);
-		// Debug.Log("Away from app for " + timeSuspended);
+        // TimeSpan timeSuspended = TimeSpan.FromSeconds(span);
+        // Debug.Log("Away from app for " + timeSuspended);
 
-		// Only unpause if not in game
+        // Only unpause if not in game
+        // Debug.Log(">>> Resuming...");
 		PauseOrUnpause(false);
 
 	}
@@ -122,5 +117,7 @@ public class LifecycleManager : MonoBehaviour {
 			}
 		}
 	}
-	#endif
+
+#endif
+
 }

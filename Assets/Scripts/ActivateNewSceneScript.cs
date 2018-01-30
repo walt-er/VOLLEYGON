@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ActivateNewSceneScript : MonoBehaviour {
-	
+
 	public void LoadByString(string sceneName){
-		SceneManager.LoadScene (sceneName);
+		SceneManager.LoadSceneAsync (sceneName);
 	}
 }

@@ -205,9 +205,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 	}
 
 	IEnumerator StartGame(){
-		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene ("chooseArenaScene");
+		if (!locked) {
+			locked = true;
+			float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+			yield return new WaitForSeconds (fadeTime);
+			SceneManager.LoadSceneAsync ("chooseArenaScene");
+		}
 	}
 
 	void exitIfNoOtherGamepads() {
@@ -224,9 +227,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 	}
 
 	IEnumerator BackToTitle(){
-		float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene ("titleScene");
+		if (!locked) {
+			locked = true;
+			float fadeTime = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
+			yield return new WaitForSeconds (fadeTime);
+			SceneManager.LoadSceneAsync ("titleScene");
+		}
 	}
 
 	// Update is called once per frame
@@ -242,7 +248,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 				if (gameIsStartable && gamepadIcons[i].activeSelf) {
 
                 	// Load arena picker
-					SceneManager.LoadScene ("chooseArenaScene");
+					SceneManager.LoadSceneAsync ("chooseArenaScene");
 
 				}
 				else if (!gamepadIcons[i].activeSelf) {
@@ -303,9 +309,14 @@ public class ChoosePlayerScript : MonoBehaviour {
 			}
 		}
 
-		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay && fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
-			locked = true;
+		// Go ahead and start if all players ready
+		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay
+			&& fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay
+			&& fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay
+			&& fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
+
 			StartCoroutine ("StartGame");
+
 		}
 	}
 

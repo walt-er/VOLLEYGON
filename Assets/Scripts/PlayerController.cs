@@ -145,34 +145,33 @@ public class PlayerController : MonoBehaviour {
 		if (isChallengeMode) {
 
 			joystick = DataManagerScript.gamepadControllingMenus;
+            playerColor = "1069A8";
 
 		} else {
+
 			switch (playerID) {
-			case 1:
-				playerColor = "1069A8";
-				joystick = DataManagerScript.playerOneJoystick;
-				break;
-			case 2:
-				playerColor = "7CBEE8";
-				joystick = DataManagerScript.playerTwoJoystick;
-				break;
-			case 3:
-				playerColor = "D63236";
-				joystick = DataManagerScript.playerThreeJoystick;
-				break;
-			case 4:
-				playerColor = "D97A7B";
-				joystick = DataManagerScript.playerFourJoystick;
-				break;
+				case 1:
+					playerColor = "1069A8";
+					joystick = DataManagerScript.playerOneJoystick;
+					break;
+				case 2:
+					playerColor = "7CBEE8";
+					joystick = DataManagerScript.playerTwoJoystick;
+					break;
+				case 3:
+					playerColor = "D63236";
+					joystick = DataManagerScript.playerThreeJoystick;
+					break;
+				case 4:
+					playerColor = "D97A7B";
+					joystick = DataManagerScript.playerFourJoystick;
+					break;
 			}
 		}
 
         // Get player input names
-		Debug.Log("Setting buttons");
-		Debug.Log(joystick);
-
         buttons = new JoystickButtons(joystick);
-		Debug.Log (buttons);
+
         // Get stats for chosen shape
         string playerShape = shapeNames[playerType];
         ShapeStats stats = new ShapeStats( playerShape );
@@ -421,8 +420,11 @@ public class PlayerController : MonoBehaviour {
 
 			if (speedPowerupTimer <= 0){
 				speedPowerupActive = false;
-				ps.Stop ();
 				speed = startSpeed;
+
+				if (ps != null) {
+					ps.Stop();
+				}
 			}
 		}
 
@@ -507,8 +509,11 @@ public class PlayerController : MonoBehaviour {
 		switch (whichPowerup) {
 
 		case 1:
-			speedPowerupActive = true;
-			ps.Play ();
+			if (ps != null) {
+				ps.Play();
+			}
+
+            speedPowerupActive = true;
 			speed = 20f; //was 22
 			speedPowerupTimer = 20f;
 			if (playSFX){
