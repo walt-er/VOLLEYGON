@@ -27,7 +27,6 @@ public class DataManagerScript : MonoBehaviour {
 	// UI Flags
 
 	public static int gamepadControllingMenus;
-	public static User userControllingMenus;
 
     // Player shapes
 

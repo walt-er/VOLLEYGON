@@ -22,7 +22,6 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject userText2;
 	public GameObject userText3;
 	public GameObject userText4;
-	public GameObject[] usernames;
 
 	private JoystickButtons[] joysticks = new JoystickButtons[4] { new JoystickButtons(1), new JoystickButtons(2), new JoystickButtons(3), new JoystickButtons(4) };
 
@@ -47,27 +46,6 @@ public class ChoosePlayerScript : MonoBehaviour {
 	private GameObject[] fakePlayers;
 	public static ChoosePlayerScript Instance { get; private set; }
 	// Use this for initialization
-
-	private string defaultText = "Y: LOG IN";
-
-	public static readonly XboxOneKeyCode[] yButtons = {
-		XboxOneKeyCode.Gamepad1ButtonY,
-		XboxOneKeyCode.Gamepad2ButtonY,
-		XboxOneKeyCode.Gamepad3ButtonY,
-		XboxOneKeyCode.Gamepad4ButtonY
-	};
-
-    public static bool GetValidButtonDown(XboxOneKeyCode[] validButtons, out XboxOneKeyCode buttonThatWasPressed) {
-        for (int i = 0; i < validButtons.Length; i++) {
-            XboxOneKeyCode keyCode = validButtons[i];
-            if (XboxOneInput.GetKeyDown(keyCode)) {
-                buttonThatWasPressed = keyCode;
-                return true;
-            }
-        }
-        buttonThatWasPressed = XboxOneKeyCode.Gamepad1ButtonA;
-        return false;
-    }
 
 	void Awake() {
 
@@ -106,7 +84,6 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 		// Make array of icons and usernames
 		gamepadIcons = new GameObject[4] { gamepadIcon1, gamepadIcon2, gamepadIcon3, gamepadIcon4 };
-		usernames = new GameObject[4] { userText1, userText2, userText3, userText4 };
 
 		// Loop over icons and activate any already active in menu
 		for ( int i = 0; i < gamepadIcons.Length; i++) {
@@ -283,29 +260,6 @@ public class ChoosePlayerScript : MonoBehaviour {
 			            slotTaken = joystickForSlot != -1;
 			            break;
 			    }
-
-			    // Show username or login prompt for selected slots
-			    if (slotTaken && !usernames[i].activeSelf) {
-
-			    	int id = XboxOneInput.GetUserIdForGamepad((uint)joystickForSlot);
-			    	showLoginPrompt(slotId, id);
-
-			    } else if (!slotTaken && usernames[i].activeSelf) {
-
-			    	// Reset text and hide prompt
-			    	usernames[i].SetActive(false);
-			    	usernames[i].GetComponent<Text>().text = defaultText;
-			    	Debug.Log("reset to default");
-
-			    }
-
-			    // Change player on Y press
-			    JoystickButtons slotsJoystick = new JoystickButtons(joystickForSlot);
-			    if (slotTaken && Input.GetButtonDown(slotsJoystick.y)) {
-			    	Debug.Log(">>> Y Pressed");
-			    	DataManagerScript.slotToUpdate = slotId;
-					UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)joystickForSlot);
-			    }
 			}
 		}
 
@@ -328,28 +282,12 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public void showLoginPrompt(int slotId, int userId) {
 		int slotIndex = slotId - 1;
 
-    	// Show default text or username
-    	string promptText = defaultText;
-
 		// Get user and print name
     	if (userId != 0) {
     		User u = UsersManager.FindUserById(userId);
-    		promptText = "Y: " + u.OnlineID;
     	}
-
-    	Debug.Log("ID: " + userId + " | Name: " + promptText);
-    	Debug.Log(usernames[slotIndex].GetComponent<Text>().text);
-
-    	// Show text
-    	Text prompt = usernames[slotIndex].GetComponent<Text>();
-    	prompt.text = promptText;
-		if (!usernames[slotIndex].activeSelf) {
-			usernames[slotIndex].SetActive(true);
-		}
 
 		// Attempted fix for canvas not re-rendering with new value
 		Canvas.ForceUpdateCanvases();
-
-    	Debug.Log(usernames[slotIndex].GetComponent<Text>().text);
     }
 }
