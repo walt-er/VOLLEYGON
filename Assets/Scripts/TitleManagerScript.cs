@@ -43,23 +43,57 @@ public class TitleManagerScript : MonoBehaviour {
 	void Update () {
 		MusicManagerScript.Instance.FadeOutEverything ();
 
-		// Listen for activation
-		if (!mainMenuActive) {
-			// Iterate over all inputs for actions
-			for (int i = 0; i < gamepads.Length; i++) {
-				if (Input.GetButtonDown (gamepads[i].jump) || Input.GetButtonDown (gamepads[i].start)) {
+		// Iterate over all inputs for actions
+		for (int i = 0; i < gamepads.Length; i++) {
 
-					// Xbox numbering
+            // Listen for activation
+            if (!mainMenuActive) {
+
+				if (
+					Input.GetButtonDown (gamepads[i].jump)
+					|| Input.GetButtonDown (gamepads[i].grav)
+					|| Input.GetButtonDown (gamepads[i].start)
+				) {
+
+					// Xbox numbering from 1
 					int gamepadIndex = i + 1;
 
-					// Open main menu
-					activateMainMenu(gamepadIndex);
+					#if UNITY_XBOXONE
+
+						// Trigger Xbox signin
+						if (XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
+							DataManagerScript.shouldActivateMenu = true;
+							UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
+						}
+
+					#endif
+
+                    // Open main menu
+                    activateMainMenu(gamepadIndex);
 				}
 			}
-		} else {
-			// Listen for cancel
-			if (controllingGamepad != null &&  Input.GetButtonDown (controllingGamepad.grav)) {
-				cancelCurrentMenu(false);
+			else {
+
+				#if UNITY_XBOXONE
+					// Listen for user change (Y button)
+					if (Input.GetButtonDown (controllingGamepad.y)) {
+
+						// Xbox numbering from 1
+						int gamepadIndex = i + 1;
+
+						// Back out and log in again if active player presses Y
+						if (gamepadIndex == DataManagerScript.gamepadControllingMenus) {
+							cancelCurrentMenu(true);
+							DataManagerScript.shouldActivateMenu = true;
+							UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
+						}
+					}
+				#endif
+
+				// Listen for cancel
+				if (controllingGamepad != null &&  Input.GetButtonDown (controllingGamepad.grav)) {
+					cancelCurrentMenu(false);
+				}
 			}
 		}
 	}
@@ -83,6 +117,12 @@ public class TitleManagerScript : MonoBehaviour {
 
 		// Addign gamepad to menus
 		DataManagerScript.gamepadControllingMenus = gamepad;
+
+		// Save "active" user if on xbox
+		#if UNITY_XBOXONE
+			int userId = XboxOneInput.GetUserIdForGamepad((uint)gamepad);
+			DataManagerScript.userControllingMenus = UsersManager.FindUserById(userId);
+		#endif
 
 		// activate menu and its first button (weird ui thing)
 		mainMenuActive = true;
