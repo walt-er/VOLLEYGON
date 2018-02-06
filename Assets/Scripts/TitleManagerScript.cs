@@ -4,7 +4,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-using Users;
+
+#if UNITY_XBOXONE
+	using Users;
+#endif
 
 public class TitleManagerScript : MonoBehaviour {
 
@@ -53,8 +56,19 @@ public class TitleManagerScript : MonoBehaviour {
 					// Xbox numbering
 					int gamepadIndex = i + 1;
 
-					// Open main menu
-					activateMainMenu(gamepadIndex);
+					if (DataManagerScript.demoMode) {
+
+                        // Jump right into lobby if in demo mode
+                        DataManagerScript.gamepadControllingMenus = gamepadIndex;
+                        StartMultiplayerGame();
+
+					}
+					else {
+
+						// Open main menu
+						activateMainMenu(gamepadIndex);
+
+					}
 				}
 			}
 		} else {
@@ -82,12 +96,14 @@ public class TitleManagerScript : MonoBehaviour {
 
 	public void activateMainMenu(int gamepad) {
 
-		// Addign gamepad to menus
+		// Assign gamepad to menus
 		DataManagerScript.gamepadControllingMenus = gamepad;
 
 		// activate menu and its first button (weird ui thing)
 		mainMenuActive = true;
 		mainMenuPanel.SetActive (true);
+
+
 		es1.SetSelectedGameObject(null);
 		es1.SetSelectedGameObject(es1.firstSelectedGameObject);
 
