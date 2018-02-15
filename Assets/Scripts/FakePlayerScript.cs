@@ -253,12 +253,13 @@ public class FakePlayerScript : MonoBehaviour {
 	void Start () {
 
         sr = GetComponent<SpriteRenderer> ();
+        if (sr) sr.enabled = false;
+
 		if (readyText) readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		if (readyBG) readyBG.GetComponent<CanvasRenderer> ().SetAlpha(0.0f);
 
-		sr.enabled = false;
-		playerDescription.enabled = false;
-		playerDifficulty.enabled = false;
+		if (playerDescription) playerDescription.enabled = false;
+		if (playerDifficulty) playerDifficulty.enabled = false;
 
 		audio = GetComponent<AudioSource> ();
 

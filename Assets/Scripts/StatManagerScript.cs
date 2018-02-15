@@ -93,8 +93,6 @@ public class StatManagerScript : MonoBehaviour {
 		int minutes = Mathf.FloorToInt(DataManagerScript.gameTime / 60F);
 		int seconds = Mathf.FloorToInt(DataManagerScript.gameTime - minutes * 60);
 		formattedMatchTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-		Debug.Log (formattedMatchTime);
-
 
 		PopulateStats ();
 
