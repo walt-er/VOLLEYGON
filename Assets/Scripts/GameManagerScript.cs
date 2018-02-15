@@ -107,9 +107,9 @@ public class GameManagerScript : MonoBehaviour {
 		// Invoke ("StartReplay", 2f);
 
 		rallyCount = 0;
-		// Set up players and their rigidbodies based on character selection choice
-		//	Player1.SetActive (false);
 
+		// Fade in
+        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
 
 		// Set up arena based on options
 		arenaType = DataManagerScript.arenaType;
@@ -280,20 +280,17 @@ public class GameManagerScript : MonoBehaviour {
 	// }
 
 	void LaunchStatsScreen(){
-		//StartCoroutine ("FadeToStats");
-		SceneManager.LoadSceneAsync("statsScene");
+		StartCoroutine ("FadeToStats");
 	}
 
 	IEnumerator FadeToStats(){
 		if (!locked) {
 			locked = true;
-			//float 1f = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-			yield return new WaitForSeconds (1f);
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+            yield return new WaitForSeconds(0.5f);
 			if (!OnePlayerMode) {
-				Debug.Log ("HAPPENIN!");
 				SceneManager.LoadSceneAsync("statsScene");
 			} else {
-				Debug.Log ("HAPPENIN!");
 				SceneManager.LoadSceneAsync("singlePlayerStatsScene");
 			}
 		}
@@ -631,7 +628,7 @@ public class GameManagerScript : MonoBehaviour {
 		DataManagerScript.currentRallyCount += 1;
 		if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
 			DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
-			Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
+			// Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
 		}
 
 		// Credit a return to the last touch player

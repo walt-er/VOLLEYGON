@@ -84,6 +84,9 @@ public class ChoosePlayerScript : MonoBehaviour {
 		DataManagerScript.playerThreeType = 0;
 		DataManagerScript.playerFourType = 0;
 
+		// Fade in
+        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+
 		// Make array of icons and usernames
 		gamepadIcons = new GameObject[4] { gamepadIcon1, gamepadIcon2, gamepadIcon3, gamepadIcon4 };
 
@@ -185,8 +188,7 @@ public class ChoosePlayerScript : MonoBehaviour {
 	IEnumerator StartGame(){
 		if (!locked) {
 			locked = true;
-			//float 1f = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-			yield return new WaitForSeconds (1f);
+            yield return new WaitForSeconds (GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f));
 			SceneManager.LoadSceneAsync ("chooseArenaScene");
 		}
 	}
@@ -207,8 +209,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 	IEnumerator BackToTitle(){
 		if (!locked) {
 			locked = true;
-			//float 1f = GameObject.Find ("FadeCurtain").GetComponent<FadingScript> ().BeginFade (1);
-			yield return new WaitForSeconds (1f);
+            float fadeTime = GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+			yield return new WaitForSeconds (fadeTime);
 			SceneManager.LoadSceneAsync ("titleScene");
 		}
 	}

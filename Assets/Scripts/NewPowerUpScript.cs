@@ -4,7 +4,7 @@ using System.Collections;
 public class NewPowerUpScript : MonoBehaviour {
 
 	public int powerupType;
-	public float timer; 
+	public float timer;
 	public bool isAvailable;
 	private bool isDone = false;
 	public bool isFading = false;
@@ -22,7 +22,7 @@ public class NewPowerUpScript : MonoBehaviour {
 		timer = 5f + (Random.value * 5f);
 	}
 	void Start () {
-		
+
 		isAvailable = true;
 
 		//powerupType = Random.Range (1, 5);
@@ -44,7 +44,7 @@ public class NewPowerUpScript : MonoBehaviour {
 	}
 	void ResetTime(float newTime){
 		timer = newTime;
-		Debug.Log ("timer is now " + timer);
+		// Debug.Log ("timer is now " + timer);
 	}
 
 	void Config(int whichType){
@@ -91,7 +91,7 @@ public class NewPowerUpScript : MonoBehaviour {
 			if (includeExplosion) {
 
 				GameObject explosion = (GameObject)Instantiate (explosionPrefab, new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-			
+
 				switch (powerupType) {
 				case 1:
 					explosion.SendMessage ("Config", "FDC54D");
@@ -110,7 +110,7 @@ public class NewPowerUpScript : MonoBehaviour {
 
 
 			isFading = true;
-			//iTween.MoveTo(gameObject,iTween.Hash("x",3,"time",4,"delay",1,"onupdate","myUpdateFunction","looptype",iTween.LoopType.pingPong));			
+			//iTween.MoveTo(gameObject,iTween.Hash("x",3,"time",4,"delay",1,"onupdate","myUpdateFunction","looptype",iTween.LoopType.pingPong));
 			iTween.FadeTo (gameObject, iTween.Hash("alpha",0,"time",0.5, "onComplete","Disappear"));
 		}
 	}

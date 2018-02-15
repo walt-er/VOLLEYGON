@@ -136,6 +136,9 @@ public class ArenaManagerScript : MonoBehaviour {
 
         Vector3 tempPos = new Vector3(markerXPositions[0], markerYPositions[0], 1f);
         marker.transform.position = tempPos;
+
+        // Fade in
+        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
     }
 
     void IncreasePlayCount(string whichType)
@@ -249,7 +252,7 @@ public class ArenaManagerScript : MonoBehaviour {
     {
         if (!locked) {
             locked = true;
-            // insert new fancy fade here
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
             yield return new WaitForSeconds(1f);
             SceneManager.LoadSceneAsync("proTipScene");
         }

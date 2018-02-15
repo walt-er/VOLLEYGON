@@ -253,8 +253,8 @@ public class FakePlayerScript : MonoBehaviour {
 	void Start () {
 
         sr = GetComponent<SpriteRenderer> ();
-		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-		readyBG.GetComponent<CanvasRenderer> ().SetAlpha(0.0f);
+		if (readyText) readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		if (readyBG) readyBG.GetComponent<CanvasRenderer> ().SetAlpha(0.0f);
 
 		sr.enabled = false;
 		playerDescription.enabled = false;

@@ -417,7 +417,6 @@ public class DemoPlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Powerup") {
-			Debug.Log ("Happening");
 			//Script other = coll.gameObject.GetComponent<NewPowerUpScript> ();
 			int whichPowerup = coll.gameObject.GetComponent<HardcodedPowerUpScript> ().powerupType;
 			if (coll.gameObject.GetComponent<HardcodedPowerUpScript> ().isAvailable) {
@@ -543,7 +542,6 @@ public class DemoPlayerController : MonoBehaviour {
 	}
 
 	void ApplyPowerup(int whichPowerup){
-		Debug.Log (whichPowerup);
 		switch (whichPowerup) {
 
 		case 1:

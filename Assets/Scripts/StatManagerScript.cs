@@ -80,7 +80,7 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	void Start () {
-		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);
+		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade(0f);
 		MusicManagerScript.Instance.StartIntro ();
 		Player1MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
 		Player2MVP.GetComponent<CanvasRenderer> ().SetAlpha (0f);
@@ -231,8 +231,8 @@ public class StatManagerScript : MonoBehaviour {
 	IEnumerator BackToTitle(){
 		if (!locked) {
 			locked = true;
-            // insert new fancy fade here
-            yield return new WaitForSeconds(1f);
+            float fadeTime = GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+            yield return new WaitForSeconds(fadeTime);
             SceneManager.LoadSceneAsync("titleScene");
 		}
 	}
