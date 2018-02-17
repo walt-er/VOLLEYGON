@@ -23,14 +23,13 @@ public class StatsPlayerScript : MonoBehaviour {
 	public Text toJoinText;
 	public Image readyBG;
 
-	private bool axisInUse = false;
 	public bool readyToPlay;
 	public bool taggedIn = false;
 
-	private int numberOfPlayerTypes = 4;
-
 	private int whichType;
 
+	// Button names
+	private JoystickButtons buttons;
 
 	SpriteRenderer sr;
 
@@ -72,8 +71,28 @@ public class StatsPlayerScript : MonoBehaviour {
 		rectangle = transform.Find ("Rectangle").gameObject;
 		star = transform.Find ("Star").gameObject;
 
-		cancelKey_Xbox = cancelKey + "_Xbox";
-		confirmKey_Xbox = confirmKey + "_Xbox";
+		// Assign keys
+		int joystick = -1;
+		switch (playerIdentifier) {
+		case 1:
+			joystick = DataManagerScript.playerOneJoystick;
+			break;
+		case 2:
+			joystick = DataManagerScript.playerTwoJoystick;
+			break;
+		case 3:
+			joystick = DataManagerScript.playerThreeJoystick;
+			break;
+		case 4:
+			joystick = DataManagerScript.playerFourJoystick;
+			break;
+		}
+
+		// Get player input names
+		buttons = new JoystickButtons(joystick);
+
+		cancelKey = buttons.grav;
+		confirmKey = buttons.jump;
 
 		sr = GetComponent<SpriteRenderer> ();
 		readyText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
@@ -161,10 +180,10 @@ public class StatsPlayerScript : MonoBehaviour {
 	void Update () {
 
 
-		if (Input.GetButtonDown (confirmKey) || Input.GetButtonDown (confirmKey_Xbox)) {
+		if (Input.GetButtonDown (confirmKey)){
 			activateReadyState ();
 		}
-		if (Input.GetButtonDown (cancelKey) || Input.GetButtonDown (cancelKey_Xbox)) {
+		if (Input.GetButtonDown (cancelKey)){
 			cancelReadyState ();
 		}
 	}
