@@ -155,12 +155,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 
             // Multiplayer game is startable
 			gameIsStartable = true;
-            msgBG.enabled = true;
-            msgBG2.enabled = true;
 			gutterBG.GetComponent<CanvasRenderer> ().SetAlpha(1.0f);
             if (playersOnLeft == 2 && playersOnRight == 1 || playersOnLeft == 1 && playersOnRight == 2) {
 
 				// Display 2v1 message
+				// TODO: Msg bg is shown before 4 player start, which it shouldn't. It's dumb that there are two images, they should be a group.
+				msgBG.enabled = true;
+				msgBG2.enabled = true;
 				twoOnOneMessage.enabled = true;
                 oneOnOneMessage.enabled = false;
                 onePlayerMessage.enabled = false;
@@ -169,6 +170,9 @@ public class ChoosePlayerScript : MonoBehaviour {
 			} else if (playersOnLeft == 1 && playersOnRight == 1){
 
 				// Display 1v1 message
+				// TODO: Msg bg is shown before 4 player start, which it shouldn't. It's dumb that there are two images, they should be a group.
+				msgBG.enabled = true;
+				msgBG2.enabled = true;
 				oneOnOneMessage.enabled = true;
 				twoOnOneMessage.enabled = false;
 				onePlayerMessage.enabled = false;
