@@ -211,6 +211,30 @@ public class BallScript : MonoBehaviour {
 		}
 	}
 
+	public void DestroyBall(){
+		trail.GetComponent<Trail>().ClearSystem (true);
+		trail.SetActive (false);
+		rb.isKinematic = true;
+		Destroy (gameObject);
+//		gameObject.transform.position = new Vector3 (0, 0, 0);
+//		rb.velocity = new Vector2 (0, 0);
+		//TODO: Should this be in game manager / challenge manager?
+		GameManagerScript.Instance.bounces = 0;
+		GameManagerScript.Instance.bouncesOnBottom = 0;
+		GameManagerScript.Instance.bouncesOnBottomLeft = 0;
+		GameManagerScript.Instance.bouncesOnBottomRight = 0;
+		GameManagerScript.Instance.bouncesOnTopLeft = 0;
+		GameManagerScript.Instance.bouncesOnTopRight = 0;
+//		timer = 10; // arbitrary high number
+//		Transform child = gameObject.transform.Find("CircleTrails");
+//		child.gameObject.SetActive (false);
+//		// Reset last touch information
+//		lastTouch = 0;
+//		secondToLastTouch = 0;
+
+	
+	}
+
 	void GravChange(){
 		rb.gravityScale *= -1;
 		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
@@ -340,6 +364,7 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .8f);
 
+			// TODO: This hsould probably be in game manager...
 			// If there were two bounces on a side, take action
 			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
 
@@ -348,7 +373,12 @@ public class BallScript : MonoBehaviour {
 
 				FireExplosion ();
 
-				GameManagerScript.Instance.ManageScore (this.transform.position.x);
+				// Only add a score if this ball is in scoring mode
+				if (scoringMode) {
+					GameManagerScript.Instance.ManageScore (this.transform.position.x);
+				} else {
+					DestroyBall ();
+				}
 			} else {
 
 				coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();
