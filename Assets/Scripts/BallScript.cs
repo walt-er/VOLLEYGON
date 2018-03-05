@@ -40,7 +40,7 @@ public class BallScript : MonoBehaviour {
 
 	// Ball options
 	public bool gravChangeMode = true;
-	public bool scoringMode = true;
+	public bool scoringMode = false;
 
 	GameObject CurrentArena;
 
@@ -76,8 +76,6 @@ public class BallScript : MonoBehaviour {
 		CurrentArena = GameObject.FindWithTag("Arena");
 		theSprite = GetComponent<SpriteRenderer>().sprite;
 		rb.isKinematic = true;
-		//TODO: Replace invoke with a coroutine and add parameters
-		Invoke("LaunchBall", 3f);
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ;
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
@@ -142,7 +140,7 @@ public class BallScript : MonoBehaviour {
 		isTimerRunning = true;
 		didSirenPlayAlready = false;
 	}
-	void LaunchBall(){
+	public void LaunchBall(){
 		rb.isKinematic = false;
 		trail.SetActive (true);
 		//Send the ball in a random direction
@@ -155,6 +153,26 @@ public class BallScript : MonoBehaviour {
 
 		SoundManagerScript.instance.PlaySingle (ballServedSound);
 
+	}
+
+	public IEnumerator LaunchBallWithDelay(float delay, float velX, float velY){
+		Debug.Log ("happening?");
+		yield return new WaitForSeconds (delay);
+		CustomLaunchBall (velX, velY);
+	}
+
+	void CustomLaunchBall(float velX, float velY){
+		Debug.Log ("custom launch!");
+		rb.isKinematic = false;
+		trail.SetActive (true);
+		Transform child = gameObject.transform.Find("CircleTrails");
+		child.gameObject.SetActive (true);
+		ResetTimer();
+		//In the future, factor in the gravity factor;
+		rb.velocity = new Vector2 (velX, velY);
+
+
+		SoundManagerScript.instance.PlaySingle (ballServedSound);
 	}
 
 	void CheckForSideChange(){
@@ -215,7 +233,7 @@ public class BallScript : MonoBehaviour {
 		trail.GetComponent<Trail>().ClearSystem (true);
 		trail.SetActive (false);
 		rb.isKinematic = true;
-		Destroy (gameObject);
+
 //		gameObject.transform.position = new Vector3 (0, 0, 0);
 //		rb.velocity = new Vector2 (0, 0);
 		//TODO: Should this be in game manager / challenge manager?
@@ -225,6 +243,12 @@ public class BallScript : MonoBehaviour {
 		GameManagerScript.Instance.bouncesOnBottomRight = 0;
 		GameManagerScript.Instance.bouncesOnTopLeft = 0;
 		GameManagerScript.Instance.bouncesOnTopRight = 0;
+
+		// Tell all other sibling objects that the ball has died (includes challenge manager)
+//	/	transform.parent.BroadcastMessage("ballDied");
+
+		Destroy (gameObject);
+
 //		timer = 10; // arbitrary high number
 //		Transform child = gameObject.transform.Find("CircleTrails");
 //		child.gameObject.SetActive (false);
@@ -375,6 +399,7 @@ public class BallScript : MonoBehaviour {
 
 				// Only add a score if this ball is in scoring mode
 				if (scoringMode) {
+					Debug.Log ("trying to manage score");
 					GameManagerScript.Instance.ManageScore (this.transform.position.x);
 				} else {
 					DestroyBall ();

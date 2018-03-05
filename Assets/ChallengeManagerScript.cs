@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class ChallengeManagerScript : MonoBehaviour {
 
+	public GameObject ballPrefab;
+	// Static singleton property
+	public static ChallengeManagerScript Instance { get; private set; }
+
+	void Awake(){
+		Instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		
@@ -23,7 +31,8 @@ public class ChallengeManagerScript : MonoBehaviour {
 	}
 
 	public void ChallengeFail(){
-
+		// For now, just exit the scene
+		Application.LoadLevel("TitleScene");
 	}
 
 	public void ChallengeSucceed(){

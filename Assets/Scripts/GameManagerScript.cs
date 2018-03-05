@@ -42,6 +42,10 @@ public class GameManagerScript : MonoBehaviour {
 
 	public GameObject ball;
 
+	// Logic for what game manager should do. If these are turned off it is probably to allow challenge manager to handle things.
+	public bool handleBalls = true;
+	public bool handleArenas = true;
+
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page.
 	public GameObject Player1;
 	public GameObject Player2;
@@ -102,7 +106,10 @@ public class GameManagerScript : MonoBehaviour {
 		readyForReplay = false;
 		lastTouch = 0;
 		secondToLastTouch = 0;
-		ball.SetActive(true);
+		if (handleBalls) {
+			ball.SetActive (true);
+			Invoke("LaunchBall", 3f);
+		}
 		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		// Invoke ("StartReplay", 2f);
 
@@ -115,48 +122,50 @@ public class GameManagerScript : MonoBehaviour {
 		arenaType = DataManagerScript.arenaType;
 
 		// This is so dumb.
-		switch (arenaType) {
+		if (handleArenas) {
+			switch (arenaType) {
 
-		case 1:
-			Arena1.SetActive (true);
-			break;
+			case 1:
+				Arena1.SetActive (true);
+				break;
 
-		case 2:
-			Arena2.SetActive (true);
-			break;
+			case 2:
+				Arena2.SetActive (true);
+				break;
 
-		case 3:
-			Arena3.SetActive (true);
-			break;
+			case 3:
+				Arena3.SetActive (true);
+				break;
 
-		case 4:
-			Arena4.SetActive (true);
-			break;
+			case 4:
+				Arena4.SetActive (true);
+				break;
 
-		case 5:
-			Arena5.SetActive (true);
-			break;
+			case 5:
+				Arena5.SetActive (true);
+				break;
 
-		case 6:
-			Arena6.SetActive (true);
-			break;
+			case 6:
+				Arena6.SetActive (true);
+				break;
 
-		case 7:
-			Arena7.SetActive (true);
-			break;
+			case 7:
+				Arena7.SetActive (true);
+				break;
 
-		case 8:
-			Arena8.SetActive (true);
-			break;
+			case 8:
+				Arena8.SetActive (true);
+				break;
 
-		case 9:
-			Arena9.SetActive (true);
-			break;
+			case 9:
+				Arena9.SetActive (true);
+				break;
 
-		default:
-			Arena1.SetActive (true);
-			break;
+			default:
+				Arena1.SetActive (true);
+				break;
 
+			}
 		}
 
 		CurrentArena = GameObject.FindWithTag("Arena");
@@ -195,11 +204,16 @@ public class GameManagerScript : MonoBehaviour {
 			rallyCountText.gameObject.SetActive (true);
 
         }
-        else {
+   		else {
 			OnePlayerMode = false;
 		}
 
 	}
+
+	void LaunchBall(){
+		ball.GetComponent<BallScript>().LaunchBall ();
+	}
+
 	void launchTimer(){
 		timerRunning = true;
 
