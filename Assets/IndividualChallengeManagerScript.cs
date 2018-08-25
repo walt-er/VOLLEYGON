@@ -6,6 +6,7 @@ using System;
 public class IndividualChallengeManagerScript : MonoBehaviour {
 
 	private GameObject ballPrefab;
+	private int deadBalls;
 
 	void Awake(){
 		
@@ -13,6 +14,7 @@ public class IndividualChallengeManagerScript : MonoBehaviour {
 		
 	// Use this for initialization
 	void Start () {
+		deadBalls = 0;
 		ballPrefab = ChallengeManagerScript.Instance.GetComponent<ChallengeManagerScript>().ballPrefab;
 //		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(3, 0, 0), Quaternion.identity);
 //		GameObject ball_2 = Instantiate(ballPrefab, new Vector3(1, 2, 0), Quaternion.identity);
@@ -36,6 +38,7 @@ public class IndividualChallengeManagerScript : MonoBehaviour {
 
 	void ballDied(){
 		Debug.Log ("the ball has died");
+		deadBalls += 1;
 		//ChallengeManagerScript.Instance.ChallengeFail ();
 	}
 
