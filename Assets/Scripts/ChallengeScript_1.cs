@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class IndividualChallengeManagerScript : MonoBehaviour {
+public class ChallengeScript_1 : MonoBehaviour {
 
 	private GameObject ballPrefab;
 	private int deadBalls;
@@ -47,8 +47,10 @@ public class IndividualChallengeManagerScript : MonoBehaviour {
 		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (0f, -6f, -10f);
 		StartCoroutine(coroutine_1);
 
-
+		//ChallengeManagerScript.Instance.ChallengeFail();
 	}
+
+
 
 	public IEnumerator LaunchBalls(float interval, int invokeCount)
 	{
