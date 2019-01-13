@@ -14,14 +14,15 @@ public class ChallengeManagerScript : MonoBehaviour {
 
 	void Awake(){
 		Instance = this;
+		// Load the challenge the user requested
+		Debug.Log("Switching to challenge " + DataManagerScript.challengeType);
+		SwitchToChallenge(DataManagerScript.challengeType);
 	}
 
 	// Use this for initialization
 	void Start () {
 		
-		// Load the challenge the user requested
-		Debug.Log("Switching to challenge " + DataManagerScript.challengeType);
-		SwitchToChallenge(DataManagerScript.challengeType);
+
 
 	}
 	

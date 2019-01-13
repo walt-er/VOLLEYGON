@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 5010211119879315888}
   - component: {fileID: 5010211119883896128}
   - component: {fileID: 5010211119881057267}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Pad
-  m_TagString: ScoringBoundary
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5010211119881057264}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3a58f2e1772be4859bd56bdfb34ec92e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

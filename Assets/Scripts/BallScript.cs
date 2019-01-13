@@ -402,6 +402,7 @@ public class BallScript : MonoBehaviour {
 					Debug.Log ("trying to manage score");
 					GameManagerScript.Instance.ManageScore (this.transform.position.x);
 				} else {
+					GameManagerScript.Instance.ReturnArenaToOriginalColor();
 					DestroyBall ();
 				}
 			} else {

@@ -28,7 +28,9 @@ public class ChallengeScript_1 : MonoBehaviour {
 
 //		ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (1f, -3f, -2f);
 //		ball_2.GetComponent<BallScript> ().LaunchBallWithDelay (1.5f, -6f, 0f);
-		StartCoroutine(LaunchBalls(2f, 5));
+		//StartCoroutine(LaunchBalls(2f, 5));
+
+		LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
 	}
 	
 	// Update is called once per frame

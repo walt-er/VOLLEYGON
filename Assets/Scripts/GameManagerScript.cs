@@ -110,7 +110,9 @@ public class GameManagerScript : MonoBehaviour {
 			ball.SetActive (true);
 			Invoke("LaunchBall", 3f);
 		}
-		winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		if (winText != null){
+			winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+		}
 		// Invoke ("StartReplay", 2f);
 
 		rallyCount = 0;
@@ -167,8 +169,18 @@ public class GameManagerScript : MonoBehaviour {
 
 			}
 		}
-
-		CurrentArena = GameObject.FindWithTag("Arena");
+		Debug.Log("challenge mode?");
+		Debug.Log(DataManagerScript.isChallengeMode);
+		if (!DataManagerScript.isChallengeMode){
+			CurrentArena = GameObject.FindWithTag("Arena");
+		} else {
+			Debug.Log("Setting Current arena for challenge mode");
+			//CurrentArena = transform.Find("Challenges").gameObject.transform.GetChild (DataManagerScript.challengeType).Find("Arena").gameObject;
+			//GameObject CurrentChallenge = GameObject.Find("Challenges").gameObject.transform.GetChild(DataManagerScript.challengeType).gameObject;
+			CurrentArena = GameObject.FindWithTag("Arena");
+			Debug.Log(CurrentArena);
+			 //GameObject.FindWithTag("Arena");
+		}
 
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
@@ -665,6 +677,9 @@ public class GameManagerScript : MonoBehaviour {
 			GameManagerScript.Instance.GetComponent<GameManagerScript>().rallyCount++;
 		}
 
+	}
+	public void ReturnArenaToOriginalColor(){
+		CurrentArena.BroadcastMessage ("ReturnColor");
 	}
 
 	public void ManageScore(float ballPosition){
