@@ -29,6 +29,9 @@ public class ChallengesManagerScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+		// Fade in
+		GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+
         audio = GetComponent<AudioSource>();
         locked = false;
 
@@ -123,7 +126,7 @@ public class ChallengesManagerScript : MonoBehaviour {
     {
         if (!locked) {
             locked = true;
-            // insert new fancy fade here
+			GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
             yield return new WaitForSeconds(1f);
             SceneManager.LoadSceneAsync("challengeScene");
         }

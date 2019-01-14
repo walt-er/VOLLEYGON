@@ -89,8 +89,8 @@ public class DataManagerScript : MonoBehaviour {
 	public static int TM_TeamTwoWins;
 
 	public static string version;
-	public static bool gamepadMode = true;
-	public static bool xboxMode = true;
+	public static bool gamepadMode = false;
+	public static bool xboxMode = false;
 	public static bool demoMode = true;
 
     // Save instance of self over scene loads
@@ -109,7 +109,7 @@ public class DataManagerScript : MonoBehaviour {
 
         // Version number
         // TODO: Uncomment public property instead?
-		version = "V1.5.6";
+		version = "V1.7";
 
         // Determine if on Xbox
         xboxMode = Application.platform == RuntimePlatform.XboxOne;
