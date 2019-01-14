@@ -138,6 +138,7 @@ public class StatManagerScript : MonoBehaviour {
 	}
 
 	void LogStats(){
+
 		string logText = System.DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss") + " " + playersPlaying.ToString () + " played a game and the longest rally was " + DataManagerScript.longestRallyCount.ToString() + " and the match time was " + DataManagerScript.gameTime + " seconds. The MVP was Player " + MVP +  "\n";
 		System.IO.File.AppendAllText("playlog.txt", logText);
 		int squarePlays = PlayerPrefs.GetInt ("squarePlays");
@@ -148,8 +149,6 @@ public class StatManagerScript : MonoBehaviour {
 		int starPlays = PlayerPrefs.GetInt ("starPlays");
 		string totalsText = "Square plays: " + squarePlays.ToString () + " Circle plays: " + circlePlays.ToString () + " Triangle plays: " + trianglePlays.ToString () + " Trapezoid plays: " + trapezoidPlays.ToString () + " Rectangle plays: " + rectanglePlays.ToString () + " Star plays: " + starPlays.ToString ();
 		System.IO.File.WriteAllText("stattotals.txt", totalsText);
-
-
 
 		int randomArenaPlays = PlayerPrefs.GetInt ("randomArenaPlays");
 		int arena1Plays = PlayerPrefs.GetInt ("arena1Plays");
@@ -166,6 +165,7 @@ public class StatManagerScript : MonoBehaviour {
 		System.IO.File.WriteAllText("arenatotals.txt", arenaTotals);
 
 	}
+
 	void DetermineMVP(){
 		float p1Score = DataManagerScript.playerOneAces * aceWeight + DataManagerScript.playerOneScores * scoreWeight + DataManagerScript.playerOneReturns * returnWeight - DataManagerScript.playerOneBumbles * bumbleWeight;
 		float p2Score = DataManagerScript.playerTwoAces * aceWeight + DataManagerScript.playerTwoScores * scoreWeight + DataManagerScript.playerTwoReturns * returnWeight - DataManagerScript.playerTwoBumbles * bumbleWeight;
