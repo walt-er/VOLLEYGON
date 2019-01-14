@@ -60,16 +60,10 @@ public class TitleManagerScript : MonoBehaviour {
 
 					if (DataManagerScript.demoMode) {
 
-<<<<<<< Updated upstream
                         // Jump right into lobby if in demo mode
                         DataManagerScript.gamepadControllingMenus = gamepadIndex;
                         //StartMultiplayerGame();
 						StartChallengesGame();
-=======
-						// Jump right into lobby if in demo mode
-						DataManagerScript.gamepadControllingMenus = gamepadIndex;
-						StartMultiplayerGame();
->>>>>>> Stashed changes
 
 					}
 					else {
