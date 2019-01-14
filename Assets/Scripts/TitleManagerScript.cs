@@ -28,7 +28,7 @@ public class TitleManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);	
+		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);
 		MusicManagerScript.Instance.FadeOutEverything ();
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
@@ -47,35 +47,71 @@ public class TitleManagerScript : MonoBehaviour {
 	void Update () {
 		MusicManagerScript.Instance.FadeOutEverything ();
 
-		// Listen for activation
-		if (!mainMenuActive) {
-			// Iterate over all inputs for actions
-			for (int i = 0; i < gamepads.Length; i++) {
-				if (Input.GetButtonDown (gamepads[i].jump) || Input.GetButtonDown (gamepads[i].start)) {
+		// Iterate over all inputs for actions
+		for (int i = 0; i < gamepads.Length; i++) {
 
-					// Xbox numbering
-					int gamepadIndex = i + 1;
+            // Xbox numbering
+            int gamepadIndex = i + 1;
+
+			// Listen for activation
+			if (!mainMenuActive) {
+
+				if (Input.GetButtonDown (gamepads[i].jump) || Input.GetButtonDown (gamepads[i].start)) {
 
 					if (DataManagerScript.demoMode) {
 
+<<<<<<< Updated upstream
                         // Jump right into lobby if in demo mode
                         DataManagerScript.gamepadControllingMenus = gamepadIndex;
                         //StartMultiplayerGame();
 						StartChallengesGame();
+=======
+						// Jump right into lobby if in demo mode
+						DataManagerScript.gamepadControllingMenus = gamepadIndex;
+						StartMultiplayerGame();
+>>>>>>> Stashed changes
 
 					}
 					else {
 
-						// Open main menu
-						activateMainMenu(gamepadIndex);
+						#if UNITY_XBOXONE
+							// Sign in if active player is not associated with this controller
+							if (XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
 
+								DataManagerScript.shouldActivateMenu = true;
+								UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
+
+							}
+							else {
+								// Open main menu with this controller
+								activateMainMenu(gamepadIndex);
+							}
+						#else
+                            // Open main menu with this controller
+                            activateMainMenu(gamepadIndex);
+						#endif
 					}
 				}
 			}
-		} else {
-			// Listen for cancel
-			if (controllingGamepad != null &&  Input.GetButtonDown (controllingGamepad.grav)) {
-				cancelCurrentMenu(false);
+			else {
+
+                #if UNITY_XBOXONE
+					// Listen for user change (Y button)
+					if (Input.GetButtonDown(gamepads[i].y) {
+
+						// Back out and log in again if active player presses Y
+						if (gamepadIndex == DataManagerScript.gamepadControllingMenus) {
+							cancelCurrentMenu(true);
+							DataManagerScript.shouldActivateMenu = true;
+							UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
+						}
+					}
+				#endif
+
+				// Listen for cancel
+				if (controllingGamepad != null && Input.GetButtonDown(controllingGamepad.grav)) {
+					cancelCurrentMenu(false);
+				}
 			}
 		}
 	}
@@ -99,6 +135,14 @@ public class TitleManagerScript : MonoBehaviour {
 
 		// Assign gamepad to menus
 		DataManagerScript.gamepadControllingMenus = gamepad;
+
+        // Save "active" user if on xbox
+		#if UNITY_XBOXONE
+			if (DataManagerScript.xboxMode) {
+				int userId = XboxOneInput.GetUserIdForGamepad((uint)gamepad);
+				DataManagerScript.userControllingMenus = UsersManager.FindUserById(userId);
+			}
+		#endif
 
 		// activate menu and its first button (weird ui thing)
 		mainMenuActive = true;
