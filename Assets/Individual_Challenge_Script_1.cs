@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ChallengeScript_1 : MonoBehaviour {
+public class Individual_Challenge_Script_1 : MonoBehaviour {
 
 	private GameObject ballPrefab;
 	private int deadBalls;
+	public GameObject pad_1;
+	public GameObject pad_2;
+	public GameObject pad_3;
 
 	void Awake(){
 		
@@ -30,23 +33,30 @@ public class ChallengeScript_1 : MonoBehaviour {
 //		ball_2.GetComponent<BallScript> ().LaunchBallWithDelay (1.5f, -6f, 0f);
 		//StartCoroutine(LaunchBalls(2f, 5));
 
-		LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
+		LaunchBall(0f,0f,0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+		//Check for victory
+		if (!pad_1.active && !pad_2.active && !pad_3.active){
+			ChallengeManagerScript.Instance.ChallengeSucceed();
+		}
 	}
 
-	void ballDied(){
+	void BallDied(){
 		Debug.Log ("the ball has died");
 		deadBalls += 1;
-		//ChallengeManagerScript.Instance.ChallengeFail ();
+		
+		// Launch a replacement ball
+		LaunchBall(0f,0f,0f);
 	}
 
 	public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
-		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (0f, -6f, -10f);
+		ball_1.transform.parent = gameObject.transform.parent;
+		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (2f, -6f, -10f);
 		StartCoroutine(coroutine_1);
 
 		//ChallengeManagerScript.Instance.ChallengeFail();
@@ -58,7 +68,7 @@ public class ChallengeScript_1 : MonoBehaviour {
 	{
 		for (int i = 0; i < invokeCount; i++)
 		{
-			LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
+			LaunchBall(0f,0f,0f);
 
 			yield return new WaitForSeconds(interval);
 		}

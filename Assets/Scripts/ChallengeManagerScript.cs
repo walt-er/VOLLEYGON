@@ -6,6 +6,10 @@ public class ChallengeManagerScript : MonoBehaviour {
 
 	public GameObject ballPrefab;
 
+	// Store reference to challenge-level UI elements
+	public GameObject winPanel;
+	public GameObject losePanel;
+
 	// Store a reference to the challenges container so we can activate the correct challenge
 	public GameObject challengesContainer;
 
@@ -45,11 +49,18 @@ public class ChallengeManagerScript : MonoBehaviour {
 	}
 
 	public void ChallengeFail(){
+		// Display fail text
+		losePanel.SetActive(true);
 		// For now, just exit the scene
-		Application.LoadLevel("TitleScene");
+		// Application.LoadLevel("TitleScene");
 	}
 
 	public void ChallengeSucceed(){
+
+		// Display success text
+		winPanel.SetActive(true);
+		// For now, just exit the scene
+		// Application.LoadLevel("TitleScene");
 
 	}
 }
