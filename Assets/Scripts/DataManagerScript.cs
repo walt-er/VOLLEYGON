@@ -91,7 +91,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static string version;
 	public static bool gamepadMode = false;
 	public static bool xboxMode = false;
-	public static bool demoMode = true;
+	public static bool demoMode = false;
 
     // Save instance of self over scene loads
 	void Awake() {

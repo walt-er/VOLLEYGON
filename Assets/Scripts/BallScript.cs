@@ -244,8 +244,11 @@ public class BallScript : MonoBehaviour {
 		GameManagerScript.Instance.bouncesOnTopLeft = 0;
 		GameManagerScript.Instance.bouncesOnTopRight = 0;
 
-		// Tell all other sibling objects that the ball has died (includes challenge manager)
-        transform.parent.BroadcastMessage("BallDied");
+        // Tell all other sibling objects that the ball has died (includes challenge manager)
+        if (transform.parent != null)
+        {
+            transform.parent.BroadcastMessage("BallDied");
+        }
 
 		Destroy (gameObject);
 
