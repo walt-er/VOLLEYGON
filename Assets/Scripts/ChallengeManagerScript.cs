@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChallengeManagerScript : MonoBehaviour {
 
@@ -9,6 +10,12 @@ public class ChallengeManagerScript : MonoBehaviour {
 	// Store reference to challenge-level UI elements
 	public GameObject winPanel;
 	public GameObject losePanel;
+	public GameObject instructionPanel;
+	public GameObject challengeTitle;
+	public GameObject challengeNumber;
+
+	// Store a flag the individual challenge can reference to know whether to start or stop the challenge
+	public bool challengeRunning = false;
 
 	// Store a reference to the challenges container so we can activate the correct challenge
 	public GameObject challengesContainer;
@@ -21,18 +28,25 @@ public class ChallengeManagerScript : MonoBehaviour {
 		// Load the challenge the user requested
 		Debug.Log("Switching to challenge " + DataManagerScript.challengeType);
 		SwitchToChallenge(DataManagerScript.challengeType);
+
 	}
 
-	// Use this for initialization
 	void Start () {
-		
+		// Display instruction panel
+		DisplayChallengeInstructions();
 
-
+		// For now, just hide the panel in 3 seconds
+		Invoke("HideChallengeInstructions", 3f);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void UpdateChallengeText(string newText){
+		challengeTitle.GetComponent<Text>().text = newText;
+		// TODO: Make a helper function to format the challenge number string
+		challengeNumber.GetComponent<Text>().text = "CHALLENGE 0" + (DataManagerScript.challengeType + 1);
 	}
 
 	private void SwitchToChallenge(int whichChallenge){
@@ -41,11 +55,12 @@ public class ChallengeManagerScript : MonoBehaviour {
 	}
 
 	public void DisplayChallengeInstructions(){
-
+		instructionPanel.SetActive(true);
 	}
 
 	public void HideChallengeInstructions(){
-
+		instructionPanel.SetActive(false);
+		challengeRunning = true;
 	}
 
 	public void ChallengeFail(){

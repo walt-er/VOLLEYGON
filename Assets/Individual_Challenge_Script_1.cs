@@ -7,41 +7,42 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 
 	private GameObject ballPrefab;
 	private int deadBalls;
+
 	public GameObject pad_1;
 	public GameObject pad_2;
 	public GameObject pad_3;
+
+	public String challengeTitle;
+
+	private bool challengeStarted = false;
 
 	void Awake(){
 		
 	}
 		
-	// Use this for initialization
 	void Start () {
 		deadBalls = 0;
+		// TODO: Once we're done modularizing, we won't need a unique ball prefab
 		ballPrefab = ChallengeManagerScript.Instance.GetComponent<ChallengeManagerScript>().ballPrefab;
-//		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(3, 0, 0), Quaternion.identity);
-//		GameObject ball_2 = Instantiate(ballPrefab, new Vector3(1, 2, 0), Quaternion.identity);
-//		Debug.Log ("trying to launch");
-//
-//		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (1f, -3f, -2f);
-//		StartCoroutine(coroutine_1);
-//
-//		IEnumerator coroutine_2 = ball_2.GetComponent<BallScript> ().LaunchBallWithDelay (1f, -3f, -2f);
-//		StartCoroutine(coroutine_2);
-
-//		ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (1f, -3f, -2f);
-//		ball_2.GetComponent<BallScript> ().LaunchBallWithDelay (1.5f, -6f, 0f);
-		//StartCoroutine(LaunchBalls(2f, 5));
-
-		LaunchBall(0f,0f,0f);
+		ChallengeManagerScript.Instance.UpdateChallengeText(challengeTitle);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		//Check for victory
-		if (!pad_1.active && !pad_2.active && !pad_3.active){
-			ChallengeManagerScript.Instance.ChallengeSucceed();
+		if (!challengeStarted){
+			// check for challenge start
+			if (ChallengeManagerScript.Instance.challengeRunning){
+				challengeStarted = true;
+				LaunchBall(0f,0f,0f);
+			}
+		}
+
+		if (challengeStarted){
+			//Check for victory
+			if (!pad_1.active && !pad_2.active && !pad_3.active){
+				ChallengeManagerScript.Instance.ChallengeSucceed();
+			}
 		}
 	}
 
