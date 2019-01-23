@@ -83,6 +83,7 @@ public class ChallengeManagerScript : MonoBehaviour {
 	public void ChallengeFail(){
 		// Display fail text
 		losePanel.SetActive(true);
+        challengeRunning = false;
 		// For now, just exit the scene
 		// Application.LoadLevel("TitleScene");
 	}
@@ -91,8 +92,9 @@ public class ChallengeManagerScript : MonoBehaviour {
 
 		// Display success text
 		winPanel.SetActive(true);
-		// For now, just exit the scene
-		// Application.LoadLevel("TitleScene");
+        challengeRunning = false;
+        // For now, just exit the scene
+        // Application.LoadLevel("TitleScene");
 
-	}
+    }
 }
