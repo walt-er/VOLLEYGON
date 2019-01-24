@@ -366,7 +366,11 @@ public class BallScript : MonoBehaviour {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle (bounceOffScoringBoundarySound);
 			GameManagerScript.Instance.bounces += 1;
-			if (coll.gameObject.transform.position.y > 0) {
+            // new
+
+            //  coll.gameObject.GetComponent<BorderScript>().RegisterBounce();
+            // end new
+            if (coll.gameObject.transform.position.y > 0) {
 				if (coll.gameObject.transform.position.x < 0) {
 					//GameManagerScript.Instance.bouncesOnTop += 1;
 					GameManagerScript.Instance.bouncesOnTopLeft += 1;

@@ -19,6 +19,7 @@ TagManager:
   - Ball
   - MidpointMarker
   - Arena
+  - ModuleContainer
   layers:
   - Default
   - TransparentFX
