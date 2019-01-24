@@ -24,9 +24,6 @@ public class GameManagerScript : MonoBehaviour {
 	public bool paused = false;
 	public bool recentlyPaused = false;
 	private float timeSinceLastPowerup;
-	private float powerupAppearTime;
-	public GameObject speedPowerupPrefab;
-	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
 	public GameObject pausePanel;
@@ -102,7 +99,6 @@ public class GameManagerScript : MonoBehaviour {
 		launchTimer ();
 		timeSinceLastPowerup = 0f;
 		soloModeBalls = 3;
-		powerupAppearTime = 10f;
 		readyForReplay = false;
 		lastTouch = 0;
 		secondToLastTouch = 0;
@@ -174,9 +170,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (!DataManagerScript.isChallengeMode){
 			CurrentArena = GameObject.FindWithTag("Arena");
 		} else {
-			Debug.Log("Setting Current arena for challenge mode");
-			//CurrentArena = transform.Find("Challenges").gameObject.transform.GetChild (DataManagerScript.challengeType).Find("Arena").gameObject;
-			//GameObject CurrentChallenge = GameObject.Find("Challenges").gameObject.transform.GetChild(DataManagerScript.challengeType).gameObject;
+			
 			CurrentArena = GameObject.FindWithTag("Arena");
 			Debug.Log(CurrentArena);
 			 //GameObject.FindWithTag("Arena");
@@ -290,7 +284,6 @@ public class GameManagerScript : MonoBehaviour {
 
 		playerClone.SetActive (true);
 		playerClone.transform.SetParent (GameObject.Find ("Players").transform);
-	//	playerClone.GetComponent<BoxCollider2D> ().enabled = true;
 		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
 		playerClone.GetComponent<PlayerController>().playerType = playerType;
 		playerClone.GetComponent<MeshRenderer> ().material = whichMat;
@@ -396,9 +389,9 @@ public class GameManagerScript : MonoBehaviour {
 			teamWins (2);
 		}
 
-		if (!isGameOver) {
-			ConsiderAPowerup ();
-		}
+		//if (!isGameOver) {
+		//	ConsiderAPowerup ();
+		//}
 	}
 
 	public void Pause(JoystickButtons buttons){
@@ -441,126 +434,32 @@ public class GameManagerScript : MonoBehaviour {
 	public void CancelRecentlyPaused(){
 		recentlyPaused = false;
 	}
-	public void QuitGame(){
-		SceneManager.LoadSceneAsync("TitleScene");
-	}
+    public void QuitGame()
+    {
+        SceneManager.LoadSceneAsync("TitleScene");
+    }
 
-	void ConsiderAPowerup(){
-		if (timeSinceLastPowerup >= powerupAppearTime) {
-
-			// spawn a powerup
-			float xVal = Random.Range(4f, 15.5f);
-			float inverseXVal = -1 * xVal;
-			float yVal = Random.Range (-5f, 5f);
-			int whichType = Random.Range (1, 5);
-			float powerupDuration = 5f + (Random.value * 5f);
-			GameObject firstPowerup = (GameObject)Instantiate(powerupPrefab, new Vector3(xVal, yVal, 0), Quaternion.identity);
-			firstPowerup.SendMessage("Config", whichType);
-			firstPowerup.SendMessage("ResetTime", powerupDuration);
-			GameObject secondPowerup = (GameObject)Instantiate(powerupPrefab, new Vector3(inverseXVal, yVal, 0), Quaternion.identity);
-			secondPowerup.SendMessage("Config", whichType);
-			secondPowerup.SendMessage("ResetTime", powerupDuration);
-			timeSinceLastPowerup = 0f;
-			powerupAppearTime = 20f + Random.value * 20f;
-		}
-	}
-
-	void CheckForMatchPoint(){
-		// check for match point
-		if (teamTwoScore == teamOneScore) {
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
-			//MusicManagerScript.Instance.SwitchMusic ();
-		} else if (teamOneScore == scorePlayedTo - 1 && teamTwoScore < scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-		} else if (teamTwoScore == scorePlayedTo - 1 && teamOneScore < scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-		}
-	}
-
-//	void ComputeStat(int whichTeamScored){
-//		if (whichTeamScored == 1) {
-//			if (lastTouch == 1) {
-//				DataManagerScript.playerOneAces += 1;
-//				DataManagerScript.playerOneScores += 1;
-//			}
-//			if (lastTouch == 2) {
-//				DataManagerScript.playerTwoAces += 1;
-//				DataManagerScript.playerTwoScores += 1;
-//			}
-//
-//			if (lastTouch == 3) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneScores += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoScores += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeBumbles += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerThreeBumbles += 1;
-//				}
-//			}
-//			if (lastTouch == 4) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneScores += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoScores += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerFourBumbles += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourBumbles += 1;
-//				}
-//			}
-//		}
-//		if (whichTeamScored == 2) {
-//			if (lastTouch == 3) {
-//				DataManagerScript.playerThreeAces += 1;
-//				DataManagerScript.playerThreeScores += 1;
-//			}
-//			if (lastTouch == 4) {
-//				DataManagerScript.playerFourAces += 1;
-//				DataManagerScript.playerFourScores += 1;
-//			}
-//
-//			if (lastTouch == 1) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneBumbles += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerOneBumbles += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeScores += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourScores += 1;
-//				}
-//			}
-//			if (lastTouch == 2) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerTwoBumbles += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoBumbles += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeScores += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourScores += 1;
-//				}
-//			}
-//		}
-//	}
+    void CheckForMatchPoint()
+    {
+        // check for match point
+        if (teamTwoScore == teamOneScore)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
+            //MusicManagerScript.Instance.SwitchMusic ();
+        }
+        else if (teamOneScore == scorePlayedTo - 1 && teamTwoScore < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(1);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+        else if (teamTwoScore == scorePlayedTo - 1 && teamOneScore < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(2);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+    }
 
 	public void ComputeStat(int whichTeamScored){
 		if (whichTeamScored == 1) {
