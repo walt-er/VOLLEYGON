@@ -80,8 +80,8 @@ public class AIControllerScript : MonoBehaviour {
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
-
-		moveHorizontal = 0f;
+        ball = GameObject.FindWithTag("Ball");
+        moveHorizontal = 0f;
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
@@ -128,7 +128,12 @@ public class AIControllerScript : MonoBehaviour {
 
 	void Update(){
 
-		CheckForMove ();
+        if (ball == null)
+        {
+            CheckForBall();
+        }
+
+        CheckForMove ();
 		if (willJump) {
 			CheckForJump ();
 		}
@@ -139,30 +144,42 @@ public class AIControllerScript : MonoBehaviour {
 
 		ManagePowerups ();
 	}
+    void CheckForBall()
+    {
+        ball = GameObject.FindWithTag("Ball");
+    }
+    void CheckForMove(){
+        if (ball != null)
+        {
+            // only move if the ball is close, but not too close
+            // roll a 'responsiveness' value
+            float chanceToRespond = Random.Range(0f, 100.0f);
 
-	void CheckForMove(){
+            if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate)
+            {
+                if (ball.transform.position.x < transform.position.x)
+                {
+                    moveHorizontal = -1f;
+                }
+                else if (ball.transform.position.x > transform.position.x)
+                {
+                    moveHorizontal = 1f;
+                }
+            }
+            else
+            {
+                moveHorizontal = 0;
+            }
 
-		// only move if the ball is close, but not too close
-		// roll a 'responsiveness' value
-		float chanceToRespond = Random.Range(0f, 100.0f);
+            if (isJumping)
+            {
+                GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
+            }
+            Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
+            v3.x = moveHorizontal * speed;
 
-		if (Mathf.Abs (ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs (ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate) {
-			if (ball.transform.position.x < transform.position.x) {
-				moveHorizontal = -1f;
-			} else if (ball.transform.position.x > transform.position.x) {
-				moveHorizontal = 1f;
-			}
-		} else {
-			moveHorizontal = 0;
-		}
-
-		if (isJumping) {
-			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
-		}
-		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-		v3.x = moveHorizontal * speed;
-
-		GetComponent<Rigidbody2D> ().velocity = v3;
+            GetComponent<Rigidbody2D>().velocity = v3;
+        }
 	}
 
 	void CheckForJump(){

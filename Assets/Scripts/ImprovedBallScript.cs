@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using PigeonCoopToolkit.Effects.Trails;
 
-public class BallScript : MonoBehaviour {
+public class ImprovedBallScript : MonoBehaviour {
 
     //Store a ref to ModuleContainer
     private GameObject moduleContainer;
@@ -189,6 +189,8 @@ public class BallScript : MonoBehaviour {
 
 	}
 
+
+    //TODO: Move this to a scoreboard component component
 	void FadeOutScore(){
 		scoreText.CrossFadeAlpha(0f,.25f,false);
 		winByTwoText.CrossFadeAlpha (0f, .25f, false);
@@ -200,12 +202,13 @@ public class BallScript : MonoBehaviour {
 		rb.isKinematic = true;
 		gameObject.transform.position = new Vector3 (0, 0, 0);
 		rb.velocity = new Vector2 (0, 0);
-		GameManagerScript.Instance.bounces = 0;
-		GameManagerScript.Instance.bouncesOnBottom = 0;
-		GameManagerScript.Instance.bouncesOnBottomLeft = 0;
-		GameManagerScript.Instance.bouncesOnBottomRight = 0;
-		GameManagerScript.Instance.bouncesOnTopLeft = 0;
-		GameManagerScript.Instance.bouncesOnTopRight = 0;
+		//GameManagerScript.Instance.bounces = 0;
+		//GameManagerScript.Instance.bouncesOnBottom = 0;
+		//GameManagerScript.Instance.bouncesOnBottomLeft = 0;
+		//GameManagerScript.Instance.bouncesOnBottomRight = 0;
+		//GameManagerScript.Instance.bouncesOnTopLeft = 0;
+		//GameManagerScript.Instance.bouncesOnTopRight = 0;
+        //TODO: Broadcast ball has reset?
 		timer = 10; // arbitrary high number
 		Transform child = gameObject.transform.Find("CircleTrails");
 		child.gameObject.SetActive (false);
@@ -239,13 +242,13 @@ public class BallScript : MonoBehaviour {
 //		gameObject.transform.position = new Vector3 (0, 0, 0);
 //		rb.velocity = new Vector2 (0, 0);
 		//TODO: Should this be in game manager / challenge manager?
-		GameManagerScript.Instance.bounces = 0;
-		GameManagerScript.Instance.bouncesOnBottom = 0;
-		GameManagerScript.Instance.bouncesOnBottomLeft = 0;
-		GameManagerScript.Instance.bouncesOnBottomRight = 0;
-		GameManagerScript.Instance.bouncesOnTopLeft = 0;
-		GameManagerScript.Instance.bouncesOnTopRight = 0;
-
+		//GameManagerScript.Instance.bounces = 0;
+		//GameManagerScript.Instance.bouncesOnBottom = 0;
+		//GameManagerScript.Instance.bouncesOnBottomLeft = 0;
+		//GameManagerScript.Instance.bouncesOnBottomRight = 0;
+		//GameManagerScript.Instance.bouncesOnTopLeft = 0;
+		//GameManagerScript.Instance.bouncesOnTopRight = 0;
+        //TODO: Broadcast ball has been destroyed?
         // Tell all other sibling objects that the ball has died (includes challenge manager)
         if (transform.parent != null)
         {
@@ -367,29 +370,32 @@ public class BallScript : MonoBehaviour {
 		if (coll.gameObject.tag == "ScoringBoundary") {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle (bounceOffScoringBoundarySound);
-			GameManagerScript.Instance.bounces += 1;
+			
+            //TODO: Tell the coll object to increase its bounce count instead of relying on game manager
+
+            //GameManagerScript.Instance.bounces += 1;
             // new
 
             //  coll.gameObject.GetComponent<BorderScript>().RegisterBounce();
             // end new
-            if (coll.gameObject.transform.position.y > 0) {
-				if (coll.gameObject.transform.position.x < 0) {
-					//GameManagerScript.Instance.bouncesOnTop += 1;
-					GameManagerScript.Instance.bouncesOnTopLeft += 1;
-				}
-				if (coll.gameObject.transform.position.x > 0) {
-					GameManagerScript.Instance.bouncesOnTopRight += 1;
-				}
-			} else if (coll.gameObject.transform.position.y < 0) {
-				//GameManagerScript.Instance.bouncesOnBottom += 1;
-				if (coll.gameObject.transform.position.x < 0) {
-					//GameManagerScript.Instance.bouncesOnTop += 1;
-					GameManagerScript.Instance.bouncesOnBottomLeft += 1;
-				}
-				if (coll.gameObject.transform.position.x > 0) {
-					GameManagerScript.Instance.bouncesOnBottomRight += 1;
-				}
-			}
+   //         if (coll.gameObject.transform.position.y > 0) {
+			//	if (coll.gameObject.transform.position.x < 0) {
+			//		//GameManagerScript.Instance.bouncesOnTop += 1;
+			//		GameManagerScript.Instance.bouncesOnTopLeft += 1;
+			//	}
+			//	if (coll.gameObject.transform.position.x > 0) {
+			//		GameManagerScript.Instance.bouncesOnTopRight += 1;
+			//	}
+			//} else if (coll.gameObject.transform.position.y < 0) {
+			//	//GameManagerScript.Instance.bouncesOnBottom += 1;
+			//	if (coll.gameObject.transform.position.x < 0) {
+			//		//GameManagerScript.Instance.bouncesOnTop += 1;
+			//		GameManagerScript.Instance.bouncesOnBottomLeft += 1;
+			//	}
+			//	if (coll.gameObject.transform.position.x > 0) {
+			//		GameManagerScript.Instance.bouncesOnBottomRight += 1;
+			//	}
+			//}
 
 
 			CreateBounceImpact (coll, 1, 1);
@@ -397,27 +403,29 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .8f);
 
-			// TODO: This hsould probably be in game manager...
+			// TODO: This hsould probably be in a side segment script. Have it broadcast that there have been more than 2 bounces
 			// If there were two bounces on a side, take action
-			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
+			//if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
 
-				// reset current rally count
-				DataManagerScript.currentRallyCount = 0;
+			//	// reset current rally count
+			//	DataManagerScript.currentRallyCount = 0;
 
-				FireExplosion ();
+			//	FireExplosion ();
 
-				// Only add a score if this ball is in scoring mode
-				if (scoringMode) {
-					Debug.Log ("trying to manage score");
-					GameManagerScript.Instance.ManageScore (this.transform.position.x);
-				} else {
-					GameManagerScript.Instance.ReturnArenaToOriginalColor();
-					DestroyBall ();
-				}
-			} else {
+   //             //TODO: Have the scoring module handle this.
 
-				coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();
-				}
+			//	// Only add a score if this ball is in scoring mode
+			//	if (scoringMode) {
+			//		Debug.Log ("trying to manage score");
+			//		GameManagerScript.Instance.ManageScore (this.transform.position.x);
+			//	} else {
+			//		GameManagerScript.Instance.ReturnArenaToOriginalColor();
+			//		DestroyBall ();
+			//	}
+			//} else {
+
+				//coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();
+				//}
 		} else if (coll.gameObject.tag == "Player"){
 			//SoundManagerScript.Instance.RandomizeSfx (bounceOffPlayerSound1, bounceOffPlayerSound2);
 		} else if (coll.gameObject.tag == "Playfield"){

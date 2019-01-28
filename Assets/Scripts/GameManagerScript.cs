@@ -165,16 +165,7 @@ public class GameManagerScript : MonoBehaviour {
 
 			}
 		}
-		Debug.Log("challenge mode?");
-		Debug.Log(DataManagerScript.isChallengeMode);
-		if (!DataManagerScript.isChallengeMode){
-			CurrentArena = GameObject.FindWithTag("Arena");
-		} else {
-			
-			CurrentArena = GameObject.FindWithTag("Arena");
-			Debug.Log(CurrentArena);
-			 //GameObject.FindWithTag("Arena");
-		}
+		
 
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
@@ -215,8 +206,23 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 	}
+    void Start()
+    {
+        Debug.Log("challenge mode?");
+        Debug.Log(DataManagerScript.isChallengeMode);
+        if (!DataManagerScript.isChallengeMode)
+        {
+            CurrentArena = GameObject.FindWithTag("Arena");
+        }
+        else
+        {
 
-	void LaunchBall(){
+            CurrentArena = GameObject.FindWithTag("Arena");
+            Debug.Log(CurrentArena);
+            //GameObject.FindWithTag("Arena");
+        }
+    }
+    void LaunchBall(){
 		ball.GetComponent<BallScript>().LaunchBall ();
 	}
 
