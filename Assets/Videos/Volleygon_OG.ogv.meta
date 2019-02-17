@@ -25,6 +25,25 @@ VideoClipImporter:
       customHeight: 1084
       bitrateMode: 2
       spatialQuality: 2
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  output:
+    format: 4
+    settings:
+      enableTranscoding: 1
+      codec: 2
+      resizeFormat: 0
+      aspectRatio: 0
+      customWidth: 1920
+      customHeight: 1084
+      bitrateMode: 2
+      spatialQuality: 2
+    encodedWidth: 1920
+    encodedHeight: 1084
+    encodedStartFrame: 0
+    encodedEndFrame: 173
+    streamedResource:
+      source: library/metadata/0d/0ddac4e64ff63484d9a7d5abb861a49a.resource
+      offset: 0
+      size: 12411701
+  userData:
+  assetBundleName:
+  assetBundleVariant:
