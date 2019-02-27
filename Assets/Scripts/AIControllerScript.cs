@@ -159,39 +159,83 @@ public class AIControllerScript : MonoBehaviour {
             // roll a 'responsiveness' value. Only move each frame if this value is greater than the public 'responsivenessRate' property.
             float chanceToRespond = Random.Range(0f, 100.0f);
 
-            // only move if the ball is close, but not too close
-            if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate)
+            if (chanceToRespond >= responsivenessRate)
             {
-                // Move toward the ball... but not if too close to the net as defined by netSafeDistance (default 0)
-                if (ball.transform.position.x < transform.position.x && Mathf.Abs(transform.position.x) > netSafeDistance)
+
+
+                // only move if the ball is close, but not too close
+                if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold)
                 {
-                    moveHorizontal = -1f;
-                }
-                else if (ball.transform.position.x > transform.position.x)
-                {
-                    moveHorizontal = 1f;
-                }
-            }
-            else
-            {
-                // Not sure the best way to do this... I want to have an alternate behavior here. Should it just be a flag (as is)? Or should it be another component to handle this behavior? 
-                if (moveAwayOnIdle)
-                {
-                    // Determine which side this AI is on and move toward the back wall
-                    moveHorizontal = .05f;
+                    // Move toward the ball... but not if too close to the net as defined by netSafeDistance (default 0)
+                    if (ball.transform.position.x < transform.position.x)
+                    {
+                        moveHorizontal = -1f;
+                        if (Mathf.Abs(transform.position.x) < netSafeDistance && team == 2)
+                        {
+
+                            moveHorizontal = 0f;
+                        }
+                    }
+                    else if (ball.transform.position.x > transform.position.x)
+                    {
+                        moveHorizontal = 1f;
+                        if (Mathf.Abs(transform.position.x) < netSafeDistance && team == 1)
+                        {
+                            moveHorizontal = 0f;
+                        }
+                    }
                 }
                 else
                 {
-                    moveHorizontal = 0;
+                    // Not sure the best way to do this... I want to have an alternate behavior here. Should it just be a flag (as is)? Or should it be another component to handle this behavior? 
+                    if (moveAwayOnIdle)
+                    {
+                        // Determine which side this AI is on and move toward the back wall
+                        switch (team) {
+                            // NOTE: 10f is the 'mid point' of each side
+                            case 1:
+                                if (transform.position.x > -10f)
+                                {
+                                    moveHorizontal = -.2f;
+                                }
+                                else
+                                {
+                                    moveHorizontal = 0;
+                                }
+                                break;
+
+                            case 2:
+                                if (transform.position.x < 10f)
+                                {
+                                    moveHorizontal = .2f;
+                                }
+                                else
+                                {
+                                    moveHorizontal = 0;
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        moveHorizontal = 0;
+                    }
                 }
+
             }
+
+           
+
 
             if (isJumping)
             {
                 GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
             }
             Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-            v3.x = moveHorizontal * speed;
+            v3.x = Mathf.Lerp(GetComponent<Rigidbody2D>().velocity.x, (moveHorizontal * speed), .2f);
+
+
+
             //TODO: Movement seems jerky. Maybe this should be a force? Or how can this be smoothed? Maybe lerp between current velocity and new velocity?
             GetComponent<Rigidbody2D>().velocity = v3;
         }
