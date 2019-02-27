@@ -97,7 +97,7 @@ public class BallScript : MonoBehaviour {
 			rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
 		}
 
-		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges). This should be in game manager.
+		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges).
 		if (gravChangeMode) {
 			if (isTimerRunning) {
 				timer -= Time.deltaTime;
@@ -249,7 +249,17 @@ public class BallScript : MonoBehaviour {
         // Tell all other sibling objects that the ball has died (includes challenge manager)
         if (transform.parent != null)
         {
-            transform.parent.BroadcastMessage("BallDied");
+            //broadcast which side we are on as well
+            int whichSide = 0;
+            if (transform.position.x < 0)
+            {
+                whichSide = 1;
+            } else if (transform.position.x > 0)
+            {
+                whichSide = 2;
+            }
+
+            transform.parent.BroadcastMessage("BallDied", whichSide);
         }
 
 		Destroy (gameObject);

@@ -47,13 +47,18 @@ public class ChallengeScript_2 : MonoBehaviour
         }
     }
 
-    void BallDied()
+    void BallDied(int whichSide)
     {
-        Debug.Log("the ball has died");
-        deadBalls += 1;
+        switch (whichSide)
+        {
+            case 1:
+                ChallengeManagerScript.Instance.ChallengeFail();
+                break;
 
-        // Launch a replacement ball
-        LaunchBall(0f, 0f, 0f);
+            case 2:
+                ChallengeManagerScript.Instance.ChallengeSucceed();
+                break;
+        }
     }
 
     public void LaunchBall(float x, float y, float z)
@@ -62,8 +67,8 @@ public class ChallengeScript_2 : MonoBehaviour
         ball_1.transform.parent = gameObject.transform.parent;
         IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().LaunchBallWithDelay(2f, -6f, -10f);
         StartCoroutine(coroutine_1);
-
-        //ChallengeManagerScript.Instance.ChallengeFail();
+        // set ball's gravChangeMode to true;
+        ball_1.GetComponent<BallScript>().gravChangeMode = true;
     }
 
 

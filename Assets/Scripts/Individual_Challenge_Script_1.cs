@@ -46,7 +46,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 		}
 	}
 
-	void BallDied(){
+	void BallDied(int whichSide){
 		Debug.Log ("the ball has died");
 		deadBalls += 1;
 		
@@ -59,13 +59,14 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 		ball_1.transform.parent = gameObject.transform.parent;
 		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (2f, -6f, -10f);
 		StartCoroutine(coroutine_1);
+        // set ball's gravChangeMode to true;
+        Debug.Log("setting gravchange mode to true");
+        ball_1.GetComponent<BallScript>().gravChangeMode = true;
+    }
 
-		//ChallengeManagerScript.Instance.ChallengeFail();
-	}
 
 
-
-	public IEnumerator LaunchBalls(float interval, int invokeCount)
+    public IEnumerator LaunchBalls(float interval, int invokeCount)
 	{
 		for (int i = 0; i < invokeCount; i++)
 		{
