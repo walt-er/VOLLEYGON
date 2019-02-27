@@ -37,7 +37,9 @@ public class AIControllerScript : MonoBehaviour {
 	public float distanceMaxThreshold;
 	public float distanceMinThreshold;
 	public float responsivenessRate;
-
+    public float netSafeDistance = 0f;
+    public float distanceToTriggerJump = 4f;
+    public bool moveAwayOnIdle = false;
 	public GameObject trail;
 	public GameObject ball;
 
@@ -134,30 +136,34 @@ public class AIControllerScript : MonoBehaviour {
         }
 
         CheckForMove ();
-		if (willJump) {
+		
+        if (willJump) {
 			CheckForJump ();
 		}
+
 		CheckForGravChange ();
 		ClampPosition ();
 
-
-
 		ManagePowerups ();
 	}
+
     void CheckForBall()
     {
         ball = GameObject.FindWithTag("Ball");
     }
+
     void CheckForMove(){
         if (ball != null)
         {
-            // only move if the ball is close, but not too close
-            // roll a 'responsiveness' value
+           
+            // roll a 'responsiveness' value. Only move each frame if this value is greater than the public 'responsivenessRate' property.
             float chanceToRespond = Random.Range(0f, 100.0f);
 
+            // only move if the ball is close, but not too close
             if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate)
             {
-                if (ball.transform.position.x < transform.position.x)
+                // Move toward the ball... but not if too close to the net as defined by netSafeDistance (default 0)
+                if (ball.transform.position.x < transform.position.x && Mathf.Abs(transform.position.x) > netSafeDistance)
                 {
                     moveHorizontal = -1f;
                 }
@@ -168,7 +174,16 @@ public class AIControllerScript : MonoBehaviour {
             }
             else
             {
-                moveHorizontal = 0;
+                // Not sure the best way to do this... I want to have an alternate behavior here. Should it just be a flag (as is)? Or should it be another component to handle this behavior? 
+                if (moveAwayOnIdle)
+                {
+                    // Determine which side this AI is on and move toward the back wall
+                    moveHorizontal = .05f;
+                }
+                else
+                {
+                    moveHorizontal = 0;
+                }
             }
 
             if (isJumping)
@@ -177,14 +192,15 @@ public class AIControllerScript : MonoBehaviour {
             }
             Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
             v3.x = moveHorizontal * speed;
-
+            //TODO: Movement seems jerky. Maybe this should be a force? Or how can this be smoothed? Maybe lerp between current velocity and new velocity?
             GetComponent<Rigidbody2D>().velocity = v3;
         }
 	}
 
 	void CheckForJump(){
 
-		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs (ball.transform.position.y - transform.position.y) <= 4f){
+        // Only jump if ball is above (or below, depending on grav state) shape and within a certain distance (distanceToTriggerJump, set to default 4f)
+		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs (ball.transform.position.y - transform.position.y) <= distanceToTriggerJump){
 			Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
 			rb.AddForce(jumpForce);
 			SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
