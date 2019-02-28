@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class GameManagerScript : MonoBehaviour {
 
+    // Store a style of ball to spawn
+    public GameObject ballPrefab;
+
 	public GameObject scoreboard;
 	public GameObject background;
 	public float gravTimer;
@@ -102,6 +105,7 @@ public class GameManagerScript : MonoBehaviour {
 		readyForReplay = false;
 		lastTouch = 0;
 		secondToLastTouch = 0;
+
 		if (handleBalls) {
 			ball.SetActive (true);
 			Invoke("LaunchBall", 3f);
@@ -222,6 +226,22 @@ public class GameManagerScript : MonoBehaviour {
             //GameObject.FindWithTag("Arena");
         }
     }
+
+    void BallDied(int whichSide)
+    {
+        Debug.Log("Game manager knows the ball has died");
+        // Received a message from the ball. It died. Spawn a new one.
+        GameObject newBall = Instantiate(ballPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
+        newBall.transform.parent = gameObject.transform.parent;
+        IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f, -6f, -10f);
+        StartCoroutine(coroutine_1);
+        // set ball's gravChangeMode to true;
+        Debug.Log("setting gravchange mode to true");
+        newBall.GetComponent<BallScript>().gravChangeMode = true;
+        ball = newBall;
+
+    }
+
     void LaunchBall(){
 		ball.GetComponent<BallScript>().LaunchBall ();
 	}

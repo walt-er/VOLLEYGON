@@ -245,10 +245,10 @@ public class BallScript : MonoBehaviour {
 		GameManagerScript.Instance.bouncesOnBottomRight = 0;
 		GameManagerScript.Instance.bouncesOnTopLeft = 0;
 		GameManagerScript.Instance.bouncesOnTopRight = 0;
-
+        Debug.Log("ball broadcasts that ball has died");
         // Tell all other sibling objects that the ball has died (includes challenge manager)
-        if (transform.parent != null)
-        {
+        //if (transform.parent != null)
+        //{
             //broadcast which side we are on as well
             int whichSide = 0;
             if (transform.position.x < 0)
@@ -258,9 +258,9 @@ public class BallScript : MonoBehaviour {
             {
                 whichSide = 2;
             }
-
-            transform.parent.BroadcastMessage("BallDied", whichSide);
-        }
+            Debug.Log("ball broadcasts that ball has died");
+            moduleContainer.BroadcastMessage("BallDied", whichSide);
+        //}
 
 		Destroy (gameObject);
 
@@ -277,21 +277,18 @@ public class BallScript : MonoBehaviour {
 	void GravChange(){
 		rb.gravityScale *= -1;
 		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
-		// Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
-			//Debug.Log ("changing sprite?");
-			//GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
-			redball.SetActive(true);
-			//blueball.SetActive(false);
-			gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
+			redball.SetActive(true);	
+			//gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
 			redball.SetActive(false);
 			blueball.SetActive (true);
-			gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
+		//gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
 		}
-		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
-	}
+        //gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
+       moduleContainer.BroadcastMessage("GravChange", rb.gravityScale);
+    }
 
 
 

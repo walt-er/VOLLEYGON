@@ -8,4 +8,10 @@ public class PlayAnimationScript : MonoBehaviour {
 		public void PlayAnimation(){
 			spriteAnimation.Play ( 0 );
 		}
-	}
+        public void GravChange(float whichDirection)
+    {
+        PlayAnimation();
+    }
+
+
+}
