@@ -232,8 +232,8 @@ public class GameManagerScript : MonoBehaviour {
         Debug.Log("Game manager knows the ball has died");
         // Received a message from the ball. It died. Spawn a new one.
         GameObject newBall = Instantiate(ballPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
-        newBall.transform.parent = gameObject.transform.parent;
-        IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f, -6f, -10f);
+        newBall.transform.parent = gameObject.transform.parent.parent;
+        IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");

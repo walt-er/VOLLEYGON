@@ -158,7 +158,13 @@ public class BallScript : MonoBehaviour {
 
 	}
 
-	public IEnumerator LaunchBallWithDelay(float delay, float velX, float velY){
+    public IEnumerator LaunchBallWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LaunchBall();
+    }
+
+    public IEnumerator CustomLaunchBallWithDelay(float delay, float velX, float velY){
 		yield return new WaitForSeconds (delay);
 		CustomLaunchBall (velX, velY);
 	}
@@ -275,6 +281,7 @@ public class BallScript : MonoBehaviour {
 	}
 
 	void GravChange(){
+        Debug.Log("ball is changing gravity");
 		rb.gravityScale *= -1;
 		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
 		if (Mathf.Sign (rb.gravityScale) < 0) {
