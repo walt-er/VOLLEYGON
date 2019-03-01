@@ -57,7 +57,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	}
 
 	public void enableNumbers (int team1Score, int team2Score, bool overtime){
-
+        Debug.Log("Scoreboard showing score");
 		if (!overtime) {
 			Transform theNumOne = Team1Scores.transform.Find (team1Score.ToString ());
 			theNumOne.gameObject.SetActive (true);

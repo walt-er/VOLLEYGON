@@ -45,6 +45,7 @@ public class GameManagerScript : MonoBehaviour {
 	// Logic for what game manager should do. If these are turned off it is probably to allow challenge manager to handle things.
 	public bool handleBalls = true;
 	public bool handleArenas = true;
+    public bool handleScore = true;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page.
 	public GameObject Player1;
@@ -107,8 +108,9 @@ public class GameManagerScript : MonoBehaviour {
 		secondToLastTouch = 0;
 
 		if (handleBalls) {
-			ball.SetActive (true);
-			Invoke("LaunchBall", 3f);
+            //ball.SetActive (true);
+            //Invoke("LaunchBall", 3f);
+            SpawnNewBall();
 		}
 		if (winText != null){
 			winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
@@ -231,15 +233,26 @@ public class GameManagerScript : MonoBehaviour {
     {
         Debug.Log("Game manager knows the ball has died");
         // Received a message from the ball. It died. Spawn a new one.
-        GameObject newBall = Instantiate(ballPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
+        SpawnNewBall();
+
+    }
+
+    void SpawnNewBall()
+    {
+        GameObject newBall = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         newBall.transform.parent = gameObject.transform.parent.parent;
         IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
-        newBall.GetComponent<BallScript>().gravChangeMode = true;
-        ball = newBall;
 
+        //TODO: Is there a better way to store these settins, which will be different for each mode?
+        newBall.GetComponent<BallScript>().gravChangeMode = true;
+        if (handleScore)
+        {
+            newBall.GetComponent<BallScript>().scoringMode = true;
+        }
+        ball = newBall;
     }
 
     void LaunchBall(){

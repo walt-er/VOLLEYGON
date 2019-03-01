@@ -19,6 +19,12 @@ public class SmoothCameraScript : MonoBehaviour {
 			Vector3 destination = transform.position + delta;
 			transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
 		}
+        else
+        {
+            //Find a target!
+            GameObject newTarget = GameObject.FindWithTag("Ball");
+            target = newTarget.transform;
+        }
 
-	}
+    }
 }
