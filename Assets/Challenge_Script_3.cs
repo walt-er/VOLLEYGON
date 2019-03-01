@@ -61,7 +61,7 @@ public class Challenge_Script_3 : MonoBehaviour
     {
         GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
         ball_1.transform.parent = gameObject.transform.parent;
-        IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().CustomLaunchBallWithDelay(2f, -6f, -10f);
+        IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().CustomLaunchBallWithDelay(2f, -6f, 10f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
