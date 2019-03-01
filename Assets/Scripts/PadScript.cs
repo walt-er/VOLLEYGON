@@ -28,9 +28,23 @@ public class PadScript : MonoBehaviour
             // Trigger explosion here
             Quaternion parentRot = transform.rotation;
             GameObject explosion = (GameObject)Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), parentRot);
+            if (GetComponent<ChangeColorScript>())
+            {
+                ParticleSystem.MainModule settings = explosion.GetComponent<ParticleSystem>().main;
+                settings.startColor = HexToColor(GetComponent<ChangeColorScript>().hexCode);
+            }
+
             FadeOut();
     	}
 	}
+
+    Color HexToColor(string hex)
+    {
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return new Color32(r, g, b, 255);
+    }
 
     void Disappear()
     {

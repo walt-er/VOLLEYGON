@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5010211119883896128}
   - component: {fileID: 5010211119881057267}
   - component: {fileID: 7721481367773317920}
-  - component: {fileID: 2009386741550328831}
+  - component: {fileID: 219169091}
   m_Layer: 0
   m_Name: Brick
   m_TagString: Wall
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50272eca84ea045ed92388333abd78b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 169520, guid: 0532fa650eafc46abad37abe6eda1885, type: 3}
+  explosionPrefab: {fileID: 169520, guid: 382beb8aaac474048bb95dab6945dc3d, type: 3}
   isFading: 0
---- !u!114 &2009386741550328831
+--- !u!114 &219169091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,8 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5010211119881057264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50272eca84ea045ed92388333abd78b9, type: 3}
+  m_Script: {fileID: 11500000, guid: b68eb7f34b78d4b399a0137f18ce73da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 0}
-  isFading: 0
+  hexCode: FFBA53
