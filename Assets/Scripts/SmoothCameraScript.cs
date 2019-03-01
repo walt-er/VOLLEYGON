@@ -23,7 +23,10 @@ public class SmoothCameraScript : MonoBehaviour {
         {
             //Find a target!
             GameObject newTarget = GameObject.FindWithTag("Ball");
-            target = newTarget.transform;
+            if (newTarget)
+            {
+                target = newTarget.transform;
+            }
         }
 
     }

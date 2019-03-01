@@ -265,7 +265,16 @@ public class BallScript : MonoBehaviour {
                 whichSide = 2;
             }
             Debug.Log("ball broadcasts that ball has died");
+
+        // If this is an individual challenge, broadcast to that manager. Otherwise, broadcast to the broader moduleContainer. TODO: This could be bad. This is a stopgap until we get rid of GameManager.
+        if (GameObject.FindWithTag("IndividualChallengeManager"))
+        {
+            GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("BallDied", whichSide);
+        }
+        else
+        {
             moduleContainer.BroadcastMessage("BallDied", whichSide);
+        }
         //}
 
 		Destroy (gameObject);
@@ -411,7 +420,7 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .8f);
 
-			// TODO: This hsould probably be in game manager...
+			// TODO: This should probably be in game manager or in a manager attached to a wall...
 			// If there were two bounces on a side, take action
 			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
 

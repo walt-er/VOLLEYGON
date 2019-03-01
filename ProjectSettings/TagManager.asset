@@ -20,6 +20,7 @@ TagManager:
   - MidpointMarker
   - Arena
   - ModuleContainer
+  - IndividualChallengeManager
   layers:
   - Default
   - TransparentFX

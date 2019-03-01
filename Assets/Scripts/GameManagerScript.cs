@@ -119,8 +119,11 @@ public class GameManagerScript : MonoBehaviour {
 
 		rallyCount = 0;
 
-		// Fade in
-        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+        // Fade in
+        if (GameObject.Find("FadeCurtainCanvas"))
+        {
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+        }
 
 		// Set up arena based on options
 		arenaType = DataManagerScript.arenaType;
@@ -231,11 +234,15 @@ public class GameManagerScript : MonoBehaviour {
 
     void BallDied(int whichSide)
     {
-        Debug.Log("Game manager knows the ball has died");
-        // Received a message from the ball. It died. Spawn a new one.
-        SpawnNewBall();
+        // These flags suck. Eventually pare down GameManager into components such as 'Ball Respawner' or whatever
+        if (handleBalls)
+        {
+            Debug.Log("Game manager knows the ball has died");
+            // Received a message from the ball. It died. Spawn a new one.
+            SpawnNewBall();
+        }
 
-    }
+        }
 
     void SpawnNewBall()
     {
