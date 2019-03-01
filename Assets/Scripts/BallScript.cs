@@ -18,12 +18,13 @@ public class BallScript : MonoBehaviour {
 	float timeSinceLastFlash;
 	float flashTime;
 	private bool isTimerRunning;
-	public float gravScale = 0.8f;
+    public float gravScale = 0.8f;
 	private float originalGrav;
 	public bool singleMode;
 	private int bounces = 0;
 	public int bouncesOnTop;
 	public float baseTimeBetweenGravChanges = 10f;
+    public float gravTimeRange = 10f;
 	public float lastXPos;
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
@@ -139,7 +140,7 @@ public class BallScript : MonoBehaviour {
 	}
 
 	void ResetTimer(){
-		timer = baseTimeBetweenGravChanges + Random.value * 10;
+		timer = baseTimeBetweenGravChanges + Random.value * gravTimeRange;
 		isTimerRunning = true;
 		didSirenPlayAlready = false;
 	}

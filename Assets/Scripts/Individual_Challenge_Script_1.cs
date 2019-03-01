@@ -58,19 +58,24 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 	void BallDied(int whichSide){
 		Debug.Log ("the ball has died");
 		deadBalls += 1;
-		
-		// Launch a replacement ball
-		LaunchBall(0f,0f,0f);
+
+        // Launch a replacement ball
+        if (ChallengeManagerScript.Instance.challengeRunning)
+        {
+            LaunchBall(0f, 0f, 0f);
+        }
 	}
 
 	public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
 		ball_1.transform.parent = gameObject.transform.parent;
-		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (2f, -6f, -10f);
+		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (2f, -6f, 10f);
 		StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
+        ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
+        ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
     }
 
 
