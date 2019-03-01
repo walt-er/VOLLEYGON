@@ -29,7 +29,7 @@ public class BasketScript : MonoBehaviour
         Debug.Log("Triggered!");
         // tell the ball to destroy itself
         // BroadcastMessage to the individual challenge manager that a basket has been scored
-        ICM.BroadcastMessage("BasketScored");
+        ICM.BroadcastMessage("OnBasketScored");
         // Could these two be combined?
         other.gameObject.GetComponent<BallScript>().FireExplosion();
         other.gameObject.GetComponent<BallScript>().DestroyBall();

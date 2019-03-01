@@ -8,7 +8,7 @@ public class Challenge_Script_3 : MonoBehaviour
 
     private GameObject ballPrefab;
     private int deadBalls;
-
+    private int basketsScored = 0;
 
     public String challengeTitle;
 
@@ -44,8 +44,17 @@ public class Challenge_Script_3 : MonoBehaviour
         if (challengeStarted)
         {
             //Check for victory
-          
+            if (basketsScored >= 3)
+            {
+                ChallengeManagerScript.Instance.ChallengeSucceed();
+            }
+
         }
+    }
+
+    void OnBasketScored()
+    {
+        basketsScored += 1;
     }
 
     void BallDied(int whichSide)
