@@ -8,11 +8,9 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 	private GameObject ballPrefab;
 	private int deadBalls;
 
-	public GameObject pad_1;
-	public GameObject pad_2;
-	public GameObject pad_3;
+    public GameObject[] pads;
 
-	public String challengeTitle;
+    public String challengeTitle;
 
 	private bool challengeStarted = false;
 
@@ -40,10 +38,21 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 
 		if (challengeStarted){
 			//Check for victory
-			if (!pad_1.active && !pad_2.active && !pad_3.active){
-				ChallengeManagerScript.Instance.ChallengeSucceed();
-			}
-		}
+			//if (!pad_1.active && !pad_2.active && !pad_3.active){
+			//	ChallengeManagerScript.Instance.ChallengeSucceed();
+			//}
+            for (int i = 0; i < pads.Length; i++)
+            {
+                if (pads[i].active)
+                {
+                    return;
+                }
+            }
+            ChallengeManagerScript.Instance.ChallengeSucceed();
+
+
+
+        }
 	}
 
 	void BallDied(int whichSide){
