@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class SoloModeManager : MonoBehaviour {
@@ -8,6 +9,7 @@ public class SoloModeManager : MonoBehaviour {
     private GameObject ballPrefab;
     private int deadBalls;
     private int returnedBalls;
+    public Text returnCountText;
   
 
     public String challengeTitle;
@@ -68,13 +70,16 @@ public class SoloModeManager : MonoBehaviour {
     public void OnBallReturned()
     {
         Debug.Log("Ball returned");
-        returnedBalls += 1; 
-        // TODO: Update some sort of UI here.
+        returnedBalls += 1;
+        // Update UI here.
+        returnCountText.text = returnedBalls.ToString();
     }
 
     void BallDied(int whichSide){
         Debug.Log ("the ball has died");
         deadBalls += 1;
+        returnedBalls = 0;
+        returnCountText.text = returnedBalls.ToString();
 
         // Launch a replacement ball
         if (ChallengeManagerScript.Instance.challengeRunning)
