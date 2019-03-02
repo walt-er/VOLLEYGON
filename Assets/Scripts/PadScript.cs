@@ -30,8 +30,21 @@ public class PadScript : MonoBehaviour
             GameObject explosion = (GameObject)Instantiate(explosionPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), parentRot);
             if (GetComponent<ChangeColorScript>())
             {
-                ParticleSystem.MainModule settings = explosion.GetComponent<ParticleSystem>().main;
-                settings.startColor = HexToColor(GetComponent<ChangeColorScript>().hexCode);
+                //ParticleSystem.MainModule settings = explosion.GetComponent<ParticleSystem>().main;
+                //settings.startColor = HexToColor(GetComponent<ChangeColorScript>().hexCode);
+
+
+                ParticleSystem ps = explosion.GetComponent<ParticleSystem>();
+                var col = ps.colorOverLifetime;
+                col.enabled = true;
+
+                Gradient grad = new Gradient();
+                grad.SetKeys(new GradientColorKey[] { new GradientColorKey(HexToColor(GetComponent<ChangeColorScript>().hexCode), 0.0f), new GradientColorKey(Color.white, 0.8f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
+
+                col.color = grad;
+
+
+
             }
 
             FadeOut();
