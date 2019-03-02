@@ -186,7 +186,14 @@ public class BallScript : MonoBehaviour {
 
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos) && lastXPos != 0 && transform.position.x !=0) {
-			GameManagerScript.Instance.SideChange ();
+
+            // TODO: Instead of calling GameManager, broadcast this event to all relevant modules;
+            // If this is an individual challenge, broadcast to that manager. Otherwise, broadcast to the broader moduleContainer. TODO: This could be bad. This is a stopgap until we get rid of GameManager.
+            if (GameObject.FindWithTag("IndividualChallengeManager"))
+            {
+                GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("OnBallReturned");
+            }
+            GameManagerScript.Instance.SideChange ();
 
 			// Is this doing anything?
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
