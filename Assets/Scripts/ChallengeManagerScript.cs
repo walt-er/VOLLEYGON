@@ -7,6 +7,9 @@ public class ChallengeManagerScript : MonoBehaviour {
 
 	public GameObject ballPrefab;
 
+    // Store which challenge is being played
+    private int currentChallenge;
+
 	// Store reference to challenge-level UI elements
 	public GameObject winPanel;
 	public GameObject losePanel;
@@ -34,6 +37,7 @@ public class ChallengeManagerScript : MonoBehaviour {
 		// Load the challenge the user requested
 		Debug.Log("Switching to challenge " + DataManagerScript.challengeType);
 		SwitchToChallenge(DataManagerScript.challengeType);
+        currentChallenge = DataManagerScript.challengeType;
         timerTextObj = timerText.GetComponent<Text>();
 
     }
@@ -84,17 +88,43 @@ public class ChallengeManagerScript : MonoBehaviour {
 		// Display fail text
 		losePanel.SetActive(true);
         challengeRunning = false;
-		// For now, just exit the scene
+
 		// Application.LoadLevel("TitleScene");
 	}
 
-	public void ChallengeSucceed(){
+    public void PlayNextChallenge()
+    {
+        DataManagerScript.challengeType = DataManagerScript.challengeType + 1;
+        Application.LoadLevel("challengeScene");
+
+        ////TODO: Check for last challenge here
+
+        ////Disable current challenge
+        //Transform challenge = challengesContainer.transform.GetChild(currentChallenge);
+        //challenge.gameObject.SetActive(false);
+
+        ////Switch to new challenge
+        //winPanel.SetActive(false);
+        //currentChallenge += 1;
+        //SwitchToChallenge(currentChallenge);
+
+        //// Display instruction panel
+        //DisplayChallengeInstructions();
+
+        //// For now, just hide the panel in 3 seconds
+        //Invoke("HideChallengeInstructions", 3f);
+    }
+
+    public void ChallengeSucceed(){
 
 		// Display success text
 		winPanel.SetActive(true);
         challengeRunning = false;
-        // For now, just exit the scene
-        // Application.LoadLevel("TitleScene");
+
+
+        //For now, try playing the next challenge
+        Invoke("PlayNextChallenge", 5f);
+  
 
     }
 }

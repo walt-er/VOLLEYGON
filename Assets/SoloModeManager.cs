@@ -10,7 +10,7 @@ public class SoloModeManager : MonoBehaviour {
     private int deadBalls;
     private int returnedBalls;
     public Text returnCountText;
-  
+    public int goalScore = 10;
 
     public String challengeTitle;
 
@@ -45,7 +45,7 @@ public class SoloModeManager : MonoBehaviour {
                 ChallengeManagerScript.Instance.ChallengeFail();
             }
 
-            if (returnedBalls == 10)
+            if (returnedBalls == goalScore)
             {
                 ChallengeManagerScript.Instance.ChallengeSucceed();
             }
