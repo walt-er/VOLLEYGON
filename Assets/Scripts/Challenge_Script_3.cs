@@ -14,6 +14,7 @@ public class Challenge_Script_3 : MonoBehaviour
     public String challengeTitle;
 
     private bool challengeStarted = false;
+    private bool challengeOver = false;
 
     void Awake()
     {
@@ -44,12 +45,15 @@ public class Challenge_Script_3 : MonoBehaviour
 
         if (challengeStarted)
         {
-            //Check for victory
-            if (basketsScored >= basketsToWin)
+            if (!challengeOver)
             {
-                ChallengeManagerScript.Instance.ChallengeSucceed();
+                //Check for victory
+                if (basketsScored == basketsToWin)
+                {
+                    ChallengeManagerScript.Instance.ChallengeSucceed();
+                    challengeOver = true;
+                }
             }
-
         }
     }
 

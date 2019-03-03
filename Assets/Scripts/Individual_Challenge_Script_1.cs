@@ -13,6 +13,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
     public String challengeTitle;
 
 	private bool challengeStarted = false;
+    private bool challengeOver = false;
 
 	void Awake(){
 		
@@ -37,18 +38,22 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 		}
 
 		if (challengeStarted){
-			//Check for victory
-			//if (!pad_1.active && !pad_2.active && !pad_3.active){
-			//	ChallengeManagerScript.Instance.ChallengeSucceed();
-			//}
-            for (int i = 0; i < pads.Length; i++)
+            //Check for victory
+            //if (!pad_1.active && !pad_2.active && !pad_3.active){
+            //	ChallengeManagerScript.Instance.ChallengeSucceed();
+            //}
+            if (!challengeOver)
             {
-                if (pads[i].active)
+                for (int i = 0; i < pads.Length; i++)
                 {
-                    return;
+                    if (pads[i].active)
+                    {
+                        return;
+                    }
                 }
+                ChallengeManagerScript.Instance.ChallengeSucceed();
+                challengeOver = true;
             }
-            ChallengeManagerScript.Instance.ChallengeSucceed();
 
 
 

@@ -26,12 +26,15 @@ public class BasketScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Triggered!");
-        // tell the ball to destroy itself
-        // BroadcastMessage to the individual challenge manager that a basket has been scored
-        ICM.BroadcastMessage("OnBasketScored");
-        // Could these two be combined?
-        other.gameObject.GetComponent<BallScript>().FireExplosion();
-        other.gameObject.GetComponent<BallScript>().DestroyBall();
+        if (other.gameObject.tag == "Ball")
+        {
+            Debug.Log("Triggered!");
+            // tell the ball to destroy itself
+            // BroadcastMessage to the individual challenge manager that a basket has been scored
+            ICM.BroadcastMessage("OnBasketScored");
+            // Could these two be combined?
+            other.gameObject.GetComponent<BallScript>().FireExplosion();
+            other.gameObject.GetComponent<BallScript>().DestroyBall();
+        }
     }
 }
