@@ -20350,8 +20350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnCountText: {fileID: 1610577934}
-  goalScore: 20
-  challengeTitle: RALLY THE BALL 20 TIMES
+  goalScore: 10
+  challengeTitle: RALLY THE BALL 10 TIMES
 --- !u!1001 &1694733390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22824,7 +22824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 763.8729
+  Phase: 764.06024
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -22862,7 +22862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 610.8401
+  Timer: 611.4395
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
