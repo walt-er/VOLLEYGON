@@ -89,12 +89,19 @@ public class ChallengeManagerScript : MonoBehaviour {
 		losePanel.SetActive(true);
         challengeRunning = false;
 
-		// Application.LoadLevel("TitleScene");
-	}
+        //For now, restart the challenge
+        Invoke("RestartChallenge", 5f);
+    }
+
+    public void RestartChallenge()
+    {
+        Application.LoadLevel("challengeScene");
+    }
 
     public void PlayNextChallenge()
     {
         DataManagerScript.challengeType = DataManagerScript.challengeType + 1;
+        Debug.Log("INCREASED CHALLENGE NUM!");
         Application.LoadLevel("challengeScene");
 
         ////TODO: Check for last challenge here

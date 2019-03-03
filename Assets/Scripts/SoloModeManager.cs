@@ -11,7 +11,7 @@ public class SoloModeManager : MonoBehaviour {
     private int returnedBalls;
     public Text returnCountText;
     public int goalScore = 10;
-
+    private bool challengeOver = false;
     public String challengeTitle;
 
     private bool challengeStarted = false;
@@ -40,14 +40,15 @@ public class SoloModeManager : MonoBehaviour {
 
         if (challengeStarted){
 
-            if (deadBalls >= 3)
+            if (deadBalls >= 3 && !challengeOver)
             {
                 ChallengeManagerScript.Instance.ChallengeFail();
             }
 
-            if (returnedBalls == goalScore)
+            if (returnedBalls == goalScore && !challengeOver)
             {
                 ChallengeManagerScript.Instance.ChallengeSucceed();
+                challengeOver = true;
             }
             //Check for victory
             //if (!pad_1.active && !pad_2.active && !pad_3.active){

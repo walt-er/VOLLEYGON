@@ -56,6 +56,7 @@ public class Challenge_Script_3 : MonoBehaviour
     void OnBasketScored()
     {
         basketsScored += 1;
+        Debug.Log("basket scored");
     }
 
     void BallDied(int whichSide)
