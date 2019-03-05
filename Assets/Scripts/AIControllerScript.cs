@@ -24,6 +24,7 @@ public class AIControllerScript : MonoBehaviour {
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
 	public bool willJump = true;
+    public bool willGravChange = true;
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
@@ -141,7 +142,11 @@ public class AIControllerScript : MonoBehaviour {
 			CheckForJump ();
 		}
 
-		CheckForGravChange ();
+        if (willGravChange)
+        {
+            CheckForGravChange();
+        }
+
 		ClampPosition ();
 
 		ManagePowerups ();
@@ -244,28 +249,44 @@ public class AIControllerScript : MonoBehaviour {
 	void CheckForJump(){
 
         // Only jump if ball is above (or below, depending on grav state) shape and within a certain distance (distanceToTriggerJump, set to default 4f)
-		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs (ball.transform.position.y - transform.position.y) <= distanceToTriggerJump){
-			Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
-			rb.AddForce(jumpForce);
-			SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-			isJumping = true;
-		}
+        if (ball)
+        {
+            if (isJumping == false && Mathf.Abs(ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs(ball.transform.position.y - transform.position.y) <= distanceToTriggerJump)
+            {
+                Vector3 jumpForce = new Vector3(0f, jumpPower * rb.gravityScale, 0f);
+                rb.AddForce(jumpForce);
+                SoundManagerScript.instance.RandomizeSfx(jumpSound1, jumpSound2);
+                isJumping = true;
+            }
+        }
 	}
 
 	void CheckForGravChange(){
-		if (ball.GetComponent<Rigidbody2D> ().gravityScale > 0) {
-			if (playerID % 2 == 1) {
-				rb.gravityScale = 1;
-			} else if (playerID % 2 == 0) {
-				rb.gravityScale = -1;
-			}
-		} else {
-			if (playerID % 2 == 1) {
-				rb.gravityScale = -1;
-			} else if (playerID % 2 == 0) {
-				rb.gravityScale = 1;
-			}
-		}
+        if (ball)
+        {
+            if (ball.GetComponent<Rigidbody2D>().gravityScale > 0)
+            {
+                if (playerID % 2 == 1)
+                {
+                    rb.gravityScale = 1;
+                }
+                else if (playerID % 2 == 0)
+                {
+                    rb.gravityScale = -1;
+                }
+            }
+            else
+            {
+                if (playerID % 2 == 1)
+                {
+                    rb.gravityScale = -1;
+                }
+                else if (playerID % 2 == 0)
+                {
+                    rb.gravityScale = 1;
+                }
+            }
+        }
 	}
 
 	void checkPenalty(){

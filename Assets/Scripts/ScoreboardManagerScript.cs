@@ -7,13 +7,19 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	public GameObject Team2Scores;
 	public GameObject Team1Wins;
 	public GameObject Team2Wins;
-
+    public GameObject background;
+    private bool isGameOver = false;
 	public GameObject deuce;
 	public GameObject dash;
 	public bool scoreBoardShowing;
+
+    public int scorePlayedTo = 12;
+    public int team1Score = 0;
+    public int team2Score = 0;
 	// Use this for initialization
 	void Start () {
 
+        background = GameObject.FindWithTag("Background");
 
 		scoreBoardShowing = false;
 		for (int i = 0; i < Team1Scores.transform.childCount; i++) {
@@ -37,8 +43,16 @@ public class ScoreboardManagerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-	}
+        // Team wins. //TODO: COuld this be moved to be checked just on score?
+        if (team1Score >= scorePlayedTo && team1Score > team2Score + 1 && !isGameOver)
+        {
+            teamWins(1);
+        }
+        else if (team2Score >= scorePlayedTo && team2Score > team1Score + 1 && !isGameOver)
+        {
+            teamWins(2);
+        }
+    }
 
 	public void moveIntoPlace(){
 		gameObject.transform.position = new Vector3 (0f, 0f, 0f);
@@ -48,15 +62,158 @@ public class ScoreboardManagerScript : MonoBehaviour {
 		Team1Wins.gameObject.SetActive (true);
 		MusicManagerScript.Instance.StartRoot ();
 		scoreBoardShowing = true;
-	}
+        Debug.Log("team 1 wins!");
+
+        // If there's a challenge manager, broadcast to that. If not, broadcast to gamemanager. We may end up removing gamemanager from this equation.
+        GameObject cm = GameObject.FindWithTag("ChallengeManager");
+        if (cm)
+        {
+            cm.BroadcastMessage("ChallengeSucceed");
+        }
+      
+    }
 
 	public void TeamTwoWin(){
 		Team2Wins.gameObject.SetActive (true);
 		MusicManagerScript.Instance.StartRoot ();
 		scoreBoardShowing = true;
-	}
+        Debug.Log("team 2 wins!");
+        // If there's a challenge manager, broadcast to that. If not, broadcast to gamemanager. We may end up removing gamemanager from this equation.
+        GameObject cm = GameObject.FindWithTag("ChallengeManager");
+        if (cm)
+        {
+            cm.BroadcastMessage("ChallengeFail");
+        }
+    }
 
-	public void enableNumbers (int team1Score, int team2Score, bool overtime){
+    public void ManageScore(int whichSide)
+    {
+
+        if (whichSide == 1)
+        {
+            team2Score += 1;
+
+
+            //TODO: Add a stats module
+            //ComputeStat(2);
+          
+            //if (lastScore != 2)
+            //{
+            //    MusicManagerScript.Instance.SwitchMusic(2);
+            //}
+
+            //lastScore = 2;
+        }
+        else
+        {
+            team1Score += 1;
+            //ComputeStat(1);
+
+            //if (lastScore != 1)
+            //{
+            //    MusicManagerScript.Instance.SwitchMusic(1);
+            //}
+
+            //lastScore = 1;
+        }
+
+        //CurrentArena.BroadcastMessage("ReturnColor");
+
+        if (team2Score < scorePlayedTo && team2Score < scorePlayedTo)
+        {
+            if (team2Score == scorePlayedTo - 1 && team1Score == scorePlayedTo - 1)
+            {
+                enableNumbers(team1Score, team2Score, true);
+                background.GetComponent<BackgroundColorScript>().TurnOnDeuce();
+            }
+            else
+            {
+                enableNumbers(team1Score, team2Score, false);
+            }
+
+            CheckForMatchPoint();
+        }
+        else if (Mathf.Abs(team1Score - team2Score) < 2)
+        {
+            if (team2Score >= scorePlayedTo || team1Score >= scorePlayedTo)
+            {
+                //winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+                MusicManagerScript.Instance.StartFifth();
+                CheckForMatchPoint();
+                enableNumbers(team1Score, team2Score, true);
+            }
+          
+           
+
+        }
+        else
+        {
+            // GAME IS OVER
+            //Debug.Log("What is this victory condition?");
+            //// If there's a challenge manager, broadcast to that. If not, broadcast to gamemanager. We may end up removing gamemanager from this equation.
+            //GameObject cm = GameObject.FindWithTag("ChallengeManager");
+            //if (cm)
+            //{
+            //    cm.BroadcastMessage("ChallengeSucceed");   
+
+            //}
+            //else
+            //{
+            //    // tell gamemanager game is over
+            //}
+            transform.position = new Vector3(0f, 0f, 0f);
+           
+        }
+    }
+
+    // End game for team maches
+    void teamWins(int whichTeam)
+    {
+        isGameOver = true;
+        switch (whichTeam)
+        {
+            case 1:
+                TeamOneWin();
+                background.GetComponent<BackgroundColorScript>().whoWon = 1;
+                background.GetComponent<BackgroundColorScript>().matchOver = true;
+                background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
+
+                break;
+            case 2:
+                TeamTwoWin();
+                background.GetComponent<BackgroundColorScript>().whoWon = 2;
+                background.GetComponent<BackgroundColorScript>().matchOver = true;
+                break;
+        }
+    }
+        void CheckForMatchPoint()
+    {
+        // check for match point
+        if (team2Score == team1Score)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
+          
+        }
+        else if (team1Score == scorePlayedTo - 1 && team2Score < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(1);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+        else if (team2Score == scorePlayedTo - 1 && team1Score < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(2);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+    }
+
+    public void OnBallDied(int whichSide)
+    { 
+        ManageScore(whichSide);
+    }
+
+    public void enableNumbers (int team1Score, int team2Score, bool overtime){
         Debug.Log("Scoreboard showing score");
 		if (!overtime) {
 			Transform theNumOne = Team1Scores.transform.Find (team1Score.ToString ());

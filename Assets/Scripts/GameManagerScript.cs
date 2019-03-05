@@ -368,7 +368,7 @@ public class GameManagerScript : MonoBehaviour {
 		Invoke ("LaunchStatsScreen", 5f);
 	}
 
-	// End game for team maches
+	// End game for team maches. TODO: Move to scoreboard manager
 	void teamWins(int whichTeam){
 
 		switch (whichTeam) {

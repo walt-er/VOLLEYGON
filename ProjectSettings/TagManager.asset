@@ -21,6 +21,8 @@ TagManager:
   - Arena
   - ModuleContainer
   - IndividualChallengeManager
+  - ChallengeManager
+  - Background
   layers:
   - Default
   - TransparentFX

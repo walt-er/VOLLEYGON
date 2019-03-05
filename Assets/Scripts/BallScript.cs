@@ -272,7 +272,10 @@ public class BallScript : MonoBehaviour {
             {
                 whichSide = 2;
             }
-            Debug.Log("ball broadcasts that ball has died");
+       
+
+        //TODO: Factor this down once Game Manager has been parted out. this is primarily aimed toward scoreboardmanager.
+        moduleContainer.BroadcastMessage("OnBallDied", whichSide);
 
         // If this is an individual challenge, broadcast to that manager. Otherwise, broadcast to the broader moduleContainer. TODO: This could be bad. This is a stopgap until we get rid of GameManager.
         if (GameObject.FindWithTag("IndividualChallengeManager"))
@@ -283,18 +286,10 @@ public class BallScript : MonoBehaviour {
         {
             moduleContainer.BroadcastMessage("BallDied", whichSide);
         }
-        //}
 
+      
+       
 		Destroy (gameObject);
-
-//		timer = 10; // arbitrary high number
-//		Transform child = gameObject.transform.Find("CircleTrails");
-//		child.gameObject.SetActive (false);
-//		// Reset last touch information
-//		lastTouch = 0;
-//		secondToLastTouch = 0;
-
-	
 	}
 
 	void GravChange(){
