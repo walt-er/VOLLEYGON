@@ -7,6 +7,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 
 	private GameObject ballPrefab;
 	private int deadBalls;
+    public bool multiLaunch = false;
 
     public GameObject[] pads;
 
@@ -33,7 +34,15 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 			// check for challenge start
 			if (ChallengeManagerScript.Instance.challengeRunning){
 				challengeStarted = true;
-				LaunchBall(0f,0f,0f);
+                if (multiLaunch)
+                {
+                    // Using InvokeRepeating is probably a bad idea...
+                    InvokeRepeating("LaunchBallRandom", 0f, 5f);
+                }
+                else
+                {
+                    LaunchBall(0f, 0f, 0f);
+                }
 			}
 		}
 
@@ -65,13 +74,27 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 		deadBalls += 1;
 
         // Launch a replacement ball
-        if (ChallengeManagerScript.Instance.challengeRunning)
+        if (ChallengeManagerScript.Instance.challengeRunning && !multiLaunch)
         {
             LaunchBall(0f, 0f, 0f);
         }
 	}
 
-	public void LaunchBall(float x, float y, float z){
+    public void LaunchBallRandom()
+    {
+        GameObject ball_1 = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        ball_1.transform.parent = gameObject.transform.parent;
+        IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().CustomLaunchBallWithDelay(2f, -6f, UnityEngine.Random.Range(0f,10f));
+        StartCoroutine(coroutine_1);
+        // set ball's gravChangeMode to true;
+        Debug.Log("setting gravchange mode to true");
+       ball_1.GetComponent<BallScript>().gravScale = .5f;
+        ball_1.GetComponent<BallScript>().gravChangeMode = true;
+        ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
+        ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
+    }
+
+    public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
 		ball_1.transform.parent = gameObject.transform.parent;
 		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (2f, -6f, 10f);
