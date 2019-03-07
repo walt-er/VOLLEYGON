@@ -1381,7 +1381,7 @@ Transform:
   - {fileID: 1121091929}
   - {fileID: 273374107}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &82469270
 PrefabInstance:
@@ -2532,7 +2532,7 @@ Transform:
   - {fileID: 768356136}
   - {fileID: 1037479035}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &189352439
 PrefabInstance:
@@ -3583,6 +3583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273374107}
   - component: {fileID: 273374108}
+  - component: {fileID: 273374109}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -3623,6 +3624,20 @@ MonoBehaviour:
   - {fileID: 837984517}
   - {fileID: 1433672353}
   challengeTitle: DESTROY THE PADS!
+--- !u!114 &273374109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273374106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: Pads_Easy
+  challengeTime: 0
 --- !u!1001 &284076213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6816,7 +6831,7 @@ Transform:
   - {fileID: 1617287188}
   - {fileID: 1211107897}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &507114910
 PrefabInstance:
@@ -12891,7 +12906,7 @@ Transform:
   - {fileID: 1037377269}
   - {fileID: 1802748743}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1015658975
 PrefabInstance:
@@ -20746,7 +20761,7 @@ Transform:
   - {fileID: 1270985523}
   - {fileID: 198433965}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688791861
 GameObject:
@@ -21445,7 +21460,7 @@ Transform:
   - {fileID: 1869384123}
   - {fileID: 1248924003}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1758846705
 GameObject:
@@ -23207,7 +23222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 835.275
+  Phase: 836.7699
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -23245,7 +23260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 839.3437
+  Timer: 844.1279
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
@@ -23570,7 +23585,7 @@ Transform:
   - {fileID: 1094690136}
   - {fileID: 1134300040}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1896800255
 PrefabInstance:
@@ -26358,13 +26373,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 76825120}
   - {fileID: 1012680815}
   - {fileID: 1891710862}
   - {fileID: 1748031469}
   - {fileID: 186960986}
   - {fileID: 1686751687}
   - {fileID: 500383086}
-  - {fileID: 76825120}
   - {fileID: 571599512}
   - {fileID: 932451096}
   - {fileID: 1256272589}

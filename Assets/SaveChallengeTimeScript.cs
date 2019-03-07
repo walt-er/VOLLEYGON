@@ -19,7 +19,7 @@ public class SaveChallengeTimeScript : MonoBehaviour
 
     }
 
-    void CompareTimes(float newTime)
+    public void CompareTimes(float newTime)
     {
         if (newTime < challengeTime)
         {

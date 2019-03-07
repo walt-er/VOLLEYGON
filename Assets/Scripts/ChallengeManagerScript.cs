@@ -128,7 +128,17 @@ public class ChallengeManagerScript : MonoBehaviour {
 		winPanel.SetActive(true);
         challengeRunning = false;
 
-
+        // Find the ICM and log the time of the challenge
+        GameObject ICM = GameObject.FindWithTag("IndividualChallengeManager");
+        if (ICM)
+        {
+            ICM.GetComponent<SaveChallengeTimeScript>().CompareTimes(rawTimer);
+            Debug.Log("Checking time " + rawTimer + " against best time");
+        }
+        else
+        {
+            Debug.Log("Couldn't find ICM");
+        }
         //For now, try playing the next challenge
         Invoke("PlayNextChallenge", 5f);
   
