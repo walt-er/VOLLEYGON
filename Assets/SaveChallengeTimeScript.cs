@@ -5,10 +5,10 @@ using UnityEngine;
 public class SaveChallengeTimeScript : MonoBehaviour
 {
     public string saveKey;
-    public float challengeTime;
+    public float challengeTime = 99999f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadTime();
     }
@@ -23,7 +23,7 @@ public class SaveChallengeTimeScript : MonoBehaviour
     {
         if (newTime < challengeTime)
         {
-            // New best time, do something here
+            // New best time, do something here. Return a value? Broadcast something? Dunno.
             SaveTime(newTime);
         }
     }
@@ -36,6 +36,6 @@ public class SaveChallengeTimeScript : MonoBehaviour
     void LoadTime()
     {
         // make the default time really really high. I would prefer null but not sure how to do that right now.
-        challengeTime = PlayerPrefs.GetFloat(saveKey, 999999999f);
+        challengeTime = PlayerPrefs.GetFloat(saveKey, 9999f);
     }
 }

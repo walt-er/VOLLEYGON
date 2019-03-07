@@ -17,7 +17,9 @@ public class ChallengeManagerScript : MonoBehaviour {
 	public GameObject challengeTitle;
 	public GameObject challengeNumber;
     public GameObject timerText;
+    public GameObject bestText;
     private Text timerTextObj;
+    private Text bestTextObj;
 
 	// Store a flag the individual challenge can reference to know whether to start or stop the challenge
 	public bool challengeRunning = false;
@@ -39,15 +41,34 @@ public class ChallengeManagerScript : MonoBehaviour {
 		SwitchToChallenge(DataManagerScript.challengeType);
         currentChallenge = DataManagerScript.challengeType;
         timerTextObj = timerText.GetComponent<Text>();
+        bestTextObj = bestText.GetComponent<Text>();
 
     }
 
 	void Start () {
 		// Display instruction panel
 		DisplayChallengeInstructions();
-       
-		// For now, just hide the panel in 3 seconds
-		Invoke("HideChallengeInstructions", 3f);
+
+        // Load the best time for this challenge
+        GameObject ICM = GameObject.FindWithTag("IndividualChallengeManager");
+        if (ICM)
+        {
+            float bestTime = ICM.GetComponent<SaveChallengeTimeScript>().challengeTime;
+            Debug.Log("Best time is ");
+            Debug.Log(bestTime);
+            if (bestTime < 999f)
+            {
+                Debug.Log(FormatTime(bestTime));
+                bestTextObj.text = "BEST " + FormatTime(bestTime);
+            }
+            else
+            {
+                bestText.SetActive(false);
+            }
+        }
+
+        // For now, just hide the panel in 3 seconds
+        Invoke("HideChallengeInstructions", 3f);
 	}
 	
 	void Update () {
@@ -56,11 +77,8 @@ public class ChallengeManagerScript : MonoBehaviour {
         if (challengeRunning)
         {
             rawTimer += Time.deltaTime;
-            int minutes = Mathf.FloorToInt(rawTimer / 60F);
-            int seconds = Mathf.FloorToInt(rawTimer - minutes * 60);
-            float fraction = (rawTimer * 100) % 100;
-            string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
-            timerTextObj.text = niceTime;
+           
+            timerTextObj.text = FormatTime(rawTimer);
         }
     }
 
@@ -75,7 +93,16 @@ public class ChallengeManagerScript : MonoBehaviour {
 		challenge.gameObject.SetActive (true);
 	}
 
-	public void DisplayChallengeInstructions(){
+    public string FormatTime(float rawTimer)
+    {
+        int minutes = Mathf.FloorToInt(rawTimer / 60F);
+        int seconds = Mathf.FloorToInt(rawTimer - minutes * 60);
+        float fraction = (rawTimer * 100) % 100;
+        string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        return niceTime;
+    }
+
+    public void DisplayChallengeInstructions(){
 		instructionPanel.SetActive(true);
 	}
 

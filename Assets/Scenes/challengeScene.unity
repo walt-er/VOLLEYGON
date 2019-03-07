@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 12219744}
   - component: {fileID: 12219746}
+  - component: {fileID: 12219745}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -289,6 +290,20 @@ Transform:
   m_Father: {fileID: 571599512}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &12219745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12219743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: basketeasy
+  challengeTime: 99999
 --- !u!114 &12219746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27856402}
   - component: {fileID: 27856403}
+  - component: {fileID: 27856404}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -556,6 +572,20 @@ MonoBehaviour:
   - {fileID: 1215827478}
   - {fileID: 1758846705}
   challengeTitle: DESTROY THE BRICKS!
+--- !u!114 &27856404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27856401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: brickseasy
+  challengeTime: 99999
 --- !u!1001 &28811937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2039,6 +2069,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2137440476}
+  - {fileID: 1413139728}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3636,8 +3667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveKey: Pads_Easy
-  challengeTime: 0
+  saveKey: pe
+  challengeTime: 99999
 --- !u!1001 &284076213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4132,6 +4163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 327427425}
   - component: {fileID: 327427427}
+  - component: {fileID: 327427426}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -4153,6 +4185,20 @@ Transform:
   m_Father: {fileID: 932451096}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &327427426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327427424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: soloeasy
+  challengeTime: 99999
 --- !u!114 &327427427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4168,6 +4214,166 @@ MonoBehaviour:
   returnCountText: {fileID: 772510928}
   goalScore: 5
   challengeTitle: RALLY THE BALL 5 TIMES
+--- !u!43 &329487128
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 9
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 6
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 4
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 1, y: 1, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 030002000100010000000300
+  m_VertexData:
+    serializedVersion: 2
+    m_VertexCount: 4
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 48
+    _typelessdata: 000080bf000080bf000000000000803f000080bf000000000000803f0000803f00000000000080bf0000803f00000000
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1, y: 1, z: 0}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimized: 0
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &330171399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6458,6 +6664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472872547}
   - component: {fileID: 472872548}
+  - component: {fileID: 472872549}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -6501,6 +6708,20 @@ MonoBehaviour:
   - {fileID: 1617829627}
   - {fileID: 1109800388}
   challengeTitle: DESTROY THE PADS!
+--- !u!114 &472872549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472872546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: padshard
+  challengeTime: 99999
 --- !u!1001 &481436566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7870,7 +8091,7 @@ Transform:
   - {fileID: 12219744}
   - {fileID: 1492300188}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581180698
 GameObject:
@@ -8077,6 +8298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617040430}
   - component: {fileID: 617040431}
+  - component: {fileID: 617040432}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -8113,6 +8335,20 @@ MonoBehaviour:
   returnCountText: {fileID: 1714427366}
   goalScore: 20
   challengeTitle: RALLY THE BALL 20 TIMES
+--- !u!114 &617040432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617040429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: solohard
+  challengeTime: 99999
 --- !u!1001 &619834900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10016,6 +10252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785321965}
   - component: {fileID: 785321967}
+  - component: {fileID: 785321966}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -10037,6 +10274,20 @@ Transform:
   m_Father: {fileID: 500383086}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &785321966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785321964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: bricksmedium
+  challengeTime: 99999
 --- !u!114 &785321967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10448,6 +10699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845609017}
   - component: {fileID: 845609018}
+  - component: {fileID: 845609019}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -10491,6 +10743,20 @@ MonoBehaviour:
   - {fileID: 1870065111}
   - {fileID: 295271820}
   challengeTitle: DESTROY THE PADS!
+--- !u!114 &845609019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845609016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: padsmedium
+  challengeTime: 99999
 --- !u!1001 &845987540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11687,7 +11953,7 @@ Transform:
   - {fileID: 61373394}
   - {fileID: 433729454}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938659042
 GameObject:
@@ -12906,7 +13172,7 @@ Transform:
   - {fileID: 1037377269}
   - {fileID: 1802748743}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 1
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1015658975
 PrefabInstance:
@@ -14156,6 +14422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079697826}
   - component: {fileID: 1079697827}
+  - component: {fileID: 1079697828}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -14191,6 +14458,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basketsToWin: 3
   challengeTitle: SCORE 3 BASKETS!
+--- !u!114 &1079697828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079697825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: basketmedium
+  challengeTime: 99999
 --- !u!1001 &1080530495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14729,7 +15010,7 @@ PrefabInstance:
     - target: {fileID: 3333472, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1265144855}
+      objectReference: {fileID: 329487128}
     - target: {fileID: 6025396, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -16373,168 +16654,8 @@ Transform:
   - {fileID: 533841524}
   - {fileID: 2064335668}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1265144855
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 9
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 6
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 4
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 1, y: 1, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 030002000100010000000300
-  m_VertexData:
-    serializedVersion: 2
-    m_VertexCount: 4
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 48
-    _typelessdata: 000080bf000080bf000000000000803f000080bf000000000000803f0000803f00000000000080bf0000803f00000000
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1, y: 1, z: 0}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimized: 0
-  m_StreamData:
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &1270985522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16779,7 +16900,7 @@ Transform:
   - {fileID: 845609017}
   - {fileID: 1515502617}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1298535945
 PrefabInstance:
@@ -17902,6 +18023,85 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1413139727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413139728}
+  - component: {fileID: 1413139730}
+  - component: {fileID: 1413139729}
+  m_Layer: 5
+  m_Name: BestText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1413139728
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413139727}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127230792}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -8.61, y: 7.54}
+  m_SizeDelta: {x: 20, y: 1.896}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1413139729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413139727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9141744, g: 0.9433962, b: 0.07564971, a: 0.6431373}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 24299d427e090474eba7f072182ac4b1, type: 3}
+    m_FontSize: 72
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: BEST 0:00
+--- !u!222 &1413139730
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413139727}
+  m_CullTransparentMesh: 0
 --- !u!1 &1417601141
 GameObject:
   m_ObjectHideFlags: 0
@@ -19267,6 +19467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1556739791}
   - component: {fileID: 1556739792}
+  - component: {fileID: 1556739793}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -19302,6 +19503,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreboard: {fileID: 1240258874}
   challengeTitle: DEFEAT THE AIs!
+--- !u!114 &1556739793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556739790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: ai
+  challengeTime: 99999
 --- !u!43 &1557801063
 Mesh:
   m_ObjectHideFlags: 0
@@ -20861,8 +21076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveKey: Solo_Medium_Time
-  challengeTime: 0
+  saveKey: sm
+  challengeTime: 98888
 --- !u!1001 &1694733390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21460,7 +21675,7 @@ Transform:
   - {fileID: 1869384123}
   - {fileID: 1248924003}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 3
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1758846705
 GameObject:
@@ -23222,7 +23437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 836.7699
+  Phase: 857.8675
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -23260,7 +23475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 844.1279
+  Timer: 911.64954
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
@@ -23585,7 +23800,7 @@ Transform:
   - {fileID: 1094690136}
   - {fileID: 1134300040}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1896800255
 PrefabInstance:
@@ -23698,7 +23913,7 @@ Transform:
   - {fileID: 472872547}
   - {fileID: 1779537450}
   m_Father: {fileID: 2029533170}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1905356441
 PrefabInstance:
@@ -24867,6 +25082,7 @@ MonoBehaviour:
   challengeTitle: {fileID: 1428315500}
   challengeNumber: {fileID: 829545037}
   timerText: {fileID: 2137440475}
+  bestText: {fileID: 1413139727}
   challengeRunning: 0
   challengesContainer: {fileID: 2029533169}
 --- !u!4 &1977507254
@@ -26374,17 +26590,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 76825120}
-  - {fileID: 1012680815}
-  - {fileID: 1891710862}
-  - {fileID: 1748031469}
+  - {fileID: 932451096}
+  - {fileID: 571599512}
+  - {fileID: 1256272589}
   - {fileID: 186960986}
   - {fileID: 1686751687}
   - {fileID: 500383086}
-  - {fileID: 571599512}
-  - {fileID: 932451096}
-  - {fileID: 1256272589}
   - {fileID: 1297332972}
+  - {fileID: 1891710862}
+  - {fileID: 1012680815}
   - {fileID: 1901821250}
+  - {fileID: 1748031469}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26662,6 +26878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070144096}
   - component: {fileID: 2070144097}
+  - component: {fileID: 2070144098}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -26696,6 +26913,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   challengeTitle: DEFEAT GIANT SQUARE!
+--- !u!114 &2070144098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070144095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b936052afa97b42f9bff21785b026637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveKey: giantsquare
+  challengeTime: 99999
 --- !u!1001 &2082663199
 PrefabInstance:
   m_ObjectHideFlags: 0

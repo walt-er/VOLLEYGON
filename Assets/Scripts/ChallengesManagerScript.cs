@@ -132,6 +132,15 @@ public class ChallengesManagerScript : MonoBehaviour {
         }
     }
 
+    string formatTime(float rawTime)
+    {
+        int minutes = Mathf.FloorToInt(rawTime / 60F);
+        int seconds = Mathf.FloorToInt(rawTime - minutes * 60);
+        float fraction = (rawTime * 100) % 100;
+        string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        return niceTime;
+    }
+
     void updateMarkerPos()
     {
 
