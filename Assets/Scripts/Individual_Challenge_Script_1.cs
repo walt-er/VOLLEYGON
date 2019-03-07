@@ -8,6 +8,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 	private GameObject ballPrefab;
 	private int deadBalls;
     public bool multiLaunch = false;
+    public float gravScale = 1.0f;
 
     public GameObject[] pads;
 
@@ -88,7 +89,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
-       ball_1.GetComponent<BallScript>().gravScale = .5f;
+       ball_1.GetComponent<BallScript>().gravScale = gravScale;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
@@ -101,6 +102,7 @@ public class Individual_Challenge_Script_1 : MonoBehaviour {
 		StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
+        ball_1.GetComponent<BallScript>().gravScale = gravScale;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;

@@ -11,6 +11,7 @@ public class Challenge_Script_Multiball : MonoBehaviour
     public bool multiLaunch = false;
     private bool gameUnderway = false;
     public GameObject[] pads;
+    public float gravScale = 1.0f;
 
     public String challengeTitle;
 
@@ -103,7 +104,8 @@ public class Challenge_Script_Multiball : MonoBehaviour
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
-        ball_1.GetComponent<BallScript>().gravScale = .5f;
+        // TODO: There has to be a more scalable way to set these settings
+        ball_1.GetComponent<BallScript>().gravScale = gravScale;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
@@ -117,6 +119,7 @@ public class Challenge_Script_Multiball : MonoBehaviour
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
+        ball_1.GetComponent<BallScript>().gravScale = gravScale;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;

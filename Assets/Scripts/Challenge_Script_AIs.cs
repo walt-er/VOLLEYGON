@@ -73,6 +73,9 @@ public class Challenge_Script_AIs : MonoBehaviour
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
+        //TODO: Make these a public property
+        ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
+        ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
     }
 
 
