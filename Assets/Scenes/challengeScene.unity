@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 12219744}
   - component: {fileID: 12219746}
   - component: {fileID: 12219745}
+  - component: {fileID: 12219747}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -318,6 +319,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basketsToWin: 1
   challengeTitle: SCORE A BASKET!
+--- !u!114 &12219747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12219743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 0
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1 &20008570
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +545,7 @@ GameObject:
   - component: {fileID: 27856402}
   - component: {fileID: 27856403}
   - component: {fileID: 27856404}
+  - component: {fileID: 27856405}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -586,6 +604,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: brickseasy
   challengeTime: 99999
+--- !u!114 &27856405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27856401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 0
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &28811937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4181,6 +4215,7 @@ GameObject:
   - component: {fileID: 327427425}
   - component: {fileID: 327427427}
   - component: {fileID: 327427426}
+  - component: {fileID: 327427428}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -4231,6 +4266,22 @@ MonoBehaviour:
   returnCountText: {fileID: 772510928}
   goalScore: 5
   challengeTitle: RALLY THE BALL 5 TIMES
+--- !u!114 &327427428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327427424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!43 &329487128
 Mesh:
   m_ObjectHideFlags: 0
@@ -6682,6 +6733,7 @@ GameObject:
   - component: {fileID: 472872547}
   - component: {fileID: 472872548}
   - component: {fileID: 472872549}
+  - component: {fileID: 472872550}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -6739,6 +6791,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: padshard
   challengeTime: 99999
+--- !u!114 &472872550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472872546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &481436566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10270,6 +10338,7 @@ GameObject:
   - component: {fileID: 785321965}
   - component: {fileID: 785321967}
   - component: {fileID: 785321966}
+  - component: {fileID: 785321968}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -10328,6 +10397,22 @@ MonoBehaviour:
   - {fileID: 267848457}
   gravScale: 0.5
   challengeTitle: KEEP THE BALLS ALIVE!
+--- !u!114 &785321968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785321964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!43 &809534018
 Mesh:
   m_ObjectHideFlags: 0
@@ -10717,6 +10802,7 @@ GameObject:
   - component: {fileID: 845609017}
   - component: {fileID: 845609018}
   - component: {fileID: 845609019}
+  - component: {fileID: 845609020}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -10774,6 +10860,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: padsmedium
   challengeTime: 99999
+--- !u!114 &845609020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845609016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &845987540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14440,6 +14542,7 @@ GameObject:
   - component: {fileID: 1079697826}
   - component: {fileID: 1079697827}
   - component: {fileID: 1079697828}
+  - component: {fileID: 1079697829}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -14489,6 +14592,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: basketmedium
   challengeTime: 99999
+--- !u!114 &1079697829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079697825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &1080530495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19502,6 +19621,7 @@ GameObject:
   - component: {fileID: 1556739791}
   - component: {fileID: 1556739792}
   - component: {fileID: 1556739793}
+  - component: {fileID: 1556739794}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -19551,6 +19671,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: ai
   challengeTime: 99999
+--- !u!114 &1556739794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556739790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 1
+  statsModuleOn: 0
 --- !u!43 &1557801063
 Mesh:
   m_ObjectHideFlags: 0
@@ -21062,6 +21198,7 @@ GameObject:
   - component: {fileID: 1689701789}
   - component: {fileID: 1689701790}
   - component: {fileID: 1689701791}
+  - component: {fileID: 1689701792}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -21112,6 +21249,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: sm
   challengeTime: 98888
+--- !u!114 &1689701792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689701788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 1
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &1694733390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23471,7 +23624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 860.56586
+  Phase: 863.82007
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -23509,7 +23662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 22fe62a5d4de91a4995c1363cbc2492e, type: 3}
   Mode: 1
-  Timer: 920.2862
+  Timer: 930.702
   Speed: 0.8
   Frequency: 12
   Amplitude: 0
@@ -26913,6 +27066,7 @@ GameObject:
   - component: {fileID: 2070144096}
   - component: {fileID: 2070144097}
   - component: {fileID: 2070144098}
+  - component: {fileID: 2070144099}
   m_Layer: 0
   m_Name: IndividualChallengeManager
   m_TagString: IndividualChallengeManager
@@ -26961,6 +27115,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveKey: giantsquare
   challengeTime: 99999
+--- !u!114 &2070144099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070144095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7f259d3ec1b45d1a42d11162a8d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupsModuleOn: 0
+  gravChangeModuleOn: 1
+  scoreboardModuleOn: 0
+  statsModuleOn: 0
 --- !u!1001 &2082663199
 PrefabInstance:
   m_ObjectHideFlags: 0
