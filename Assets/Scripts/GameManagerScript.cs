@@ -80,8 +80,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	public EventSystem es;
 
-	public int lastTouch;
-	public int secondToLastTouch;
+	//public int lastTouch;
+	//public int secondToLastTouch;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -104,8 +104,8 @@ public class GameManagerScript : MonoBehaviour {
 		timeSinceLastPowerup = 0f;
 		soloModeBalls = 3;
 		readyForReplay = false;
-		lastTouch = 0;
-		secondToLastTouch = 0;
+		//lastTouch = 0;
+		//secondToLastTouch = 0;
 
 		if (handleBalls) {
             //ball.SetActive (true);
@@ -480,84 +480,84 @@ public class GameManagerScript : MonoBehaviour {
     }
 
 	public void ComputeStat(int whichTeamScored){
-		if (whichTeamScored == 1) {
-			if (lastTouch == 1) {
-				DataManagerScript.playerOneAces += 1;
-				DataManagerScript.playerOneScores += 1;
-			}
-			if (lastTouch == 2) {
-				DataManagerScript.playerTwoAces += 1;
-				DataManagerScript.playerTwoScores += 1;
-			}
+		//if (whichTeamScored == 1) {
+		//	if (lastTouch == 1) {
+		//		DataManagerScript.playerOneAces += 1;
+		//		DataManagerScript.playerOneScores += 1;
+		//	}
+		//	if (lastTouch == 2) {
+		//		DataManagerScript.playerTwoAces += 1;
+		//		DataManagerScript.playerTwoScores += 1;
+		//	}
 
-			if (lastTouch == 3) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-			}
-			if (lastTouch == 4) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-			}
-		}
-		if (whichTeamScored == 2) {
-			if (lastTouch == 3) {
-				DataManagerScript.playerThreeAces += 1;
-				DataManagerScript.playerThreeScores += 1;
-			}
-			if (lastTouch == 4) {
-				DataManagerScript.playerFourAces += 1;
-				DataManagerScript.playerFourScores += 1;
-			}
+		//	if (lastTouch == 3) {
+		//		if (secondToLastTouch == 1) {
+		//			DataManagerScript.playerOneScores += 1;
+		//		}
+		//		if (secondToLastTouch == 2) {
+		//			DataManagerScript.playerTwoScores += 1;
+		//		}
+		//		if (secondToLastTouch == 3) {
+		//			DataManagerScript.playerThreeBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 4) {
+		//			DataManagerScript.playerThreeBumbles += 1;
+		//		}
+		//	}
+		//	if (lastTouch == 4) {
+		//		if (secondToLastTouch == 1) {
+		//			DataManagerScript.playerOneScores += 1;
+		//		}
+		//		if (secondToLastTouch == 2) {
+		//			DataManagerScript.playerTwoScores += 1;
+		//		}
+		//		if (secondToLastTouch == 3) {
+		//			DataManagerScript.playerFourBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 4) {
+		//			DataManagerScript.playerFourBumbles += 1;
+		//		}
+		//	}
+		//}
+		//if (whichTeamScored == 2) {
+		//	if (lastTouch == 3) {
+		//		DataManagerScript.playerThreeAces += 1;
+		//		DataManagerScript.playerThreeScores += 1;
+		//	}
+		//	if (lastTouch == 4) {
+		//		DataManagerScript.playerFourAces += 1;
+		//		DataManagerScript.playerFourScores += 1;
+		//	}
 
-			if (lastTouch == 1) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-			if (lastTouch == 2) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-		}
+		//	if (lastTouch == 1) {
+		//		if (secondToLastTouch == 1) {
+		//			DataManagerScript.playerOneBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 2) {
+		//			DataManagerScript.playerOneBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 3) {
+		//			DataManagerScript.playerThreeScores += 1;
+		//		}
+		//		if (secondToLastTouch == 4) {
+		//			DataManagerScript.playerFourScores += 1;
+		//		}
+		//	}
+		//	if (lastTouch == 2) {
+		//		if (secondToLastTouch == 1) {
+		//			DataManagerScript.playerTwoBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 2) {
+		//			DataManagerScript.playerTwoBumbles += 1;
+		//		}
+		//		if (secondToLastTouch == 3) {
+		//			DataManagerScript.playerThreeScores += 1;
+		//		}
+		//		if (secondToLastTouch == 4) {
+		//			DataManagerScript.playerFourScores += 1;
+		//		}
+		//	}
+		//}
 	}
 	public void SideChange(){
 		bounces = 0;
@@ -568,27 +568,28 @@ public class GameManagerScript : MonoBehaviour {
 		bouncesOnBottomRight = 0;
 		CurrentArena.BroadcastMessage ("ReturnColor");
 
-		DataManagerScript.currentRallyCount += 1;
-		if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
-			DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
-			// Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
-		}
+        //TODO: TEST THIS STUFF IN STATS MODULE BEFORE REMOVING COMPLETELY
+		//DataManagerScript.currentRallyCount += 1;
+		//if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
+		//	DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
+		//	// Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
+		//}
 
-		// Credit a return to the last touch player
-		switch (lastTouch) {
-		case 1:
-			DataManagerScript.playerOneReturns += 1;
-			break;
-		case 2:
-			DataManagerScript.playerTwoReturns += 1;
-			break;
-		case 3:
-			DataManagerScript.playerThreeReturns += 1;
-			break;
-		case 4:
-			DataManagerScript.playerFourReturns += 1;
-			break;
-		}
+		//// Credit a return to the last touch player
+		//switch (lastTouch) {
+		//case 1:
+		//	DataManagerScript.playerOneReturns += 1;
+		//	break;
+		//case 2:
+		//	DataManagerScript.playerTwoReturns += 1;
+		//	break;
+		//case 3:
+		//	DataManagerScript.playerThreeReturns += 1;
+		//	break;
+		//case 4:
+		//	DataManagerScript.playerFourReturns += 1;
+		//	break;
+		//}
 
 		if (soloMode && ball.GetComponent<BallScript> ().lastXPos != 0) {
 			GameManagerScript.Instance.GetComponent<GameManagerScript>().rallyCount++;

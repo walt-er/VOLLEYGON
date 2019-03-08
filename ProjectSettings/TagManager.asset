@@ -23,6 +23,7 @@ TagManager:
   - IndividualChallengeManager
   - ChallengeManager
   - Background
+  - GameManager
   layers:
   - Default
   - TransparentFX

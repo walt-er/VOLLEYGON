@@ -13,7 +13,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 	public GameObject dash;
 	public bool scoreBoardShowing;
 
-    public int scorePlayedTo = 12;
+    public int scorePlayedTo = 11;
     public int team1Score = 0;
     public int team2Score = 0;
 	// Use this for initialization
@@ -26,7 +26,6 @@ public class ScoreboardManagerScript : MonoBehaviour {
 			Transform child = Team1Scores.transform.GetChild (i);
 			//child.gameObject.SetActive (false);
 			iTween.FadeTo (child.gameObject, 0f, .1f);
-
 		}
 
 		for (int j = 0; j < Team2Scores.transform.childCount; j++) {
@@ -92,29 +91,10 @@ public class ScoreboardManagerScript : MonoBehaviour {
         if (whichSide == 1)
         {
             team2Score += 1;
-
-
-            //TODO: Add a stats module
-            //ComputeStat(2);
-          
-            //if (lastScore != 2)
-            //{
-            //    MusicManagerScript.Instance.SwitchMusic(2);
-            //}
-
-            //lastScore = 2;
         }
         else
         {
             team1Score += 1;
-            //ComputeStat(1);
-
-            //if (lastScore != 1)
-            //{
-            //    MusicManagerScript.Instance.SwitchMusic(1);
-            //}
-
-            //lastScore = 1;
         }
 
         //CurrentArena.BroadcastMessage("ReturnColor");
@@ -184,6 +164,11 @@ public class ScoreboardManagerScript : MonoBehaviour {
                 background.GetComponent<BackgroundColorScript>().whoWon = 2;
                 background.GetComponent<BackgroundColorScript>().matchOver = true;
                 break;
+        }
+
+        if (GameObject.FindWithTag("GameManager"))
+        {
+            GameObject.FindWithTag("GameManager").BroadcastMessage("GameOver");
         }
     }
         void CheckForMatchPoint()

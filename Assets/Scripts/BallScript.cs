@@ -193,6 +193,8 @@ public class BallScript : MonoBehaviour {
             {
                 GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("OnBallReturned");
             }
+            moduleContainer.BroadcastMessage("OnBallReturned", lastTouch);
+            // TODO: Get Rid of this and use the modules instead
             GameManagerScript.Instance.SideChange ();
 
 			// Is this doing anything?
