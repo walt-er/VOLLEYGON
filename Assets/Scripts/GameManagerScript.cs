@@ -333,6 +333,7 @@ public class GameManagerScript : MonoBehaviour {
 		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
 		playerClone.GetComponent<PlayerController>().playerType = playerType;
 		playerClone.GetComponent<MeshRenderer> ().material = whichMat;
+        // Special case for circle shape
 		if (playerType == 1) {
 			playerClone.transform.Find ("Circle").GetComponent<CircleEfficient> ().Rebuild ();
 			playerClone.transform.Find ("Circle").GetComponent<MeshRenderer> ().material = whichMat;
@@ -368,39 +369,28 @@ public class GameManagerScript : MonoBehaviour {
 		Invoke ("LaunchStatsScreen", 5f);
 	}
 
-	// End game for team maches. TODO: Move to scoreboard manager
-	void teamWins(int whichTeam){
+    // End game for team maches. TODO: Move to scoreboard manager
+    void teamWins(int whichTeam)
+    {
 
-		switch (whichTeam) {
-		case 1:
-			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamOneWin ();
-			background.GetComponent<BackgroundColorScript> ().whoWon = 1;
-			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
+        //switch (whichTeam)
+        //{
+        //    case 1:
+        //        scoreboard.GetComponent<ScoreboardManagerScript>().TeamOneWin();
+        //        background.GetComponent<BackgroundColorScript>().whoWon = 1;
+        //        background.GetComponent<BackgroundColorScript>().matchOver = true;
+        //        background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
 
-			break;
-		case 2:
-			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamTwoWin ();
-			background.GetComponent<BackgroundColorScript> ().whoWon = 2;
-			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			break;
-		}
-		isGameOver = true;
-		if (!readyForReplay) {
-		//	EZReplayManager.get.stop ();
-			readyForReplay = true;
-		//	Invoke ("PlayReplay", 2f);
-		}
-
-		//EZReplayManager.get.play(-1,false,true,true);
-		//DataManagerScript.dataManager.teamOneWins += 1;
-		//Invoke ("LaunchTitleScreen", 5f);
-		Invoke ("LaunchStatsScreen", 5f);
-	}
-
-	void PlayReplay(){
-//		EZReplayManager.get.play (0, true, false, true);
-	}
+        //        break;
+        //    case 2:
+        //        scoreboard.GetComponent<ScoreboardManagerScript>().TeamTwoWin();
+        //        background.GetComponent<BackgroundColorScript>().whoWon = 2;
+        //        background.GetComponent<BackgroundColorScript>().matchOver = true;
+        //        break;
+        //}
+        isGameOver = true;
+        Invoke("LaunchStatsScreen", 5f);
+    }
 
 	void Update () {
 
@@ -420,29 +410,11 @@ public class GameManagerScript : MonoBehaviour {
 		if (timerRunning) {
 			gameTimer -= Time.deltaTime;
 		}
-
-		// Match point
-		if (teamOneScore >= scorePlayedTo && teamOneScore == teamTwoScore + 1) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore == teamOneScore + 1) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-		}
-
-		// Team wins
-		if (teamOneScore >= scorePlayedTo && teamOneScore > teamTwoScore + 1 && !isGameOver) {
-			teamWins (1);
-		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore > teamOneScore + 1 && !isGameOver) {
-			teamWins (2);
-		}
-
-		//if (!isGameOver) {
-		//	ConsiderAPowerup ();
-		//}
 	}
 
 	public void Pause(JoystickButtons buttons){
 		if (!paused) {
-			// Sho wpause
+			// Show pause
 			pausePanel.SetActive (true);
 
 			// Assign butons
