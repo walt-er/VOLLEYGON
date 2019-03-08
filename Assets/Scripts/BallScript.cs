@@ -284,9 +284,9 @@ public class BallScript : MonoBehaviour {
         {
             GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("BallDied", whichSide);
         }
-        else
+        else if (GameObject.FindWithTag("GameManager"))
         {
-            moduleContainer.BroadcastMessage("BallDied", whichSide);
+            GameObject.FindWithTag("GameManager").BroadcastMessage("OnBallDied", whichSide);
         }
 
       
@@ -434,14 +434,12 @@ public class BallScript : MonoBehaviour {
 
 				FireExplosion ();
 
-				// Only add a score if this ball is in scoring mode
-				if (scoringMode) {
-					Debug.Log ("trying to manage score");
-					GameManagerScript.Instance.ManageScore (this.transform.position.x);
-				} else {
-					GameManagerScript.Instance.ReturnArenaToOriginalColor();
-					DestroyBall ();
-				}
+				
+			
+                // TODO: Change this to some arena manager thingy
+				GameManagerScript.Instance.ReturnArenaToOriginalColor();
+                DestroyBall ();
+				
 			} else {
 
 				coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();

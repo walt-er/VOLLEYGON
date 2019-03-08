@@ -45,10 +45,12 @@ public class ScoreboardManagerScript : MonoBehaviour {
         // Team wins. //TODO: COuld this be moved to be checked just on score?
         if (team1Score >= scorePlayedTo && team1Score > team2Score + 1 && !isGameOver)
         {
+            Debug.Log("Team 1 wins!");
             teamWins(1);
         }
         else if (team2Score >= scorePlayedTo && team2Score > team1Score + 1 && !isGameOver)
         {
+            Debug.Log("Team 2 wins!");
             teamWins(2);
         }
     }
@@ -87,7 +89,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
 
     public void ManageScore(int whichSide)
     {
-
+        Debug.Log("Scoreboard is managing score");
         if (whichSide == 1)
         {
             team2Score += 1;

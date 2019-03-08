@@ -232,7 +232,8 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
-    void BallDied(int whichSide)
+    // Deprecate this.
+    void OnBallDied(int whichSide)
     {
         // These flags suck. Eventually pare down GameManager into components such as 'Ball Respawner' or whatever
         if (handleBalls)
@@ -247,7 +248,7 @@ public class GameManagerScript : MonoBehaviour {
     void SpawnNewBall()
     {
         GameObject newBall = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        newBall.transform.parent = gameObject.transform.parent.parent;
+        newBall.transform.parent = gameObject.transform.parent;
         IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
@@ -370,24 +371,8 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
     // End game for team maches. TODO: Move to scoreboard manager
-    void teamWins(int whichTeam)
+    public void GameOver()
     {
-
-        //switch (whichTeam)
-        //{
-        //    case 1:
-        //        scoreboard.GetComponent<ScoreboardManagerScript>().TeamOneWin();
-        //        background.GetComponent<BackgroundColorScript>().whoWon = 1;
-        //        background.GetComponent<BackgroundColorScript>().matchOver = true;
-        //        background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
-
-        //        break;
-        //    case 2:
-        //        scoreboard.GetComponent<ScoreboardManagerScript>().TeamTwoWin();
-        //        background.GetComponent<BackgroundColorScript>().whoWon = 2;
-        //        background.GetComponent<BackgroundColorScript>().matchOver = true;
-        //        break;
-        //}
         isGameOver = true;
         Invoke("LaunchStatsScreen", 5f);
     }
