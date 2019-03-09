@@ -47,11 +47,13 @@ public class ScoreboardManagerScript : MonoBehaviour {
         {
             Debug.Log("Team 1 wins!");
             teamWins(1);
+            isGameOver = true;
         }
         else if (team2Score >= scorePlayedTo && team2Score > team1Score + 1 && !isGameOver)
         {
             Debug.Log("Team 2 wins!");
             teamWins(2);
+            isGameOver = true;
         }
     }
 
@@ -101,15 +103,18 @@ public class ScoreboardManagerScript : MonoBehaviour {
 
         //CurrentArena.BroadcastMessage("ReturnColor");
 
-        if (team2Score < scorePlayedTo && team2Score < scorePlayedTo)
+        if (team1Score < scorePlayedTo && team2Score < scorePlayedTo)
         {
+            Debug.Log("Both scores are below the score played to...");
             if (team2Score == scorePlayedTo - 1 && team1Score == scorePlayedTo - 1)
             {
+                Debug.Log("Both scores are 1 below the scoreplayed to... this is a deuce");
                 enableNumbers(team1Score, team2Score, true);
                 background.GetComponent<BackgroundColorScript>().TurnOnDeuce();
             }
             else
             {
+                Debug.Log("It's not a deuce and no one has won, so show some scores");
                 enableNumbers(team1Score, team2Score, false);
             }
 
@@ -117,6 +122,7 @@ public class ScoreboardManagerScript : MonoBehaviour {
         }
         else if (Mathf.Abs(team1Score - team2Score) < 2)
         {
+            Debug.Log("One or more players are above or at the scoreplayed to, but no one has won by 2");
             if (team2Score >= scorePlayedTo || team1Score >= scorePlayedTo)
             {
                 //winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
@@ -143,6 +149,8 @@ public class ScoreboardManagerScript : MonoBehaviour {
             //{
             //    // tell gamemanager game is over
             //}
+            Debug.Log("the game should be over and no numbners should be shown");
+         
             transform.position = new Vector3(0f, 0f, 0f);
            
         }

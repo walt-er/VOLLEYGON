@@ -145,6 +145,7 @@ public class BallScript : MonoBehaviour {
 		didSirenPlayAlready = false;
 	}
 	public void LaunchBall(){
+        // TODO: just... make sure the game is still going before launching.
 		rb.isKinematic = false;
 		trail.SetActive (true);
 		//Send the ball in a random direction

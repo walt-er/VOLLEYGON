@@ -110,6 +110,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (handleBalls) {
             //ball.SetActive (true);
             //Invoke("LaunchBall", 3f);
+
             SpawnNewBall();
 		}
 		if (winText != null){
@@ -232,35 +233,44 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
-    // Deprecate this.
     void OnBallDied(int whichSide)
     {
         // These flags suck. Eventually pare down GameManager into components such as 'Ball Respawner' or whatever
         if (handleBalls)
         {
             Debug.Log("Game manager knows the ball has died");
-            // Received a message from the ball. It died. Spawn a new one.
-            SpawnNewBall();
+            Debug.Log("Is the game over?");
+            Debug.Log(isGameOver);
+            // Received a message from the ball. It died. Spawn a new one if the game is still going.
+            if (!isGameOver)
+            {
+                Invoke("SpawnNewBall", 1f);
+            }
         }
 
         }
 
     void SpawnNewBall()
     {
-        GameObject newBall = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        newBall.transform.parent = gameObject.transform.parent;
-        IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
-        StartCoroutine(coroutine_1);
-        // set ball's gravChangeMode to true;
-        Debug.Log("setting gravchange mode to true");
-
-        //TODO: Is there a better way to store these settins, which will be different for each mode?
-        newBall.GetComponent<BallScript>().gravChangeMode = true;
-        if (handleScore)
+        // Only spawn if game is still going.
+        if (!isGameOver)
         {
-            newBall.GetComponent<BallScript>().scoringMode = true;
+
+            GameObject newBall = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            newBall.transform.parent = gameObject.transform.parent;
+            IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
+            StartCoroutine(coroutine_1);
+            // set ball's gravChangeMode to true;
+            Debug.Log("setting gravchange mode to true");
+
+            //TODO: Is there a better way to store these settins, which will be different for each mode?
+            newBall.GetComponent<BallScript>().gravChangeMode = true;
+            if (handleScore)
+            {
+                newBall.GetComponent<BallScript>().scoringMode = true;
+            }
+            ball = newBall;
         }
-        ball = newBall;
     }
 
     void LaunchBall(){
@@ -374,6 +384,7 @@ public class GameManagerScript : MonoBehaviour {
     public void GameOver()
     {
         isGameOver = true;
+        Debug.Log("Game Over message received by game manager");
         Invoke("LaunchStatsScreen", 5f);
     }
 
@@ -586,75 +597,76 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void ManageScore(float ballPosition){
-		if (!soloMode) {
-			if (Mathf.Sign (ballPosition) < 0) {
-				teamTwoScore += 1;
-				ComputeStat (2);
-				if (lastScore != 2) {
-					MusicManagerScript.Instance.SwitchMusic (2);
-				}
+		//if (!soloMode) {
+		//	if (Mathf.Sign (ballPosition) < 0) {
+		//		teamTwoScore += 1;
+		//		ComputeStat (2);
+		//		if (lastScore != 2) {
+		//			MusicManagerScript.Instance.SwitchMusic (2);
+		//		}
 
-				lastScore = 2;
-			} else {
-				teamOneScore += 1;
-				ComputeStat (1);
+		//		lastScore = 2;
+		//	} else {
+		//		teamOneScore += 1;
+		//		ComputeStat (1);
 
-				if (lastScore != 1) {
-					MusicManagerScript.Instance.SwitchMusic (1);
-				}
+		//		if (lastScore != 1) {
+		//			MusicManagerScript.Instance.SwitchMusic (1);
+		//		}
 
-				lastScore = 1;
-			}
+		//		lastScore = 1;
+		//	}
 
-			CurrentArena.BroadcastMessage ("ReturnColor");
+		//	CurrentArena.BroadcastMessage ("ReturnColor");
 
-			if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
-				if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-					background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
-				} else {
+		//	if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
+		//		if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+		//			background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
+		//		} else {
 
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
-				}
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
+		//		}
 
-				CheckForMatchPoint ();
+		//		CheckForMatchPoint ();
 
-				ball.GetComponent<BallScript> ().ResetBall ();
-				//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
-				//Destroy (gameObject);
-			} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
-				if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
-					//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-					MusicManagerScript.Instance.StartFifth ();
-					CheckForMatchPoint ();
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-				}
-				ball.GetComponent<BallScript> ().ResetBall ();
+		//		ball.GetComponent<BallScript> ().ResetBall ();
+		//		//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
+		//		//Destroy (gameObject);
+		//	} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
+		//		if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+		//			//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+		//			MusicManagerScript.Instance.StartFifth ();
+		//			CheckForMatchPoint ();
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+		//		}
+		//		ball.GetComponent<BallScript> ().ResetBall ();
 
-			} else {
-				// GAME IS OVER
-				transform.position = new Vector3 (0f, 0f, 0f);
-                ball.SetActive(false);
-			}
-		}
-		// If you're in one player mode....
-	 	else {
-			// single mode
-			soloModeBalls--;
-			// Debug.Log ("scored");
-			// generate a random number between one and two
-			int randomTrack = Random.Range (1, 3);
-			MusicManagerScript.Instance.SwitchMusic (randomTrack);
-			if (soloModeBalls <= 0) {
-				// GAME IS OVER
-				transform.position = new Vector3 (0f, 0f, 0f);
-				gameObject.SetActive (false);
-				GameManagerScript.Instance.endGame ();
-			} else {
-				// Hide ball on game over
-				ball.SetActive(false);
-			}
-		}
+		//	} else {
+		//		// GAME IS OVER
+		//		transform.position = new Vector3 (0f, 0f, 0f);
+  //              ball.SetActive(false);
+  //              isGameOver = true;
+		//	}
+		//}
+		//// If you're in one player mode....
+	 //	else {
+		//	// single mode
+		//	soloModeBalls--;
+		//	// Debug.Log ("scored");
+		//	// generate a random number between one and two
+		//	int randomTrack = Random.Range (1, 3);
+		//	MusicManagerScript.Instance.SwitchMusic (randomTrack);
+		//	if (soloModeBalls <= 0) {
+		//		// GAME IS OVER
+		//		transform.position = new Vector3 (0f, 0f, 0f);
+		//		gameObject.SetActive (false);
+		//		GameManagerScript.Instance.endGame ();
+		//	} else {
+		//		// Hide ball on game over
+		//		ball.SetActive(false);
+		//	}
+		//}
 	}
 }
 
