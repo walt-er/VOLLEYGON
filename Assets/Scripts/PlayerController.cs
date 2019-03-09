@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
     // Powerup flags and timers
     public float penaltyTimer;
-    private bool penaltyTimerActive = false;
+    public bool penaltyTimerActive = false;
 
     private float speedPowerupTimer;
     private bool speedPowerupActive = false;
@@ -222,6 +222,12 @@ public class PlayerController : MonoBehaviour {
 	void Update() {
         if (transform.parent.tag != "FakePlayer")
         {
+            if (inPenalty && GameManagerScript.Instance != null
+                && !GameManagerScript.Instance.paused
+                && !GameManagerScript.Instance.recentlyPaused)
+            {
+                ManagePenalty();
+            }
 
             if (!inPenalty
                 && buttons != null
@@ -261,6 +267,7 @@ public class PlayerController : MonoBehaviour {
 
 	            ClampPosition();
 	            ManagePowerups();
+
 	        }
         }
 	}
@@ -297,7 +304,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void EnableShapeAndCollider()  {
-
+        Debug.Log("Enabling shape");
         // Enable trail
         trail.SetActive(true);
         trail.GetComponent<Trail>().ClearSystem(true);
@@ -323,7 +330,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionStay2D(Collision2D collisionInfo) {
-
 		if (collisionInfo.gameObject.tag == "Playfield") {
 		//	Debug.Log ("stay with playfield");
 		//	GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
@@ -414,7 +420,25 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void ManagePowerups(){
+    void ManagePenalty()
+    {
+        Debug.Log(penaltyTimerActive);
+        if (penaltyTimerActive)
+        {
+            Debug.Log("Penalty timer going down");
+            Debug.Log(penaltyTimer);
+            penaltyTimer -= Time.deltaTime;
+
+            if (penaltyTimer <= 0f)
+            {
+                penaltyTimerActive = false;
+                ReturnFromPenalty();
+            }
+        }
+    }
+
+    void ManagePowerups(){
+        Debug.Log("Managing powerups");
 		if (speedPowerupActive) {
 			speedPowerupTimer -= Time.deltaTime;
 
@@ -454,19 +478,10 @@ public class PlayerController : MonoBehaviour {
 				RestoreMidpointMarker();
 			}
 		}
-
-		if (penaltyTimerActive) {
-			penaltyTimer -= Time.deltaTime;
-
-			if (penaltyTimer <= 0) {
-				penaltyTimerActive = false;
-				ReturnFromPenalty ();
-			}
-		}
 	}
 
 	void ReturnFromPenalty() {
-
+        Debug.Log("Returning from penalty");
         // Remove flag
         inPenalty = false;
 
