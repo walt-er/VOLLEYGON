@@ -57,16 +57,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	private bool OnePlayerMode;
 
-	// Hold references to each of the arenas. TODO: Can't this just be an array?
-	public GameObject Arena1;
-	public GameObject Arena2;
-	public GameObject Arena3;
-	public GameObject Arena4;
-	public GameObject Arena5;
-	public GameObject Arena6;
-	public GameObject Arena7;
-	public GameObject Arena8;
-	public GameObject Arena9;
+    public GameObject[] Arenas;
+
 
 	public GameObject CurrentArena;
 
@@ -116,55 +108,10 @@ public class GameManagerScript : MonoBehaviour {
 
 		// Set up arena based on options
 		arenaType = DataManagerScript.arenaType;
-
-		// This is so dumb.
 		if (handleArenas) {
-			switch (arenaType) {
-
-			case 1:
-				Arena1.SetActive (true);
-				break;
-
-			case 2:
-				Arena2.SetActive (true);
-				break;
-
-			case 3:
-				Arena3.SetActive (true);
-				break;
-
-			case 4:
-				Arena4.SetActive (true);
-				break;
-
-			case 5:
-				Arena5.SetActive (true);
-				break;
-
-			case 6:
-				Arena6.SetActive (true);
-				break;
-
-			case 7:
-				Arena7.SetActive (true);
-				break;
-
-			case 8:
-				Arena8.SetActive (true);
-				break;
-
-			case 9:
-				Arena9.SetActive (true);
-				break;
-
-			default:
-				Arena1.SetActive (true);
-				break;
-
-			}
+            Arenas[arenaType - 1].SetActive(true);
 		}
 		
-
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
 
