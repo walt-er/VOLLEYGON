@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour {
     public bool isJumping = false;
     private bool inPenalty = false;
     private bool canMove = true;
-	private bool recentlyPaused = false;
 
     // Particle system
 	public ParticleSystem ps;
@@ -223,8 +222,8 @@ public class PlayerController : MonoBehaviour {
         if (transform.parent.tag != "FakePlayer")
         {
             if (inPenalty && GameManagerScript.Instance != null
-                && !GameManagerScript.Instance.paused
-                && !GameManagerScript.Instance.recentlyPaused)
+                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused
+                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().recentlyPaused)
             {
                 ManagePenalty();
             }
@@ -233,8 +232,8 @@ public class PlayerController : MonoBehaviour {
                 && buttons != null
                 && buttons.jump != null
                 && GameManagerScript.Instance != null
-                && !GameManagerScript.Instance.paused
-                && !GameManagerScript.Instance.recentlyPaused)
+                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused
+                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().recentlyPaused)
             {
 
                 // Handle jumping
@@ -251,7 +250,7 @@ public class PlayerController : MonoBehaviour {
                 }
 
                 // Handle gravity switch
-                if (Input.GetButtonDown(buttons.grav) && rb != null && !GameManagerScript.Instance.paused)
+                if (Input.GetButtonDown(buttons.grav) && rb != null && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused)
                 {
                     rb.gravityScale *= -1f;
                     SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
@@ -260,9 +259,9 @@ public class PlayerController : MonoBehaviour {
             	// Handle start button
             	if (Input.GetButtonDown(buttons.start)
             		&& GameManagerScript.Instance != null
-	                && !GameManagerScript.Instance.paused)
+	                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused)
 	                {
-                    GameManagerScript.Instance.Pause(buttons);
+                    GameManagerScript.Instance.GetComponent<PauseManagerScript>().Pause(buttons);
                 }
 
 	            ClampPosition();

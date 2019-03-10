@@ -361,6 +361,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 0}
   trail: {fileID: 1755531475}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -2966,6 +2967,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 108616, guid: d0cbb75be89ae449082865ff56811ed8, type: 3}
   trail: {fileID: 810207304}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -4722,6 +4724,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 0}
   trail: {fileID: 1461331819}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -5028,6 +5031,7 @@ GameObject:
   - component: {fileID: 685068964}
   - component: {fileID: 685068963}
   - component: {fileID: 685068965}
+  - component: {fileID: 685068966}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -5060,11 +5064,8 @@ MonoBehaviour:
   isGameOver: 0
   scorePlayedTo: 11
   arenaType: 0
-  paused: 0
-  recentlyPaused: 0
   gravityIndicator: {fileID: 1166926510}
   playerClonePrefab: {fileID: 103506, guid: f1f0da2e2f4204fccb420a80b6585ce7, type: 3}
-  pausePanel: {fileID: 690586221}
   lastScore: 0
   bouncesOnBottom: 0
   bouncesOnTopLeft: 0
@@ -5100,7 +5101,6 @@ MonoBehaviour:
   startButton2: Start_P2
   startButton3: Start_P3
   startButton4: Start_P4
-  es: {fileID: 452662710}
 --- !u!4 &685068964
 Transform:
   m_ObjectHideFlags: 0
@@ -5131,6 +5131,22 @@ MonoBehaviour:
   gravChangeModuleOn: 1
   scoreboardModuleOn: 1
   statsModuleOn: 1
+--- !u!114 &685068966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685068962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d62972ede7c47ecbe384b2f1ee72cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paused: 0
+  recentlyPaused: 0
+  pausePanel: {fileID: 690586221}
+  es: {fileID: 452662710}
 --- !u!1 &690586221
 GameObject:
   m_ObjectHideFlags: 0
@@ -7958,6 +7974,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 0}
   trail: {fileID: 1568223550}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -8520,6 +8537,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 108616, guid: d0cbb75be89ae449082865ff56811ed8, type: 3}
   trail: {fileID: 1872936721}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -11212,6 +11230,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 108616, guid: d0cbb75be89ae449082865ff56811ed8, type: 3}
   trail: {fileID: 1515094836}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}
@@ -14847,6 +14866,7 @@ MonoBehaviour:
   penaltyExplosion: {fileID: 0}
   trail: {fileID: 25047247}
   penaltyTimer: 0
+  penaltyTimerActive: 0
   jumpSound1: {fileID: 8300000, guid: 3faec0f123c0246cf85fee3ac1209730, type: 3}
   jumpSound2: {fileID: 8300000, guid: 91668d08d748a4314b28d5ba4db24e66, type: 3}
   landSound: {fileID: 8300000, guid: c4b2ac9100a824a92996d9ac50eded73, type: 3}

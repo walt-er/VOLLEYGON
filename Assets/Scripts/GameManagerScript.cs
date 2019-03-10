@@ -24,12 +24,9 @@ public class GameManagerScript : MonoBehaviour {
 	public bool isGameOver;
 	public int scorePlayedTo = 11;
 	public int arenaType;
-	public bool paused = false;
-	public bool recentlyPaused = false;
 	private float timeSinceLastPowerup;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
-	public GameObject pausePanel;
 	public int lastScore;
 	public int bouncesOnBottom;
 	public int bouncesOnTopLeft;
@@ -78,7 +75,7 @@ public class GameManagerScript : MonoBehaviour {
 	public string startButton3 = "Start_P3";
 	public string startButton4 = "Start_P4";
 
-	public EventSystem es;
+	//public EventSystem es;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -402,46 +399,46 @@ public class GameManagerScript : MonoBehaviour {
 		}
 	}
 
-	public void Pause(JoystickButtons buttons){
-		if (!paused) {
-			// Show pause
-			pausePanel.SetActive (true);
+	//public void Pause(JoystickButtons buttons){
+	//	if (!paused) {
+	//		// Show pause
+	//		pausePanel.SetActive (true);
 
-			// Assign butons
-            es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
-            es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
-            es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
-            es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
+	//		// Assign butons
+ //           es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
+ //           es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
+ //           es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
+ //           es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
 
-            // Reset menu
-			es.SetSelectedGameObject(null);
-			es.SetSelectedGameObject(es.firstSelectedGameObject);
-			MusicManagerScript.Instance.TurnOffEverything ();
-			SoundManagerScript.instance.muteSFX ();
-			//TODO: Move the ball's SFX to sound manager script
-			ball.GetComponent<BallScript>().Pause ();
-			Time.timeScale = 0;
-			paused = true;
-		}
-	}
+ //           // Reset menu
+	//		es.SetSelectedGameObject(null);
+	//		es.SetSelectedGameObject(es.firstSelectedGameObject);
+	//		MusicManagerScript.Instance.TurnOffEverything ();
+	//		SoundManagerScript.instance.muteSFX ();
+	//		//TODO: Move the ball's SFX to sound manager script
+	//		ball.GetComponent<BallScript>().Pause ();
+	//		Time.timeScale = 0;
+	//		paused = true;
+	//	}
+	//}
 
-	public void Unpause(){
-		if (paused){
-			Time.timeScale = 1;
-			paused = false;
-			pausePanel.SetActive (false);
-			recentlyPaused = true;
-			MusicManagerScript.Instance.RestoreFromPause ();
-			//TODO: Move the ball's SFX to sound manager script
-			SoundManagerScript.instance.unMuteSFX ();
-			ball.GetComponent<BallScript>().UnPause ();
-			Invoke ("CancelRecentlyPaused", 0.1f);
-		}
-	}
+	//public void Unpause(){
+	//	if (paused){
+	//		Time.timeScale = 1;
+	//		paused = false;
+	//		pausePanel.SetActive (false);
+	//		recentlyPaused = true;
+	//		MusicManagerScript.Instance.RestoreFromPause ();
+	//		//TODO: Move the ball's SFX to sound manager script
+	//		SoundManagerScript.instance.unMuteSFX ();
+	//		ball.GetComponent<BallScript>().UnPause ();
+	//		Invoke ("CancelRecentlyPaused", 0.1f);
+	//	}
+	//}
 
-	public void CancelRecentlyPaused(){
-		recentlyPaused = false;
-	}
+	//public void CancelRecentlyPaused(){
+	//	recentlyPaused = false;
+	//}
     public void QuitGame()
     {
         SceneManager.LoadSceneAsync("TitleScene");
@@ -469,86 +466,6 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
-	public void ComputeStat(int whichTeamScored){
-		//if (whichTeamScored == 1) {
-		//	if (lastTouch == 1) {
-		//		DataManagerScript.playerOneAces += 1;
-		//		DataManagerScript.playerOneScores += 1;
-		//	}
-		//	if (lastTouch == 2) {
-		//		DataManagerScript.playerTwoAces += 1;
-		//		DataManagerScript.playerTwoScores += 1;
-		//	}
-
-		//	if (lastTouch == 3) {
-		//		if (secondToLastTouch == 1) {
-		//			DataManagerScript.playerOneScores += 1;
-		//		}
-		//		if (secondToLastTouch == 2) {
-		//			DataManagerScript.playerTwoScores += 1;
-		//		}
-		//		if (secondToLastTouch == 3) {
-		//			DataManagerScript.playerThreeBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 4) {
-		//			DataManagerScript.playerThreeBumbles += 1;
-		//		}
-		//	}
-		//	if (lastTouch == 4) {
-		//		if (secondToLastTouch == 1) {
-		//			DataManagerScript.playerOneScores += 1;
-		//		}
-		//		if (secondToLastTouch == 2) {
-		//			DataManagerScript.playerTwoScores += 1;
-		//		}
-		//		if (secondToLastTouch == 3) {
-		//			DataManagerScript.playerFourBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 4) {
-		//			DataManagerScript.playerFourBumbles += 1;
-		//		}
-		//	}
-		//}
-		//if (whichTeamScored == 2) {
-		//	if (lastTouch == 3) {
-		//		DataManagerScript.playerThreeAces += 1;
-		//		DataManagerScript.playerThreeScores += 1;
-		//	}
-		//	if (lastTouch == 4) {
-		//		DataManagerScript.playerFourAces += 1;
-		//		DataManagerScript.playerFourScores += 1;
-		//	}
-
-		//	if (lastTouch == 1) {
-		//		if (secondToLastTouch == 1) {
-		//			DataManagerScript.playerOneBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 2) {
-		//			DataManagerScript.playerOneBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 3) {
-		//			DataManagerScript.playerThreeScores += 1;
-		//		}
-		//		if (secondToLastTouch == 4) {
-		//			DataManagerScript.playerFourScores += 1;
-		//		}
-		//	}
-		//	if (lastTouch == 2) {
-		//		if (secondToLastTouch == 1) {
-		//			DataManagerScript.playerTwoBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 2) {
-		//			DataManagerScript.playerTwoBumbles += 1;
-		//		}
-		//		if (secondToLastTouch == 3) {
-		//			DataManagerScript.playerThreeScores += 1;
-		//		}
-		//		if (secondToLastTouch == 4) {
-		//			DataManagerScript.playerFourScores += 1;
-		//		}
-		//	}
-		//}
-	}
 	public void SideChange(){
 		bounces = 0;
 		bouncesOnBottom = 0;
