@@ -438,7 +438,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ManagePowerups(){
-        Debug.Log("Managing powerups");
+       //Debug.Log("Managing powerups");
 		if (speedPowerupActive) {
 			speedPowerupTimer -= Time.deltaTime;
 

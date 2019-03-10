@@ -45,6 +45,7 @@ public class BallScript : MonoBehaviour {
 	// Ball options
 	public bool gravChangeMode = true;
 	public bool scoringMode = false;
+    public bool startWithRandomGrav = false;
 
 	GameObject CurrentArena;
 
@@ -65,21 +66,22 @@ public class BallScript : MonoBehaviour {
 	// Use this for initialization
 
 	void Awake(){
-		// Debug.Log (GameManagerScript.Instance.CurrentArena);
-		// CurrentArena = GameManagerScript.Instance.CurrentArena;
-		// Debug.Log ("assign arena");
-       
-	}
+        // Debug.Log (GameManagerScript.Instance.CurrentArena);
+        // CurrentArena = GameManagerScript.Instance.CurrentArena;
+        // Debug.Log ("assign arena");
+        // Cahce local components
+        audio = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>();
+        theSprite = GetComponent<SpriteRenderer>().sprite;
+
+    }
 
 	void Start () {
         // Cache other objects to broadcast to
         moduleContainer = GameObject.FindWithTag("ModuleContainer");
         CurrentArena = GameObject.FindWithTag("Arena");
 
-        // Cahce local components
-        audio = GetComponent<AudioSource> ();
-        rb = GetComponent<Rigidbody2D>();
-        theSprite = GetComponent<SpriteRenderer>().sprite;
+      
 
         didSirenPlayAlready = false;
 		flashTime = 0f;
@@ -89,9 +91,32 @@ public class BallScript : MonoBehaviour {
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ;
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
+        if (startWithRandomGrav)
+        {
+            ChooseRandomGrav();
+        }
 	}
 
-	void Update () {
+    public void ChooseRandomGrav()
+    {
+        int signValue = Random.Range(0, 2) * 2 - 1;
+        rb.gravityScale = originalGrav * signValue;
+        Debug.Log(originalGrav);
+        if (Mathf.Sign(rb.gravityScale) < 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+            redball.SetActive(true);
+            //blueball.SetActive (false);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = originalSprite;
+            blueball.SetActive(true);
+            redball.SetActive(false);
+        }
+    }
+
+    void Update () {
 
 		if(rb.velocity.magnitude > maxSpeed)
 		{

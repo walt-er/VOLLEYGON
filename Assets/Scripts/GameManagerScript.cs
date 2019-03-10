@@ -60,7 +60,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	private bool OnePlayerMode;
 
-	// Hold references to each of the arenas
+	// Hold references to each of the arenas. TODO: Can't this just be an array?
 	public GameObject Arena1;
 	public GameObject Arena2;
 	public GameObject Arena3;
@@ -79,9 +79,6 @@ public class GameManagerScript : MonoBehaviour {
 	public string startButton4 = "Start_P4";
 
 	public EventSystem es;
-
-	//public int lastTouch;
-	//public int secondToLastTouch;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -104,20 +101,14 @@ public class GameManagerScript : MonoBehaviour {
 		timeSinceLastPowerup = 0f;
 		soloModeBalls = 3;
 		readyForReplay = false;
-		//lastTouch = 0;
-		//secondToLastTouch = 0;
-
+		
 		if (handleBalls) {
-            //ball.SetActive (true);
-            //Invoke("LaunchBall", 3f);
-
             SpawnNewBall();
 		}
 		if (winText != null){
 			winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		}
-		// Invoke ("StartReplay", 2f);
-
+		
 		rallyCount = 0;
 
         // Fade in
@@ -269,6 +260,9 @@ public class GameManagerScript : MonoBehaviour {
             {
                 newBall.GetComponent<BallScript>().scoringMode = true;
             }
+
+            // Add a random grav sign based on flag
+            newBall.GetComponent<BallScript>().startWithRandomGrav = true;
             ball = newBall;
         }
     }
