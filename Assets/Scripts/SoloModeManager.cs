@@ -50,21 +50,6 @@ public class SoloModeManager : MonoBehaviour {
                 ChallengeManagerScript.Instance.ChallengeSucceed();
                 challengeOver = true;
             }
-            //Check for victory
-            //if (!pad_1.active && !pad_2.active && !pad_3.active){
-            //  ChallengeManagerScript.Instance.ChallengeSucceed();
-            //}
-            //for (int i = 0; i < pads.Length; i++)
-            //{
-            //    if (pads[i].active)
-            //    {
-            //        return;
-            //    }
-            //}
-            //ChallengeManagerScript.Instance.ChallengeSucceed();
-
-
-
         }
     }
 
@@ -99,6 +84,7 @@ public class SoloModeManager : MonoBehaviour {
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
+        ball_1.GetComponent<BallScript>().startWithRandomGrav = true;
     }
 
 

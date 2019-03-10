@@ -69,13 +69,14 @@ public class Challenge_Script_AIs : MonoBehaviour
     {
         GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
         ball_1.transform.parent = gameObject.transform.parent;
-        IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().CustomLaunchBallWithDelay(2f, -6f, 10f);
+        IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().LaunchBallWithDelay(2f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         //TODO: Make these a public property
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
+        ball_1.GetComponent<BallScript>().startWithRandomGrav = true;
     }
 
 

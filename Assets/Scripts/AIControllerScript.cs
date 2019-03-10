@@ -34,12 +34,17 @@ public class AIControllerScript : MonoBehaviour {
 
 	public TextMesh pandemoniumCounter;
 
+    // Variables that refine the AIs movement
 
 	public float distanceMaxThreshold;
 	public float distanceMinThreshold;
-	public float responsivenessRate;
+    public float verticalMaxDistance = 20f; // Set arbitrarily high.
+    public float maxHorizontalJumpDistance = 2f; // 2f is a legacy value and probably too high.
+    public float responsivenessRate;
     public float netSafeDistance = 0f;
+    public float backWallSafeDistance = 17.8f;
     public float distanceToTriggerJump = 4f;
+    public float changeDirectionRate = .7f;
     public bool moveAwayOnIdle = false;
 	public GameObject trail;
 	public GameObject ball;
@@ -157,6 +162,18 @@ public class AIControllerScript : MonoBehaviour {
         ball = GameObject.FindWithTag("Ball");
     }
 
+    bool IsOnSameSide(GameObject currentBall)
+    {
+        if ((transform.position.x > 0 && currentBall.transform.position.x > 0) || (transform.position.x > 0 && currentBall.transform.position.x > 0))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     void CheckForMove(){
         if (ball != null)
         {
@@ -169,25 +186,25 @@ public class AIControllerScript : MonoBehaviour {
 
 
                 // only move if the ball is close, but not too close
-                if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold)
+                if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.y - transform.position.y) <= verticalMaxDistance && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold && IsOnSameSide(ball))
                 {
                     // Move toward the ball... but not if too close to the net as defined by netSafeDistance (default 0)
                     if (ball.transform.position.x < transform.position.x)
                     {
                         moveHorizontal = -1f;
-                        if (Mathf.Abs(transform.position.x) < netSafeDistance && team == 2)
-                        {
+                        //if (Mathf.Abs(transform.position.x) <= netSafeDistance && team == 2 || Mathf.Abs(transform.position.x) >= backWallSafeDistance && team == 2)
+                        //{
 
-                            moveHorizontal = 0f;
-                        }
+                        //    moveHorizontal = 0f;
+                        //}
                     }
                     else if (ball.transform.position.x > transform.position.x)
                     {
                         moveHorizontal = 1f;
-                        if (Mathf.Abs(transform.position.x) < netSafeDistance && team == 1)
-                        {
-                            moveHorizontal = 0f;
-                        }
+                        //if (Mathf.Abs(transform.position.x) <= netSafeDistance && team == 1 || Mathf.Abs(transform.position.x) >= backWallSafeDistance && team == 1)
+                        //{
+                        //    moveHorizontal = 0f;
+                        //}
                     }
                 }
                 else
@@ -202,6 +219,10 @@ public class AIControllerScript : MonoBehaviour {
                                 if (transform.position.x > -10f)
                                 {
                                     moveHorizontal = -.2f;
+                                } 
+                                else if (transform.position.x < -10f)
+                                {
+                                    moveHorizontal = .2f;
                                 }
                                 else
                                 {
@@ -213,6 +234,10 @@ public class AIControllerScript : MonoBehaviour {
                                 if (transform.position.x < 10f)
                                 {
                                     moveHorizontal = .2f;
+                                } 
+                                else if (transform.position.x > 10f)
+                                {
+                                    moveHorizontal = -.2f;
                                 }
                                 else
                                 {
@@ -236,12 +261,11 @@ public class AIControllerScript : MonoBehaviour {
             {
                 GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
             }
+
+
             Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-            v3.x = Mathf.Lerp(GetComponent<Rigidbody2D>().velocity.x, (moveHorizontal * speed), .2f);
+            v3.x = Mathf.Lerp(GetComponent<Rigidbody2D>().velocity.x, (moveHorizontal * speed), changeDirectionRate);
 
-
-
-            //TODO: Movement seems jerky. Maybe this should be a force? Or how can this be smoothed? Maybe lerp between current velocity and new velocity?
             GetComponent<Rigidbody2D>().velocity = v3;
         }
 	}
@@ -249,9 +273,10 @@ public class AIControllerScript : MonoBehaviour {
 	void CheckForJump(){
 
         // Only jump if ball is above (or below, depending on grav state) shape and within a certain distance (distanceToTriggerJump, set to default 4f)
+        // TODO: There should be a minimum jump distance so an AI doesn't jump if the ball is, say, level with the AI. 
         if (ball)
         {
-            if (isJumping == false && Mathf.Abs(ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs(ball.transform.position.y - transform.position.y) <= distanceToTriggerJump)
+            if (isJumping == false && Mathf.Abs(ball.transform.position.x - transform.position.x) <= maxHorizontalJumpDistance && Mathf.Abs(ball.transform.position.y - transform.position.y) <= distanceToTriggerJump && Mathf.Abs(ball.transform.position.y - transform.position.y) >= .6f)
             {
                 Vector3 jumpForce = new Vector3(0f, jumpPower * rb.gravityScale, 0f);
                 rb.AddForce(jumpForce);
