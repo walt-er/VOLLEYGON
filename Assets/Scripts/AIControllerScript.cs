@@ -135,6 +135,7 @@ public class AIControllerScript : MonoBehaviour {
 	}
 
 	void Update(){
+        Debug.Log(moveHorizontal);
 
         if (ball == null)
         {
@@ -290,26 +291,12 @@ public class AIControllerScript : MonoBehaviour {
         if (ball)
         {
             if (ball.GetComponent<Rigidbody2D>().gravityScale > 0)
-            {
-                if (playerID % 2 == 1)
-                {
-                    rb.gravityScale = 1;
-                }
-                else if (playerID % 2 == 0)
-                {
-                    rb.gravityScale = -1;
-                }
+            {   // TODO: Add an option for 'inverse' or opposite grav as the ball
+                rb.gravityScale = 1;
             }
             else
             {
-                if (playerID % 2 == 1)
-                {
-                    rb.gravityScale = -1;
-                }
-                else if (playerID % 2 == 0)
-                {
-                    rb.gravityScale = 1;
-                }
+                rb.gravityScale = -1; 
             }
         }
 	}
