@@ -24,9 +24,12 @@ public class GameManagerScript : MonoBehaviour {
 	public bool isGameOver;
 	public int scorePlayedTo = 11;
 	public int arenaType;
+	public bool paused = false;
+	public bool recentlyPaused = false;
 	private float timeSinceLastPowerup;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
+	public GameObject pausePanel;
 	public int lastScore;
 	public int bouncesOnBottom;
 	public int bouncesOnTopLeft;
@@ -67,7 +70,7 @@ public class GameManagerScript : MonoBehaviour {
 	public string startButton3 = "Start_P3";
 	public string startButton4 = "Start_P4";
 
-	//public EventSystem es;
+	public EventSystem es;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -90,14 +93,14 @@ public class GameManagerScript : MonoBehaviour {
 		timeSinceLastPowerup = 0f;
 		soloModeBalls = 3;
 		readyForReplay = false;
-		
+
 		if (handleBalls) {
             SpawnNewBall();
 		}
 		if (winText != null){
 			winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		}
-		
+
 		rallyCount = 0;
 
         // Fade in
@@ -111,7 +114,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (handleArenas) {
             Arenas[arenaType - 1].SetActive(true);
 		}
-		
+
 		int playersActive = 0;
 		int whichSoloPlayer = 0;
 
@@ -346,46 +349,47 @@ public class GameManagerScript : MonoBehaviour {
 		}
 	}
 
-	//public void Pause(JoystickButtons buttons){
-	//	if (!paused) {
-	//		// Show pause
-	//		pausePanel.SetActive (true);
+	public void Pause(JoystickButtons buttons){
+		if (!paused) {
+			// Show pause
+			pausePanel.SetActive (true);
 
-	//		// Assign butons
- //           es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
- //           es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
- //           es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
- //           es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
+			// Assign butons
+           es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
+           es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
+           es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
+           es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
 
- //           // Reset menu
-	//		es.SetSelectedGameObject(null);
-	//		es.SetSelectedGameObject(es.firstSelectedGameObject);
-	//		MusicManagerScript.Instance.TurnOffEverything ();
-	//		SoundManagerScript.instance.muteSFX ();
-	//		//TODO: Move the ball's SFX to sound manager script
-	//		ball.GetComponent<BallScript>().Pause ();
-	//		Time.timeScale = 0;
-	//		paused = true;
-	//	}
-	//}
+           // Reset menu
+			es.SetSelectedGameObject(null);
+			es.SetSelectedGameObject(es.firstSelectedGameObject);
+			MusicManagerScript.Instance.TurnOffEverything ();
+			SoundManagerScript.instance.muteSFX ();
+			//TODO: Move the ball's SFX to sound manager script
+			ball.GetComponent<BallScript>().Pause ();
+			Time.timeScale = 0;
+			paused = true;
+		}
+	}
 
-	//public void Unpause(){
-	//	if (paused){
-	//		Time.timeScale = 1;
-	//		paused = false;
-	//		pausePanel.SetActive (false);
-	//		recentlyPaused = true;
-	//		MusicManagerScript.Instance.RestoreFromPause ();
-	//		//TODO: Move the ball's SFX to sound manager script
-	//		SoundManagerScript.instance.unMuteSFX ();
-	//		ball.GetComponent<BallScript>().UnPause ();
-	//		Invoke ("CancelRecentlyPaused", 0.1f);
-	//	}
-	//}
+	public void Unpause(){
+		if (paused){
+			Time.timeScale = 1;
+			paused = false;
+			pausePanel.SetActive (false);
+			recentlyPaused = true;
+			MusicManagerScript.Instance.RestoreFromPause ();
+			//TODO: Move the ball's SFX to sound manager script
+			SoundManagerScript.instance.unMuteSFX ();
+			ball.GetComponent<BallScript>().UnPause ();
+			Invoke ("CancelRecentlyPaused", 0.1f);
+		}
+	}
 
-	//public void CancelRecentlyPaused(){
-	//	recentlyPaused = false;
-	//}
+	public void CancelRecentlyPaused(){
+		recentlyPaused = false;
+	}
+
     public void QuitGame()
     {
         SceneManager.LoadSceneAsync("TitleScene");

@@ -70,7 +70,7 @@ public class TitleManagerScript : MonoBehaviour {
 
 						#if UNITY_XBOXONE
 							// Sign in if active player is not associated with this controller
-							if (XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
+							if (DataManagerScript.xboxMode && XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
 
 								DataManagerScript.shouldActivateMenu = true;
 								UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
@@ -91,7 +91,7 @@ public class TitleManagerScript : MonoBehaviour {
 
                 #if UNITY_XBOXONE
 					// Listen for user change (Y button)
-					if (Input.GetButtonDown(gamepads[i].y) {
+					if (Input.GetButtonDown(gamepads[i].y)) {
 
 						// Back out and log in again if active player presses Y
 						if (gamepadIndex == DataManagerScript.gamepadControllingMenus) {
