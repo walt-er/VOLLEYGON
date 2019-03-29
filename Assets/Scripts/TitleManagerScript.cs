@@ -157,7 +157,14 @@ public class TitleManagerScript : MonoBehaviour {
 	public void SetUpSinglePlayerMenu (){
 		es1.SetSelectedGameObject(soloModeButton);
 	}
-	public void StartMultiplayerGame(){
+
+    public void StartSoloModeGame()
+    {
+        //TODO: This should be a different scene, specifically for choosing ONE shape.
+        SceneManager.LoadSceneAsync("ChooseSinglePlayerScene");
+    }
+
+    public void StartMultiplayerGame(){
 		SceneManager.LoadSceneAsync ("ChoosePlayerScene");
 	}
 	public void StartChallengesGame(){
