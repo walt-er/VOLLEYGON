@@ -109,9 +109,17 @@ public class GameManagerScript : MonoBehaviour {
             GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
         }
 
-		// Set up arena based on options
-		arenaType = DataManagerScript.arenaType;
-		if (handleArenas) {
+        // Set up arena based on options
+        arenaType = DataManagerScript.arenaType;
+
+        // If no arena is selected (Solo mode, testing, etc., just choose the balanced arena (2)
+
+        if (arenaType == 0)
+        {
+            arenaType = 2;
+        }
+
+        if (handleArenas) {
             Arenas[arenaType - 1].SetActive(true);
 		}
 

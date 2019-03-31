@@ -204,8 +204,17 @@ public class ChoosePlayerScript : MonoBehaviour {
 		if (!locked) {
 			locked = true;
             yield return new WaitForSeconds (GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f));
-			SceneManager.LoadSceneAsync ("chooseArenaScene");
-		}
+            Debug.Log("Solo mode?");
+            Debug.Log(soloMode);
+            if (!soloMode)
+            {
+                SceneManager.LoadSceneAsync("chooseArenaScene");
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync("soloGameScene");
+            }
+        }
 	}
 
 	void exitIfNoOtherGamepads() {
@@ -241,11 +250,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 				// Start game if startable and gamepad not tagged in
 				if (gameIsStartable && gamepadIcons[i].GetComponent<GamepadController>().enabled) {
-
-                	// Load arena picker
-					SceneManager.LoadSceneAsync ("chooseArenaScene");
-
-				}
+                    StartCoroutine("StartGame");
+                }
 				else if (!gamepadIcons[i].GetComponent<GamepadController>().enabled) {
 
 					// Tag in gamepad if not
