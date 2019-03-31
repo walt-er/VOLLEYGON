@@ -7,11 +7,10 @@ using UnityEngine.UI;
 	using Users;
 #endif
 
-public class ChoosePlayerScript : MonoBehaviour {
+public class ChooseOnePlayerScript : MonoBehaviour {
 
 	public Image gutterBG;
 
-    public bool soloMode = false;
 	public GameObject fakePlayer1;
 	public GameObject fakePlayer2;
 	public GameObject fakePlayer3;
@@ -50,9 +49,11 @@ public class ChoosePlayerScript : MonoBehaviour {
 	private int playersOnRight = 0;
 
 	private GameObject[] fakePlayers;
-	public static ChoosePlayerScript Instance { get; private set; }
+	public static ChooseOnePlayerScript Instance { get; private set; }
 
     private string defaultText = "Y: LOG IN";
+
+    private bool modeFull = false;
 
 	void Awake() {
 
@@ -145,19 +146,17 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 		if ((playersOnLeft == 1 && playersOnRight == 0) && noUnreadyPlayers () || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
 
-            // disable single player, to be replaced with "solo mode"
-            if (soloMode)
-            {
-                // Single player startable
-                gameIsStartable = true;
-                msgBG.enabled = true;
-                msgBG2.enabled = true;
-                onePlayerMessage.enabled = true;
-                twoOnOneMessage.enabled = false;
-                oneOnOneMessage.enabled = false;
-            }
+			// Start the single player game
 
-        } else if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
+          
+   			gameIsStartable = true;
+            msgBG.enabled = true;
+            msgBG2.enabled = true;
+			onePlayerMessage.enabled = true;
+			twoOnOneMessage.enabled = false;
+			oneOnOneMessage.enabled = false;
+
+		} else if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
 
             // Multiplayer game is startable
 			gameIsStartable = true;
@@ -232,27 +231,33 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// Look for start button presses
-		for (int i = 0; i < joysticks.Length; i++) {
-			int slotId = i + 1;
-			JoystickButtons joystick = joysticks[i];
+		// Look for start button presses but only allow one player to tag in
+        if (!modeFull) {
+            for (int i = 0; i < joysticks.Length; i++)
+            {
+                int slotId = i + 1;
+                JoystickButtons joystick = joysticks[i];
 
-			if (Input.GetButtonDown(joystick.start) || (Input.GetButtonDown(joystick.jump) && !gamepadIcons[i].GetComponent<GamepadController>().enabled)) {
+                if (Input.GetButtonDown(joystick.start) || (Input.GetButtonDown(joystick.jump) && !gamepadIcons[i].GetComponent<GamepadController>().enabled))
+                {
 
-				// Start game if startable and gamepad not tagged in
-				if (gameIsStartable && gamepadIcons[i].GetComponent<GamepadController>().enabled) {
+                    // Start game if startable and gamepad not tagged in
+                    if (gameIsStartable && gamepadIcons[i].GetComponent<GamepadController>().enabled)
+                    {
 
-                	// Load arena picker
-					SceneManager.LoadSceneAsync ("chooseArenaScene");
+                        // Load arena picker
+                        SceneManager.LoadSceneAsync("chooseArenaScene");
 
-				}
-				else if (!gamepadIcons[i].GetComponent<GamepadController>().enabled) {
+                    }
+                    else if (!gamepadIcons[i].GetComponent<GamepadController>().enabled)
+                    {
 
-					// Tag in gamepad if not
-					gamepadIcons[i].GetComponent<GamepadController>().ToggleIcon(true);
-
-				}
-			}
+                        // Tag in gamepad if not
+                        gamepadIcons[i].GetComponent<GamepadController>().ToggleIcon(true);
+                        modeFull = true;
+                    }
+                }
+            }
 
 			#if UNITY_XBOXONE
 				// Show user select if on xbox
@@ -306,11 +311,11 @@ public class ChoosePlayerScript : MonoBehaviour {
 			#endif
 		}
 
-		// Go ahead and start if all players ready
+		// Go ahead and start if any player is ready
 		if (fakePlayer1.GetComponent<FakePlayerScript>().readyToPlay
-			&& fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay
-			&& fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay
-			&& fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
+			|| fakePlayer2.GetComponent<FakePlayerScript>().readyToPlay
+			|| fakePlayer3.GetComponent<FakePlayerScript>().readyToPlay
+			|| fakePlayer4.GetComponent<FakePlayerScript>().readyToPlay) {
 
 			StartCoroutine ("StartGame");
 

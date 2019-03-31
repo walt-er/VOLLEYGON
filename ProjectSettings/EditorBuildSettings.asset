@@ -62,4 +62,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SoloModeScene.unity
     guid: 5ccdc6d71bb55497abef03c3370f9167
+  - enabled: 1
+    path: Assets/Scenes/chooseSinglePlayerScene.unity
+    guid: 2f677790922c64231b58605aa2f47724
   m_configObjects: {}
