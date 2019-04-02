@@ -20,7 +20,10 @@ public class LivesManagerScript : MonoBehaviour
   
     public void UpdateLives()
     {
-        transform.GetChild(0).GetChild(lives).gameObject.SetActive(false);
+        if (lives >= 0)
+        {
+            transform.GetChild(0).GetChild(lives).gameObject.SetActive(false);
+        }
        
     }
 
