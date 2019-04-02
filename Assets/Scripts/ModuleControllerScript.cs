@@ -20,16 +20,28 @@ public class ModuleControllerScript : MonoBehaviour
         Debug.Log("Attempting to activate module " + whichModule);
         switch (whichModule){
             case "powerups":
-                powerupsModule.SetActive(true);
+                if (powerupsModule)
+                {
+                    powerupsModule.SetActive(true);
+                }
                 break;
             case "gravChange":
-                gravChangeModule.SetActive(true);
+                if (gravChangeModule)
+                {
+                    gravChangeModule.SetActive(true);
+                }
                 break;
             case "scoreboard":
-                scoreboardModule.SetActive(true);
+                if (scoreboardModule)
+                {
+                    scoreboardModule.SetActive(true);
+                }
                 break;
             case "stats":
-                statsModule.SetActive(true);
+                if (statsModule)
+                {
+                    statsModule.SetActive(true);
+                }
                 break;
         }
     }

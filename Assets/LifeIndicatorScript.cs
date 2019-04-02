@@ -27,7 +27,10 @@ public class LifeIndicatorScript : MonoBehaviour
 
         if (playerType != -1)
         {
-            this.gameObject.transform.GetChild(playerType).gameObject.SetActive(true);
+            Debug.Log("Setting child to active");
+            Debug.Log(transform.GetChild(playerType).gameObject);
+            transform.GetChild(playerType).gameObject.SetActive(true);
+            transform.GetChild(playerType).gameObject.active = true;
         }
     }
 
