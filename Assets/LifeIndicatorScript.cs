@@ -38,5 +38,6 @@ public class LifeIndicatorScript : MonoBehaviour
     void Update()
     {
         // Update the rotation to match the player's rotation
+        transform.localEulerAngles = targetPlayer.transform.localEulerAngles;
     }
 }

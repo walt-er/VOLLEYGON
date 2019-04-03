@@ -82,6 +82,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static int matchTime;
 	public static int currentRallyCount;
 	public static int rallyCount;
+    public static int soloRallyCount;
 
 	public static float gameTime;
 
@@ -158,6 +159,7 @@ public class DataManagerScript : MonoBehaviour {
 		gameTime = 0;
 
 		rallyCount = 0;
+        soloRallyCount = 0;
 	}
 
 }

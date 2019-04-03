@@ -219,6 +219,9 @@ public class BallScript : MonoBehaviour {
             {
                 GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("OnBallReturned");
             }
+            // Increase solo mode rally count. It is unusued if this is not solo mode.
+            DataManagerScript.soloRallyCount = DataManagerScript.soloRallyCount + 1;
+
             moduleContainer.BroadcastMessage("OnBallReturned", lastTouch);
             // TODO: Get Rid of this and use the modules instead
             GameManagerScript.Instance.SideChange ();
