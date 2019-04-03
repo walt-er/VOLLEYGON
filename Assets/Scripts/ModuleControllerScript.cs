@@ -8,6 +8,7 @@ public class ModuleControllerScript : MonoBehaviour
     public GameObject gravChangeModule;
     public GameObject statsModule;
     public GameObject scoreboardModule;
+    public GameObject livesModule;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,12 @@ public class ModuleControllerScript : MonoBehaviour
                 if (statsModule)
                 {
                     statsModule.SetActive(true);
+                }
+                break;
+            case "lives":
+                if (livesModule)
+                {  
+                    livesModule.SetActive(true);
                 }
                 break;
         }

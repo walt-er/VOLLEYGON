@@ -10,6 +10,7 @@ public class ModuleSelectorScript : MonoBehaviour
     public bool gravChangeModuleOn;
     public bool scoreboardModuleOn;
     public bool statsModuleOn;
+    public bool livesModuleOn;
     // More to come here...
 
     private void Awake()
@@ -38,6 +39,10 @@ public class ModuleSelectorScript : MonoBehaviour
             if (statsModuleOn)
             {
                 moduleController.BroadcastMessage("moduleOn", "stats");
+            }
+            if (livesModuleOn)
+            {
+                moduleController.BroadcastMessage("moduleOn", "lives");
             }
         }
     }
