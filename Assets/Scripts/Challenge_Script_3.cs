@@ -79,8 +79,8 @@ public class Challenge_Script_3 : MonoBehaviour
         IEnumerator coroutine_1 = ball_1.GetComponent<BallScript>().CustomLaunchBallWithDelay(2f, -6f, 10f);
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
-        Debug.Log("setting gravchange mode to true");
-        ball_1.GetComponent<BallScript>().gravChangeMode = true;
+        Debug.Log("setting gravchange mode to false");
+        ball_1.GetComponent<BallScript>().gravChangeMode = false;
     }
 
 }
