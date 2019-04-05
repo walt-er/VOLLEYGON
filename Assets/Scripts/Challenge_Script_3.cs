@@ -80,6 +80,7 @@ public class Challenge_Script_3 : MonoBehaviour
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to false");
+        ball_1.GetComponent<BallScript>().startWithRandomGrav = false;
         ball_1.GetComponent<BallScript>().gravChangeMode = false;
     }
 
