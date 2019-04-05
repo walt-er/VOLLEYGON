@@ -18,6 +18,8 @@ public class Challenge_Script_Multiball : MonoBehaviour
     private bool challengeStarted = false;
     private bool challengeOver = false;
 
+    public float startingPolarity = 1f;
+
     void Awake()
     {
 
@@ -106,9 +108,11 @@ public class Challenge_Script_Multiball : MonoBehaviour
         Debug.Log("setting gravchange mode to true");
         // TODO: There has to be a more scalable way to set these settings
         ball_1.GetComponent<BallScript>().gravScale = gravScale;
+        ball_1.GetComponent<BallScript>().startWithRandomGrav = false;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
         ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
+        ball_1.GetComponent<BallScript>().playSoundOnGravChange = false;
     }
 
     public void LaunchBall(float x, float y, float z)
@@ -119,10 +123,13 @@ public class Challenge_Script_Multiball : MonoBehaviour
         StartCoroutine(coroutine_1);
         // set ball's gravChangeMode to true;
         Debug.Log("setting gravchange mode to true");
+
         ball_1.GetComponent<BallScript>().gravScale = gravScale;
+        ball_1.GetComponent<BallScript>().startWithRandomGrav = false;
         ball_1.GetComponent<BallScript>().gravChangeMode = true;
-        ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 5f;
+        ball_1.GetComponent<BallScript>().baseTimeBetweenGravChanges = 7f;
         ball_1.GetComponent<BallScript>().gravTimeRange = 4f;
+        ball_1.GetComponent<BallScript>().playSoundOnGravChange = false;
     }
 
 

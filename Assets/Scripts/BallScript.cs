@@ -42,10 +42,12 @@ public class BallScript : MonoBehaviour {
 	public GameObject circleTrail;
 	int lastScore;
 
+
 	// Ball options
 	public bool gravChangeMode = true;
 	public bool scoringMode = false;
     public bool startWithRandomGrav = false;
+    public bool playSoundOnGravChange = true;
 
 	GameObject CurrentArena;
 
@@ -135,8 +137,11 @@ public class BallScript : MonoBehaviour {
 			if (timer <= 3 && timeSinceLastFlash >= .25f) {
 
 				if (!didSirenPlayAlready) {
-					//SoundManagerScript.Instance.PlaySingle (gravityIsAboutToChangeSound);
-					audio.Play ();
+                    //SoundManagerScript.Instance.PlaySingle (gravityIsAboutToChangeSound);
+                    if (playSoundOnGravChange)
+                    {
+                        audio.Play();
+                    }
 					didSirenPlayAlready = true;
 				}
 				if (redball.activeSelf) {
