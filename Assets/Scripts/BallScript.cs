@@ -93,10 +93,13 @@ public class BallScript : MonoBehaviour {
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ;
 		rb.gravityScale = gravScale;
 		originalGrav = gravScale;
-        if (startWithRandomGrav)
-        {
-            ChooseRandomGrav();
-        }
+       
+        // For now, always have the first serve be normal grav.
+
+         //if (startWithRandomGrav)
+        //{
+            //ChooseRandomGrav();
+        //}
 	}
 
     public void ChooseRandomGrav()
