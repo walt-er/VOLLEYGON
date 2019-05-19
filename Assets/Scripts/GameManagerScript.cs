@@ -47,6 +47,9 @@ public class GameManagerScript : MonoBehaviour {
 	public bool handleArenas = true;
     public bool handleScore = true;
 
+    // Testing this easy mode thing
+    public bool easyMode = false;
+
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page.
 	public GameObject Player1;
 	public GameObject Player2;
@@ -114,12 +117,13 @@ public class GameManagerScript : MonoBehaviour {
 
         // If no arena is selected (Solo mode, testing, etc., just choose the balanced arena (2)
 
-        if (arenaType == 0)
+        if (arenaType <= 0)
         {
             arenaType = 2;
         }
 
         if (handleArenas) {
+            Debug.Log(DataManagerScript.arenaType);
             Arenas[arenaType - 1].SetActive(true);
 		}
 
@@ -207,10 +211,19 @@ public class GameManagerScript : MonoBehaviour {
             IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
             StartCoroutine(coroutine_1);
             // set ball's gravChangeMode to true;
-            Debug.Log("setting gravchange mode to true");
+            if (easyMode)
+            {
+                Debug.Log("Easy mode: setting gravchange mode to false");
+                newBall.GetComponent<BallScript>().gravChangeMode = false;
+                newBall.GetComponent<BallScript>().startWithRandomGrav = false;
+            }
+            else
+            {
+                Debug.Log("setting gravchange mode to true");
+            }
 
             //TODO: Is there a better way to store these settins, which will be different for each mode?
-            newBall.GetComponent<BallScript>().gravChangeMode = true;
+
             if (handleScore)
             {
                 newBall.GetComponent<BallScript>().scoringMode = true;
@@ -301,15 +314,27 @@ public class GameManagerScript : MonoBehaviour {
 
 	}
 
-	// void LaunchTitleScreen(){
-	// 	SceneManager.LoadSceneAsync("titleScene");
-	// }
+	 void LaunchTitleScreen(){
+        StartCoroutine("FadeToTitle");
+    }
 
 	void LaunchStatsScreen(){
 		StartCoroutine ("FadeToStats");
 	}
 
-	IEnumerator FadeToStats(){
+    IEnumerator FadeToTitle()
+    {
+        if (!locked)
+        {
+            locked = true;
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+            yield return new WaitForSeconds(0.5f);
+            SceneManager.LoadSceneAsync("titleScene");
+
+        }
+    }
+
+    IEnumerator FadeToStats(){
 		if (!locked) {
 			locked = true;
             GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
@@ -382,6 +407,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	public void Unpause(){
 		if (paused){
+            Debug.Log("unpausing");
 			Time.timeScale = 1;
 			paused = false;
 			pausePanel.SetActive (false);
@@ -400,7 +426,8 @@ public class GameManagerScript : MonoBehaviour {
 
     public void QuitGame()
     {
-        SceneManager.LoadSceneAsync("TitleScene");
+        // Temp switchin this for playtest night
+        LaunchTitleScreen();
     }
 
     void CheckForMatchPoint()
