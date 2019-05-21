@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip pandemoniumSFX1;
     public AudioClip pandemoniumSFX2;
 
+    private GameObject innerShape;
+
     // Map shape numbers to names for use in stat fetching, etc (index == playerType)
     private string[] shapeNames = new string[] {
         "square",
@@ -136,6 +138,20 @@ public class PlayerController : MonoBehaviour {
             rb.gravityScale = startingGrav;
             startMass = rb.mass;
             pandemoniumCounter.GetComponent<TextMesh>().color = new Vector4(0f, 0f, 0f, 0f);
+
+            // Set default innershape
+            innerShape = transform.Find("InnerShape").gameObject;
+            if (innerShape)
+            {
+                if (rb.gravityScale < 0)
+                {
+                    innerShape.SetActive(true);
+                }
+                else
+                {
+                    innerShape.SetActive(false);
+                }
+            }
         }
 
         int joystick = -1;
@@ -219,6 +235,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update() {
+        //TODO: Oof, can this be changed?
         if (transform.parent.tag != "FakePlayer")
         {
             if (inPenalty && GameManagerScript.Instance != null
@@ -254,6 +271,14 @@ public class PlayerController : MonoBehaviour {
                 {
                     rb.gravityScale *= -1f;
                     SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
+                    if (rb.gravityScale < 0)
+                    {
+                        innerShape.SetActive(true);
+                    }
+                    else
+                    {
+                        innerShape.SetActive(false);
+                    }
                 }
 
             	// Handle start button
@@ -261,7 +286,7 @@ public class PlayerController : MonoBehaviour {
             		&& GameManagerScript.Instance != null
 	                && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused)
 	                {
-                    GameManagerScript.Instance.GetComponent<PauseManagerScript>().Pause(buttons);
+                   // GameManagerScript.Instance.GetComponent<PauseManagerScript>().Pause(buttons);
                 }
 
 	            ClampPosition();
