@@ -86,6 +86,8 @@ public class GameManagerScript : MonoBehaviour {
 
 		locked = false;
 
+        easyMode = DataManagerScript.easyMode;
+
 		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
 		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
 		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;

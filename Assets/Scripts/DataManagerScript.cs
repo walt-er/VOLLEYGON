@@ -9,10 +9,10 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
-	//public static string version;
+    //public static string version;
 
     // Universal game variables
-
+    public static bool easyMode = true;
 	public int teamOneWins;
 	public int teamTwoWins;
 	public static bool playerOnePlaying = true;

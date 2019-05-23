@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour {
     private float pandemoniumTimer;
     private bool pandemoniumPowerupActive = false;
 
+    private bool easyMode = false;
+
     // TODO Get audio clips from global object?
     public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
@@ -94,6 +96,9 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        //check for easy mode
+        easyMode = DataManagerScript.easyMode;
 
 		//check for challenge mode
 		isChallengeMode = DataManagerScript.isChallengeMode;
@@ -134,6 +139,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Starting physics
+        // Make sure grav is normal in easy mode
+        if (easyMode)
+        {
+            startingGrav = Mathf.Abs(startingGrav);
+        }
         if (rb != null) {
             rb.gravityScale = startingGrav;
             startMass = rb.mass;
@@ -267,7 +277,7 @@ public class PlayerController : MonoBehaviour {
                 }
 
                 // Handle gravity switch
-                if (Input.GetButtonDown(buttons.grav) && rb != null && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused)
+                if (Input.GetButtonDown(buttons.grav) && rb != null && !easyMode && !GameManagerScript.Instance.GetComponent<PauseManagerScript>().paused)
                 {
                     rb.gravityScale *= -1f;
                     SoundManagerScript.instance.RandomizeSfx(changeGravSound1, changeGravSound2);
