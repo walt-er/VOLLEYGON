@@ -10,32 +10,24 @@ public class OptionsManagerScript : MonoBehaviour {
 	private JoystickButtons joyButts;
 
 	public GameObject curtain;
-	public EventSystem es;
+	private EventSystem es;
 
 	void Start () {
 		curtain.SetActive(true);
 		curtain.GetComponent<NewFadeScript>().Fade(0f);
 
+		es = EventSystem.current;
+
 		// determine which controller is 'in control'.
 		whichPlayerIsControlling = DataManagerScript.gamepadControllingMenus;
 		joyButts = new JoystickButtons (whichPlayerIsControlling);
-
-		// Register axes from controller
-		es.GetComponent<StandaloneInputModule> ().horizontalAxis = joyButts.horizontal;
-		es.GetComponent<StandaloneInputModule> ().verticalAxis = joyButts.vertical;
-		es.GetComponent<StandaloneInputModule> ().submitButton = joyButts.jump;
-		es.GetComponent<StandaloneInputModule> ().cancelButton = joyButts.grav;
-
-		//TODO: Will need to handle controller disconnects, etc.
 	}
 
 	// Update is called once per frame
 	void Update () {
+		// Check for cancel button to go to previous scene
 		if (Input.GetButtonDown(joyButts.grav)) {
 			SceneManager.LoadSceneAsync ("titleScene");
 		}
-
-		// Check for cancel button to go to previous scene
-
 	}
 }

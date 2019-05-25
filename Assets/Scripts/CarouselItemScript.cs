@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class CarouselItemScript : MonoBehaviour {
+public class CarouselItemScript : MonoBehaviour, ISelectHandler {
 
-  RectTransform carouselViewT;
+  RectTransform carouselRectTransform;
+  CarouselScript carouselManager;
   RectTransform rectT;
 
   public bool useCurtain = false;
 
   void Start(){
-    carouselViewT = transform.parent.parent.parent.GetComponent<RectTransform>();
+    Transform carousel = transform.parent.parent.parent; // TODO: make this less brittle
+    carouselRectTransform = carousel.GetComponent<RectTransform>();
+		carouselManager = carousel.GetComponent<CarouselScript>();
     rectT = GetComponent<RectTransform>();
   }
 
   void OnGUI(){
-    Vector2 myPos = rectT.position - carouselViewT.position;
+    Vector2 myPos = rectT.position - carouselRectTransform.position;
 
     float scaleFactor = 1 - (Mathf.Abs(myPos.y) / 10);
     float clampedScale = Mathf.Clamp(scaleFactor, 0.5f, 1.2f);
@@ -23,5 +27,9 @@ public class CarouselItemScript : MonoBehaviour {
     float opacityFactor = 1 - (Mathf.Abs(myPos.y) / 1);
     float clampedOpacity = Mathf.Clamp(opacityFactor, 0.3f, 1f);
     GetComponent<CanvasGroup>().alpha = useCurtain ? 1 - clampedOpacity : clampedOpacity;
+  }
+
+  public void OnSelect(BaseEventData e) {
+		carouselManager.MoveToSelected();
   }
 }
