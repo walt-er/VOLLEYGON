@@ -25,6 +25,7 @@ public class CarouselScript : MonoBehaviour {
 	private RectTransform contentRect;
 	private RectTransform wrapperRect;
 
+	public int startingIndex = 0;
 	[HideInInspector] public int selectedIndex = -1;
 	[HideInInspector] public Transform selectedItem;
 	[HideInInspector] public System.Action<int> OnItemClick;
@@ -37,6 +38,10 @@ public class CarouselScript : MonoBehaviour {
 		// Transforms
 		wrapperRect = GetComponent<RectTransform>();
 		contentRect = transform.Find("Viewport").Find("Content").GetComponent<RectTransform>();
+
+		// Move to pre-selected
+		selectedIndex = startingIndex;
+		Move(0);
 	}
 
 	void OnGUI() {
@@ -106,7 +111,7 @@ public class CarouselScript : MonoBehaviour {
 	}
 
 	void Move(float duration = 0.1f) {
-		scrolling = duration != 0.1f;
+		scrolling = duration > 0.1f;
 		selectedItem = contentRect.GetChild(selectedIndex);
 		Debug.Log("Move " + selectedIndex);
 
