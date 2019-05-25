@@ -17,6 +17,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
 
+	public GameObject curtain;
+
 	public GameObject gamepadIcon1;
 	public GameObject gamepadIcon2;
 	public GameObject gamepadIcon3;
@@ -90,7 +92,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 		DataManagerScript.playerFourType = 0;
 
 		// Fade in
-        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+		curtain.SetActive(true);
+		curtain.GetComponent<NewFadeScript>().Fade(0f);
 
 		// Make array of icons and usernames
 		gamepadIcons = new GameObject[4] { gamepadIcon1, gamepadIcon2, gamepadIcon3, gamepadIcon4 };

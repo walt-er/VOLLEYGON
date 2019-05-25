@@ -29,7 +29,7 @@ public class DataManagerScript : MonoBehaviour {
 
 	// UI Flags
 
-	public static int gamepadControllingMenus;
+	public static int gamepadControllingMenus = 0;
 	#if UNITY_XBOXONE
 		public static Users.User userControllingMenus;
 	#endif
