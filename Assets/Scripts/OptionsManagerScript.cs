@@ -9,7 +9,7 @@ public class OptionsManagerScript : MonoBehaviour {
 	private int whichPlayerIsControlling;
 	private JoystickButtons joyButts;
 	public EventSystem es;
-	// Use this for initialization
+
 	void Start () {
 
 		// determine which controller is 'in control'.
