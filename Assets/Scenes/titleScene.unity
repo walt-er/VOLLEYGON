@@ -662,6 +662,12 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 1
+--- !u!1 &468954782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1529094963985220, guid: 7f25193abdabe4b6593eb6f23079dd90,
+    type: 3}
+  m_PrefabInstance: {fileID: 1350189245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &498118954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,6 +1670,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1529094963985220, guid: 7f25193abdabe4b6593eb6f23079dd90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224296100145431504, guid: 7f25193abdabe4b6593eb6f23079dd90,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2847,7 +2857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 295.2748
+  Phase: 295.4565
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -3503,6 +3513,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 2106787734}
   singlePlayerPanel: {fileID: 1756215892}
   soloModeButton: {fileID: 1267099894}
+  curtain: {fileID: 468954782}
   es1: {fileID: 452662710}
   firstButton: {fileID: 1884776966}
 --- !u!4 &2126456561

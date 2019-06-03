@@ -11066,7 +11066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 344, y: -37.000473}
+  m_AnchoredPosition: {x: 344, y: -37.00049}
   m_SizeDelta: {x: 112, y: 376}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &873934555
@@ -18388,7 +18388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1529094963985220, guid: 7f25193abdabe4b6593eb6f23079dd90, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224296100145431504, guid: 7f25193abdabe4b6593eb6f23079dd90,
         type: 3}
@@ -18482,6 +18482,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f25193abdabe4b6593eb6f23079dd90, type: 3}
+--- !u!1 &1742407988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1529094963985220, guid: 7f25193abdabe4b6593eb6f23079dd90,
+    type: 3}
+  m_PrefabInstance: {fileID: 1742407987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1759300426
 GameObject:
   m_ObjectHideFlags: 0
@@ -20234,7 +20240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 38, y: -37.000473}
+  m_AnchoredPosition: {x: 38, y: -37.00049}
   m_SizeDelta: {x: 152, y: 375}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1911771134
@@ -21945,6 +21951,7 @@ MonoBehaviour:
   fakePlayer2: {fileID: 579324261}
   fakePlayer3: {fileID: 1040935891}
   fakePlayer4: {fileID: 736303006}
+  curtain: {fileID: 1742407988}
   gamepadIcon1: {fileID: 1941213465}
   gamepadIcon2: {fileID: 240643637}
   gamepadIcon3: {fileID: 426740517}

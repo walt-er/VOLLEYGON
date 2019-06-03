@@ -19,16 +19,18 @@ public class TitleManagerScript : MonoBehaviour {
 	public GameObject singlePlayerPanel;
 	public GameObject soloModeButton;
 
+	public GameObject curtain;
+
 	private bool mainMenuActive = false;
 
 	public EventSystem es1;
 
 	public Button firstButton;
 
-
-	// Use this for initialization
 	void Start () {
-		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);
+		curtain.SetActive(true);
+		curtain.GetComponent<NewFadeScript>().Fade(0f);
+
 		MusicManagerScript.Instance.FadeOutEverything ();
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
@@ -39,9 +41,6 @@ public class TitleManagerScript : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
 			gamepads[i] = new JoystickButtons(i+1);
 		}
-
-		//Cursor.visible = false;
-		//Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void Update () {
@@ -56,7 +55,7 @@ public class TitleManagerScript : MonoBehaviour {
 			// Listen for activation
 			if (!mainMenuActive) {
 
-				if (Input.GetButtonDown (gamepads[i].jump) || Input.GetButtonDown (gamepads[i].start)) {
+				if (Input.GetButtonDown(gamepads[i].jump) || Input.GetButtonDown(gamepads[i].start)) {
 
 					if (DataManagerScript.demoMode) {
 
