@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private float startSpeed;
 	private float startMass;
 	private float startJumpPower;
+    private Vector3 startingScale = new Vector3(1f,1f,1f);
 
     // Button names
     private JoystickButtons buttons;
@@ -100,8 +101,8 @@ public class PlayerController : MonoBehaviour {
         //check for easy mode
         easyMode = DataManagerScript.easyMode;
 
-		//check for challenge mode
-		isChallengeMode = DataManagerScript.isChallengeMode;
+        //check for challenge mode
+        isChallengeMode = DataManagerScript.isChallengeMode;
 
         // Particle system?
         if ( GetComponent<ParticleSystem>() != null) {
@@ -207,6 +208,17 @@ public class PlayerController : MonoBehaviour {
         // Get collider for chosen shape
         shapeCollider.enabled = true;
 
+        // adjust scale based on Easy Mode flag if we are NOT in the character selection screen
+        if (easyMode && gameObject.tag != "FakePlayer")
+        {
+            startingScale = new Vector3(1.5f, 1.5f, 1f);
+        }
+        else
+        {
+            startingScale = new Vector3(1f, 1f, 1f);
+        }
+
+        transform.localScale = startingScale;
 
     }
 
@@ -491,8 +503,8 @@ public class PlayerController : MonoBehaviour {
 
 			if (sizePowerupTimer <= 0){
 				sizePowerupActive = false;
-				// Restore scale to starting size
-				gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+                // Restore scale to starting size
+                gameObject.transform.localScale = startingScale;
 				rb.mass = startMass;
 				jumpPower = startJumpPower;
 

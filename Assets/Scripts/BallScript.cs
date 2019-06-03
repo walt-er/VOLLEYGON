@@ -8,7 +8,9 @@ public class BallScript : MonoBehaviour {
     //Store a ref to ModuleContainer
     private GameObject moduleContainer;
 
-	public Text scoreText;
+    private bool easyMode = false;
+
+    public Text scoreText;
 	public Text winByTwoText;
 	public GameObject scoreboard;
 	public GameObject background;
@@ -76,6 +78,9 @@ public class BallScript : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         theSprite = GetComponent<SpriteRenderer>().sprite;
 
+        //check for easy mode
+        easyMode = DataManagerScript.easyMode;
+
     }
 
 	void Start () {
@@ -83,15 +88,14 @@ public class BallScript : MonoBehaviour {
         moduleContainer = GameObject.FindWithTag("ModuleContainer");
         CurrentArena = GameObject.FindWithTag("Arena");
 
-      
-
         didSirenPlayAlready = false;
 		flashTime = 0f;
 		timeSinceLastFlash = 0f;
 	
 		rb.isKinematic = true;
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ;
-		rb.gravityScale = gravScale;
+        if (easyMode) { gravScale = .7f;  }
+        rb.gravityScale = gravScale;
 		originalGrav = gravScale;
        
         // For now, always have the first serve be normal grav.

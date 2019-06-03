@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 70616932}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1548,6 +1548,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1589,16 +1593,16 @@ PrefabInstance:
       propertyPath: team
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 714222d34b50443f59662c66d2468bc3, type: 2}
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 646997015}
+    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 714222d34b50443f59662c66d2468bc3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
 --- !u!4 &161461628 stripped
@@ -2094,7 +2098,7 @@ GameObject:
   - component: {fileID: 251343686}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5330,7 +5334,7 @@ GameObject:
   - component: {fileID: 480526821}
   m_Layer: 0
   m_Name: Rectangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5814,7 +5818,7 @@ GameObject:
   - component: {fileID: 499084694}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6528,7 +6532,7 @@ GameObject:
   - component: {fileID: 555820035}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7201,7 +7205,7 @@ GameObject:
   - component: {fileID: 579324263}
   m_Layer: 0
   m_Name: Fake Player 2
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7881,7 +7885,7 @@ GameObject:
   - component: {fileID: 622331641}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9190,7 +9194,7 @@ GameObject:
   - component: {fileID: 736303008}
   m_Layer: 0
   m_Name: Fake Player 4
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10114,7 +10118,7 @@ GameObject:
   - component: {fileID: 792009930}
   m_Layer: 0
   m_Name: Rectangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11277,7 +11281,7 @@ GameObject:
   - component: {fileID: 894976729}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12509,7 +12513,7 @@ GameObject:
   - component: {fileID: 1040935893}
   m_Layer: 0
   m_Name: Fake Player 3
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12812,7 +12816,7 @@ GameObject:
   - component: {fileID: 1047990866}
   m_Layer: 0
   m_Name: Trapezoid
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13462,6 +13466,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13503,16 +13511,16 @@ PrefabInstance:
       propertyPath: team
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 891c6e8167fe043f4bcf7a8bd0ce7e85, type: 2}
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 232893951}
+    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 891c6e8167fe043f4bcf7a8bd0ce7e85, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
 --- !u!4 &1114665575 stripped
@@ -13618,7 +13626,7 @@ GameObject:
   - component: {fileID: 1146637864}
   m_Layer: 0
   m_Name: Trapezoid
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13994,7 +14002,7 @@ GameObject:
   - component: {fileID: 1147612610}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14606,6 +14614,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15006,6 +15018,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 103506, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 403506, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.3
@@ -15078,6 +15094,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198648, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 3342236, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -15106,6 +15126,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1994683576}
+    - target: {fileID: 131836, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 113568, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 190988, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 128312, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d2aec620f7941d1bfa9914d31b45d0, type: 3}
 --- !u!4 &1278235316 stripped
@@ -15843,7 +15879,7 @@ GameObject:
   - component: {fileID: 1439899505}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16299,7 +16335,7 @@ GameObject:
   - component: {fileID: 1456609313}
   m_Layer: 0
   m_Name: Rectangle
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16898,7 +16934,7 @@ GameObject:
   - component: {fileID: 1539305103}
   m_Layer: 0
   m_Name: Trapezoid
-  m_TagString: Player
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20966,7 +21002,7 @@ GameObject:
   - component: {fileID: 2035558782}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: FakePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21997,6 +22033,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041776843200598, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
+      propertyPath: m_TagString
+      value: FakePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4597203282272312, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22033,16 +22073,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e83bc0752e39846e8bad56f347f67541, type: 2}
     - target: {fileID: 33656567984476220, guid: 3ea6cda6543294d68b4f32a59db3ca29,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 604874960}
+    - target: {fileID: 23262734362360404, guid: 3ea6cda6543294d68b4f32a59db3ca29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e83bc0752e39846e8bad56f347f67541, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea6cda6543294d68b4f32a59db3ca29, type: 3}
 --- !u!4 &2130704252 stripped
