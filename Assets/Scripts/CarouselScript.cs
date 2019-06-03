@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CarouselScript : MonoBehaviour {
 
@@ -22,10 +23,13 @@ public class CarouselScript : MonoBehaviour {
 	bool isSnapping;
 	Coroutine snapper;
 
+	private EventSystem es;
+
 	private RectTransform contentRect;
 	private RectTransform wrapperRect;
 
-    public int selectedIndex = 1;
+	private bool shouldAnimate;
+
 	[HideInInspector] public Transform selectedItem;
 	[HideInInspector] public System.Action<int> OnItemClick;
 
@@ -37,8 +41,18 @@ public class CarouselScript : MonoBehaviour {
 		// Transforms
 		wrapperRect = GetComponent<RectTransform>();
 		contentRect = transform.Find("Viewport").Find("Content").GetComponent<RectTransform>();
-        selectedIndex = 1;
+
+		// Get current event system and null out
+		es = EventSystem.current;
+
+		// Move to pre-selected first item in event system
+		shouldAnimate = false;
+		MoveToSelected();
 	}
+
+	//
+	// Listening for updates
+	//
 
 	void OnGUI() {
 		if (isSnapping) {
@@ -58,61 +72,91 @@ public class CarouselScript : MonoBehaviour {
 		}
 	}
 
+	//
+	// Managing selected state and passing to ES
+	//
+
+	void Select(int index) {
+		// Save selected in event system
+		selectedItem = contentRect.GetChild(index);
+		if (es) es.SetSelectedGameObject(selectedItem.gameObject);
+	}
+
 	public void Next() {
-		if (scrolling || (!infinite && selectedIndex >= contentRect.childCount - 1)) {
-			return;
-		}
+		if (es.currentSelectedGameObject) {
+			int index = es.currentSelectedGameObject.transform.GetSiblingIndex();
 
-		if (selectedIndex >= contentRect.childCount - 1) {
-			selectedIndex = 0;
-		} else {
-			selectedIndex++;
-		}
+			// Return if we're already at the edge or already scrolling
+			if (scrolling || (!infinite && index >= contentRect.childCount - 1)) {
+				Debug.Log("YEAH");
+				return;
+			}
 
-		Debug.Log("Next " + selectedIndex);
-		Move(axisSlideDuration);
+			// Iterate or flip to the other end of the list
+			if (index >= contentRect.childCount - 1) {
+				index = 0;
+			} else {
+				index++;
+			}
+
+			// Set new index in event system
+			shouldAnimate = true;
+			Select(index);
+		}
 	}
 
 	public void Previous() {
-		if (scrolling || (!infinite && selectedIndex <= 0)) {
-			return;
-		}
+		if (es.currentSelectedGameObject) {
+			int index = es.currentSelectedGameObject.transform.GetSiblingIndex();
 
-		if (selectedIndex <= 0) {
-			selectedIndex = contentRect.childCount - 1;
-		} else {
-			selectedIndex--;
-		}
+			// Return if we're already at the edge or already scrolling
+			if (scrolling || (!infinite && index <= 0)) {
+				return;
+			}
 
-		Debug.Log("Previous " + selectedIndex);
-		Move(axisSlideDuration);
+			// Iterate or flip to the other end of the list
+			if (index <= 0) {
+				index = contentRect.childCount - 1;
+			} else {
+				index--;
+			}
+
+			// Set new index in event system
+			shouldAnimate = true;
+			Select(index);
+		}
 	}
 
-	public void SelectIndex(int index, bool animate) {
+	public void JumpTo(int index, bool animate) {
 		if (scrolling) {
 			return;
 		}
-
 		if (index < 0 || index > contentRect.childCount - 1) {
 			Debug.LogError("Index Out of Bound!");
 			return;
 		}
 
-		// Set selected index
-		selectedIndex = index;
-		float duration = animate ? axisSlideDuration : 0.1f;
-
-		// Move to selected
-		Move(duration);
+		// Set target index and animation option
+		shouldAnimate = animate;
+		Select(index);
 	}
 
-	void Move(float duration = 0.1f) {
-		scrolling = duration != 0.1f;
-		selectedItem = contentRect.GetChild(selectedIndex);
-		Debug.Log("Move " + selectedIndex);
+	//
+	// Animation between slides
+	//
+
+	public void MoveToSelected() {
+		// Set animation options, reset property
+		float duration = shouldAnimate ? axisSlideDuration : 0;
+		scrolling = duration > 0;
+
+		// Get selected
+		// TODO - resolve race condition where this runs before es is loaded
+		int index = es.currentSelectedGameObject ? es.currentSelectedGameObject.transform.GetSiblingIndex() : 0;
+		selectedItem = contentRect.GetChild(index);
 
 		// Update index text
-		indexText.text = (selectedIndex + 1).ToString() + "/" + contentRect.childCount.ToString();
+		indexText.text = (index + 1).ToString() + "/" + contentRect.childCount.ToString();
 
 		// Animate to destination
 		snapper = StartCoroutine(
@@ -142,13 +186,5 @@ public class CarouselScript : MonoBehaviour {
 		item.localPosition = destination;
 		isSnapping = false;
 		scrolling = false;
-	}
-
-	public int GetCurrentItem() {
-		return selectedIndex;
-	}
-
-	public void AddOnItemSelectedListener(System.Action<int> Callback) {
-		OnItemClick += Callback;
 	}
 }
