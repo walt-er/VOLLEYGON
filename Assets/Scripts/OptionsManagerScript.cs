@@ -110,7 +110,6 @@ public class OptionsManagerScript : MonoBehaviour {
 
 	void SelectShownOption() {
 		Transform selectedOption = options.transform.GetChild(selectedIndex);
-		Debug.Log(selectedOption);
 		selectedOption.GetComponent<OptionScript>().enable();
 	}
 
