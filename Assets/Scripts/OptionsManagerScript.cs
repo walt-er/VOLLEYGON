@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
@@ -11,6 +12,8 @@ public class OptionsManagerScript : MonoBehaviour {
 	public GameObject options;
 	public GameObject breadcrumb;
 	public GameObject optionBreadcrumb;
+	public GameObject leftBackground;
+	public GameObject rightBackground;
 
 	private int whichPlayerIsControlling;
 	private JoystickButtons joyButts;
@@ -40,18 +43,24 @@ public class OptionsManagerScript : MonoBehaviour {
 		if (es.currentSelectedGameObject) {
 			int selectedSlideIndex = es.currentSelectedGameObject.transform.GetSiblingIndex();
 			if (selectedIndex != selectedSlideIndex) {
-				SelectOption(selectedSlideIndex);
+				ShowOption(selectedSlideIndex);
 			}
 		}
 
 		// Check for cancel button
 		if (Input.GetButtonDown(joyButts.grav)) {
 
-			// Show/hide breadcrumbs
+			// Show/hide UI
 			optionBreadcrumb.SetActive(false);
 			breadcrumb.SetActive(true);
+			leftBackground.SetActive(false);
+			rightBackground.SetActive(true);
 
 			if (optionIsOpen) {
+				// Disable currently selected option
+				Transform selectedOption = options.transform.GetChild(selectedIndex);
+				selectedOption.GetComponent<OptionScript>().disable();
+
 				// Go back to carousel controls
 				optionIsOpen = false;
 			}
@@ -62,13 +71,16 @@ public class OptionsManagerScript : MonoBehaviour {
 		}
 
 		// Check for selection to enable option
+		if (Input.GetButtonDown(joyButts.jump) && !optionIsOpen) {
 
-		if (Input.GetButtonDown(joyButts.jump)) {
-
-			// Show/hide breadcrumbs
+			// Show/hide UI
 			optionBreadcrumb.SetActive(true);
 			breadcrumb.SetActive(false);
+			leftBackground.SetActive(true);
+			rightBackground.SetActive(false);
 
+			// Activate option
+			SelectShownOption();
 			optionIsOpen = true;
 		}
 
@@ -80,16 +92,50 @@ public class OptionsManagerScript : MonoBehaviour {
 		}
 	}
 
-	void SelectOption(int newIndex) {
+	void ShowOption(int newIndex) {
+		// Hide all other options
+		foreach (Transform child in options.transform) {
+			if (child.gameObject.activeSelf) {
+				StartCoroutine(FadeOption(child, false));
+			}
+		}
 
 		// Show new option
-		Transform selectedOption = options.transform.GetChild(newIndex);
-		foreach (Transform child in options.transform) {
-			child.gameObject.SetActive(false);
-		}
-		selectedOption.gameObject.SetActive(true);
+		Transform optionToShow = options.transform.GetChild(newIndex);
+		StartCoroutine(FadeOption(optionToShow, true));
 
 		// Save new index
 		selectedIndex = newIndex;
+	}
+
+	void SelectShownOption() {
+		Transform selectedOption = options.transform.GetChild(selectedIndex);
+		Debug.Log(selectedOption);
+		selectedOption.GetComponent<OptionScript>().enable();
+	}
+
+	// TODO: WHY AINT THIS WORK
+
+	IEnumerator FadeOption(Transform option, bool isAppearing) {
+		CanvasGroup optionCanvasGroup = option.GetComponent<CanvasGroup>();
+		float approxNoOfFrames = 20;
+
+		// Start state
+		optionCanvasGroup.alpha = isAppearing ? 0 : 1;
+		if (isAppearing) option.gameObject.SetActive(true);
+
+		// Delay fade in
+		yield return new WaitForSeconds(isAppearing ? 0.15f : 0);
+
+		for (float i = 0; i < approxNoOfFrames; i++)
+		{
+			yield return new WaitForEndOfFrame();
+			float delta = i / approxNoOfFrames;
+			float newAlpha = isAppearing ? delta : 1 - delta;
+			optionCanvasGroup.alpha = newAlpha;
+		}
+
+		yield return new WaitForEndOfFrame();
+		if (!isAppearing) option.gameObject.SetActive(false);
 	}
 }
