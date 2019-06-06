@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -32,6 +33,7 @@ public class CarouselScript : MonoBehaviour {
 
 	[HideInInspector] public Transform selectedItem;
 	[HideInInspector] public System.Action<int> OnItemClick;
+	[HideInInspector] public List<Transform> slides;
 
 	void Start() {
 
@@ -41,6 +43,9 @@ public class CarouselScript : MonoBehaviour {
 		// Transforms
 		wrapperRect = GetComponent<RectTransform>();
 		contentRect = transform.Find("Viewport").Find("Content").GetComponent<RectTransform>();
+		foreach (Transform child in contentRect) {
+			slides.Add(child);
+		}
 
 		// Get current event system and null out
 		es = EventSystem.current;
@@ -55,7 +60,9 @@ public class CarouselScript : MonoBehaviour {
 	//
 
 	void OnGUI() {
-		if (isSnapping) {
+
+		// Don't listen for events if we're animating or disabled
+		if (isSnapping || !es.isFocused) {
 			return;
 		}
 
