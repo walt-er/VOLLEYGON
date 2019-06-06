@@ -44,7 +44,7 @@ public class IndividualChallengeManagerScript : MonoBehaviour {
 
 	public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
-		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (0f, -6f, -10f);
+		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (0f, -6f, 10f);
 		StartCoroutine(coroutine_1);
 
 		//ChallengeManagerScript.Instance.ChallengeFail();

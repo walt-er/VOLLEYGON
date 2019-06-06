@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -28,9 +28,7 @@ public class ChallengeScript_1 : MonoBehaviour {
 
 //		ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (1f, -3f, -2f);
 //		ball_2.GetComponent<BallScript> ().LaunchBallWithDelay (1.5f, -6f, 0f);
-		//StartCoroutine(LaunchBalls(2f, 5));
-
-		LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
+		StartCoroutine(LaunchBalls(2f, 5));
 	}
 	
 	// Update is called once per frame
@@ -46,7 +44,7 @@ public class ChallengeScript_1 : MonoBehaviour {
 
 	public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
-		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (0f, -6f, -10f);
+		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (2f, -6f, -10f);
 		StartCoroutine(coroutine_1);
 
 		//ChallengeManagerScript.Instance.ChallengeFail();

@@ -24,6 +24,7 @@ public class AIControllerScript : MonoBehaviour {
 	public PolygonCollider2D trianglePC, trapezoidPC;
 	private bool canMove;
 	public bool willJump = true;
+    public bool willGravChange = true;
 	public AudioClip jumpSound1;
 	public AudioClip jumpSound2;
 	public AudioClip landSound;
@@ -33,11 +34,18 @@ public class AIControllerScript : MonoBehaviour {
 
 	public TextMesh pandemoniumCounter;
 
+    // Variables that refine the AIs movement
 
 	public float distanceMaxThreshold;
 	public float distanceMinThreshold;
-	public float responsivenessRate;
-
+    public float verticalMaxDistance = 20f; // Set arbitrarily high.
+    public float maxHorizontalJumpDistance = 2f; // 2f is a legacy value and probably too high.
+    public float responsivenessRate;
+    public float netSafeDistance = 0f;
+    public float backWallSafeDistance = 17.8f;
+    public float distanceToTriggerJump = 4f;
+    public float changeDirectionRate = .7f;
+    public bool moveAwayOnIdle = false;
 	public GameObject trail;
 	public GameObject ball;
 
@@ -80,8 +88,8 @@ public class AIControllerScript : MonoBehaviour {
 	Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
-
-		moveHorizontal = 0f;
+        ball = GameObject.FindWithTag("Ball");
+        moveHorizontal = 0f;
 		rb = GetComponent<Rigidbody2D>();
 		rb.gravityScale = startingGrav;
 		startMass = rb.mass;
@@ -127,68 +135,170 @@ public class AIControllerScript : MonoBehaviour {
 	}
 
 	void Update(){
+        Debug.Log(moveHorizontal);
 
-		CheckForMove ();
-		if (willJump) {
+        if (ball == null)
+        {
+            CheckForBall();
+        }
+
+        CheckForMove ();
+		
+        if (willJump) {
 			CheckForJump ();
 		}
-		CheckForGravChange ();
+
+        if (willGravChange)
+        {
+            CheckForGravChange();
+        }
+
 		ClampPosition ();
-
-
 
 		ManagePowerups ();
 	}
 
-	void CheckForMove(){
+    void CheckForBall()
+    {
+        ball = GameObject.FindWithTag("Ball");
+    }
 
-		// only move if the ball is close, but not too close
-		// roll a 'responsiveness' value
-		float chanceToRespond = Random.Range(0f, 100.0f);
+    bool IsOnSameSide(GameObject currentBall)
+    {
+        if ((transform.position.x > 0 && currentBall.transform.position.x > 0) || (transform.position.x > 0 && currentBall.transform.position.x > 0))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-		if (Mathf.Abs (ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs (ball.transform.position.x - transform.position.x) >= distanceMinThreshold && chanceToRespond >= responsivenessRate) {
-			if (ball.transform.position.x < transform.position.x) {
-				moveHorizontal = -1f;
-			} else if (ball.transform.position.x > transform.position.x) {
-				moveHorizontal = 1f;
-			}
-		} else {
-			moveHorizontal = 0;
-		}
+    void CheckForMove(){
+        if (ball != null)
+        {
+           
+            // roll a 'responsiveness' value. Only move each frame if this value is greater than the public 'responsivenessRate' property.
+            float chanceToRespond = Random.Range(0f, 100.0f);
 
-		if (isJumping) {
-			GetComponent<Rigidbody2D> ().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
-		}
-		Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
-		v3.x = moveHorizontal * speed;
+            if (chanceToRespond >= responsivenessRate)
+            {
 
-		GetComponent<Rigidbody2D> ().velocity = v3;
+
+                // only move if the ball is close, but not too close
+                if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= distanceMaxThreshold && Mathf.Abs(ball.transform.position.y - transform.position.y) <= verticalMaxDistance && Mathf.Abs(ball.transform.position.x - transform.position.x) >= distanceMinThreshold && IsOnSameSide(ball))
+                {
+                    // Move toward the ball... but not if too close to the net as defined by netSafeDistance (default 0)
+                    if (ball.transform.position.x < transform.position.x)
+                    {
+                        moveHorizontal = -1f;
+                        //if (Mathf.Abs(transform.position.x) <= netSafeDistance && team == 2 || Mathf.Abs(transform.position.x) >= backWallSafeDistance && team == 2)
+                        //{
+
+                        //    moveHorizontal = 0f;
+                        //}
+                    }
+                    else if (ball.transform.position.x > transform.position.x)
+                    {
+                        moveHorizontal = 1f;
+                        //if (Mathf.Abs(transform.position.x) <= netSafeDistance && team == 1 || Mathf.Abs(transform.position.x) >= backWallSafeDistance && team == 1)
+                        //{
+                        //    moveHorizontal = 0f;
+                        //}
+                    }
+                }
+                else
+                {
+                    // Not sure the best way to do this... I want to have an alternate behavior here. Should it just be a flag (as is)? Or should it be another component to handle this behavior? 
+                    if (moveAwayOnIdle)
+                    {
+                        // Determine which side this AI is on and move toward the back wall
+                        switch (team) {
+                            // NOTE: 10f is the 'mid point' of each side
+                            case 1:
+                                if (transform.position.x > -10f)
+                                {
+                                    moveHorizontal = -.2f;
+                                } 
+                                else if (transform.position.x < -10f)
+                                {
+                                    moveHorizontal = .2f;
+                                }
+                                else
+                                {
+                                    moveHorizontal = 0;
+                                }
+                                break;
+
+                            case 2:
+                                if (transform.position.x < 10f)
+                                {
+                                    moveHorizontal = .2f;
+                                } 
+                                else if (transform.position.x > 10f)
+                                {
+                                    moveHorizontal = -.2f;
+                                }
+                                else
+                                {
+                                    moveHorizontal = 0;
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        moveHorizontal = 0;
+                    }
+                }
+
+            }
+
+           
+
+
+            if (isJumping)
+            {
+                GetComponent<Rigidbody2D>().angularVelocity = (moveHorizontal * spinPower * rb.gravityScale);
+            }
+
+
+            Vector3 v3 = GetComponent<Rigidbody2D>().velocity;
+            v3.x = Mathf.Lerp(GetComponent<Rigidbody2D>().velocity.x, (moveHorizontal * speed), changeDirectionRate);
+
+            GetComponent<Rigidbody2D>().velocity = v3;
+        }
 	}
 
 	void CheckForJump(){
 
-		if (isJumping == false && Mathf.Abs (ball.transform.position.x - transform.position.x) <= 2f && Mathf.Abs (ball.transform.position.y - transform.position.y) <= 4f){
-			Vector3 jumpForce = new Vector3(0f,jumpPower * rb.gravityScale,0f);
-			rb.AddForce(jumpForce);
-			SoundManagerScript.instance.RandomizeSfx (jumpSound1, jumpSound2);
-			isJumping = true;
-		}
+        // Only jump if ball is above (or below, depending on grav state) shape and within a certain distance (distanceToTriggerJump, set to default 4f)
+        // TODO: There should be a minimum jump distance so an AI doesn't jump if the ball is, say, level with the AI. 
+        if (ball)
+        {
+            if (isJumping == false && Mathf.Abs(ball.transform.position.x - transform.position.x) <= maxHorizontalJumpDistance && Mathf.Abs(ball.transform.position.y - transform.position.y) <= distanceToTriggerJump && Mathf.Abs(ball.transform.position.y - transform.position.y) >= .6f)
+            {
+                Vector3 jumpForce = new Vector3(0f, jumpPower * rb.gravityScale, 0f);
+                rb.AddForce(jumpForce);
+                SoundManagerScript.instance.RandomizeSfx(jumpSound1, jumpSound2);
+                isJumping = true;
+            }
+        }
 	}
 
 	void CheckForGravChange(){
-		if (ball.GetComponent<Rigidbody2D> ().gravityScale > 0) {
-			if (playerID % 2 == 1) {
-				rb.gravityScale = 1;
-			} else if (playerID % 2 == 0) {
-				rb.gravityScale = -1;
-			}
-		} else {
-			if (playerID % 2 == 1) {
-				rb.gravityScale = -1;
-			} else if (playerID % 2 == 0) {
-				rb.gravityScale = 1;
-			}
-		}
+        if (ball)
+        {
+            if (ball.GetComponent<Rigidbody2D>().gravityScale > 0)
+            {   // TODO: Add an option for 'inverse' or opposite grav as the ball
+                rb.gravityScale = 1;
+            }
+            else
+            {
+                rb.gravityScale = -1; 
+            }
+        }
 	}
 
 	void checkPenalty(){

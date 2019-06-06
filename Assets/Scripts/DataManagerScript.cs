@@ -9,10 +9,10 @@ public class DataManagerScript : MonoBehaviour {
 
 	public static DataManagerScript dataManager;
 
-	//public static string version;
+    //public static string version;
 
     // Universal game variables
-
+    public static bool easyMode = true;
 	public int teamOneWins;
 	public int teamTwoWins;
 	public static bool playerOnePlaying = true;
@@ -29,7 +29,10 @@ public class DataManagerScript : MonoBehaviour {
 
 	// UI Flags
 
-	public static int gamepadControllingMenus;
+	public static int gamepadControllingMenus = 0;
+	#if UNITY_XBOXONE
+		public static Users.User userControllingMenus;
+	#endif
 
     // Player shapes
 
@@ -79,6 +82,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static int matchTime;
 	public static int currentRallyCount;
 	public static int rallyCount;
+    public static int soloRallyCount;
 
 	public static float gameTime;
 
@@ -91,7 +95,7 @@ public class DataManagerScript : MonoBehaviour {
 	public static string version;
 	public static bool gamepadMode = false;
 	public static bool xboxMode = false;
-	public static bool demoMode = true;
+	public static bool demoMode = false;
 
     // Save instance of self over scene loads
 	void Awake() {
@@ -155,6 +159,7 @@ public class DataManagerScript : MonoBehaviour {
 		gameTime = 0;
 
 		rallyCount = 0;
+        soloRallyCount = 0;
 	}
 
 }

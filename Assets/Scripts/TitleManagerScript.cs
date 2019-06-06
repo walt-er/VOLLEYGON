@@ -19,16 +19,18 @@ public class TitleManagerScript : MonoBehaviour {
 	public GameObject singlePlayerPanel;
 	public GameObject soloModeButton;
 
+	public GameObject curtain;
+
 	private bool mainMenuActive = false;
 
 	public EventSystem es1;
 
 	public Button firstButton;
 
-
-	// Use this for initialization
 	void Start () {
-		GameObject.Find ("FadeCurtainCanvas").GetComponent<NewFadeScript> ().Fade (0f);
+		curtain.SetActive(true);
+		curtain.GetComponent<NewFadeScript>().Fade(0f);
+
 		MusicManagerScript.Instance.FadeOutEverything ();
 		versionText.text = DataManagerScript.version;
 		DataManagerScript.ResetStats ();
@@ -39,9 +41,6 @@ public class TitleManagerScript : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
 			gamepads[i] = new JoystickButtons(i+1);
 		}
-
-		//Cursor.visible = false;
-		//Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void Update () {
@@ -56,7 +55,7 @@ public class TitleManagerScript : MonoBehaviour {
 			// Listen for activation
 			if (!mainMenuActive) {
 
-				if (Input.GetButtonDown (gamepads[i].jump) || Input.GetButtonDown (gamepads[i].start)) {
+				if (Input.GetButtonDown(gamepads[i].jump) || Input.GetButtonDown(gamepads[i].start)) {
 
 					if (DataManagerScript.demoMode) {
 
@@ -70,7 +69,7 @@ public class TitleManagerScript : MonoBehaviour {
 
 						#if UNITY_XBOXONE
 							// Sign in if active player is not associated with this controller
-							if (XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
+							if (DataManagerScript.xboxMode && XboxOneInput.GetUserIdForGamepad((uint)gamepadIndex) == 0) {
 
 								DataManagerScript.shouldActivateMenu = true;
 								UsersManager.RequestSignIn(Users.AccountPickerOptions.None, (ulong)gamepadIndex);
@@ -91,7 +90,7 @@ public class TitleManagerScript : MonoBehaviour {
 
                 #if UNITY_XBOXONE
 					// Listen for user change (Y button)
-					if (Input.GetButtonDown(gamepads[i].y) {
+					if (Input.GetButtonDown(gamepads[i].y)) {
 
 						// Back out and log in again if active player presses Y
 						if (gamepadIndex == DataManagerScript.gamepadControllingMenus) {
@@ -157,7 +156,14 @@ public class TitleManagerScript : MonoBehaviour {
 	public void SetUpSinglePlayerMenu (){
 		es1.SetSelectedGameObject(soloModeButton);
 	}
-	public void StartMultiplayerGame(){
+
+    public void StartSoloModeGame()
+    {
+        //TODO: This should be a different scene, specifically for choosing ONE shape.
+        SceneManager.LoadSceneAsync("ChooseSinglePlayerScene");
+    }
+
+    public void StartMultiplayerGame(){
 		SceneManager.LoadSceneAsync ("ChoosePlayerScene");
 	}
 	public void StartChallengesGame(){

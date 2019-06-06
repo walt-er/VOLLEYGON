@@ -5,7 +5,12 @@ using PigeonCoopToolkit.Effects.Trails;
 
 public class BallScript : MonoBehaviour {
 
-	public Text scoreText;
+    //Store a ref to ModuleContainer
+    private GameObject moduleContainer;
+
+    private bool easyMode = false;
+
+    public Text scoreText;
 	public Text winByTwoText;
 	public GameObject scoreboard;
 	public GameObject background;
@@ -15,12 +20,13 @@ public class BallScript : MonoBehaviour {
 	float timeSinceLastFlash;
 	float flashTime;
 	private bool isTimerRunning;
-	public float gravScale = 0.8f;
+    public float gravScale = 0.8f;
 	private float originalGrav;
 	public bool singleMode;
 	private int bounces = 0;
 	public int bouncesOnTop;
 	public float baseTimeBetweenGravChanges = 10f;
+    public float gravTimeRange = 10f;
 	public float lastXPos;
 	public Sprite originalSprite;
 	public Sprite reverseGravSprite;
@@ -38,9 +44,12 @@ public class BallScript : MonoBehaviour {
 	public GameObject circleTrail;
 	int lastScore;
 
+
 	// Ball options
 	public bool gravChangeMode = true;
 	public bool scoringMode = false;
+    public bool startWithRandomGrav = false;
+    public bool playSoundOnGravChange = true;
 
 	GameObject CurrentArena;
 
@@ -61,40 +70,69 @@ public class BallScript : MonoBehaviour {
 	// Use this for initialization
 
 	void Awake(){
-		// Debug.Log (GameManagerScript.Instance.CurrentArena);
-		// CurrentArena = GameManagerScript.Instance.CurrentArena;
-		// Debug.Log ("assign arena");
-	}
+        // Debug.Log (GameManagerScript.Instance.CurrentArena);
+        // CurrentArena = GameManagerScript.Instance.CurrentArena;
+        // Debug.Log ("assign arena");
+        // Cahce local components
+        audio = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>();
+        theSprite = GetComponent<SpriteRenderer>().sprite;
+
+        //check for easy mode
+        easyMode = DataManagerScript.easyMode;
+
+    }
 
 	void Start () {
-		audio = GetComponent<AudioSource> ();
+        // Cache other objects to broadcast to
+        moduleContainer = GameObject.FindWithTag("ModuleContainer");
+        CurrentArena = GameObject.FindWithTag("Arena");
 
-		didSirenPlayAlready = false;
+        didSirenPlayAlready = false;
 		flashTime = 0f;
 		timeSinceLastFlash = 0f;
-		rb = GetComponent<Rigidbody2D>();
-		CurrentArena = GameObject.FindWithTag("Arena");
-		theSprite = GetComponent<SpriteRenderer>().sprite;
+	
 		rb.isKinematic = true;
 		timer = baseTimeBetweenGravChanges + Random.value * 10 ;
-		rb.gravityScale = gravScale;
+        if (easyMode) { gravScale = .7f;  }
+        rb.gravityScale = gravScale;
 		originalGrav = gravScale;
+       
+        // For now, always have the first serve be normal grav.
 
-		//	scoreText.text = GameManagerScript.Instance.teamOneScore.ToString () + " - " + GameManagerScript.Instance.teamTwoScore.ToString ();
+         //if (startWithRandomGrav)
+        //{
+            //ChooseRandomGrav();
+        //}
 	}
 
-	void FixedUpdate(){
+    public void ChooseRandomGrav()
+    {
+        int signValue = Random.Range(0, 2) * 2 - 1;
+        rb.gravityScale = originalGrav * signValue;
+        Debug.Log(originalGrav);
+        if (Mathf.Sign(rb.gravityScale) < 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
+            redball.SetActive(true);
+            //blueball.SetActive (false);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = originalSprite;
+            blueball.SetActive(true);
+            redball.SetActive(false);
+        }
+    }
 
-	}
-	// Update is called once per frame
-	void Update () {
+    void Update () {
 
 		if(rb.velocity.magnitude > maxSpeed)
 		{
 			rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
 		}
 
-		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges). This should be in game manager.
+		// Only change gravity if gravchange mode is on, which it is by default. (Will be turned off for certain challenges).
 		if (gravChangeMode) {
 			if (isTimerRunning) {
 				timer -= Time.deltaTime;
@@ -106,8 +144,11 @@ public class BallScript : MonoBehaviour {
 			if (timer <= 3 && timeSinceLastFlash >= .25f) {
 
 				if (!didSirenPlayAlready) {
-					//SoundManagerScript.Instance.PlaySingle (gravityIsAboutToChangeSound);
-					audio.Play ();
+                    //SoundManagerScript.Instance.PlaySingle (gravityIsAboutToChangeSound);
+                    if (playSoundOnGravChange)
+                    {
+                        audio.Play();
+                    }
 					didSirenPlayAlready = true;
 				}
 				if (redball.activeSelf) {
@@ -136,11 +177,12 @@ public class BallScript : MonoBehaviour {
 	}
 
 	void ResetTimer(){
-		timer = baseTimeBetweenGravChanges + Random.value * 10;
+		timer = baseTimeBetweenGravChanges + Random.value * gravTimeRange;
 		isTimerRunning = true;
 		didSirenPlayAlready = false;
 	}
 	public void LaunchBall(){
+        // TODO: just... make sure the game is still going before launching.
 		rb.isKinematic = false;
 		trail.SetActive (true);
 		//Send the ball in a random direction
@@ -155,8 +197,13 @@ public class BallScript : MonoBehaviour {
 
 	}
 
-	public IEnumerator LaunchBallWithDelay(float delay, float velX, float velY){
-		Debug.Log ("happening?");
+    public IEnumerator LaunchBallWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LaunchBall();
+    }
+
+    public IEnumerator CustomLaunchBallWithDelay(float delay, float velX, float velY){
 		yield return new WaitForSeconds (delay);
 		CustomLaunchBall (velX, velY);
 	}
@@ -177,7 +224,19 @@ public class BallScript : MonoBehaviour {
 
 	void CheckForSideChange(){
 		if (Mathf.Sign (transform.position.x) != Mathf.Sign (lastXPos) && lastXPos != 0 && transform.position.x !=0) {
-			GameManagerScript.Instance.SideChange ();
+
+            // TODO: Instead of calling GameManager, broadcast this event to all relevant modules;
+            // If this is an individual challenge, broadcast to that manager. Otherwise, broadcast to the broader moduleContainer. TODO: This could be bad. This is a stopgap until we get rid of GameManager.
+            if (GameObject.FindWithTag("IndividualChallengeManager"))
+            {
+                GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("OnBallReturned");
+            }
+            // Increase solo mode rally count. It is unusued if this is not solo mode.
+            DataManagerScript.soloRallyCount = DataManagerScript.soloRallyCount + 1;
+
+            moduleContainer.BroadcastMessage("OnBallReturned", lastTouch);
+            // TODO: Get Rid of this and use the modules instead
+            GameManagerScript.Instance.SideChange ();
 
 			// Is this doing anything?
 			GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
@@ -243,40 +302,55 @@ public class BallScript : MonoBehaviour {
 		GameManagerScript.Instance.bouncesOnBottomRight = 0;
 		GameManagerScript.Instance.bouncesOnTopLeft = 0;
 		GameManagerScript.Instance.bouncesOnTopRight = 0;
+        Debug.Log("ball broadcasts that ball has died");
+        // Tell all other sibling objects that the ball has died (includes challenge manager)
+        //if (transform.parent != null)
+        //{
+            //broadcast which side we are on as well
+            int whichSide = 0;
+            if (transform.position.x < 0)
+            {
+                whichSide = 1;
+            } else if (transform.position.x > 0)
+            {
+                whichSide = 2;
+            }
+       
 
-		// Tell all other sibling objects that the ball has died (includes challenge manager)
-//	/	transform.parent.BroadcastMessage("ballDied");
+        //TODO: Factor this down once Game Manager has been parted out. this is primarily aimed toward scoreboardmanager.
+        moduleContainer.BroadcastMessage("OnBallDied", whichSide);
 
+        // If this is an individual challenge, broadcast to that manager. Otherwise, broadcast to the broader moduleContainer. TODO: This could be bad. This is a stopgap until we get rid of GameManager.
+        if (GameObject.FindWithTag("IndividualChallengeManager"))
+        {
+            GameObject.FindWithTag("IndividualChallengeManager").BroadcastMessage("BallDied", whichSide);
+        }
+        else if (GameObject.FindWithTag("GameManager"))
+        {
+            GameObject.FindWithTag("GameManager").BroadcastMessage("OnBallDied", whichSide);
+        }
+
+      
+       
 		Destroy (gameObject);
-
-//		timer = 10; // arbitrary high number
-//		Transform child = gameObject.transform.Find("CircleTrails");
-//		child.gameObject.SetActive (false);
-//		// Reset last touch information
-//		lastTouch = 0;
-//		secondToLastTouch = 0;
-
-	
 	}
 
 	void GravChange(){
+        Debug.Log("ball is changing gravity");
 		rb.gravityScale *= -1;
 		SoundManagerScript.instance.PlaySingle (gravityChangeSound);
-		// Debug.Log ("sign of gravity scale is " + Mathf.Sign (rb.gravityScale));
 		if (Mathf.Sign (rb.gravityScale) < 0) {
-			//Debug.Log ("changing sprite?");
-			//GetComponent<SpriteRenderer>().sprite = reverseGravSprite;
-			redball.SetActive(true);
-			//blueball.SetActive(false);
-			gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
+			redball.SetActive(true);	
+			//gravityIndicator.transform.localScale = new Vector3 (1f, -1f, 1f);
 		} else {
 			GetComponent<SpriteRenderer>().sprite = originalSprite;
 			redball.SetActive(false);
 			blueball.SetActive (true);
-			gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
+		//gravityIndicator.transform.localScale = new Vector3 (1f, 1f, 1f);
 		}
-		gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
-	}
+        //gravityIndicator.GetComponent<PlayAnimationScript> ().PlayAnimation ();
+       moduleContainer.BroadcastMessage("GravChange", rb.gravityScale);
+    }
 
 
 
@@ -363,7 +437,11 @@ public class BallScript : MonoBehaviour {
 			//Debug.Log ("a collision!");
 			SoundManagerScript.instance.PlaySingle (bounceOffScoringBoundarySound);
 			GameManagerScript.Instance.bounces += 1;
-			if (coll.gameObject.transform.position.y > 0) {
+            // new
+
+            //  coll.gameObject.GetComponent<BorderScript>().RegisterBounce();
+            // end new
+            if (coll.gameObject.transform.position.y > 0) {
 				if (coll.gameObject.transform.position.x < 0) {
 					//GameManagerScript.Instance.bouncesOnTop += 1;
 					GameManagerScript.Instance.bouncesOnTopLeft += 1;
@@ -388,7 +466,7 @@ public class BallScript : MonoBehaviour {
 			CreateBounceImpact (coll, 3, 3);
 			GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, .8f);
 
-			// TODO: This hsould probably be in game manager...
+			// TODO: This should probably be in game manager or in a manager attached to a wall...
 			// If there were two bounces on a side, take action
 			if (GameManagerScript.Instance.bounces >= 2 && singleMode || GameManagerScript.Instance.bouncesOnTopLeft >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnTopRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomRight >= 2 && !singleMode || GameManagerScript.Instance.bouncesOnBottomLeft >= 2 && !singleMode) {
 
@@ -397,14 +475,12 @@ public class BallScript : MonoBehaviour {
 
 				FireExplosion ();
 
-				// Only add a score if this ball is in scoring mode
-				if (scoringMode) {
-					Debug.Log ("trying to manage score");
-					GameManagerScript.Instance.ManageScore (this.transform.position.x);
-				} else {
-					GameManagerScript.Instance.ReturnArenaToOriginalColor();
-					DestroyBall ();
-				}
+				
+			
+                // TODO: Change this to some arena manager thingy
+				GameManagerScript.Instance.ReturnArenaToOriginalColor();
+                DestroyBall ();
+				
 			} else {
 
 				coll.gameObject.GetComponent<BorderScript> ().ChangeColor ();

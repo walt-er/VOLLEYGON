@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class GameManagerScript : MonoBehaviour {
 
+    // Store a style of ball to spawn
+    public GameObject ballPrefab;
+
 	public GameObject scoreboard;
 	public GameObject background;
 	public float gravTimer;
@@ -24,9 +27,6 @@ public class GameManagerScript : MonoBehaviour {
 	public bool paused = false;
 	public bool recentlyPaused = false;
 	private float timeSinceLastPowerup;
-	private float powerupAppearTime;
-	public GameObject speedPowerupPrefab;
-	public GameObject powerupPrefab;
 	public GameObject gravityIndicator;
 	public GameObject playerClonePrefab;
 	public GameObject pausePanel;
@@ -45,6 +45,10 @@ public class GameManagerScript : MonoBehaviour {
 	// Logic for what game manager should do. If these are turned off it is probably to allow challenge manager to handle things.
 	public bool handleBalls = true;
 	public bool handleArenas = true;
+    public bool handleScore = true;
+
+    // Testing this easy mode thing
+    public bool easyMode = false;
 
 	// Hold references to each of the players. Activate or de-activate them based on options chosen on the previous page.
 	public GameObject Player1;
@@ -59,16 +63,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	private bool OnePlayerMode;
 
-	// Hold references to each of the arenas
-	public GameObject Arena1;
-	public GameObject Arena2;
-	public GameObject Arena3;
-	public GameObject Arena4;
-	public GameObject Arena5;
-	public GameObject Arena6;
-	public GameObject Arena7;
-	public GameObject Arena8;
-	public GameObject Arena9;
+    public GameObject[] Arenas;
+
 
 	public GameObject CurrentArena;
 
@@ -78,9 +74,6 @@ public class GameManagerScript : MonoBehaviour {
 	public string startButton4 = "Start_P4";
 
 	public EventSystem es;
-
-	public int lastTouch;
-	public int secondToLastTouch;
 
 	// Static singleton property
 	public static GameManagerScript Instance { get; private set; }
@@ -93,6 +86,8 @@ public class GameManagerScript : MonoBehaviour {
 
 		locked = false;
 
+        easyMode = DataManagerScript.easyMode;
+
 		Player1.GetComponent<PlayerController>().playerType = DataManagerScript.playerOneType;
 		Player2.GetComponent<PlayerController>().playerType = DataManagerScript.playerTwoType;
 		Player3.GetComponent<PlayerController>().playerType = DataManagerScript.playerThreeType;
@@ -102,84 +97,36 @@ public class GameManagerScript : MonoBehaviour {
 		launchTimer ();
 		timeSinceLastPowerup = 0f;
 		soloModeBalls = 3;
-		powerupAppearTime = 10f;
 		readyForReplay = false;
-		lastTouch = 0;
-		secondToLastTouch = 0;
+
 		if (handleBalls) {
-			ball.SetActive (true);
-			Invoke("LaunchBall", 3f);
+            SpawnNewBall();
 		}
 		if (winText != null){
 			winText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
 		}
-		// Invoke ("StartReplay", 2f);
 
 		rallyCount = 0;
 
-		// Fade in
-        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+        // Fade in
+        if (GameObject.Find("FadeCurtainCanvas"))
+        {
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+        }
 
-		// Set up arena based on options
-		arenaType = DataManagerScript.arenaType;
+        // Set up arena based on options
+        arenaType = DataManagerScript.arenaType;
 
-		// This is so dumb.
-		if (handleArenas) {
-			switch (arenaType) {
+        // If no arena is selected (Solo mode, testing, etc., just choose the balanced arena (2)
 
-			case 1:
-				Arena1.SetActive (true);
-				break;
+        if (arenaType <= 0)
+        {
+            arenaType = 2;
+        }
 
-			case 2:
-				Arena2.SetActive (true);
-				break;
-
-			case 3:
-				Arena3.SetActive (true);
-				break;
-
-			case 4:
-				Arena4.SetActive (true);
-				break;
-
-			case 5:
-				Arena5.SetActive (true);
-				break;
-
-			case 6:
-				Arena6.SetActive (true);
-				break;
-
-			case 7:
-				Arena7.SetActive (true);
-				break;
-
-			case 8:
-				Arena8.SetActive (true);
-				break;
-
-			case 9:
-				Arena9.SetActive (true);
-				break;
-
-			default:
-				Arena1.SetActive (true);
-				break;
-
-			}
-		}
-		Debug.Log("challenge mode?");
-		Debug.Log(DataManagerScript.isChallengeMode);
-		if (!DataManagerScript.isChallengeMode){
-			CurrentArena = GameObject.FindWithTag("Arena");
-		} else {
-			Debug.Log("Setting Current arena for challenge mode");
-			//CurrentArena = transform.Find("Challenges").gameObject.transform.GetChild (DataManagerScript.challengeType).Find("Arena").gameObject;
-			//GameObject CurrentChallenge = GameObject.Find("Challenges").gameObject.transform.GetChild(DataManagerScript.challengeType).gameObject;
-			CurrentArena = GameObject.FindWithTag("Arena");
-			Debug.Log(CurrentArena);
-			 //GameObject.FindWithTag("Arena");
+        if (handleArenas) {
+            Debug.Log(DataManagerScript.arenaType);
+            Arenas[arenaType - 1].SetActive(true);
 		}
 
 		int playersActive = 0;
@@ -221,8 +168,76 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 	}
+    void Start()
+    {
+        Debug.Log("challenge mode?");
+        Debug.Log(DataManagerScript.isChallengeMode);
+        if (!DataManagerScript.isChallengeMode)
+        {
+            CurrentArena = GameObject.FindWithTag("Arena");
+        }
+        else
+        {
 
-	void LaunchBall(){
+            CurrentArena = GameObject.FindWithTag("Arena");
+            Debug.Log(CurrentArena);
+            //GameObject.FindWithTag("Arena");
+        }
+    }
+
+    void OnBallDied(int whichSide)
+    {
+        // These flags suck. Eventually pare down GameManager into components such as 'Ball Respawner' or whatever
+        if (handleBalls)
+        {
+            Debug.Log("Game manager knows the ball has died");
+            Debug.Log("Is the game over?");
+            Debug.Log(isGameOver);
+            // Received a message from the ball. It died. Spawn a new one if the game is still going.
+            if (!isGameOver)
+            {
+                Invoke("SpawnNewBall", 1f);
+            }
+        }
+
+        }
+
+    void SpawnNewBall()
+    {
+        // Only spawn if game is still going.
+        if (!isGameOver)
+        {
+
+            GameObject newBall = Instantiate(ballPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            newBall.transform.parent = gameObject.transform.parent;
+            IEnumerator coroutine_1 = newBall.GetComponent<BallScript>().LaunchBallWithDelay(2f);
+            StartCoroutine(coroutine_1);
+            // set ball's gravChangeMode to true;
+            if (easyMode)
+            {
+                Debug.Log("Easy mode: setting gravchange mode to false");
+                newBall.GetComponent<BallScript>().gravChangeMode = false;
+                newBall.GetComponent<BallScript>().startWithRandomGrav = false;
+            }
+            else
+            {
+                Debug.Log("setting gravchange mode to true");
+            }
+
+            //TODO: Is there a better way to store these settins, which will be different for each mode?
+
+            if (handleScore)
+            {
+                newBall.GetComponent<BallScript>().scoringMode = true;
+            }
+
+            // Add a random grav sign based on flag
+            newBall.GetComponent<BallScript>().startWithRandomGrav = true;
+            ball = newBall;
+        }
+    }
+
+    void LaunchBall(){
 		ball.GetComponent<BallScript>().LaunchBall ();
 	}
 
@@ -290,10 +305,10 @@ public class GameManagerScript : MonoBehaviour {
 
 		playerClone.SetActive (true);
 		playerClone.transform.SetParent (GameObject.Find ("Players").transform);
-	//	playerClone.GetComponent<BoxCollider2D> ().enabled = true;
 		playerClone.GetComponent<PlayerController>().playerID = whichSoloPlayer;
 		playerClone.GetComponent<PlayerController>().playerType = playerType;
 		playerClone.GetComponent<MeshRenderer> ().material = whichMat;
+        // Special case for circle shape
 		if (playerType == 1) {
 			playerClone.transform.Find ("Circle").GetComponent<CircleEfficient> ().Rebuild ();
 			playerClone.transform.Find ("Circle").GetComponent<MeshRenderer> ().material = whichMat;
@@ -301,15 +316,27 @@ public class GameManagerScript : MonoBehaviour {
 
 	}
 
-	// void LaunchTitleScreen(){
-	// 	SceneManager.LoadSceneAsync("titleScene");
-	// }
+	 void LaunchTitleScreen(){
+        StartCoroutine("FadeToTitle");
+    }
 
 	void LaunchStatsScreen(){
 		StartCoroutine ("FadeToStats");
 	}
 
-	IEnumerator FadeToStats(){
+    IEnumerator FadeToTitle()
+    {
+        if (!locked)
+        {
+            locked = true;
+            GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+            yield return new WaitForSeconds(0.5f);
+            SceneManager.LoadSceneAsync("titleScene");
+
+        }
+    }
+
+    IEnumerator FadeToStats(){
 		if (!locked) {
 			locked = true;
             GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
@@ -329,39 +356,13 @@ public class GameManagerScript : MonoBehaviour {
 		Invoke ("LaunchStatsScreen", 5f);
 	}
 
-	// End game for team maches
-	void teamWins(int whichTeam){
-
-		switch (whichTeam) {
-		case 1:
-			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamOneWin ();
-			background.GetComponent<BackgroundColorScript> ().whoWon = 1;
-			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
-
-			break;
-		case 2:
-			scoreboard.GetComponent<ScoreboardManagerScript> ().TeamTwoWin ();
-			background.GetComponent<BackgroundColorScript> ().whoWon = 2;
-			background.GetComponent<BackgroundColorScript> ().matchOver = true;
-			break;
-		}
-		isGameOver = true;
-		if (!readyForReplay) {
-		//	EZReplayManager.get.stop ();
-			readyForReplay = true;
-		//	Invoke ("PlayReplay", 2f);
-		}
-
-		//EZReplayManager.get.play(-1,false,true,true);
-		//DataManagerScript.dataManager.teamOneWins += 1;
-		//Invoke ("LaunchTitleScreen", 5f);
-		Invoke ("LaunchStatsScreen", 5f);
-	}
-
-	void PlayReplay(){
-//		EZReplayManager.get.play (0, true, false, true);
-	}
+    // End game for team maches. TODO: Move to scoreboard manager
+    public void GameOver()
+    {
+        isGameOver = true;
+        Debug.Log("Game Over message received by game manager");
+        Invoke("LaunchStatsScreen", 5f);
+    }
 
 	void Update () {
 
@@ -381,38 +382,20 @@ public class GameManagerScript : MonoBehaviour {
 		if (timerRunning) {
 			gameTimer -= Time.deltaTime;
 		}
-
-		// Match point
-		if (teamOneScore >= scorePlayedTo && teamOneScore == teamTwoScore + 1) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore == teamOneScore + 1) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-		}
-
-		// Team wins
-		if (teamOneScore >= scorePlayedTo && teamOneScore > teamTwoScore + 1 && !isGameOver) {
-			teamWins (1);
-		} else if (teamTwoScore >= scorePlayedTo && teamTwoScore > teamOneScore + 1 && !isGameOver) {
-			teamWins (2);
-		}
-
-		if (!isGameOver) {
-			ConsiderAPowerup ();
-		}
 	}
 
 	public void Pause(JoystickButtons buttons){
 		if (!paused) {
-			// Sho wpause
+			// Show pause
 			pausePanel.SetActive (true);
 
 			// Assign butons
-            es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
-            es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
-            es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
-            es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
+           es.GetComponent<StandaloneInputModule>().horizontalAxis = buttons.horizontal;
+           es.GetComponent<StandaloneInputModule>().verticalAxis = buttons.vertical;
+           es.GetComponent<StandaloneInputModule>().submitButton = buttons.jump;
+           es.GetComponent<StandaloneInputModule>().cancelButton = buttons.grav;
 
-            // Reset menu
+           // Reset menu
 			es.SetSelectedGameObject(null);
 			es.SetSelectedGameObject(es.firstSelectedGameObject);
 			MusicManagerScript.Instance.TurnOffEverything ();
@@ -426,6 +409,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	public void Unpause(){
 		if (paused){
+            Debug.Log("unpausing");
 			Time.timeScale = 1;
 			paused = false;
 			pausePanel.SetActive (false);
@@ -441,207 +425,35 @@ public class GameManagerScript : MonoBehaviour {
 	public void CancelRecentlyPaused(){
 		recentlyPaused = false;
 	}
-	public void QuitGame(){
-		SceneManager.LoadSceneAsync("TitleScene");
-	}
 
-	void ConsiderAPowerup(){
-		if (timeSinceLastPowerup >= powerupAppearTime) {
+    public void QuitGame()
+    {
+        // Temp switchin this for playtest night
+        LaunchTitleScreen();
+    }
 
-			// spawn a powerup
-			float xVal = Random.Range(4f, 15.5f);
-			float inverseXVal = -1 * xVal;
-			float yVal = Random.Range (-5f, 5f);
-			int whichType = Random.Range (1, 5);
-			float powerupDuration = 5f + (Random.value * 5f);
-			GameObject firstPowerup = (GameObject)Instantiate(powerupPrefab, new Vector3(xVal, yVal, 0), Quaternion.identity);
-			firstPowerup.SendMessage("Config", whichType);
-			firstPowerup.SendMessage("ResetTime", powerupDuration);
-			GameObject secondPowerup = (GameObject)Instantiate(powerupPrefab, new Vector3(inverseXVal, yVal, 0), Quaternion.identity);
-			secondPowerup.SendMessage("Config", whichType);
-			secondPowerup.SendMessage("ResetTime", powerupDuration);
-			timeSinceLastPowerup = 0f;
-			powerupAppearTime = 20f + Random.value * 20f;
-		}
-	}
+    void CheckForMatchPoint()
+    {
+        // check for match point
+        if (teamTwoScore == teamOneScore)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOffMatchPoint();
+            //MusicManagerScript.Instance.SwitchMusic ();
+        }
+        else if (teamOneScore == scorePlayedTo - 1 && teamTwoScore < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(1);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+        else if (teamTwoScore == scorePlayedTo - 1 && teamOneScore < scorePlayedTo)
+        {
+            background.GetComponent<BackgroundColorScript>().TurnOnMatchPoint(2);
+            background.GetComponent<BackgroundColorScript>().TurnOffDeuce();
+            MusicManagerScript.Instance.StartFifth();
+        }
+    }
 
-	void CheckForMatchPoint(){
-		// check for match point
-		if (teamTwoScore == teamOneScore) {
-			background.GetComponent<BackgroundColorScript> ().TurnOffMatchPoint ();
-			//MusicManagerScript.Instance.SwitchMusic ();
-		} else if (teamOneScore == scorePlayedTo - 1 && teamTwoScore < scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (1);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-		} else if (teamTwoScore == scorePlayedTo - 1 && teamOneScore < scorePlayedTo) {
-			background.GetComponent<BackgroundColorScript> ().TurnOnMatchPoint (2);
-			background.GetComponent<BackgroundColorScript> ().TurnOffDeuce();
-			MusicManagerScript.Instance.StartFifth ();
-		}
-	}
-
-//	void ComputeStat(int whichTeamScored){
-//		if (whichTeamScored == 1) {
-//			if (lastTouch == 1) {
-//				DataManagerScript.playerOneAces += 1;
-//				DataManagerScript.playerOneScores += 1;
-//			}
-//			if (lastTouch == 2) {
-//				DataManagerScript.playerTwoAces += 1;
-//				DataManagerScript.playerTwoScores += 1;
-//			}
-//
-//			if (lastTouch == 3) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneScores += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoScores += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeBumbles += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerThreeBumbles += 1;
-//				}
-//			}
-//			if (lastTouch == 4) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneScores += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoScores += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerFourBumbles += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourBumbles += 1;
-//				}
-//			}
-//		}
-//		if (whichTeamScored == 2) {
-//			if (lastTouch == 3) {
-//				DataManagerScript.playerThreeAces += 1;
-//				DataManagerScript.playerThreeScores += 1;
-//			}
-//			if (lastTouch == 4) {
-//				DataManagerScript.playerFourAces += 1;
-//				DataManagerScript.playerFourScores += 1;
-//			}
-//
-//			if (lastTouch == 1) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerOneBumbles += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerOneBumbles += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeScores += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourScores += 1;
-//				}
-//			}
-//			if (lastTouch == 2) {
-//				if (secondToLastTouch == 1) {
-//					DataManagerScript.playerTwoBumbles += 1;
-//				}
-//				if (secondToLastTouch == 2) {
-//					DataManagerScript.playerTwoBumbles += 1;
-//				}
-//				if (secondToLastTouch == 3) {
-//					DataManagerScript.playerThreeScores += 1;
-//				}
-//				if (secondToLastTouch == 4) {
-//					DataManagerScript.playerFourScores += 1;
-//				}
-//			}
-//		}
-//	}
-
-	public void ComputeStat(int whichTeamScored){
-		if (whichTeamScored == 1) {
-			if (lastTouch == 1) {
-				DataManagerScript.playerOneAces += 1;
-				DataManagerScript.playerOneScores += 1;
-			}
-			if (lastTouch == 2) {
-				DataManagerScript.playerTwoAces += 1;
-				DataManagerScript.playerTwoScores += 1;
-			}
-
-			if (lastTouch == 3) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerThreeBumbles += 1;
-				}
-			}
-			if (lastTouch == 4) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneScores += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoScores += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourBumbles += 1;
-				}
-			}
-		}
-		if (whichTeamScored == 2) {
-			if (lastTouch == 3) {
-				DataManagerScript.playerThreeAces += 1;
-				DataManagerScript.playerThreeScores += 1;
-			}
-			if (lastTouch == 4) {
-				DataManagerScript.playerFourAces += 1;
-				DataManagerScript.playerFourScores += 1;
-			}
-
-			if (lastTouch == 1) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerOneBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-			if (lastTouch == 2) {
-				if (secondToLastTouch == 1) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 2) {
-					DataManagerScript.playerTwoBumbles += 1;
-				}
-				if (secondToLastTouch == 3) {
-					DataManagerScript.playerThreeScores += 1;
-				}
-				if (secondToLastTouch == 4) {
-					DataManagerScript.playerFourScores += 1;
-				}
-			}
-		}
-	}
 	public void SideChange(){
 		bounces = 0;
 		bouncesOnBottom = 0;
@@ -651,27 +463,28 @@ public class GameManagerScript : MonoBehaviour {
 		bouncesOnBottomRight = 0;
 		CurrentArena.BroadcastMessage ("ReturnColor");
 
-		DataManagerScript.currentRallyCount += 1;
-		if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
-			DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
-			// Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
-		}
+        //TODO: TEST THIS STUFF IN STATS MODULE BEFORE REMOVING COMPLETELY
+		//DataManagerScript.currentRallyCount += 1;
+		//if (DataManagerScript.currentRallyCount > DataManagerScript.longestRallyCount) {
+		//	DataManagerScript.longestRallyCount = DataManagerScript.currentRallyCount;
+		//	// Debug.Log ("longest rally count is now " + DataManagerScript.longestRallyCount);
+		//}
 
-		// Credit a return to the last touch player
-		switch (lastTouch) {
-		case 1:
-			DataManagerScript.playerOneReturns += 1;
-			break;
-		case 2:
-			DataManagerScript.playerTwoReturns += 1;
-			break;
-		case 3:
-			DataManagerScript.playerThreeReturns += 1;
-			break;
-		case 4:
-			DataManagerScript.playerFourReturns += 1;
-			break;
-		}
+		//// Credit a return to the last touch player
+		//switch (lastTouch) {
+		//case 1:
+		//	DataManagerScript.playerOneReturns += 1;
+		//	break;
+		//case 2:
+		//	DataManagerScript.playerTwoReturns += 1;
+		//	break;
+		//case 3:
+		//	DataManagerScript.playerThreeReturns += 1;
+		//	break;
+		//case 4:
+		//	DataManagerScript.playerFourReturns += 1;
+		//	break;
+		//}
 
 		if (soloMode && ball.GetComponent<BallScript> ().lastXPos != 0) {
 			GameManagerScript.Instance.GetComponent<GameManagerScript>().rallyCount++;
@@ -683,75 +496,76 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	public void ManageScore(float ballPosition){
-		if (!soloMode) {
-			if (Mathf.Sign (ballPosition) < 0) {
-				teamTwoScore += 1;
-				ComputeStat (2);
-				if (lastScore != 2) {
-					MusicManagerScript.Instance.SwitchMusic (2);
-				}
+		//if (!soloMode) {
+		//	if (Mathf.Sign (ballPosition) < 0) {
+		//		teamTwoScore += 1;
+		//		ComputeStat (2);
+		//		if (lastScore != 2) {
+		//			MusicManagerScript.Instance.SwitchMusic (2);
+		//		}
 
-				lastScore = 2;
-			} else {
-				teamOneScore += 1;
-				ComputeStat (1);
+		//		lastScore = 2;
+		//	} else {
+		//		teamOneScore += 1;
+		//		ComputeStat (1);
 
-				if (lastScore != 1) {
-					MusicManagerScript.Instance.SwitchMusic (1);
-				}
+		//		if (lastScore != 1) {
+		//			MusicManagerScript.Instance.SwitchMusic (1);
+		//		}
 
-				lastScore = 1;
-			}
+		//		lastScore = 1;
+		//	}
 
-			CurrentArena.BroadcastMessage ("ReturnColor");
+		//	CurrentArena.BroadcastMessage ("ReturnColor");
 
-			if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
-				if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-					background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
-				} else {
+		//	if (teamTwoScore < scorePlayedTo && teamOneScore < scorePlayedTo) {
+		//		if (teamTwoScore == scorePlayedTo - 1 && teamOneScore == scorePlayedTo - 1) {
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+		//			background.GetComponent<BackgroundColorScript> ().TurnOnDeuce ();
+		//		} else {
 
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
-				}
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, false);
+		//		}
 
-				CheckForMatchPoint ();
+		//		CheckForMatchPoint ();
 
-				ball.GetComponent<BallScript> ().ResetBall ();
-				//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
-				//Destroy (gameObject);
-			} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
-				if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
-					//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
-					MusicManagerScript.Instance.StartFifth ();
-					CheckForMatchPoint ();
-					scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
-				}
-				ball.GetComponent<BallScript> ().ResetBall ();
+		//		ball.GetComponent<BallScript> ().ResetBall ();
+		//		//Instantiate(prefab, new Vector3(0f, 0, 0), Quaternion.identity);
+		//		//Destroy (gameObject);
+		//	} else if (Mathf.Abs (GameManagerScript.Instance.teamOneScore - GameManagerScript.Instance.teamTwoScore) < 2) {
+		//		if (GameManagerScript.Instance.teamTwoScore >= GameManagerScript.Instance.scorePlayedTo || GameManagerScript.Instance.teamOneScore >= GameManagerScript.Instance.scorePlayedTo) {
+		//			//winByTwoText.CrossFadeAlpha (0.6f, .25f, false);
+		//			MusicManagerScript.Instance.StartFifth ();
+		//			CheckForMatchPoint ();
+		//			scoreboard.GetComponent<ScoreboardManagerScript> ().enableNumbers (GameManagerScript.Instance.teamOneScore, GameManagerScript.Instance.teamTwoScore, true);
+		//		}
+		//		ball.GetComponent<BallScript> ().ResetBall ();
 
-			} else {
-				// GAME IS OVER
-				transform.position = new Vector3 (0f, 0f, 0f);
-                ball.SetActive(false);
-			}
-		}
-		// If you're in one player mode....
-	 	else {
-			// single mode
-			soloModeBalls--;
-			// Debug.Log ("scored");
-			// generate a random number between one and two
-			int randomTrack = Random.Range (1, 3);
-			MusicManagerScript.Instance.SwitchMusic (randomTrack);
-			if (soloModeBalls <= 0) {
-				// GAME IS OVER
-				transform.position = new Vector3 (0f, 0f, 0f);
-				gameObject.SetActive (false);
-				GameManagerScript.Instance.endGame ();
-			} else {
-				// Hide ball on game over
-				ball.SetActive(false);
-			}
-		}
+		//	} else {
+		//		// GAME IS OVER
+		//		transform.position = new Vector3 (0f, 0f, 0f);
+  //              ball.SetActive(false);
+  //              isGameOver = true;
+		//	}
+		//}
+		//// If you're in one player mode....
+	 //	else {
+		//	// single mode
+		//	soloModeBalls--;
+		//	// Debug.Log ("scored");
+		//	// generate a random number between one and two
+		//	int randomTrack = Random.Range (1, 3);
+		//	MusicManagerScript.Instance.SwitchMusic (randomTrack);
+		//	if (soloModeBalls <= 0) {
+		//		// GAME IS OVER
+		//		transform.position = new Vector3 (0f, 0f, 0f);
+		//		gameObject.SetActive (false);
+		//		GameManagerScript.Instance.endGame ();
+		//	} else {
+		//		// Hide ball on game over
+		//		ball.SetActive(false);
+		//	}
+		//}
 	}
 }
 

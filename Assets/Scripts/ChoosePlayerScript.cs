@@ -11,10 +11,13 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 	public Image gutterBG;
 
+    public bool soloMode = false;
 	public GameObject fakePlayer1;
 	public GameObject fakePlayer2;
 	public GameObject fakePlayer3;
 	public GameObject fakePlayer4;
+
+	public GameObject curtain;
 
 	public GameObject gamepadIcon1;
 	public GameObject gamepadIcon2;
@@ -89,7 +92,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 		DataManagerScript.playerFourType = 0;
 
 		// Fade in
-        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+		curtain.SetActive(true);
+		curtain.GetComponent<NewFadeScript>().Fade(0f);
 
 		// Make array of icons and usernames
 		gamepadIcons = new GameObject[4] { gamepadIcon1, gamepadIcon2, gamepadIcon3, gamepadIcon4 };
@@ -144,17 +148,19 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 		if ((playersOnLeft == 1 && playersOnRight == 0) && noUnreadyPlayers () || (playersOnLeft == 0 && playersOnRight == 1) && noUnreadyPlayers ()) {
 
-			// disable single player, to be replaced with "solo mode"
+            // disable single player, to be replaced with "solo mode"
+            if (soloMode)
+            {
+                // Single player startable
+                gameIsStartable = true;
+                msgBG.enabled = true;
+                msgBG2.enabled = true;
+                onePlayerMessage.enabled = true;
+                twoOnOneMessage.enabled = false;
+                oneOnOneMessage.enabled = false;
+            }
 
-            // Single player startable
-   			// gameIsStartable = true;
-			// msgBG.enabled = true;
-			// msgBG2.enabled = true;
-			// onePlayerMessage.enabled = true;
-			// twoOnOneMessage.enabled = false;
-			// oneOnOneMessage.enabled = false;
-
-		} else if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
+        } else if (playersOnLeft > 0 && playersOnRight > 0 && noUnreadyPlayers()) {
 
             // Multiplayer game is startable
 			gameIsStartable = true;
@@ -201,8 +207,17 @@ public class ChoosePlayerScript : MonoBehaviour {
 		if (!locked) {
 			locked = true;
             yield return new WaitForSeconds (GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f));
-			SceneManager.LoadSceneAsync ("chooseArenaScene");
-		}
+            Debug.Log("Solo mode?");
+            Debug.Log(soloMode);
+            if (!soloMode)
+            {
+                SceneManager.LoadSceneAsync("chooseArenaScene");
+            }
+            else
+            {
+                SceneManager.LoadSceneAsync("soloGameScene");
+            }
+        }
 	}
 
 	void exitIfNoOtherGamepads() {
@@ -238,11 +253,8 @@ public class ChoosePlayerScript : MonoBehaviour {
 
 				// Start game if startable and gamepad not tagged in
 				if (gameIsStartable && gamepadIcons[i].GetComponent<GamepadController>().enabled) {
-
-                	// Load arena picker
-					SceneManager.LoadSceneAsync ("chooseArenaScene");
-
-				}
+                    StartCoroutine("StartGame");
+                }
 				else if (!gamepadIcons[i].GetComponent<GamepadController>().enabled) {
 
 					// Tag in gamepad if not

@@ -76,13 +76,8 @@ public class SingleStatManagerScript : MonoBehaviour {
 		}
 	}
 
-	public void CheckStartable(){
-
-	}
-
 	public void increasePlayerReady(){
-		playersReady++;
-
+        playersReady++;
 	}
 
 	public void decreasePlayerReady(){
@@ -97,44 +92,17 @@ public class SingleStatManagerScript : MonoBehaviour {
 
 	IEnumerator BackToTitle(){
 		if (!locked) {
-			locked = true;
-            // insert new fancy fade here
-            yield return new WaitForSeconds(1f);
+            locked = true;
+            float fadeTime = GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(1f);
+            yield return new WaitForSeconds(fadeTime);
             SceneManager.LoadSceneAsync("titleScene");
 		}
 	}
 
 	void PopulateStats(){
-
-		int[] aces = {
-			DataManagerScript.playerOneAces,
-			DataManagerScript.playerTwoAces,
-			DataManagerScript.playerThreeAces,
-			DataManagerScript.playerFourAces
-		};
-
-		int[] scores = {
-			DataManagerScript.playerOneScores,
-			DataManagerScript.playerTwoScores,
-			DataManagerScript.playerThreeScores,
-			DataManagerScript.playerFourScores
-		};
-
-		int[] returns = {
-			DataManagerScript.playerOneReturns,
-			DataManagerScript.playerTwoReturns,
-			DataManagerScript.playerThreeReturns,
-			DataManagerScript.playerFourReturns
-		};
-
-		int[] bumbles = {
-			DataManagerScript.playerOneBumbles,
-			DataManagerScript.playerTwoBumbles,
-			DataManagerScript.playerThreeBumbles,
-			DataManagerScript.playerFourBumbles
-		};
-
-		int rallyCount = DataManagerScript.rallyCount;
+        Debug.Log("rally count is");
+		int rallyCount = DataManagerScript.soloRallyCount;
+        Debug.Log(rallyCount);
 		//populate matchtime and longest rally counters
 
 		rallyCountText.text = rallyCount.ToString ();

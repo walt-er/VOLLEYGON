@@ -44,7 +44,7 @@ public class ChallengeScript_Test : MonoBehaviour {
 
 	public void LaunchBall(float x, float y, float z){
 		GameObject ball_1 = Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
-		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().LaunchBallWithDelay (0f, -6f, -10f);
+		IEnumerator coroutine_1 = ball_1.GetComponent<BallScript> ().CustomLaunchBallWithDelay (0f, -6f, -10f);
 		StartCoroutine(coroutine_1);
 
 		//ChallengeManagerScript.Instance.ChallengeFail();
@@ -56,7 +56,7 @@ public class ChallengeScript_Test : MonoBehaviour {
 	{
 		for (int i = 0; i < invokeCount; i++)
 		{
-			LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
+			//LaunchBall(UnityEngine.Random.Range(0, 3f),UnityEngine.Random.Range(-1, 2f),0f);
 
 			yield return new WaitForSeconds(interval);
 		}

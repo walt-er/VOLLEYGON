@@ -222,8 +222,8 @@ MonoBehaviour:
   m_sortingLayer: Default
   m_orderInLayer: 0
   regenerateMesh: 0
-  timestampHigh: 30701223
-  timestampLow: 1557796992
+  timestampHigh: 30701198
+  timestampLow: 931979392
 --- !u!23 &283342450
 MeshRenderer:
   m_ObjectHideFlags: 10
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shader: {fileID: 4800000, guid: 6b426a8c366d0584dadb551db862ddeb, type: 3}
   AutomaticPhase: 1
-  Phase: 32.80361
+  Phase: 34.177746
   ConvertToGrayscale: 0
   NoiseIntensity: 0.4
   ScanlinesIntensity: 0.5
@@ -973,6 +973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hs_canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 801218113206003038, guid: c8c0610e242be4179ada981fe56d9fd0,
+        type: 3}
+      propertyPath: m_Text
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 801218114859311493, guid: c8c0610e242be4179ada981fe56d9fd0,
         type: 3}

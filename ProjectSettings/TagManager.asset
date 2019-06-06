@@ -19,6 +19,12 @@ TagManager:
   - Ball
   - MidpointMarker
   - Arena
+  - ModuleContainer
+  - IndividualChallengeManager
+  - ChallengeManager
+  - Background
+  - GameManager
+  - FakePlayer
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -42,6 +43,8 @@ public class ArenaManagerScript : MonoBehaviour {
     public AudioClip tickUp;
     public AudioClip tickDown;
 
+    public CarouselScript carousel;
+
     private new AudioSource audio;
 
     Axis va1;
@@ -69,6 +72,9 @@ public class ArenaManagerScript : MonoBehaviour {
     List<Axis> horizontalAxes = new List<Axis>();
 
     List<string> buttons = new List<string>();
+
+    private EventSystem es;
+    public GameObject curtain;
 
     // Use this for initialization
     void Start()
@@ -137,8 +143,11 @@ public class ArenaManagerScript : MonoBehaviour {
         Vector3 tempPos = new Vector3(markerXPositions[0], markerYPositions[0], 1f);
         marker.transform.position = tempPos;
 
-        // Fade in
-        GameObject.Find("FadeCurtainCanvas").GetComponent<NewFadeScript>().Fade(0f);
+        es = EventSystem.current;
+
+		// Fade in
+		curtain.SetActive(true);
+        curtain.GetComponent<NewFadeScript>().Fade(0f);
     }
 
     void IncreasePlayCount(string whichType)
@@ -151,93 +160,23 @@ public class ArenaManagerScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!locked && es.currentSelectedGameObject) {
+			int selectedIndex = es.currentSelectedGameObject.transform.GetSiblingIndex();
 
-        if (!locked)
-        {
-            foreach (Axis va in verticalAxes)
-            {
-                if (Input.GetAxisRaw(va.axisName) < 0)
-                {
-                    if (va.axisInUse == false)
-                    {
-                        // Call your event function here.
-                        va.axisInUse = true;
-                        markerPos++;
-                        updateMarkerPos();
-                        audio.PlayOneShot(tickUp);
-                    }
-                }
+            foreach (string butt in buttons) {
+                if (Input.GetButtonDown(butt)) {
 
-                if (Input.GetAxisRaw(va.axisName) > 0)
-                {
-                    if (va.axisInUse == false)
-                    {
-                        // Call your event function here.
-                        va.axisInUse = true;
-                        markerPos--;
-                        audio.PlayOneShot(tickDown);
-                        updateMarkerPos();
-                    }
-                }
-
-                if (Input.GetAxisRaw(va.axisName) == 0)
-                {
-                    va.axisInUse = false;
-                }
-            }
-
-            foreach (Axis va in horizontalAxes)
-            {
-                if (Input.GetAxisRaw(va.axisName) < 0)
-                {
-                    if (va.axisInUse == false)
-                    {
-                        // Call your event function here.
-                        va.axisInUse = true;
-                        markerPos += 5;
-                        updateMarkerPos();
-                        audio.PlayOneShot(tickUp);
-
-                    }
-                }
-
-                if (Input.GetAxisRaw(va.axisName) > 0)
-                {
-                    if (va.axisInUse == false)
-                    {
-                        // Call your event function here.
-                        va.axisInUse = true;
-                        markerPos += 5;
-                        audio.PlayOneShot(tickDown);
-                        updateMarkerPos();
-                    }
-                }
-
-                if (Input.GetAxisRaw(va.axisName) == 0)
-                {
-                    va.axisInUse = false;
-                }
-            }
-
-            foreach (string butt in buttons)
-            {
-                if (Input.GetButtonDown(butt))
-                {
-
-                    if (markerPos == 0)
-                    {
+                    if (selectedIndex == 0) {
 
                         // Get and log random arena type
                         DataManagerScript.arenaType = Random.Range(0, numberOfArenas);
                         IncreasePlayCount("randomArenaPlays"); // log which arena
 
-                    }
-                    else
-                    {
+                    } else {
 
                         // Set and log chosen arena type
-                        DataManagerScript.arenaType = markerPos;
-                        IncreasePlayCount("arena" + markerPos + "Plays"); // log which arena
+                        DataManagerScript.arenaType = selectedIndex;
+                        IncreasePlayCount("arena" + selectedIndex + "Plays"); // log which arena
 
                     }
 
@@ -256,34 +195,5 @@ public class ArenaManagerScript : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             SceneManager.LoadSceneAsync("proTipScene");
         }
-    }
-
-    void updateMarkerPos()
-    {
-
-        if (markerPos < 0)
-        {
-            markerPos = numberOfArenas;
-        }
-        markerPos = markerPos % (numberOfArenas + 1);
-        float posX;
-        float posY;
-
-        if (markerPos > 4)
-        {
-            posX = markerXPositions[1];
-            marker.transform.localScale = new Vector3(-3f, marker.transform.localScale.y, marker.transform.localScale.z);
-            posY = markerYPositions[markerPos - 5];
-
-        }
-        else
-        {
-            posX = markerXPositions[0];
-            marker.transform.localScale = new Vector3(3f, marker.transform.localScale.y, marker.transform.localScale.z);
-            posY = markerYPositions[markerPos];
-        }
-
-        Vector3 tempPos = new Vector3(posX, posY, 1f);
-        marker.transform.position = tempPos;
     }
 }
